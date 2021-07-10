@@ -1,0 +1,20 @@
+<li class="post-link">
+    <div class="post-descriptor">
+        {{ if .Params.externalLink }}
+            <a class="linklog" href="{{ .Params.externalLink }}">
+                {{ .Site.Params.ExternalLinkIndicator }}
+            </a>
+        {{ else if eq .Type "s" }}
+            <a href="/s">
+                &#9005;
+            </a>
+        {{ else }}
+            &nbsp;
+        {{ end }}
+    </div>
+    <a class="post-link-url" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <p class="post-link-date">{{ .Date.Format "Jan 2" }}</p>
+    {{ if .Draft }}
+        <span class="draft">Draft</span>
+    {{ end }}
+</li>

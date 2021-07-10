@@ -1,0 +1,40 @@
+{{ with .Site.Author.name }}<meta name="author" content="{{ . }}">{{ end }}
+<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
+
+{{ $title := .Site.Title }}
+{{ with .Params.title }}
+    {{ $title = (printf "%v · %v" $.Params.title $title) }}
+{{ end }}
+
+<title>{{ $title }}</title>
+
+<!-- Twitter Card -->
+<meta name="twitter:dnt" content="on">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}"/>
+<meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
+{{ if .Permalink }}<meta property="twitter:url" content="{{ .Permalink }}">{{ end }}
+<meta name="twitter:site" content="{{ .Site.Params.twitter }}" />
+<meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
+
+<!-- OG data -->
+<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
+<!--<meta property="og:image" content="https://www.mywebsite.com/image.jpg">-->
+<!--<meta property="og:image:alt" content="Image description">-->
+<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+<meta property="og:type" content="website">
+{{ if .Permalink }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
+
+{{ if .Params.canonicalUrl }}
+<link rel="canonical" href="{{ .Params.canonicalUrl }}">
+{{ else if .Permalink }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
+
+<!--<link rel="icon" href="/favicon.ico">-->
+<!--<link rel="icon" href="/favicon.svg" type="image/svg+xml">-->
+<!--<link rel="apple-touch-icon" href="/apple-touch-icon.png">-->
+<!--<link rel="manifest" href="/my.webmanifest">-->
+<meta name="theme-color" content="#2B343E">

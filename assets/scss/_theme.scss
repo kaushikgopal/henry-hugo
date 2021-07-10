@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+//region Variables
+
+$font-size-regular:   18px;
+
+$font-size-xlarge:   $font-size-regular * 2;
+$font-size-large:   $font-size-regular * 1.5;
+//regular
+$font-size-medium:  $font-size-regular * 0.875;
+$font-size-small:  $font-size-regular * 0.75;
+
+$base-line-height: 1.4;
+
+$spacing-unit:          30px;
+$spacing-micro-unit:    6px;
+
+$mobile-width:  375px;
+$tablet-width:  685px;
+$screen-width:  780px;
+
+//endregion
+
+//region Theme
+
+$font-family-base: "ff-tisa-web-pro", "IBM Plex Serif", Georgia, "Times New Roman", serif;
+$header-font-family: "ibm-plex-sans", "IBM Plex Sans", sans-serif;
+$header-2-font-family: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
+$fixed-width-font-family: 'ibm-plex-mono', "IBM Plex Mono", 'SF Mono', 'Consolas', monospace;
+
+$background-color: #2B343E;
+
+$color-text:        #bbb;
+$color-text2:       whitesmoke;
+$color-textunderline: #797979;
+$color-code:        #e3d1b9;
+
+$color-link2:       $color-text2;
+$color-link:        #D7675D;       // ck orange : used in most hovers
+
+$color-header-index:    lighten($background-color, 10%);
+$color-header:          lighten($background-color, 60%);
+
+$color-divider:     $color-textunderline;
+
+//endregion

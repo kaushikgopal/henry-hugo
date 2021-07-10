@@ -1,0 +1,25 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <script type="module">
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+
+    {{- partial "styles.html" . -}}
+
+    {{- partial "seo.html" . -}}
+
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/my.webmanifest">
+
+    <meta name="format-detection" content="telephone=no">
+    <!-- link type="application/atom+xml" rel="alternate" href="/feed.xml" title="My Blog - Manuel Matuzovic"-->
+
+    {{- partial "head-additions.html" . -}}
+
+</head>

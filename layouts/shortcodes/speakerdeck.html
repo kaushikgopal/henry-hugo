@@ -1,0 +1,2 @@
+{{- $aspect := index .Params 1 -}} {{- .Scratch.Set "ratio" "1.33333333333333" -}} {{- if eq $aspect "wide" -}} {{- .Scratch.Set "ratio" "1.77777777777778" -}} {{- end -}}
+<script async class="speakerdeck-embed" data-id="{{ index .Params 0 }}" data-ratio="{{ .Scratch.Get " ratio "}}" src="//speakerdeck.com/assets/embed.js"></script>

@@ -1,0 +1,65 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+    {{- $pages = $pctx.RegularPages -}}
+{{- else -}}
+    {{- $pages = $pctx.Pages -}}
+{{- end -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+    {{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>{{ .Permalink }}/b/feed.xml</id>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    {{/* store latest date from posts */}}
+    {{ if not .Date.IsZero }} <updated>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</updated>{{ end }}
+
+    {{ with .Site.Author }}
+        <author>
+            <name>{{.name}}</name>
+            <email>{{.email}}</email>
+            <uri>http://example.com/~johndoe</uri>
+        </author>
+    {{end}}
+
+    {{/* map funky permalink setup for my personal blog */}}
+    <link href="{{ .Permalink }}/b/feed.xml" rel="self" type="application/atom+xml"/>
+    <link href="{{ .Permalink }}/b" rel="alternate" type="text/html"/>
+
+    <category term="programming"/>
+    {{ with .Site.Author.name }}
+        <contributor>
+            <name>{{.}}</name>
+        </contributor>
+    {{end}}
+    <generator uri="https://gohugo.io/">Hugo</generator>
+    <icon></icon>
+    <logo></logo>
+    <rights></rights>
+    <subtitle>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</subtitle>
+
+    {{ range $pages }}
+        <entry>
+            <id>{{ .Permalink }}</id>
+            <title>{{ .Title }}</title>
+            <updated></updated>
+
+            {{ with .Site.Author.name }}
+                <author>
+                    <name>{{.}}</name>
+                </author>
+            {{end}}
+            <content type="html" xml:base="{{ .Permalink }}"/>
+            <link>{{ .Permalink }}</link>
+            <summary>{{ .Summary | html }}</summary>
+
+            <category term="programming"/>
+            <category term="jekyll"/>
+            <contributor></contributor>
+            <published>{{ .Date | safeHTML }}</published>
+        </entry>
+    {{ end }}
+</feed>

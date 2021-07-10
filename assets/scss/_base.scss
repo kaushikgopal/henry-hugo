@@ -1,0 +1,133 @@
+/**
+ * Reset some basic elements
+ */
+
+html {
+    font-size: 100%; // for accessibility
+}
+
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/**
+ * Basic styling
+ */
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-regular;
+    line-height: $base-line-height;
+    color: $color-text;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+/**
+ * Images
+ */
+img:not(.full-bleed) {
+    display: block;
+    max-width: 100%;
+}
+
+video, iframe {
+    display: block;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+}
+
+figcaption {
+    font-size: $font-size-medium;
+}
+
+
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    color: $color-header;
+    font-weight: bold;
+    font-family: $header-font-family;
+}
+
+
+
+/**
+ * Links
+ */
+a {
+    color: $color-text;
+
+    &:hover {
+        text-decoration: $color-textunderline underline;
+    }
+}
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $color-divider;
+        }
+    }
+}

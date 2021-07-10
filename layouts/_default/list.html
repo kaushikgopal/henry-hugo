@@ -1,0 +1,46 @@
+{{ define "content" }}
+
+
+    {{ if .Data.Terms }}
+
+        <section class="post-index">
+            {{ range $group, $pages := .Data.Terms }}
+                <h2 class="post-list-header" id="{{ $group }}-ref">#{{ $group }}</h2>
+                <ul class="post-list-content">
+                    {{ range $pages }}
+                        {{ .Render "li" }}
+                    {{ end }}
+                </ul>
+            {{ end }}
+        </section>
+
+    {{ else }}
+
+        <section class="post-index">
+
+            {{ if .Content }}
+                <h2 class="post-list-header">{{ .Title }}</h2>
+                {{.Content}}
+            {{ end }}
+
+
+            {{ $pages := .Pages }}
+
+            {{ if eq .Type "b" }}
+                <!-- "b" is basically the blog's landing page instead of .IsHome -->
+                {{ $pages = .Site.RegularPages }}
+            {{ end}}
+
+            {{ range $pages.GroupByDate "2006" }}
+                <h2 class="post-list-header" id="{{ .Key }}-ref">{{ .Key }}</h2>
+                <ul class="post-list-content">
+                    {{ range .Pages }}
+                        {{ .Render "li" }}
+                    {{ end }}
+                </ul>
+            {{ end }}
+        </section>
+
+    {{ end}}
+
+{{ end }}

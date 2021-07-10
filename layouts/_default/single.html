@@ -1,0 +1,32 @@
+{{ define "content" }}
+    <section class="post">
+        <header class="post-header">
+            <h1 class="post-title">
+            {{ if .Params.externalLink }}
+                <a href="{{ .Params.externalLink }}" class='article-link'>{{ .Title }}<span class="linklog">{{ .Site.Params.ExternalLinkIndicator }}</span></a>
+            {{ else }}
+                {{ .Title }}
+            {{ end }}
+                {{ if .Draft }}
+                    <span class="draft">Draft</span>
+                {{ end }}
+            </h1>
+
+            <h4 class="post-author">
+            {{ if .Params.author }}
+                {{ .Params.author }}
+            {{ else if .Site.Author.name }}
+                {{ .Site.Author.name }}
+            {{ end}}
+            </h4>
+
+        </header>
+
+        <article class="post-content">
+            {{ .Content }}
+        </article>
+
+        {{- partial "meta.html" . -}}
+
+    </section>
+{{end}}

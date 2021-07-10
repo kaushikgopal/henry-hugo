@@ -1,0 +1,11 @@
+
+{{ $jq := resources.Get "js/jquery.min.js" }}
+{{ $sn := resources.Get "js/sidenotes.js" }}
+{{ $js := slice $jq $sn | resources.Concat "js/bundle.js"  }}
+
+{{ if .Site.IsServer }}
+    <script defer src="{{ $js.RelPermalink }}" type="module"></script>
+{{ else }}
+    {{ $js = $js | minify | fingerprint }}
+    <script defer src="{{ $js.RelPermalink }}" type="module"></script>
+{{ end }}
