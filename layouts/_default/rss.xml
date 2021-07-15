@@ -17,129 +17,49 @@
 
 {{- $title := .Site.Title -}}
 {{- if ne .Title  .Site.Title -}}
-    {{- if eq .Title  "Blogs" -}}
-        {{- $title = (print "Blog posts -" .Site.Title) -}}
+    {{- if or (eq .Title  "Blogs") (eq .Title "Bs") -}}
+        {{- $title = (print  .Site.Title " - Blog posts") -}}
     {{- else -}}
-        {{- $title = (print .Title " -" .Site.Title) -}}
+        {{- $title = (print .Site.Title " - " .Title)  -}}
     {{- end -}}
 {{- end -}}
 
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
 
         <title>{{ $title }}</title>
         <link>{{ .Permalink }}</link>
-        <description>Recent content: {{ $title }}</description>
+        <description>Recent content - {{ $title }}</description>
         <generator>Hugo -- gohugo.io</generator>
-        <image>
-            <url>https://yoursite.example.com/icon.png</url>
-            <title>{{ $title }}</title>
-            <link>{{ .Permalink }}</link>
-        </image>
         {{ with .Site.LanguageCode }}<language>{{.}}</language>{{end}}
         {{ with .Site.Author.email }}<managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}
         {{ with .Site.Author.email }}<webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
         {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
         {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+        <image>
+            <url>/images/avatar.png</url>
+            <title>{{ $title }}</title>
+            <link>{{ .Permalink }}</link>
+        </image>
         {{- with .OutputFormats.Get "RSS" -}}
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
         {{- end -}}
+
         {{ range $pages }}
             <item>
-                <title>Markdown in Academic Writing</title>
-                <link>https://ia.net/writer/blog/markdown-in-academic-writing</link>
+                <title>{{ .Title }}</title>
+                <link>{{ .Permalink }}</link>
+                <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+                {{ with $.Page.Lastmod }}<lastBuildDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{end}}
+                {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+                <guid>{{ .Permalink }}</guid>
+                {{ if and (isset .Params "banner") (not (eq .Params.banner "")) }}
+                    <media:content url="{{ printf "%s%s" $.Site.BaseURL .Params.banner}}" />
+                {{ end }}
 
-                <dc:creator><![CDATA[Krisztina Zala]]></dc:creator>
-                <pubDate>Tue, 01 Jun 2021 04:25:21 +0000</pubDate>
-                <guid isPermaLink="false">https://ia.net/?post_type=ia5_writer_posts&#038;p=7451</guid>
-
-                <description><![CDATA[<p>A piece of writing aiming to be academic must be 'clear, concise, focused, structured and backed up by evidence'. We believe that Markdown writing tools make it easier to focus on content and thus support the main aim of academic writing. iA Writer has a couple of tricks up its sleeves that other apps do not.</p>
-                    <p>The post <a rel="nofollow" href="https://ia.net/writer/blog/markdown-in-academic-writing">Markdown in Academic Writing</a> appeared first on <a rel="nofollow" href="https://ia.net">iA</a>.</p>
-                    ]]></description>
-                <content:encoded><![CDATA[<p>A piece of writing aiming to be academic must be <a href="https://library.leeds.ac.uk/info/14011/writing/106/academic_writing">&#8216;clear, concise, focused, structured and backed up by evidence&#8217;</a>. We believe that Markdown writing tools make it easier to focus on content and thus support the main aim of academic writing. iA Writer has a couple of tricks up its sleeves that other apps do not.</p>
-                    <p><img class="aligncenter wp-image-6924 size-full" src="http://stagingx.ia.net/wp-content/uploads/2021/05/4.png" alt="" width="2370" height="1600" /></p>
-                    <h2>Why Markdown?</h2>
-                    <p>Here is a short summary of the technical and creative advantages Markdown brings to Academic Writing, and how iA Writer boosts them.</p>
-                    <h3>Lightweight files</h3>
-                    <p>Hundreds of pages <a href="https://vimeo.com/264315873">load faster</a> in Markdown than in commonly used word processors, placing considerably less strain on your device.</p>
-                    <h3>Future-proof format</h3>
-                    <p>Since Markdown is plain text with rich text elements, it is future-proof; it doesn&#8217;t matter if your tool of choice is discontinued, you will be able to open and work with your file using other editors anytime.</p>
-                    <h3>Focus on Content and Structure</h3>
-                    <p>Markdown makes us think about what we say and how we structure it. Word Processors heavy on formatting, too much chrome and automation have the tendency to make us play with fonts, colors, margins, and fancy features rather than doing the work.</p>
-                    <p>Academia rarely requires documents to be submitted in <code>.md</code> format. iA Writer has this covered: the app offers HTML, MS Word (<code>.docx</code>) and <code>.pdf</code> export. iA Writer offers the most complete Markdown to Word import/export parsing around.</p>
-                    <h3>Foolproof file sharing</h3>
-                    <p>It doesn&#8217;t matter if co-authors have different writing apps, since Markdown files can be edited in any of them. Its straightforward styling options are a huge plus for file sharing efficiency, as advanced styling debates can be postponed until the finished work is exported to Word. Mind you, we believe that the text formats Markdown offers are perfect for the majority of academic fields.</p>
-                    <h2>Academic Paper design templates</h2>
-                    <p>There are various design templates circulating for academic papers. These ensure that the design specifics of your paper, such as fonts, spacing, headings, citations, and so on, comply with relevant academic standards. You can download the most common template from the <a href="https://ia.net/downloads#templates">iA Writer site</a>. With a bit of HTML, CSS or JavaScript knowledge, you can create your own template in iA Writer. See our <a href="https://github.com/iainc/iA-Writer-Templates">guide on Github</a>.</p>
-                    <h2>How does iA Writer help academics?</h2>
-                    <p>Markdown helps users focus on writing instead of browsing formatting options. This is useful in the context of lengthy academic papers. iA Writer doubles down on focus thanks to its clearcut interface, handy key binds, and the original Focus Mode that keeps attention on the sentence or paragraph the user is typing at any given moment.</p>
-                    <p>iA Writer was designed for creating uncluttered, focused, and concise text. This core alignment with Academic Writing requirements is supported by Syntax Highlight and Style Check features.</p>
-                    <ul>
-                        <li><a href="https://ia.net/writer/support/writing-tips/parts-of-speech">Syntax Highlight</a> helps you spot possible instances of exaggeration which should be avoided in academia. It can help you track consistent and clear word usage.</li>
-                        <li><a href="https://ia.net/writer/blog/introducing-style-check">Style Check</a> points out clichés, fillers, and redundancies, assisting users in creating content that is to-the-point, formal, and professional.</li>
-                    </ul>
-                    <p>From correspondence with our users, we know you have written short and long academic papers, even your <a href="https://ia.net/writer/blog/after-all-everyone-is-distracted-once-in-a-while">thesis</a> with the help of iA Writer. We encourage you to message us with your relevant experiences. How has Markdown and iA Writer helped you in academic writing? What were the greatest advantages? Have you encountered any limitations? Do you have templates you used and are happy to share with us? We&#8217;d love to share your tips and insights with fellow students, researchers, and scientists.</p>
-                    <p>The post <a rel="nofollow" href="https://ia.net/writer/blog/markdown-in-academic-writing">Markdown in Academic Writing</a> appeared first on <a rel="nofollow" href="https://ia.net">iA</a>.</p>
-                    ]]></content:encoded>
-
-
-
-                <post-id xmlns="com-wordpress:feed-additions:1">7451</post-id>	</item>
-            <item>
-                <title>After all, everyone is distracted once in a while</title>
-                <link>https://ia.net/writer/blog/after-all-everyone-is-distracted-once-in-a-while</link>
-
-                <dc:creator><![CDATA[Krisztina Zala]]></dc:creator>
-                <pubDate>Wed, 12 May 2021 03:39:42 +0000</pubDate>
-                <guid isPermaLink="false">https://ia.net/?post_type=ia5_writer_posts&#038;p=7420</guid>
-
-                <description><![CDATA[<p>These days we all fight to stay focused. People with ADHD are specialists on the matter. We asked you to share your experiences with iA Writer. Answers revolved around the topics of distractions and the ability to focus, which are key concerns of the attention deficit/hyperactivity disorder. Let's see how iA Writer helps you tackle the challenges of writing as explained by users with ADHD. Their insights can help us all.</p>
-                    <p>The post <a rel="nofollow" href="https://ia.net/writer/blog/after-all-everyone-is-distracted-once-in-a-while">After all, everyone is distracted once in a while</a> appeared first on <a rel="nofollow" href="https://ia.net">iA</a>.</p>
-                    ]]></description>
-                <content:encoded><![CDATA[<p>First, let us say thank you. In our recent piece, <span style="font-weight: 400;"><a href="https://ia.net/writer/blog/an-adhd-friendly-writing-app"><strong>An ADHD-friendly Writing App</strong></a></span> we asked you to share your experiences with iA Writer. A lot of you have taken the time to answer, and we are grateful for it. Grateful for the chance to see the process through your eyes, to receive confirmation that what we do is helpful, and to find points on which we might improve our product.</p>
-                    <p>While you praised the default font or made remarks about the UI/UX (thank you for both), most answers revolved around the topics of distractions and the ability to focus, which are key concerns of the attention deficit/hyperactivity disorder. Let&#8217;s see how iA Writer helps you tackle the challenges of writing as explained by users with ADHD.</p>
-                    <p><img class="wp-image-7421 size-full aligncenter" src="https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink.png" alt="" width="3200" height="1800" srcset="https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink.png 3200w, https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink-300x169.png 300w, https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink-1024x576.png 1024w, https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink-768x432.png 768w, https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink-1536x864.png 1536w, https://ia.net/wp-content/uploads/2021/05/userfeedback-adhd-idontthink-2048x1152.png 2048w" sizes="(max-width: 3200px) 100vw, 3200px" /></p>
-                    <h2>Keeping distractions to a minimum</h2>
-                    <p>Users explained that a main issue with ADHD is that &#8220;it feels like working with limited short term memory.&#8221; If a task, such as transforming a text into bullet point list, interrupts an ongoing process—writing your text—people with ADHD get distracted more easily than others. In your usual text editor, the number of menus and options is a rabbit hole into distraction-land and away from productivity. iA Writer, on the other hand, shrinks interrupting tasks &#8220;to their smallest possible memory consumption.&#8221; This has helped many a user finish their writing tasks from emails to work and study assignments. As Mirko added, &#8220;I don&#8217;t think I would have been able to write the theory part of both my BA and MA Thesis without iA Writer at all. (&#8230;) to complete a task like these is the real success for an ADHD-brain.&#8221;</p>
-                    <h3>Anti-distraction features</h3>
-                    <p>iA Writer is deliberately minimalist, which makes it easy to use, beautiful, and as distraction-free as possible. Below are the features that our users with ADHD confirmed are efficient in tackling distractions from the writing flow:</p>
-                    <p><strong>No menu bar, features are kept hidden.</strong> An empty page might seem daunting at first, but you&#8217;ll soon find that the complete lack of distractions helps you to focus on finding your words—just like our respondents did.</p>
-                    <p><strong>Markdown formatting.</strong> Daniel finds it useful that adding/removing a heading is only a matter of adding/removing a few characters, as it does not take him away from the text itself.</p>
-                    <p><strong>Distilled feature set.</strong> A key observation of users with ADHD was that the difficulty of applying themselves to one task was further aggravated by the extensive visual formatting options of common writing tools. Carefully limited options to do things liberate us, as they reduce the number of distractions from the task at hand.</p>
-                    <p><strong>Shortcuts.</strong> Again, keyboard shortcuts for frequently used formatting and navigation options save you from having to leave your text for the menu bar.</p>
-                    <h2>Focus is king</h2>
-                    <p>Many of you wrote about the experience that people with ADHD can have great difficulty applying themselves to one task and the myriad of visual enhancement options in commonly used writing apps distract them from putting their thoughts onto the screen. This means that focus-enhancing features can be virtual lifesavers for ADHD productivity.</p>
-                    <h3>Pro-focus features</h3>
-                    <p>iA Writer was designed with focus in mind. This round of feedback has confirmed that Focus Mode is useful for people with ADHD. Here are the settings that help you focus on writing:</p>
-                    <p><strong>Run the app in Full Screen Mode.</strong>  This helps limit external distractions. Andy, for instance has found it useful to shut out bouncing icons in the Dock or the clock in the menu bar.</p>
-                    <p><strong>Use Focus Mode.</strong> Does your ADHD come with perfectionism? If so, Focus Mode can be crucial in reducing the temptation to continuously re-read and tweak your text.</p>
-                    <p><strong>Use Dark Mode.</strong> We suggest you test whether dark letters on a white background or light colors on dark help your immersion best. Maybe this is what you are missing to be able to focus.</p>
-                    <p><strong>Use Syntax Highlight.</strong> Some of you mentioned that ADHD can be helpful if you manage to immerse yourself into a special task. Then people with ADHD can focus more than others. While Syntax Highlight adds more color and visually looks more busy, it strengthens your focus on the text structure and help immersion. It helps you identifying superfluous adjectives, adverbs and makes you think about the text instead of something else.</p>
-                    <p><strong>Use Style Check.</strong> Style check is not a school master telling you this is bad and that is bad. It makes you reflect on what you have written, if you mean it or if you wanted to say something else. Try it out, it, again, can tremendously help you focus and allow to immerse yourself into the text.</p>
-                    <h2>Journal-ready</h2>
-                    <p>Bullet journals can help people with ADHD stay organized and mindful. Naturally, journaling nowadays is often done digitally, and people have different requirements regarding the platform they might use for the purpose. One of our users, Daniel wrote that he intends to keep his bullet journal for decades, and explained why he finds iA Writer right for task:</p>
-                    <p><strong>Not a proprietary hosted data format.</strong> The future of the developer will not affect your access to your files. You can export your documents anytime in other formats and you host your own data on your device or in the cloud.</p>
-                    <p><strong>Syncable data.</strong> Thanks to iA Writer&#8217;s connectivity features, it is possible to sync documents between your devices (i.e. between Mac and iPhone via iCloud, between your Windows laptop and Android phone via Dropbox or Google Drive). This helps park your thoughts (as suggested by ADHD experts) anytime without fear of losing the information.</p>
-                    <h2>Better for people with ADHD, better for everyone</h2>
-                    <p>We&#8217;ll finish the round-up with Willem&#8217;s words. He reported that he finds iA Writer great and uses it for a variety of tasks from writing texts and emails to creating lesson drafts. Moreover, he habitually recommends iA Writer to his Motion Graphics students because of the Reading Time feature: it helps get length of voice-overs right and avoid distractions when writing. &#8220;Not all of them have ADHD of course, but it helps them anyway.&#8221; Remember, ADHD is not a black and white diagnosis. These days we all fight to stay focused. People with ADHD are specialists on the matter. Their insights can help us all.</p>
-                    <p>The post <a rel="nofollow" href="https://ia.net/writer/blog/after-all-everyone-is-distracted-once-in-a-while">After all, everyone is distracted once in a while</a> appeared first on <a rel="nofollow" href="https://ia.net">iA</a>.</p>
-                    ]]></content:encoded>
-
-
-
-                <post-id xmlns="com-wordpress:feed-additions:1">7420</post-id>	</item>
-
-        <item>
-            <title>{{ .Title }}</title>
-            <link>{{ .Permalink }}</link>
-            <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
-            {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
-            <guid>{{ .Permalink }}</guid>
-            <description>{{ .Summary | html }}</description>
-            <media:thumbnail url="https://jekyllrb.com/img/jekyll-og.png"/>
-            <media:content medium="image" url="https://jekyllrb.com/img/jekyll-og.png"/>
-        </item>
+                <description>{{ .Content | html }}</description>
+            </item>
         {{ end }}
     </channel>
 </rss>
