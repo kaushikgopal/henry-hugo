@@ -25,7 +25,7 @@ slug = ""
 # daring fireball style external link posts. 
 # it’ll show an arrow with link to outside page. 
 # also adds permanent link to your own post
-externalLinkTo = ""
+# externalLinkTo = ""
 
 
 # old published paths of renamed content
@@ -38,8 +38,14 @@ aliases = []
 # add the medium link as a canonicalUrl
 # this will make sure Google doesn't screw you over on SEO
 # canonicalUrl = "
-+++
 
+# This is used in a couple of places. 
+# Adding this here will make sure in certain SEO tags, we pick the right description
+# description: ""
+
+# banner image
+# banner: /images/content/soul.jpg | ./henry.webp
++++
 
 <!---
 See https://blog.jkl.gg/henry-jekyll-theme/ for details on how to use Henry
