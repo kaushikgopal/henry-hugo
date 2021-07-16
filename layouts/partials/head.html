@@ -12,9 +12,13 @@
 
     {{- partial "seo.html" . -}}
 
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="icon" href="/images/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/images/favicon.png">
+    {{ if (fileExists "static/images/favicon.png") }}
+        <link rel="icon" href="/images/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="/images/favicon.png">
+    {{ end }}
+    {{ if (fileExists "static/images/favicon.ico") }}
+        <link rel="icon" href="/images/favicon.ico">
+    {{ end }}
 
     <meta name="format-detection" content="telephone=no">
 
