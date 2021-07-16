@@ -1,6 +1,3 @@
-{{ with .Site.Author.name }}<meta name="author" content="{{ . }}">{{ end }}
-<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
-
 {{ $title := .Site.Title }}
 {{ with .Params.title }}
     {{ $title = (printf "%v · %v" $.Params.title $title) }}
@@ -8,31 +5,45 @@
 
 <title>{{ $title }}</title>
 
-<!-- Twitter Card -->
-<meta name="twitter:dnt" content="on">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $title }}"/>
-<meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
-{{ if .Permalink }}<meta property="twitter:url" content="{{ .Permalink }}">{{ end }}
-<meta name="twitter:site" content="{{ .Site.Params.twitter }}" />
-<meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
+{{ with .Site.Author.name }}
+    <meta name="author" content="{{ . }}">
+{{ end }}
 
-<!-- OG data -->
-<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
-<meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}"/>
-<!--<meta property="og:image" content="https://www.mywebsite.com/image.jpg">-->
-<!--<meta property="og:image:alt" content="Image description">-->
-<meta property="og:locale" content="{{ .Site.LanguageCode }}">
-<meta property="og:type" content="website">
-{{ if .Permalink }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
-
-{{ if .Params.canonicalUrl }}
-<link rel="canonical" href="{{ .Params.canonicalUrl }}">
-{{ else if .Permalink }}
-<link rel="canonical" href="{{ .Permalink }}">
+{{ with .Site.Params.description }}
+    <meta name="description" content="{{ . }}"/>
 {{ end }}
 
 
+<!-- Twitter Card -->
+<meta name="twitter:dnt" content="on">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="{{ .Site.Params.twitter }}"/>
+<meta name="twitter:title" content="{{ $title }}"/>
+<meta name="twitter:creator" content="{{ .Site.Params.twitter }}"/>
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+<meta property="twitter:url" content="{{ .Permalink }}">
+
+<!-- must be at least 120x120px -->
+{{ if .Params.banner }}
+<meta name="twitter:image" content="{{.Site.BaseURL}}{{.Params.banner}}">
+{{ else if (fileExists "static/images/avatar.png")}}
+<meta name="twitter:image" content="{{.Site.BaseURL}}images/avatar.png">
+{{ end }}
+
+<!-- OG data -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+{{ if .Params.banner }}
+<meta property="og:image" content="{{.Site.BaseURL}}{{.Params.banner}}">
+{{ else if (fileExists "static/images/avatar.png")}}
+<meta property="og:image" content="{{.Site.BaseURL}}images/avatar.png">
+{{ end }}
+{{ with .Permalink }}<meta property="og:url" content="{{ . }}">{{ end }}
+<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+<meta property="og:type" content="{{ if eq .Kind "page" }}article{{ else }}website{{ end }}"/>
+
+<link rel="canonical" href="{{ if .Params.canonicalUrl }}{{ .Params.canonicalUrl }}{{ else if .Permalink }}{{ .Permalink }}{{ end }}">
+
 <!-- <link rel="manifest" href="/my.webmanifest">-->
+
 <meta name="theme-color" content="#2B343E">
