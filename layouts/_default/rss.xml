@@ -18,7 +18,7 @@
 {{- $title := .Site.Title -}}
 {{- if ne .Title  .Site.Title -}}
     {{- if or (eq .Title  "Blogs") (eq .Title "Bs") -}}
-        {{- $title = (print  .Site.Title " - Blog posts") -}}
+        {{- $title = (print .Site.Title " - Blog posts") -}}
     {{- else -}}
         {{- $title = (print .Site.Title " - " .Title)  -}}
     {{- end -}}
@@ -37,11 +37,21 @@
         {{ with .Site.Author.email }}<webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
         {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
         {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
-        <image>
-            <url>/images/avatar.png</url>
-            <title>{{ $title }}</title>
-            <link>{{ .Permalink }}</link>
-        </image>
+
+        {{ if (fileExists "static/images/avatar.png") }}
+            <image>
+                <url>{{.Site.BaseURL}}images/avatar.png</url>
+                <title>{{ $title }}</title>
+                <link>{{ .Permalink }}</link>
+            </image>
+        {{ else if (fileExists "static/images/favicon.png") }}
+            <image>
+                <url>{{.Site.BaseURL}}images/avatar.png</url>
+                <title>{{ $title }}</title>
+                <link>{{ .Permalink }}</link>
+            </image>
+        {{ end }}
+
         {{- with .OutputFormats.Get "RSS" -}}
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
         {{- end -}}
@@ -56,8 +66,8 @@
                 <guid>{{ .Permalink }}</guid>
 
                 <description>
-                    {{ if isset .Params "banner" }}
-                        {{ printf "<![CDATA[<img src=\"%s%s\" />]]>" $.Site.BaseURL .Params.banner | safeHTML }}
+                    {{ with .Params.banner }}
+                        {{ printf "<![CDATA[<img src=\"%s%s\" />]]>" $.Site.BaseURL . | safeHTML }}
                     {{ end }}
                     {{ .Content | html }}
                 </description>
