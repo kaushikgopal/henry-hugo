@@ -1,1 +1,3 @@
-<div class="callout">{{ .Inner | markdownify}}</div>
+<div class='callout {{ with .Get "align" }}{{.}}{{ else }}center{{ end }}'>
+    {{ .Inner | markdownify}}
+</div>
