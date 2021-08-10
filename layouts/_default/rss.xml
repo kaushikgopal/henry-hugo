@@ -38,15 +38,15 @@
         {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
         {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
 
-        {{ if (fileExists "static/images/avatar.png") }}
+        {{ if (fileExists (printf "%s/%s" "static" .Site.Params.avatar)) }}
             <image>
-                <url>{{.Site.BaseURL}}images/avatar.png</url>
+                <url>{{.Site.BaseURL}}{{.Site.Params.avatar}}</url>
                 <title>{{ $title }}</title>
                 <link>{{ .Permalink }}</link>
             </image>
         {{ else if (fileExists "static/images/favicon.png") }}
             <image>
-                <url>{{.Site.BaseURL}}images/avatar.png</url>
+                <url>{{.Site.BaseURL}}/images/favicon.png</url>
                 <title>{{ $title }}</title>
                 <link>{{ .Permalink }}</link>
             </image>
