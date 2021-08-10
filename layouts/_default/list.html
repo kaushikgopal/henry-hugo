@@ -5,7 +5,7 @@
 
         <section class="post-index">
             {{ range $group, $pages := .Data.Terms }}
-                <h2 class="post-list-header" id="{{ $group }}-ref">#{{ $group }}</h2>
+                <h2 class="post-list-header" id="{{ $group }}">#{{ $group }}</h2>
                 <ul class="post-list-content">
                     {{ range $pages }}
                         {{ .Render "li" }}
@@ -32,7 +32,7 @@
             {{ end}}
 
             {{ range $pages.GroupByDate "2006" }}
-                <h2 class="post-list-header" id="{{ .Key }}-ref">{{ .Key }}</h2>
+                <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
                 <ul class="post-list-content">
                     {{ range .Pages }}
                         {{ .Render "li" }}
