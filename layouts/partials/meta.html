@@ -3,7 +3,7 @@
         <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
     {{ end }}
 
-    <div class="post-date">{{ .Date.Format "Jan 2" }}</div>
+    <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
 
 
     {{ $n := (add (len (.Params.categories | default slice)) -1) }}
