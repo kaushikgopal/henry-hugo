@@ -40,7 +40,7 @@
 
         {{ if (fileExists (printf "%s/%s" "static" .Site.Params.avatar)) }}
             <image>
-                <url>{{.Site.BaseURL}}{{.Site.Params.avatar}}</url>
+                <url>{{.Site.BaseURL}}/{{.Site.Params.avatar}}</url>
                 <title>{{ $title }}</title>
                 <link>{{ .Permalink }}</link>
             </image>
