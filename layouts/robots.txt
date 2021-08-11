@@ -1,4 +1,4 @@
-Sitemap: {{ .Site.BaseURL }}sitemap.xml
+Sitemap: {{ .Site.BaseURL }}/sitemap.xml
 User-agent: *
 {{ if ne ( getenv "HUGO_ENV" ) "production" -}}
 Disallow: /
