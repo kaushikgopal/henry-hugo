@@ -1,6 +1,6 @@
 Sitemap: {{ .Site.BaseURL }}/sitemap.xml
 User-agent: *
-{{ if .Site.IsServer }
+{{ if .Site.IsServer }}
 Disallow: /
 {{- else -}}
 Allow: /
