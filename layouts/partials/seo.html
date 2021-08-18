@@ -13,6 +13,11 @@
     <meta name="description" content="{{ . }}"/>
 {{ end }}
 
+{{ if .Params.noindex }}
+<meta name="robots" content="noindex" />
+{{ else if .Params.noarchive }}
+<meta name="robots" content="noarchive" />
+{{ end }}
 
 <!-- Twitter Card -->
 <meta name="twitter:dnt" content="on">
