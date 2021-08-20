@@ -31,6 +31,8 @@
                 {{ $pages = .Site.RegularPages }}
             {{ end}}
 
+            {{ $pages := where $pages "Params.noindex" "!=" true }}
+
             {{ range $pages.GroupByDate "2006" }}
                 <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
                 <ul class="post-list-content">
