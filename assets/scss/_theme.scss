@@ -23,10 +23,16 @@ $screen-width:  780px;
 
 //region Theme
 
-$font-family-base: "ff-tisa-web-pro", "IBM Plex Serif", Georgia, "Times New Roman", serif;
-$header-font-family: "ibm-plex-sans", "IBM Plex Sans", sans-serif;
+$font-family-base:
+  "ibm-plex-serif", "IBM Plex Serif", ui-serif,
+  Georgia, "Times New Roman", serif;
+$header-font-family:
+  "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;
 $header-2-font-family: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
-$fixed-width-font-family: 'SF Mono', 'ibm-plex-mono', "IBM Plex Mono", 'Consolas', monospace;
+$fixed-width-font-family:
+  'SF Mono', SFMono-Regular, ui-monospace,
+  'ibm-plex-mono', "IBM Plex Mono", 'Consolas', monospace;
+
 
 $background-color: #2B343E;
 
