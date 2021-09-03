@@ -17,6 +17,7 @@
 
                 {{ if or (.Get "caption") (.Get "attr")}}
                     <p>
+
                         {{ .Get "caption" }}
 
                         {{ if isset .Params "attrlink"}}

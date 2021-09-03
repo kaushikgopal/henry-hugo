@@ -390,9 +390,8 @@ figure { text-align: left; }
 figcaption {
     font-size: 0.8em;
     font-family: $header-font-family;
-    text-align: center;
     margin-bottom: $spacing-unit;
-    margin-top: $spacing-unit / 2;
+    margin-top: $spacing-micro-unit;
 }
 
 /**
