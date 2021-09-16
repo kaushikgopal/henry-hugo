@@ -14,8 +14,10 @@ title = "{{ replace .Name "-" " " | title }}"
 # automatically converted to lower-case-hyphenated
 # slug = ""
 
-# used by twitter
+# This is used in a couple of places.
+# Adding this here will make sure in certain SEO tags, we pick the right description
 # description = "Text about my cool site"
+# used by twitter (importantly)
 # images = ["post-cover.png"]
 
 # These don't show up directly to the reader.
@@ -41,14 +43,10 @@ categories = []
 # Sometimes you want to post your content on medium, or another place (for social traction).
 # You might additionally want to post it here (making sure content lives in your control)
 # or just boost the visibility of the content again from your own blog, embellishing with some notes.
-#
+
 # Add the medium (or external site) link here as a canonicalUrl.
 # This will make sure Google doesn't screw you over on SEO and you're attributing source correctly.
 # canonicalUrl = "
-
-# This is used in a couple of places.
-# Adding this here will make sure in certain SEO tags, we pick the right description
-# description = ""
 
 # banner image
 # This image is picked up automatically (for twitter/og tags) + RSS feeds
