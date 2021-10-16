@@ -10,6 +10,13 @@
     }
 }
 
+@mixin font-size-responsive($size: $font-size-regular, $size-small: $font-size-medium) {
+    font-size: $size;
+    @include media-query-small-screen() {
+        font-size: $size-small;
+    }
+}
+
 // Using media queries with like this:
 // @include media-query-mobile() {
 //     .wrapper {
