@@ -324,7 +324,7 @@
     
     @include font-size-responsive();
 
-    p { margin-bottom: $spacing-unit; }
+    > p { margin-bottom: $spacing-unit; }
     p + ul { margin-top: -0.5 * $spacing-unit; }
 
     a {
