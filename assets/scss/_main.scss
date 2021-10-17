@@ -324,7 +324,13 @@
     
     @include font-size-responsive();
 
-    > p { margin-bottom: $spacing-unit; }
+    > p { 
+        margin-bottom: $spacing-unit - $spacing-micro-unit; 
+        @include media-query-small-screen() {
+            margin-bottom: $spacing-unit - 2 * $spacing-micro-unit; 
+        }
+    }
+
     p + ul { margin-top: -0.5 * $spacing-unit; }
 
     a {
