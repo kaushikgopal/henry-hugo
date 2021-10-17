@@ -1,6 +1,6 @@
 # Henry
 
-<p align="center"><img src="static/images/content/henry.webp"></p>
+<p align="center"><img src="static/images/henry.png"></p>
 
 Henry is a [Hugo](https://gohugo.io/) theme with a gorgeous reading experience, chock-full of features. To find out more about all the features check out this [blog post](https://jkl.gg/b/henry-hugo-theme/).
 
