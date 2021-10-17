@@ -23,13 +23,8 @@ git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
 ## inside your config.toml file
 theme = "henry"
 
-# 4. add a post (or Hugo won't show anything)
-mkdir -p content
-cp themes/henry/content/*.md content/
-
-# 5. run hugo server
+# run Hugo!
 hugo server -D 
-
 open http://localhost:1313/
 ```
 
