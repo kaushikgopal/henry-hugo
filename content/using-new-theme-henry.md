@@ -4,13 +4,13 @@ date = 2021-10-17
 title = "This blog now uses Henry"
 slug = "now-on-theme-henry"
 description = "My blog now uses the Hugo theme - Henry"
-images = ["https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/static/images/henry.png"]
-banner =["https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/static/images/henry.png"]
+images = ["https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/images/henry.png"]
+banner =["https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/images/henry.png"]
 tags = ["henry", "hugo", "theme"]
 categories = ["blog"]
 +++
 
-{{< img src="https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/static/images/henry.png"
+{{< img src="https://raw.githubusercontent.com/kaushikgopal/henry-hugo/master/images/henry.png"
         align="center"
         alt="Henry Theme Mascot" 
         attrlink="https://jkl.gg/b/henry-hugo-theme"

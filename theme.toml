@@ -1,21 +1,13 @@
-# theme.toml template for a Hugo theme
-# See https://github.com/gohugoio/hugoThemes#themetoml for an example
-
 name = "henry"
 license = "MIT"
 licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
-description = ""
-homepage = "http://example.com/"
-tags = []
-features = []
-min_version = "0.41.0"
+
+description = "Henry is a gorgeous Hugo theme optimmized for a good reading experience and packed with features"
+homepage = "https://jkl.gg/b/henry-hugo-theme/"
+
+tags = ["blog", "minimal", "responsive", "archive", "personal", "bootstrap", "portfolio", "dark"]
+features = ["clean reading experience", "beautiful font & type", "customizable & versatile", "footnotes", "sidenotes", "multiple image display combinations", "image attribution captions", "external url", "daring fireball style urls", "canonical urls", "alternate urls aliases", "rss feed clean", "seo optimized"]
 
 [author]
-  name = ""
-  homepage = ""
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
+  name = "Kaushik Gopal"
+  homepage = "https://jkl.gg"
