@@ -4,6 +4,8 @@
 
 Henry is a [Hugo](https://gohugo.io/) theme with a gorgeous reading experience, chock-full of features. To find out more about all the features check out this [blog post](https://jkl.gg/b/henry-hugo-theme/).
 
+<p align="center"><img src="images/screenshot.png"></p>
+
 # Getting Started
 
 The easiest way to get up and running with a Hugo blog using Henry is as follows: 
