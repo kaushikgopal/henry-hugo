@@ -19,7 +19,6 @@
     // correct to match exact 100vw
     width: calc(
             100vw
-            - 2 * #{$spacing-micro-unit}
             - 1.5px
            );
 
