@@ -14,12 +14,6 @@ title = "{{ replace .Name "-" " " | title }}"
 # automatically converted to lower-case-hyphenated
 # slug = ""
 
-# This is used in a couple of places.
-# Adding this here will make sure in certain SEO tags, we pick the right description
-# description = "Text about my cool site"
-# used by twitter (importantly)
-# images = ["post-cover.png"]
-
 # These don't show up directly to the reader.
 # But this is what we use to cross-link posts and show "Related Posts".
 # Related posts show up at the bottom of each post.
@@ -50,7 +44,7 @@ categories = []
 
 # banner image
 # This image is picked up automatically (for twitter/og tags) + RSS feeds
-# banner = /images/content/soul.jpg | ./henry.webp
+# banner = images/content/soul.jpg | ./henry.webp
 +++
 
 <!---

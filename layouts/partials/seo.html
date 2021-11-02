@@ -2,7 +2,6 @@
 {{ with .Params.title }}
     {{ $title = (printf "%v · %v" $.Params.title $title) }}
 {{ end }}
-
 <title>{{ $title }}</title>
 
 {{ with .Site.Author.name }}
@@ -28,21 +27,25 @@
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}">
 
+{{ $banner := .Params.banner }}
+{{ if $banner }}
+    {{ if not (hasPrefix $banner "http") }}
+        {{ $banner = (printf "%v/%v" .Site.BaseURL $banner) }}
+    {{ end }}
+{{ else if (fileExists "static/images/avatar.png") }}
+    {{ $banner = (printf "%v/%v" .Site.BaseURL "images/avatar.png") }}
+{{ end }}
+
 <!-- must be at least 120x120px -->
-{{ if .Params.banner }}
-<meta name="twitter:image" content="{{.Site.BaseURL}}{{.Params.banner}}">
-{{ else if (fileExists "static/images/avatar.png")}}
-<meta name="twitter:image" content="{{.Site.BaseURL}}images/avatar.png">
+{{ with $banner }}
+<meta name="twitter:image" content="{{ $banner }}">
+<meta property="og:image" content="{{ $banner}}">
 {{ end }}
 
 <!-- OG data -->
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
-{{ if .Params.banner }}
-<meta property="og:image" content="{{.Site.BaseURL}}{{.Params.banner}}">
-{{ else if (fileExists "static/images/avatar.png")}}
-<meta property="og:image" content="{{.Site.BaseURL}}images/avatar.png">
-{{ end }}
+
 {{ with .Permalink }}<meta property="og:url" content="{{ . }}">{{ end }}
 <meta property="og:locale" content="{{ .Site.LanguageCode }}">
 <meta property="og:type" content="{{ if eq .Kind "page" }}article{{ else }}website{{ end }}"/>

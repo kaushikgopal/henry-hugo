@@ -61,9 +61,6 @@
                 <title>{{ .Title }}</title>
                 <link>{{ .Permalink }}</link>
                 <description>
-                    {{ with .Params.banner }}
-                        {{ printf "<![CDATA[<img src=\"%s%s\" />]]>" $.Site.BaseURL . | safeHTML }}
-                    {{ end }}
                     {{ .Content | html }}
                 </description>
                 {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
