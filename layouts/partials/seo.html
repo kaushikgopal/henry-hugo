@@ -26,11 +26,17 @@
 <meta name="twitter:creator" content="{{ .Site.Params.twitter }}"/>
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}">
-
 {{ $banner := .Params.banner }}
 {{ if $banner }}
     {{ if not (hasPrefix $banner "http") }}
-        {{ $banner = (printf "%v/%v" .Site.BaseURL $banner) }}
+        {{ if  (hasPrefix $banner "/") }}
+            {{/*  image in static directory   */}}
+            {{ $banner = (printf "%v%v" .Site.BaseURL $banner) }}
+        {{ else }}
+            {{/*  image in content/post directory   */}}
+            {{ $banner = (printf "%v%v" .Permalink $banner) }}
+
+        {{ end }}
     {{ end }}
 {{ else if (fileExists "static/images/avatar.png") }}
     {{ $banner = (printf "%v/%v" .Site.BaseURL "images/avatar.png") }}
