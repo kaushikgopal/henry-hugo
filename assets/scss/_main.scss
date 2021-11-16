@@ -26,13 +26,16 @@
     .post-content margin + padding
      #{$spacing-unit} (padding from line 13)
      #{$spacing-unit} (margin from line 319)
+     #the 14px is a spill over from somewhere that i haven't figured out yet
     */
     margin-left: calc(
             (-1)
             * (100vw - #{"min(65ch, 100vw)"}) * (.2/1.2)
             - #{$spacing-unit}
+            - 14px
     );
 }
+
 
 /* Header
 ================================================== */
@@ -294,7 +297,7 @@
             font-family: $header-2-font-family;
 
             @include font-size-responsive($font-size-xlarge + 10px, $font-size-large + 5px);
-           
+
             .article-link  {
 
               color: $color-text2;
@@ -320,13 +323,13 @@
     clear: left;
     margin: $spacing-unit;
     line-height: 1.5;
-    
+
     @include font-size-responsive();
 
-    > p { 
-        margin-bottom: $spacing-unit - $spacing-micro-unit; 
+    > p {
+        margin-bottom: $spacing-unit - $spacing-micro-unit;
         @include media-query-small-screen() {
-            margin-bottom: $spacing-unit - 2 * $spacing-micro-unit; 
+            margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
         }
     }
 
