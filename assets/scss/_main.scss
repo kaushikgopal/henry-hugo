@@ -506,6 +506,7 @@ article.post-content {
             -moz-appearance: none;
             appearance: none;
             background-color: lightgray;
+            color:black;
 
             @include media-query-laptop() {
                     grid-column-start: 3;
