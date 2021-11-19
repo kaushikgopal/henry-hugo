@@ -324,7 +324,7 @@
     margin: $spacing-unit;
     line-height: 1.5;
 
-    @include font-size-responsive();
+    @include font-size-responsive($font-size-regular, $font-size-regular);
 
     > p {
         margin-bottom: $spacing-unit - $spacing-micro-unit;
@@ -348,7 +348,7 @@
     }
 
     h1 {
-        @include font-size-responsive($font-size-xlarge, $font-size-large);
+        @include font-size-responsive($font-size-xlarge, $font-size-xlarge);
         margin: 2.5rem 0 1rem 0rem;
     }
 
@@ -359,7 +359,7 @@
     h2 {
         font-style: italic;
 
-        @include font-size-responsive($font-size-large, $font-size-medium + 2px);
+        @include font-size-responsive($font-size-large, $font-size-large);
 
         margin: 2rem 0 1rem 0em;
     }
