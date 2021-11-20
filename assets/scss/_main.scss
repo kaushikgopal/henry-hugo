@@ -338,7 +338,8 @@
     a {
         text-decoration-color: $color-textunderline;
         text-underline-offset: $spacing-micro-unit;
-        &:hover { text-decoration: none; }
+        text-decoration-thickness: 3px;
+        &:hover { color: $color-link; }
     }
 
     hr {
