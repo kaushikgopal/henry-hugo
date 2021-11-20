@@ -12,9 +12,9 @@
             &nbsp;
         {{ end }}
     </div>
+    {{ if .Draft }}
+    <span class="draft">Draft</span>
+    {{ end }}
     <a class="post-link-url" href="{{ .RelPermalink }}">{{ .Title }}</a>
     <p class="post-link-date">{{ .Date.Format "Jan 2" }}</p>
-    {{ if .Draft }}
-        <span class="draft">Draft</span>
-    {{ end }}
 </li>
