@@ -2,51 +2,46 @@
 
 //region Variables
 
-$font-size-regular:   20px;
+$font-size-regular: 20px;
 
-$font-size-xlarge:   $font-size-regular * 2;
-$font-size-large:   $font-size-regular * 1.5;
+$font-size-xlarge: $font-size-regular * 2;
+$font-size-large: $font-size-regular * 1.5;
 //regular
-$font-size-medium:  $font-size-regular * 0.875;
-$font-size-small:  $font-size-regular * 0.75;
+$font-size-medium: $font-size-regular * 0.875;
+$font-size-small: $font-size-regular * 0.75;
 
 $base-line-height: 1.4;
 
-$spacing-unit:          24px;
-$spacing-micro-unit:    6px;
+$spacing-unit: 24px;
+$spacing-micro-unit: 6px;
 
-$mobile-width:  375px;
-$tablet-width:  685px;
-$screen-width:  780px;
+$mobile-width: 375px;
+$tablet-width: 685px;
+$screen-width: 780px;
 
 //endregion
 
 //region Theme
 
-$font-family-base:
-  "ibm-plex-serif", "IBM Plex Serif", ui-serif,
-  Georgia, "Times New Roman", serif;
-$header-font-family:
-  "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;
+$font-family-base: "ibm-plex-serif", "IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;
+$header-font-family: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;
 $header-2-font-family: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
-$fixed-width-font-family:
-  'SF Mono', SFMono-Regular, ui-monospace,
-  'ibm-plex-mono', "IBM Plex Mono", 'Consolas', monospace;
+$fixed-width-font-family: "SF Mono", SFMono-Regular, ui-monospace, "ibm-plex-mono", "IBM Plex Mono", "Consolas",
+  monospace;
 
+$background-color: #2b343e;
 
-$background-color: #2B343E;
-
-$color-text:        #bbb;
-$color-text2:       whitesmoke;
+$color-text: #bbb;
+$color-text2: whitesmoke;
 $color-textunderline: #797979;
-$color-code:        #e3d1b9;
+$color-code: #e3d1b9;
 
-$color-link2:       $color-text2;
-$color-link:        #D7675D;       // ck orange : used in most hovers
+$color-link2: $color-text2;
+$color-link: #d7675d; // ck orange : used in most hovers
 
-$color-header-index:    lighten($background-color, 10%);
-$color-header:          lighten($background-color, 60%);
+$color-header-index: lighten($background-color, 10%);
+$color-header: lighten($background-color, 60%);
 
-$color-divider:     $color-textunderline;
+$color-divider: $color-textunderline;
 
 //endregion

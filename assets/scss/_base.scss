@@ -6,14 +6,25 @@ html {
     font-size: 100%; // for accessibility
 }
 
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
     margin: 0;
     padding: 0;
 }
-
-
 
 /**
  * Basic styling
@@ -30,9 +41,19 @@ body {
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
 %vertical-rhythm {
     margin-bottom: $spacing-unit / 2;
 }
@@ -45,12 +66,12 @@ img:not(.full-bleed) {
     max-width: 100%;
 }
 
-video, iframe {
+video,
+iframe {
     display: block;
     width: 100%;
     margin-bottom: 2em;
 }
-
 
 /**
  * Figures
@@ -63,12 +84,11 @@ figcaption {
     font-size: $font-size-medium;
 }
 
-
-
 /**
  * Lists
  */
-ul, ol {
+ul,
+ol {
     margin-left: $spacing-unit;
 }
 
@@ -79,18 +99,19 @@ li {
     }
 }
 
-
-
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $color-header;
     font-weight: bold;
     font-family: $header-font-family;
 }
-
-
 
 /**
  * Links
@@ -107,7 +128,6 @@ a {
  * Clearfix
  */
 %clearfix {
-
     &:after {
         content: "";
         display: table;
@@ -119,7 +139,6 @@ a {
  * Icons
  */
 .icon {
-
     > svg {
         display: inline-block;
         width: 16px;
@@ -132,6 +151,12 @@ a {
     }
 }
 
-.center { text-align: center; }
-.end { text-align: end; }
-.start { text-align: start; }
+.center {
+    text-align: center;
+}
+.end {
+    text-align: end;
+}
+.start {
+    text-align: start;
+}
