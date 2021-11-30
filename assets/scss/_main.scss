@@ -1,6 +1,3 @@
-// TODO:
-// * footnotes need to be compressed and show up on right (try putting them in right grid)
-
 .site-footer,
 .post-index {
     display: grid;
@@ -18,12 +15,12 @@
 figure.full-bleed,
 .post-header,
 .post-content,
-.post-meta{
+.post-meta {
     display: grid;
 
     grid-column-gap: $spacing-content-sides;
     grid-template-columns:
-        0.4fr
+        0.5fr
         #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
 
@@ -420,7 +417,6 @@ blockquote {
         margin-bottom: 0;
     }
 }
-
 
 .sidenote {
     padding-left: 20px;
