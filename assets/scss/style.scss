@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+// TODO:
+//  * move over 1st half of base -> theme (reset)
+//  * move over 2nd half of current base -> main
+//  * delete base
+//  * rename theme -> base
+
 @import "theme";
 @import "mixins", "code", "base";
 @import "main";
