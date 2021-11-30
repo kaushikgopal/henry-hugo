@@ -10,13 +10,12 @@
  **/
 (function () {
 
-    $(window).on("load", function() {
-        const $footnotes = $(".footnotes"),
-              $postContent = $(".post-content");
+    $(window).on("load", function () {
+        const $footnotes = $(".footnotes");
 
-        loadSideNotesFromFootnotes($postContent, $footnotes);
+        loadSideNotesFromFootnotes($footnotes);
 
-        $(window).resize(function() {
+        $(window).resize(function () {
             // console.log(" XXX -- RESIZE -- XXX ");
 
             // TODO: optimization if window width doesn't change that much
@@ -24,42 +23,45 @@
             // if (new_ww === windowWidth) return;
             // windowWidth = new_ww;
 
-            loadSideNotesFromFootnotes($postContent, $footnotes);
+            loadSideNotesFromFootnotes($footnotes);
         });
     });
 
-    function loadSideNotesFromFootnotes($postContent, $footnotes) {
+    function loadSideNotesFromFootnotes($footnotes) {
 
-        const sideNoteWidth = 240;
+        const sideNoteStartMargin = 6,
+            sideNoteWidth = 228,
+            browserWidth = $("window").width(),
+            postTitle = $(".post-title"),
+            startPosition = postTitle.position().left + postTitle.outerWidth() + sideNoteStartMargin;
 
-        // remove any existing side notes to begin
-        $(".sidenote").remove();
+        $(".sidenote").remove(); // remove any existing side notes to begin
+        $footnotes.show();  // previous resize could have hidden footnotes
 
-        //region Should we even show sidenotes?
+        //#region Should we even show sidenotes?
 
-        // has post content
-        if ($postContent.length < 1) {
-            $footnotes.show();  // previous resize could have hidden footnotes
+        //#region there's no post-content
+        if (postTitle.length < 1) {
             return;
         }
+        //#endregion
 
-        const startPosition = $postContent.position().left
-            + $postContent.outerWidth()
-            + 60; // some padding
+        //#region there's no space for sidenotes
+        const availabeSpaceForSideNote = browserWidth - startPosition;
 
-        // console.log(" ---> postWidth " + $(".post").outerWidth());
-        // console.log(" ---> snStart " + startPosition + startPosition/3);
+        // console.log(" ---> availabeSpaceForSideNote " + availabeSpaceForSideNote);
+        // console.log(" ---> sideNoteWidth " + sideNoteWidth);
 
-        // has room to show side content
-        if(startPosition + sideNoteWidth + 25 > $(".post").outerWidth()) {
-            $footnotes.show();  // previous resize could have hidden footnotes
+        if (availabeSpaceForSideNote < sideNoteWidth) {
             return;
         }
-        //endregion
+        //#endregion
+
+        //#endregion
 
         const $fnItems = $footnotes.find("ol li");
 
-        $("sup").each(function(index) {
+        $("sup").each(function (index) {
             const $footnoteText = $fnItems.eq(index).text().trim();
             createSideNote($(this), $footnoteText, startPosition, sideNoteWidth);
         });
@@ -86,7 +88,7 @@
         });
 
         if (startPosition > 420) {
-            superscript.hover(function() {
+            superscript.hover(function () {
                 div.addClass("sidenote-hover");
             }, function () {
                 div.removeClass("sidenote-hover");
@@ -94,6 +96,8 @@
         } else {
             div.addClass("sidenote-hover");
         }
+
+        // console.log(" ---> ");
 
         // attach side note <div>
         $(document.body).append(div);
