@@ -1,4 +1,4 @@
-<figure>
+<figure {{ with .Get "class" }}class="{{.}}"{{ end }}>
 
     {{ with .Get "align" }}<div align="{{.}}">{{ end }}
         {{ with .Get "href" }}<a href="{{.}}">{{ end }}
@@ -16,8 +16,6 @@
                 {{ if isset .Params "title" }}<h4>{{ .Get "title" }}</h4>{{ end }}
 
                 {{ if or (.Get "caption") (.Get "attr")}}
-                    <p>
-
                         {{ .Get "caption" }}
 
                         {{ if isset .Params "attrlink"}}
@@ -31,7 +29,6 @@
                                 {{ .Get "attr" }}
 
                             {{ if isset .Params "attrlink"}}</a>{{ end }}
-                    </p>
                 {{ end }}
 
             </figcaption>
