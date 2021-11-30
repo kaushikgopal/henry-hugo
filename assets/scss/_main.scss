@@ -130,7 +130,85 @@ figure.full-bleed,
 }
 //#endregion
 
-#site-content {
+//#region #site-content {
+    .post-index {
+        h2.post-list-header {
+            color: $color-header-index;
+            font-family: $fixed-width-font-family;
+            font-size: $font-size-regular * 1.25;
+            font-weight: normal;
+
+            margin: $spacing-unit 0 $spacing-micro-unit 0;
+        }
+
+        ul.post-list-content {
+            float: left;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .post-link {
+                font-family: $header-font-family;
+                @include font-size-responsive($font-size-regular + 2px, $font-size-small);
+
+                display: block;
+                float: left;
+                clear: left;
+                margin: $spacing-micro-unit 0;
+                @include media-query-small-screen() {
+                    margin: ($spacing-micro-unit - 2) 0;
+                }
+
+                .post-descriptor {
+                    float: left;
+
+                    width: $spacing-unit/2;
+
+                    :first-child {
+                        color: $color-divider;
+                        padding-right: $spacing-micro-unit; // makes sure we maximize hover state
+                        text-decoration: none;
+
+                        &:hover {
+                            color: $color-text;
+                        }
+                    }
+
+                    // add the above two + breathing room
+                    margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit + 4);
+
+                    .linklog {
+                        color: $color-link;
+                        font-family: $fixed-width-font-family;
+
+                        width: 100%;
+                        display: block;
+                    }
+                }
+
+                .post-link-date {
+                    display: inline;
+                    color: darken($color-textunderline, 8%);
+                    margin: 0;
+                    clear: left;
+                    white-space: nowrap;
+
+                    @include font-size-responsive($font-size-medium, $font-size-small);
+                }
+
+                a.post-link-url {
+                    color: $color-text2;
+                    text-decoration: none;
+                    padding-right: $spacing-micro-unit;
+
+                    &:hover {
+                        text-decoration: $color-textunderline underline;
+                    }
+                }
+            }
+        }
+    }
+
     .post {
         padding-top: $spacing-unit/2;
 
@@ -251,6 +329,16 @@ figure.full-bleed,
                 margin-bottom: $spacing-unit;
                 margin-top: $spacing-micro-unit;
             }
+
+            .footnotes {
+                font-size: $font-size-medium;
+                padding: $spacing-unit 0;
+                margin-bottom: $spacing-unit;
+
+                ol {
+                    margin-left: 0;
+                }
+            }
         }
 
         .post-meta {
@@ -330,113 +418,32 @@ figure.full-bleed,
             }
         }
     }
-}
 
-.post-link {
-    display: block;
-    float: left;
+    .draft {
+        background-color: $color-link;
+        border-radius: $spacing-unit / 2;
+        border: 2px solid #000;
+        color: black;
+        font-size: $font-size-small * 0.89;
+        font-weight: bold;
+        padding: $spacing-micro-unit;
+        text-transform: uppercase;
+        vertical-align: middle;
+        font-family: $fixed-width-font-family;
 
-    @include font-size-responsive($font-size-regular + 2px, $font-size-small);
-
-    .post-descriptor {
-        float: left;
-
-        width: $spacing-unit/2;
-
-        :first-child {
-            color: $color-divider;
-            padding-right: $spacing-micro-unit; // makes sure we maximize hover state
-            text-decoration: none;
-
-            &:hover {
-                color: $color-text;
-            }
-        }
-
-        // add the above two + breathing room
-        margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit + 4);
-
-        .linklog {
-            color: $color-link;
-            font-family: $fixed-width-font-family;
-
-            width: 100%;
-            display: block;
-        }
+        margin-right: $spacing-unit / 4;
     }
-}
 
-.draft {
-    background-color: $color-link;
-    border-radius: $spacing-unit / 2;
-    border: 2px solid #000;
-    color: black;
-    font-size: $font-size-small * 0.89;
-    font-weight: bold;
-    padding: $spacing-micro-unit;
-    text-transform: uppercase;
-    vertical-align: middle;
-    font-family: $fixed-width-font-family;
-
-    margin-right: $spacing-unit / 4;
-}
-
-h2.post-list-header {
-    color: $color-header-index;
-    font-family: $fixed-width-font-family;
-    font-size: $font-size-regular * 1.25;
-    font-weight: normal;
-
-    margin: $spacing-unit 0 $spacing-micro-unit 0;
-}
-
-ul.post-list-content {
-    float: left;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .post-link {
-        font-family: $header-font-family;
-
-        clear: left;
-        margin: $spacing-micro-unit 0;
-
-        @include media-query-small-screen() {
-            margin: ($spacing-micro-unit - 2) 0;
-        }
-
-        .post-link-date {
-            display: inline;
-            color: darken($color-textunderline, 8%);
-            margin: 0;
-            clear: left;
-            white-space: nowrap;
-
-            @include font-size-responsive($font-size-medium, $font-size-small);
-        }
-
-        a.post-link-url {
-            color: $color-text2;
-            text-decoration: none;
-            padding-right: $spacing-micro-unit;
-
-            &:hover {
-                text-decoration: $color-textunderline underline;
-            }
-        }
+    .callout:not(figure) {
+        border: 2px solid $color-textunderline;
+        padding: 1em;
+        margin-bottom: $spacing-unit;
     }
-}
-
-.callout:not(figure) {
-    border: 2px solid $color-textunderline;
-    padding: 1em;
-    margin-bottom: $spacing-unit;
-}
-ul.callout {
-    margin-left: 0;
-    padding-left: 30px; // reset
-}
+    ul.callout {
+        margin-left: 0;
+        padding-left: 30px; // reset
+    }
+//#endregion }
 
 .sidenote {
     padding-left: 2 * $spacing-micro-unit;
@@ -453,16 +460,7 @@ ul.callout {
     border-color: #f99b6d;
 }
 
-.footnotes {
-    font-size: $font-size-medium;
-    padding: $spacing-unit 0;
-    margin-bottom: $spacing-unit;
-
-    ol {
-        margin-left: 0;
-    }
-}
-
+//#region code snippets
 code {
     font-family: $fixed-width-font-family;
 }
@@ -483,6 +481,7 @@ article.post-content {
         color: $color-code;
     }
 }
+//#endregion
 
 #site-footer {
     padding: $spacing-unit 0;
