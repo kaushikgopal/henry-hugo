@@ -1,7 +1,4 @@
-
-/**
- * Basic styling
- */
+//#region HTML Styles
  body {
     font-family: $font-family-base;
     font-size: $font-size-regular;
@@ -11,10 +8,6 @@
     -webkit-text-size-adjust: 100%;
 }
 
-
-/**
- * Lists
- */
 ul,
 ol {
     margin-left: $spacing-unit;
@@ -27,9 +20,6 @@ li {
     }
 }
 
-/**
- * Headings
- */
 h1,
 h2,
 h3,
@@ -45,9 +35,6 @@ figure {
     margin-bottom: $spacing-unit;
 }
 
-/**
- * Links
- */
 a {
     color: $color-text;
 
@@ -56,9 +43,6 @@ a {
     }
 }
 
-/**
- * Icons
- */
 .icon {
     > svg {
         display: inline-block;
@@ -72,6 +56,23 @@ a {
     }
 }
 
+blockquote {
+    border-left: 4px solid $color-textunderline;
+    padding-left: $spacing-unit / 2;
+    padding-top: $spacing-unit / 3;
+    padding-bottom: $spacing-unit / 3;
+    margin-bottom: $spacing-unit;
+    font-style: italic;
+
+    code {
+        font-size: 0.8em;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
 .center {
     text-align: center;
 }
@@ -81,18 +82,9 @@ a {
 .start {
     text-align: start;
 }
+//#endregion
 
-
-
-
-
-
-
-
-
-
-
-
+//#region Layout
 .site-footer,
 .post-index {
     display: grid;
@@ -136,9 +128,8 @@ figure.full-bleed,
         }
     }
 }
+//#endregion
 
-/* Header
-================================================== */
 .site-header {
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -166,12 +157,6 @@ figure.full-bleed,
         }
     }
 }
-
-/* Content
-================================================== */
-
-/* Post metadata section
-========================= */
 
 .post-meta {
     margin-top: $spacing-micro-unit;
@@ -303,9 +288,6 @@ figure.full-bleed,
 
     margin-right: $spacing-unit / 4;
 }
-
-/* Landing posts - grouped by year
-=============================== */
 
 h2.post-list-header {
     color: $color-header-index;
@@ -493,25 +475,6 @@ ul.callout {
     padding-left: 30px; // reset
 }
 
-/**
- * Blockquotes
- */
-blockquote {
-    border-left: 4px solid $color-textunderline;
-    padding-left: $spacing-unit / 2;
-    padding-top: $spacing-unit / 3;
-    padding-bottom: $spacing-unit / 3;
-    margin-bottom: $spacing-unit;
-    font-style: italic;
-
-    code {
-        font-size: 0.8em;
-    }
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
 
 .sidenote {
     padding-left: 2 * $spacing-micro-unit;
