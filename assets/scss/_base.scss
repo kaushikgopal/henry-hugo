@@ -1,30 +1,68 @@
 /**
  * Reset some basic elements
+ * inspiration: https://www.joshwcomeau.com/css/custom-css-reset/
  */
+
+// Use a more-intuitive box-sizing model.
+// percentages will resolve based on the "border-box"
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
 
 html {
     font-size: 100%; // for accessibility
 }
 
-body,
+body {
+    // Typographic tweaks!
+    // * Add accessible line-height
+    // * Improve text rendering
+
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    // Allow percentage-based heights in the application
+    height: 100%;
+}
+
+// Improve media defaults
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+// Remove built-in form typography styles
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+//   Avoid text overflows
+p,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p,
-blockquote,
-pre,
-hr,
-dl,
-dd,
-ol,
-ul,
-figure {
-    margin: 0;
-    padding: 0;
+h6 {
+    overflow-wrap: break-word;
 }
+
 
 /**
  * Basic styling
@@ -38,51 +76,6 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-ul,
-ol,
-dl,
-figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
-}
-
-/**
- * Images
- */
-img:not(.full-bleed) {
-    display: block;
-    max-width: 100%;
-}
-
-video,
-iframe {
-    display: block;
-    width: 100%;
-    margin-bottom: 2em;
-}
-
-/**
- * Figures
- */
-figure > img {
-    display: block;
-}
-
-figcaption {
-    font-size: $font-size-medium;
-}
 
 /**
  * Lists
@@ -113,6 +106,10 @@ h6 {
     font-family: $header-font-family;
 }
 
+figure {
+    margin-bottom: $spacing-unit;
+}
+
 /**
  * Links
  */
@@ -121,17 +118,6 @@ a {
 
     &:hover {
         text-decoration: $color-textunderline underline;
-    }
-}
-
-/**
- * Clearfix
- */
-%clearfix {
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
     }
 }
 
