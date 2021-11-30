@@ -1,6 +1,7 @@
 // TODO:
 // * footnotes need to be compressed and show up on right (try putting them in right grid)
 
+.site-footer,
 .post-index {
     display: grid;
     grid-column-gap: $spacing-content-sides;
