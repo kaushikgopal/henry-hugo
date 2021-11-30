@@ -13,6 +13,11 @@
     $(window).on("load", function () {
         const $footnotes = $(".footnotes");
 
+        // don't run this script if there aren't any footnotes
+        if ($footnotes.length < 1) {
+            return;
+        }
+
         loadSideNotesFromFootnotes($footnotes);
 
         $(window).resize(function () {
