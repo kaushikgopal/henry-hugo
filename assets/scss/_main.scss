@@ -1,11 +1,23 @@
 // TODO:
-// * post-content should go 0.4fr on left but post-index should be 1fr
 // * footnotes need to be compressed and show up on right (try putting them in right grid)
+
+.post-index {
+    display: grid;
+    grid-column-gap: $spacing-content-sides;
+    grid-template-columns:
+        1fr
+        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+
+    > * {
+        grid-column: 2;
+    }
+}
 
 figure.full-bleed,
 .post-header,
 .post-content,
-.post-meta {
+.post-meta{
     display: grid;
 
     grid-column-gap: $spacing-content-sides;
@@ -207,21 +219,15 @@ h2.post-list-header {
     font-family: $fixed-width-font-family;
     font-size: $font-size-regular * 1.25;
     font-weight: normal;
-}
-h2.post-list-header:first-child {
-    margin-top: $spacing-unit;
-}
 
-h2.post-list-header.post-list-category {
-    &:hover {
-        color: $color-text;
-        border-color: $color-text;
-    }
+    margin: $spacing-unit 0 $spacing-micro-unit 0;
 }
 
 ul.post-list-content {
     float: left;
     list-style: none;
+    margin: 0;
+    padding: 0;
 
     .post-link {
         font-family: $header-font-family;
