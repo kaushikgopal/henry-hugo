@@ -1,35 +1,35 @@
-.post-index,
-.post,
-.site-footer {
-    display: grid;
-    grid-template-columns:
-        0.2fr
-        #{"min(65ch, 100%)"}
-        1fr;
+// TODO:
+// * post-content should go 0.4fr on left but post-index should be 1fr
+// * footnotes need to be compressed and show up on right (try putting them in right grid)
 
-    @include media-query-small-screen() {
-        min-width: $mobile-width;
-    }
+figure.full-bleed,
+.post-header,
+.post-content,
+.post-meta {
+    display: grid;
+
+    grid-column-gap: $spacing-content-sides;
+    grid-template-columns:
+        0.4fr
+        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
 
     > * {
         grid-column: 2;
-
-        margin-right: $spacing-unit;
-        margin-left: $spacing-unit;
     }
-}
 
-.post .full-bleed {
-    // correct to match exact 100vw
-    width: calc(100vw - 1.5px);
+    .full-bleed {
+        display: grid;
+        grid-column: 1 / 4;
 
-    /*
-    .post-content margin + padding
-     #{$spacing-unit} (padding from line 13)
-     #{$spacing-unit} (margin from line 319)
-     #the 14px is a spill over from somewhere that i haven't figured out yet
-    */
-    margin-left: calc((-1) * (100vw - #{"min(65ch, 100vw)"}) * (0.2/1.2) - #{$spacing-unit} - 14px);
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            grid-column: 2;
+        }
+    }
 }
 
 /* Header
@@ -72,7 +72,6 @@
     margin-top: $spacing-micro-unit;
     padding: 2px 4px 0 0;
 
-    margin-top: 0;
     padding: 0;
     text-transform: none;
 
@@ -308,8 +307,8 @@ ul.post-list-content {
 }
 
 .post-content {
+    padding-top: $spacing-unit;
     clear: left;
-    margin: $spacing-unit;
     line-height: 1.5;
 
     @include font-size-responsive($font-size-regular, $font-size-regular);
@@ -336,7 +335,7 @@ ul.post-list-content {
 
     hr {
         border: 1px solid $color-header-index;
-        margin: 1em 0;
+        margin: 0 0 $spacing-unit 0;
         width: 100%;
     }
 
@@ -364,15 +363,35 @@ ul.post-list-content {
 
         @include font-size-responsive();
     }
+
+    img {
+        display: block;
+
+        :not(.full-bleed) {
+            display: block;
+            max-width: 100%;
+        }
+    }
+
+    .highlight {
+        margin-bottom: $spacing-unit;
+    }
+
+    figcaption {
+        font-size: $font-size-medium;
+        margin-bottom: $spacing-unit;
+        margin-top: $spacing-micro-unit;
+    }
 }
 
-figure {
-    text-align: left;
-}
-figcaption {
-    font-size: 0.8em;
+.callout:not(figure) {
+    border: 2px solid $color-textunderline;
+    padding: 1em;
     margin-bottom: $spacing-unit;
-    margin-top: $spacing-micro-unit;
+}
+ul.callout {
+    margin-left: 0;
+    padding-left: 30px; // reset
 }
 
 /**
@@ -395,19 +414,6 @@ blockquote {
     }
 }
 
-.callout {
-    border: 2px solid $color-textunderline;
-    padding: 1em;
-    margin-bottom: $spacing-unit;
-}
-
-ul.callout {
-    margin-left: 0;
-    padding-left: 30px; // reset
-}
-
-/* sidenote
-================================================== */
 
 .sidenote {
     padding-left: 20px;
@@ -424,20 +430,19 @@ ul.callout {
     border-color: #f99b6d;
 }
 
-/* footnotes
-================================================== */
-
 .footnotes {
     font-size: $font-size-medium;
-    padding: 1em 0;
+    padding: $spacing-unit 0;
+    margin-bottom: $spacing-unit;
+
+    ol {
+        margin-left: 0;
+    }
 }
 
-/* Code s
-================================================== */
 code {
     font-family: $fixed-width-font-family;
 }
-
 article.post-content {
     pre {
         font-size: 0.75em;
@@ -460,7 +465,7 @@ article.post-content {
     padding: $spacing-unit 0;
 
     @include media-query-laptop() {
-        margin-top: 2em;
+        margin: 2em;
     }
 
     .newsletter {
