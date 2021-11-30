@@ -9,16 +9,20 @@
  *
  **/
 (function () {
+    const $footnotes = $(".footnotes"),
+        sideNoteStartMargin = 12,
+        sideNoteMaxWidth = 280,
+        sideNoteMinWidth = 140;
 
     $(window).on("load", function () {
-        const $footnotes = $(".footnotes");
+
 
         // don't run this script if there aren't any footnotes
         if ($footnotes.length < 1) {
             return;
         }
 
-        loadSideNotesFromFootnotes($footnotes);
+        loadSideNotesFromFootnotes();
 
         $(window).resize(function () {
             // console.log(" XXX -- RESIZE -- XXX ");
@@ -28,17 +32,15 @@
             // if (new_ww === windowWidth) return;
             // windowWidth = new_ww;
 
-            loadSideNotesFromFootnotes($footnotes);
+            loadSideNotesFromFootnotes();
         });
     });
 
-    function loadSideNotesFromFootnotes($footnotes) {
+    function loadSideNotesFromFootnotes() {
 
-        const sideNoteStartMargin = 6,
-            sideNoteWidth = 228,
-            browserWidth = $("window").width(),
-            postTitle = $(".post-title"),
-            startPosition = postTitle.position().left + postTitle.outerWidth() + sideNoteStartMargin;
+        const $postTitle = $(".post-title"),
+            browserWidth = $(".post").width(),
+            startPosition = $postTitle.position().left + $postTitle.outerWidth() + sideNoteStartMargin;
 
         $(".sidenote").remove(); // remove any existing side notes to begin
         $footnotes.show();  // previous resize could have hidden footnotes
@@ -46,7 +48,7 @@
         //#region Should we even show sidenotes?
 
         //#region there's no post-content
-        if (postTitle.length < 1) {
+        if ($postTitle.length < 1) {
             return;
         }
         //#endregion
@@ -55,9 +57,9 @@
         const availabeSpaceForSideNote = browserWidth - startPosition;
 
         // console.log(" ---> availabeSpaceForSideNote " + availabeSpaceForSideNote);
-        // console.log(" ---> sideNoteWidth " + sideNoteWidth);
+        // console.log(" ---> sideNoteWidth [" + sideNoteMinWidth + " - " + sideNoteMaxWidth + "]");
 
-        if (availabeSpaceForSideNote < sideNoteWidth) {
+        if (availabeSpaceForSideNote < sideNoteMinWidth) {
             return;
         }
         //#endregion
@@ -68,13 +70,13 @@
 
         $("sup").each(function (index) {
             const $footnoteText = $fnItems.eq(index).text().trim();
-            createSideNote($(this), $footnoteText, startPosition, sideNoteWidth);
+            createSideNote($(this), $footnoteText, startPosition);
         });
 
         $footnotes.hide();
     }
 
-    function createSideNote(superscript, footnoteText, startPosition, sideNoteWidth) {
+    function createSideNote(superscript, footnoteText, startPosition) {
 
         // console.log(" ---> " + superscript.text() + " : " + footnoteText);
 
@@ -89,7 +91,8 @@
             position: "absolute",
             left: startPosition,
             top: topPosition["top"],
-            width: sideNoteWidth,
+            minWidth: sideNoteMinWidth,
+            maxWidth: sideNoteMaxWidth,
         });
 
         if (startPosition > 420) {
