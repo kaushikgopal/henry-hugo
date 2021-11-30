@@ -7,6 +7,9 @@
  * This is as recommended by Edward Tufte's style sidenotes:
  * https://edwardtufte.github.io/tufte-css/#sidenotes
  *
+ * TODO:
+ *      - if two subsequent lines have long sidenotes
+ *        need to take care of the overlap properly and offset
  **/
 (function () {
     const $footnotes = $(".footnotes"),

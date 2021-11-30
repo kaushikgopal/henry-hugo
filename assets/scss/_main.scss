@@ -115,7 +115,7 @@ figure.full-bleed,
 
     grid-column-gap: $spacing-content-sides;
     grid-template-columns:
-        0.5fr
+        0.4fr
         #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
 
@@ -514,7 +514,7 @@ blockquote {
 }
 
 .sidenote {
-    padding-left: 20px;
+    padding-left: 2 * $spacing-micro-unit;
     margin-bottom: 1.5em;
     border-left: 1px solid $color-textunderline;
 
