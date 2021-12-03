@@ -64,7 +64,7 @@ h6 {
 }
 //#endregion
 
-//#region Variables
+//#region Theme Variables
 
 $font-size-regular: 20px;
 
@@ -83,10 +83,6 @@ $spacing-content-sides: $spacing-unit;
 $mobile-width: 375px;
 $tablet-width: 685px;
 $screen-width: 780px;
-
-//#endregion
-
-//#region Theme
 
 $font-family-base: "ibm-plex-serif", "IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;
 $header-font-family: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;
@@ -108,5 +104,36 @@ $color-header-index: lighten($background-color, 10%);
 $color-header: lighten($background-color, 60%);
 
 $color-divider: $color-textunderline;
+
+//#endregion
+
+//#region Mixins
+
+@mixin media-query-small-screen() {
+  @media only screen and (max-width: $tablet-width) {
+      @content;
+  }
+}
+
+@mixin media-query-laptop() {
+  @media only screen and (min-width: $tablet-width + 1px) {
+      @content;
+  }
+}
+
+@mixin font-size-responsive($size: $font-size-regular, $size-small: $font-size-medium) {
+  font-size: $size;
+  @include media-query-small-screen() {
+      font-size: $size-small;
+  }
+}
+
+// Using media queries with like this:
+// @include media-query-mobile() {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
 
 //#endregion
