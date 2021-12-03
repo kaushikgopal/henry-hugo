@@ -109,7 +109,7 @@ figure.full-bleed,
 .post-index {
     grid-template-columns:
         1fr
-        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
 }
 
@@ -145,7 +145,7 @@ figure.full-bleed,
             font-size: $font-size-regular * 1.25;
             font-weight: normal;
 
-            margin: $spacing-unit 0 $spacing-micro-unit 0;
+            margin: (2 * $spacing-unit) 0 $spacing-micro-unit 0;
         }
 
         ul.post-list-content {
@@ -161,9 +161,9 @@ figure.full-bleed,
                 display: block;
                 float: left;
                 clear: left;
-                margin: $spacing-micro-unit 0;
+                margin: ($spacing-micro-unit + 2) 0;
                 @include media-query-small-screen() {
-                    margin: ($spacing-micro-unit - 2) 0;
+                    margin: ($spacing-micro-unit) 0;
                 }
 
                 .post-descriptor {
@@ -194,7 +194,7 @@ figure.full-bleed,
                 }
 
                 .post-link-date {
-                    display: inline;
+                    // display: inline;
                     color: darken($color-textunderline, 8%);
                     margin: 0;
                     clear: left;
