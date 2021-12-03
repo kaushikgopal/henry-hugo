@@ -85,35 +85,42 @@ blockquote {
 //#endregion
 
 //#region Layout
+
+
 #site-footer,
-.post-index {
+.post-index,
+
+figure.full-bleed,
+.post-header,
+.post-content,
+.post-meta
+{
     display: grid;
     grid-column-gap: $spacing-content-sides;
-    grid-template-columns:
-        1fr
-        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
+
+    min-width: $mobile-width;
 
     > * {
         grid-column: 2;
     }
 }
 
+#site-footer,
+.post-index {
+    grid-template-columns:
+        1fr
+        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+}
+
 figure.full-bleed,
 .post-header,
 .post-content,
 .post-meta {
-    display: grid;
-
-    grid-column-gap: $spacing-content-sides;
     grid-template-columns:
         0.4fr
         #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-
-    > * {
-        grid-column: 2;
-    }
 
     .full-bleed {
         display: grid;
