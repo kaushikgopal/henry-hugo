@@ -65,7 +65,7 @@ blockquote {
     font-style: italic;
 
     code {
-        font-size: 0.8em;
+        font-size: 0.8rem;
     }
 
     > :last-child {
@@ -307,11 +307,11 @@ figure.full-bleed,
 
             h2 {
                 @include font-size-responsive($font-size-large, $font-size-large);
-                margin: 2rem 0 1rem 0em;
+                margin: 2rem 0 1rem 0;
             }
 
             h3 {
-                font-size: 1em;
+                font-size: 1rem;
                 font-style: italic;
                 font-weight: normal;
 
@@ -364,7 +364,7 @@ figure.full-bleed,
             .post-permalink {
                 border-top: 1px solid $color-text;
                 width: 20%;
-                padding-top: 1em;
+                padding-top: 1rem;
 
                 a {
                     color: $color-text2;
@@ -380,14 +380,14 @@ figure.full-bleed,
             }
 
             .post-taxonomies {
-                margin: 1em 0 1.5em 0;
+                margin: 1rem 0 1.5rem 0;
                 display: flex;
                 justify-content: flex-start;
             }
 
             .post-related {
                 border: 3px solid $color-divider;
-                padding: 1em;
+                padding: 1rem;
                 margin-top: $spacing-unit * 3;
 
                 h4 {
@@ -410,10 +410,10 @@ figure.full-bleed,
 
             .post-taxonomy {
                 border: 2px solid $color-divider;
-                margin-right: 1em;
+                margin-right: 1rem;
                 padding: $spacing-micro-unit $spacing-micro-unit * 2;
                 text-align: center;
-                font-size: 0.8em;
+                font-size: 0.8rem;
 
                 &:hover {
                     color: $color-link;
@@ -448,7 +448,7 @@ figure.full-bleed,
 
     .callout:not(figure) {
         border: 2px solid $color-divider;
-        padding: 1em;
+        padding: 1rem;
         margin-bottom: $spacing-unit;
     }
     ul.callout {
@@ -459,17 +459,17 @@ figure.full-bleed,
 
 .sidenote {
     padding-left: 2 * $spacing-micro-unit;
-    margin-bottom: 1.5em;
-    border-left: 1px solid $color-divider;
+    margin-bottom: 1.5rem;
 
+    border-left: 1px solid $color-textunderline;
     color: $color-textunderline;
     font-style: italic;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 .sidenote-hover {
-    color: #f99b6d;
-    border-color: #f99b6d;
+    border-color: $color-link;
+    color: $color-link;
 }
 
 //#region code snippets
@@ -478,16 +478,16 @@ code {
 }
 article.post-content {
     pre {
-        font-size: 0.75em;
-        padding: 1em;
-        line-height: 1.4em;
+        font-size: 0.75rem;
+        padding: 1rem;
+        line-height: 1.4rem;
         overflow: auto;
     }
 
     ol code,
     ul code,
     p > code {
-        font-size: 0.85em;
+        font-size: 0.85rem;
     }
     p > code {
         color: $color-code;
@@ -499,7 +499,7 @@ article.post-content {
     padding: $spacing-unit 0;
 
     @include media-query-laptop() {
-        margin: 2em;
+        margin: 2rem;
     }
 
     .newsletter {
@@ -520,9 +520,9 @@ article.post-content {
 
         input {
             text-align: center;
-            padding: 0.5em;
+            padding: 0.5rem;
             font-family: $font-family-base;
-            font-size: 0.8em;
+            font-size: 0.8rem;
         }
 
         input[type="text"] {
@@ -581,7 +581,7 @@ article.post-content {
 }
 
 .powered-by {
-    font-size: 0.75em;
+    font-size: 0.75rem;
     text-align: center;
     margin: $spacing-unit * 1.5 $spacing-unit;
 
