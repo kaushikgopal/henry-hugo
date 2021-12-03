@@ -1,69 +1,5 @@
 @charset "utf-8";
 
-//#region Reset some basic elements
-// inspiration: https://www.joshwcomeau.com/css/custom-css-reset/
-
-// Use a more-intuitive box-sizing model.
-// percentages will resolve based on the "border-box"
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-}
-
-html {
-  font-size: 100%; // for accessibility
-}
-
-body {
-  // Typographic tweaks!
-  // * Add accessible line-height
-  // * Improve text rendering
-
-  line-height: 1.5;
-  // -webkit-font-smoothing: antialiased;
-}
-
-html,
-body {
-  // Allow percentage-based heights in the application
-  height: 100%;
-}
-
-// Improve media defaults
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-// Remove built-in form typography styles
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-//   Avoid text overflows
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-//#endregion
-
 //#region Theme Variables
 
 $font-size-regular: 20px;
@@ -136,4 +72,68 @@ $color-divider: $color-textunderline;
 //     }
 // }
 
+//#endregion
+
+//#region Reset some basic elements
+// inspiration: https://www.joshwcomeau.com/css/custom-css-reset/
+
+// Use a more-intuitive box-sizing model.
+// percentages will resolve based on the "border-box"
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 100%; // for accessibility
+}
+
+body {
+  // Typographic tweaks!
+  // * Add accessible line-height
+  // * Improve text rendering
+
+  line-height: 1.5;
+  // -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  // Allow percentage-based heights in the application
+  height: 100%;
+}
+
+// Improve media defaults
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// Remove built-in form typography styles
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+//   Avoid text overflows
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
 //#endregion
