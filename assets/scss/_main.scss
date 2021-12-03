@@ -57,7 +57,7 @@ a {
 }
 
 blockquote {
-    border-left: 4px solid $color-textunderline;
+    border-left: 4px solid $color-divider;
     padding-left: $spacing-unit / 2;
     padding-top: $spacing-unit / 3;
     padding-bottom: $spacing-unit / 3;
@@ -291,7 +291,7 @@ figure.full-bleed,
             }
 
             hr {
-                border: 1px solid $color-header-index;
+                border: 1px solid $color-divider;
                 margin: 0 0 $spacing-unit 0;
                 width: 100%;
             }
@@ -320,6 +320,11 @@ figure.full-bleed,
 
             img {
                 display: block;
+
+                &.full-bleed {
+                    border-left: none;
+                    border-right: none;
+                }
 
                 :not(.full-bleed) {
                     display: block;
@@ -381,7 +386,7 @@ figure.full-bleed,
             }
 
             .post-related {
-                border: 3px solid $color-textunderline;
+                border: 3px solid $color-divider;
                 padding: 1em;
                 margin-top: $spacing-unit * 3;
 
@@ -404,7 +409,7 @@ figure.full-bleed,
             }
 
             .post-taxonomy {
-                border: 2px solid;
+                border: 2px solid $color-divider;
                 margin-right: 1em;
                 padding: $spacing-micro-unit $spacing-micro-unit * 2;
                 text-align: center;
@@ -442,7 +447,7 @@ figure.full-bleed,
     }
 
     .callout:not(figure) {
-        border: 2px solid $color-textunderline;
+        border: 2px solid $color-divider;
         padding: 1em;
         margin-bottom: $spacing-unit;
     }
@@ -455,7 +460,7 @@ figure.full-bleed,
 .sidenote {
     padding-left: 2 * $spacing-micro-unit;
     margin-bottom: 1.5em;
-    border-left: 1px solid $color-textunderline;
+    border-left: 1px solid $color-divider;
 
     color: $color-textunderline;
     font-style: italic;

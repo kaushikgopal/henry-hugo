@@ -28,18 +28,18 @@ $fixed-width-font-family: "SF Mono", SFMono-Regular, ui-monospace, "ibm-plex-mon
 
 $background-color: #2b343e;
 
-$color-text: #bbb;
-$color-text2: whitesmoke;
-$color-textunderline: #797979;
-$color-code: #e3d1b9;
+$color-text: hsl(0, 0%, 73.3%);
+$color-text2: hsl(0, 0%, 96.1%);
+$color-textunderline: hsl(0, 0%, 47.5%);
+$color-code: hsl(34.3, 42.9%, 80.8%);
 
 $color-link2: $color-text2;
-$color-link: #d7675d; // ck orange : used in most hovers
+$color-link: hsl(4.9, 60.4%, 60.4%); // ck orange : used in most hovers
 
 $color-header-index: lighten($background-color, 10%);
 $color-header: lighten($background-color, 60%);
 
-$color-divider: $color-textunderline;
+$color-divider: hsla(0,0%,0%,0.5);
 
 //#endregion
 
@@ -116,6 +116,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  margin: 1rem 0;
 }
 
 // Remove built-in form typography styles
