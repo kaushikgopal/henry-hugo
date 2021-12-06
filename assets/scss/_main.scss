@@ -185,11 +185,15 @@ figure.full-bleed,
                     margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit + 4);
 
                     .linklog {
-                        color: $color-link;
                         font-family: $fixed-width-font-family;
 
                         width: 100%;
                         display: block;
+
+                        color: $color-textunderline;
+                        &:hover {
+                            color: $color-link;
+                        }
                     }
                 }
 
@@ -209,7 +213,12 @@ figure.full-bleed,
                     padding-right: $spacing-micro-unit;
 
                     &:hover {
-                        text-decoration: $color-textunderline underline;
+                        color: $color-link;
+
+                        // text-decoration: underline;
+                        // text-decoration-color: #797979;
+                        // text-underline-offset: 4px;
+                        // text-decoration-thickness: 3px;
                     }
                 }
             }
