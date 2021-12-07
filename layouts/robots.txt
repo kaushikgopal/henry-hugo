@@ -4,4 +4,5 @@ User-agent: *
 Disallow: /
 {{- else -}}
 Allow: /
+Disallow: 404.html
 {{- end -}}
