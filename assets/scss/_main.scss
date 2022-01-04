@@ -8,11 +8,6 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-ul,
-ol {
-    margin-left: $spacing-unit;
-}
-
 li {
     > ul,
     > ol {
@@ -58,10 +53,14 @@ a {
 
 blockquote {
     border-left: 4px solid $color-divider;
+
     padding-left: $spacing-unit / 2;
     padding-top: $spacing-unit / 3;
     padding-bottom: $spacing-unit / 3;
+
+    margin-top: $spacing-unit;
     margin-bottom: $spacing-unit;
+
     font-style: italic;
 
     code {
@@ -70,6 +69,10 @@ blockquote {
 
     > :last-child {
         margin-bottom: 0;
+    }
+
+    ul {
+        margin-top: $spacing-micro-unit;
     }
 }
 
@@ -286,8 +289,9 @@ figure.full-bleed,
                 }
             }
 
-            p + ul {
-                margin-top: -0.5 * $spacing-unit;
+            ul {
+                padding-left: 18px;
+                padding-right: 20px;
             }
 
             a {
@@ -401,6 +405,7 @@ figure.full-bleed,
 
                 h4 {
                     font-family: $header-2-font-family;
+                    margin-bottom: $spacing-micro-unit;
                 }
 
                 &:hover {
@@ -414,6 +419,10 @@ figure.full-bleed,
                     &:hover {
                         color: $color-link;
                     }
+                }
+
+                ul {
+                    margin-left: $spacing-unit;
                 }
             }
 
