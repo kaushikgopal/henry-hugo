@@ -58,7 +58,7 @@ blockquote {
     padding-top: $spacing-unit / 3;
     padding-bottom: $spacing-unit / 3;
 
-    margin-top: $spacing-unit;
+    margin-top: $spacing-unit / 2;
     margin-bottom: $spacing-unit;
 
     font-style: italic;
@@ -427,11 +427,11 @@ figure.full-bleed,
             }
 
             .post-taxonomy {
-                border: 2px solid $color-divider;
+                border: 2px solid;
                 margin-right: 1rem;
                 padding: $spacing-micro-unit $spacing-micro-unit * 2;
                 text-align: center;
-                font-size: 0.8rem;
+                font-size: 1.2rem;
 
                 &:hover {
                     color: $color-link;
