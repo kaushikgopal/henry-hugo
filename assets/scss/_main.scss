@@ -296,7 +296,7 @@ figure.full-bleed,
 
             a {
                 text-decoration-color: $color-textunderline;
-                text-underline-offset: $spacing-micro-unit;
+                text-underline-offset: 5px;
                 text-decoration-thickness: 3px;
                 &:hover {
                     text-decoration: none;
