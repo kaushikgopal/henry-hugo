@@ -159,7 +159,7 @@ figure.full-bleed,
 
             .post-link {
                 font-family: $header-font-family;
-                @include font-size-responsive($font-size-regular + 2px, $font-size-small);
+                @include font-size-responsive($font-size-regular + 2px, $font-size-medium + 2px);
 
                 display: block;
                 float: left;
