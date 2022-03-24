@@ -96,34 +96,26 @@ blockquote {
 figure.full-bleed,
 .post-header,
 .post-content,
-.post-meta
-{
+.post-meta,
+#site-footer,
+.post-index {
     display: grid;
     grid-column-gap: $spacing-content-sides;
 
-    min-width: $mobile-width;
+    grid-template-columns:
+        1fr
+        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+
+        min-width: $mobile-width;
 
     > * {
         grid-column: 2;
     }
 }
 
-#site-footer,
-.post-index {
-    grid-template-columns:
-        1fr
-        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
-}
 
-figure.full-bleed,
-.post-header,
-.post-content,
 .post-meta {
-    grid-template-columns:
-        0.4fr
-        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
 
     .full-bleed {
         display: grid;
