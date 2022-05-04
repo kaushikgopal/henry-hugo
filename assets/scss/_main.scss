@@ -143,6 +143,11 @@ figure.full-bleed,
             margin: (2 * $spacing-unit) 0 $spacing-micro-unit 0;
         }
 
+        h2.post-list-header + ul {
+            margin-bottom: $spacing-unit;
+        }
+
+
         ul.post-list-content {
             float: left;
             list-style: none;
@@ -274,7 +279,7 @@ figure.full-bleed,
 
             @include font-size-responsive($font-size-regular, $font-size-regular);
 
-            > p {
+            > p, ul {
                 margin-bottom: $spacing-unit - $spacing-micro-unit;
                 @include media-query-small-screen() {
                     margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
