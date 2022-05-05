@@ -10,7 +10,7 @@ $font-size-large: $font-size-regular * 1.5;
 $font-size-medium: $font-size-regular * 0.875;
 $font-size-small: $font-size-regular * 0.75;
 
-$base-line-height: 1.4;
+$base-line-height: 1.5;
 
 $spacing-unit: 24px;
 $spacing-micro-unit: 6px;
@@ -99,7 +99,7 @@ body {
   // * Add accessible line-height
   // * Improve text rendering
 
-  line-height: 1.5;
+  line-height: $base-line-height;
   // -webkit-font-smoothing: antialiased;
 }
 

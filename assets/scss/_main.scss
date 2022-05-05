@@ -2,7 +2,6 @@
 body {
     font-family: $font-family-base;
     font-size: $font-size-regular;
-    line-height: $base-line-height;
     color: $color-text;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -100,7 +99,6 @@ figure.full-bleed,
 #site-footer,
 .post-index {
     display: grid;
-    grid-column-gap: $spacing-content-sides;
 
     grid-template-columns:
         1fr
