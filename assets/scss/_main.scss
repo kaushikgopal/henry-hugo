@@ -137,12 +137,11 @@ figure.full-bleed,
             font-family: $fixed-width-font-family;
             font-size: $font-size-regular * 1.25;
             font-weight: normal;
-
-            margin: (2 * $spacing-unit) 0 $spacing-micro-unit 0;
+            margin-bottom: $spacing-micro-unit;
         }
 
         h2.post-list-header + ul {
-            margin-bottom: $spacing-unit;
+            margin: 0 0 $spacing-unit $spacing-unit;
         }
 
 
