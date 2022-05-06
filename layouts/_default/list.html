@@ -26,8 +26,7 @@
 
             {{ $pages := .Pages }}
 
-            {{ if eq .Type "b" }}
-                <!-- "b" is basically the blog's landing page instead of .IsHome -->
+            {{ if eq .Type "blog" }}
                 {{ $pages = .Site.RegularPages }}
             {{ end}}
 
