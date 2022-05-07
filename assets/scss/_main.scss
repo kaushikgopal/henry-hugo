@@ -130,6 +130,30 @@ figure.full-bleed,
 }
 //#endregion
 
+.goto-bottom {
+    display: none;
+
+    text-align: center;
+
+    position: fixed;
+    width: 30px;
+    top: (2 * $spacing-micro-unit);
+    right: (2 * $spacing-micro-unit);
+    border-radius: 50%;
+
+    border: 2px solid $color-textunderline;
+    background-color: $background-color;
+
+    @include opacity(75);
+
+    a {
+        text-decoration: none;
+        color: $color-text;
+        width: 100%;
+        display:block;
+    }
+}
+
 //#region #site-content {
     .post-index {
         h2.post-list-header {

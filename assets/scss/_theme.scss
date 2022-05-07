@@ -26,7 +26,7 @@ $header-2-font-family: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Ge
 $fixed-width-font-family: "SF Mono", SFMono-Regular, ui-monospace, "ibm-plex-mono", "IBM Plex Mono", "Consolas",
   monospace;
 
-$background-color: #2b343e;
+$background-color: hsl(211.6, 18.1%, 20.6%);
 
 $color-text: hsl(0, 0%, 73.3%);
 $color-text2: hsl(0, 0%, 96.1%);
@@ -62,6 +62,15 @@ $color-divider: $color-textunderline;
   @include media-query-small-screen() {
       font-size: $size-small;
   }
+}
+
+@mixin opacity($opacity: 75) {
+  filter: alpha(opacity=$opacity);
+  /* IE */
+  -moz-opacity: ($opacity * 0.01);
+  /* Mozilla */
+  opacity: ($opacity * 0.01);
+
 }
 
 // Using media queries with like this:
