@@ -66,11 +66,16 @@ $color-divider: $color-textunderline;
 
 @mixin opacity($opacity: 75) {
   filter: alpha(opacity=$opacity);
-  /* IE */
   -moz-opacity: ($opacity * 0.01);
-  /* Mozilla */
   opacity: ($opacity * 0.01);
+}
 
+@mixin css-transition-opacity() {
+  -webkit-transition: opacity 1s ease-in;
+  -moz-transition: opacity 1s ease-in;
+   -ms-transition: opacity 1s ease-in;
+    -o-transition: opacity 1s ease-in;
+       transition: opacity 1s ease-in;
 }
 
 // Using media queries with like this:

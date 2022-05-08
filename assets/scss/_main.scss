@@ -131,10 +131,13 @@ figure.full-bleed,
 //#endregion
 
 .goto-bottom {
+
+    // to show this button through js
+    // change to display:block & add opacity
     display: none;
+    @include opacity(0);
 
     text-align: center;
-
     position: fixed;
     width: 30px;
     top: (2 * $spacing-micro-unit);
@@ -144,7 +147,7 @@ figure.full-bleed,
     border: 2px solid $color-textunderline;
     background-color: $background-color;
 
-    @include opacity(75);
+    @include css-transition-opacity();
 
     a {
         text-decoration: none;
