@@ -130,8 +130,7 @@ figure.full-bleed,
 }
 //#endregion
 
-.goto-bottom {
-
+.goto {
     // to show this button through js
     // change to display:block & add opacity
     display: none;
@@ -140,7 +139,6 @@ figure.full-bleed,
     text-align: center;
     position: fixed;
     width: 30px;
-    top: (2 * $spacing-micro-unit);
     right: (2 * $spacing-micro-unit);
     border-radius: 50%;
 
@@ -155,6 +153,13 @@ figure.full-bleed,
         width: 100%;
         display:block;
     }
+}
+
+.goto.top {
+    bottom: (2 * $spacing-micro-unit);
+}
+.goto.bottom {
+    top: (2 * $spacing-micro-unit);
 }
 
 //#region #site-content {

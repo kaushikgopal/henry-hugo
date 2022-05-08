@@ -8,16 +8,18 @@
 (function () {
     $(window).on("load", function () {
 
-        const   $gotoBottomBtn = $('.goto-bottom'),
-                SCROLLED_TOP_BY = 200,
-                SCROLLED_TO_BOTTOM_SECTION  = $(document).height() - ($(this).height() + $('#site-footer').height())
-              ;
+        const   $gotoBottomBtn = $('.goto.bottom'),
+                $gotoTopBtn = $('.goto.top'),
+                SCROLLED_TOP_BY = 50,
+                SCROLLED_TO_BOTTOM_SECTION  = $(document).height() - ($(this).height() + $('#site-footer').height());
 
         // console.log(" ---> goto loading [SCROLLED_TO_BOTTOM_SECTION: " + SCROLLED_TO_BOTTOM_SECTION + "]");
 
-        // first show the button through CSS
+        // first show the buttons through CSS
         // opacity also will need to be set
-        $gotoBottomBtn.css({ display: "block" });
+        $gotoBottomBtn
+            .add($gotoTopBtn)
+            .css({ display: "block" });
 
 
         let scrollPosition = 0;
@@ -31,22 +33,27 @@
 
         function showOrHideGotoBtns(scrollPosition) {
             if(scrollPosition > SCROLLED_TOP_BY && scrollPosition < SCROLLED_TO_BOTTOM_SECTION) {
-                showGotoBottomBtn();
+                showBtn($gotoBottomBtn);
             } else {
-                hideGotoBottomBtn();
+                hideBtn($gotoBottomBtn);
+            }
+
+            if(scrollPosition >= SCROLLED_TO_BOTTOM_SECTION) {
+                showBtn($gotoTopBtn);
+            } else {
+                hideBtn($gotoTopBtn);
             }
         }
 
-        function showGotoBottomBtn() {
-            $gotoBottomBtn.css({
+        function showBtn($btn ) {
+            $btn.css({
                 opacity: "0.75",
                 'filter':'alpha(opacity=75)',
                 '-moz-opacity': "0.75"
             });
         }
-
-        function hideGotoBottomBtn() {
-            $gotoBottomBtn.css({
+        function hideBtn($btn ) {
+            $btn.css({
                 opacity: "0",
                 'filter':'alpha(opacity=0)',
                 '-moz-opacity': "0"
