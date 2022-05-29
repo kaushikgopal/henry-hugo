@@ -8,7 +8,7 @@
     <meta name="author" content="{{ . }}">
 {{ end }}
 
-{{ with .Site.Params.description }}
+{{ with .Site.Params.Summary }}
     <meta name="description" content="{{ . }}"/>
 {{ end }}
 
@@ -24,7 +24,7 @@
 <meta name="twitter:site" content="{{ .Site.Params.twitter }}"/>
 <meta name="twitter:title" content="{{ $title }}"/>
 <meta name="twitter:creator" content="{{ .Site.Params.twitter }}"/>
-<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+<meta name="twitter:description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.Summary }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}">
 {{ $banner := .Params.banner }}
 {{ if $banner }}
@@ -50,7 +50,7 @@
 
 <!-- OG data -->
 <meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+<meta property="og:description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.Summary }}{{ end }}"/>
 
 {{ with .Permalink }}<meta property="og:url" content="{{ . }}">{{ end }}
 <meta property="og:locale" content="{{ .Site.LanguageCode }}">

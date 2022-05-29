@@ -2,7 +2,7 @@ name = "henry"
 license = "MIT"
 licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
 
-description = "Henry is a gorgeous Hugo theme optimmized for a good reading experience and packed with features"
+summary = "Henry is a gorgeous Hugo theme optimmized for a good reading experience and packed with features"
 homepage = "https://kaushik.page/blog/henry-hugo-theme/"
 
 tags = ["blog", "minimal", "responsive", "archive", "personal", "bootstrap", "portfolio", "dark"]
