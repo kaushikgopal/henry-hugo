@@ -308,16 +308,16 @@ figure.full-bleed,
 
             @include font-size-responsive($font-size-regular, $font-size-regular);
 
-            > p, ul {
+            > p, ul, ol {
                 margin-bottom: $spacing-unit - $spacing-micro-unit;
                 @include media-query-small-screen() {
                     margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
                 }
             }
 
-            ul {
-                padding-left: 18px;
-                padding-right: 20px;
+            ol, ul {
+                padding-left: $spacing-unit;
+                padding-right: $spacing-unit;
             }
 
             a {
@@ -447,7 +447,7 @@ figure.full-bleed,
                     }
                 }
 
-                ul {
+                ol, ul {
                     margin-left: $spacing-unit;
                 }
             }
@@ -591,7 +591,7 @@ article.post-content {
 }
 
 .site-nav {
-    ul {
+    ol, ul {
         display: grid;
         row-gap: $spacing-unit / 2;
         grid-template-columns: repeat(auto-fit, minmax((7 * $font-size-regular), 1fr));
