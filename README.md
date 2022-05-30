@@ -30,7 +30,11 @@ hugo server -D
 open http://localhost:1313/
 ```
 
-You're good to go. Happy blogging!
+
+added instructions to README.md on how to add hugo contact form 
+
+## [add hugo contact form](https://fabform.io/a/hugo-contact-form)
+
 
 # Contributing
 
