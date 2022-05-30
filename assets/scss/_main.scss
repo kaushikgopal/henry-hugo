@@ -281,7 +281,7 @@ figure.full-bleed,
                 font-weight: bold;
                 font-family: $header-2-font-family;
 
-                @include font-size-responsive($font-size-xlarge + 10px, $font-size-large + 5px);
+                @include font-size-responsive($font-size-xlarge + 10px, $font-size-large);
 
                 .article-link {
                     color: $color-text2;
@@ -335,8 +335,9 @@ figure.full-bleed,
                 width: 100%;
             }
 
+            // make it compariable to :284 .post-title
             h1 {
-                @include font-size-responsive($font-size-xlarge, $font-size-xlarge);
+                @include font-size-responsive($font-size-xlarge, $font-size-large);
                 margin: 2.5rem 0 1rem 0rem;
             }
 
@@ -345,7 +346,7 @@ figure.full-bleed,
             }
 
             h2 {
-                @include font-size-responsive($font-size-large, $font-size-large);
+                @include font-size-responsive($font-size-large, $font-size-large - 2px);
                 margin: 2rem 0 1rem 0;
             }
 
