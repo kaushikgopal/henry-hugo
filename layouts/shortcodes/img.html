@@ -20,9 +20,10 @@
 
                         {{ if isset .Params "attrlink"}}
                             {{ if isset .Params "align"}}
-                            <a style='display:block;{{.Get "align"}}' href="{{.Get "attrlink"}}">
+                            {{/*  we need the class here to remove margin-left for center alignment  */}}
+                            <a class="{{.Get "align"}}" href="{{.Get "attrlink"}}">
                             {{ else }}
-                            <a style='display:block;text-align:left' href="{{.Get "attrlink"}}">
+                            <a href="{{.Get "attrlink"}}">
                             {{ end }}
                         {{ end }}
 

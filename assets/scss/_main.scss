@@ -378,8 +378,11 @@ figure.full-bleed,
 
             figcaption {
                 font-size: $font-size-medium;
-                margin-bottom: $spacing-unit;
-                margin-top: $spacing-micro-unit;
+                margin: 0 0 $spacing-content-sides 0;
+
+                a:not(.center) {
+                    margin-left: $spacing-content-sides;
+                }
             }
 
             .footnotes {
