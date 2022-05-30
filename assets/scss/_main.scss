@@ -516,14 +516,15 @@ figure.full-bleed {
         background-color: $color-link;
         border-radius: $spacing-unit / 2;
         border: 2px solid #000;
+
         color: black;
         font-size: $font-size-small * 0.89;
         font-weight: bold;
-        padding: $spacing-micro-unit;
+
         text-transform: uppercase;
         vertical-align: middle;
-        font-family: $fixed-width-font-family;
 
+        padding: $spacing-micro-unit;
         margin-right: $spacing-unit / 4;
     }
 
