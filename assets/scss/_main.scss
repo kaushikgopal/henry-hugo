@@ -383,12 +383,30 @@ figure.full-bleed {
                 margin-bottom: $spacing-unit;
             }
 
-            figcaption {
-                font-size: $font-size-medium;
-                margin: 0 0 $spacing-content-sides 0;
+            figure {
+                figcaption {
+                    font-size: $font-size-medium;
+                    margin: 0 0 $spacing-content-sides 0;
+                }
 
-                a:not(.center) {
-                    margin-left: $spacing-content-sides;
+                // handle alignment of figcaptoin(s)
+
+                // if it's not full-bleed or center
+                // add the content-side margin
+                &:not(.full-bleed) {
+                    a:not(.center) {
+                        margin-left: $spacing-content-sides;
+                    }
+                }
+
+                // center full-bleed image captions
+                // as they are nested in the full-bleed grid layout
+                // and $spacing-content-sides will look odd
+                // as it starts from edge of scree now.
+                &.full-bleed {
+                    figcaption {
+                        text-align: center;
+                    }
                 }
             }
 
