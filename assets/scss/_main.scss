@@ -113,21 +113,28 @@ figure.full-bleed,
 }
 
 
-.post-meta {
+figure.full-bleed {
 
-    .full-bleed {
-        display: grid;
+    grid-template-columns:
+        0fr
+        100%
+        0fr;
+
+
+    @include media-query-laptop() {
         grid-column: 1 / 4;
-
-        img {
-            width: 100%;
-        }
-
-        figcaption {
-            grid-column: 2;
-        }
     }
-}
+
+    @include media-query-small-screen() {
+      margin-left: -$spacing-content-sides;
+
+      grid-template-columns:
+          0fr
+          #{"calc(100% + #{$spacing-content-sides})"}
+          0fr;
+    }
+  }
+
 //#endregion
 
 .goto {
