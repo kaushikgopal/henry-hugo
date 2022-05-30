@@ -98,14 +98,13 @@ figure.full-bleed,
 .post-meta,
 #site-footer,
 .post-index {
-    display: grid;
+    min-width: $mobile-width;
 
+    display: grid;
     grid-template-columns:
         1fr
         #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-
-        min-width: $mobile-width;
 
     > * {
         grid-column: 2;
@@ -114,15 +113,23 @@ figure.full-bleed,
 
 
 figure.full-bleed {
-
     grid-template-columns:
         0fr
         100%
         0fr;
 
-
     @include media-query-laptop() {
         grid-column: 1 / 4;
+
+        img {
+            // fit image to ful width
+            width: 100%;
+            // true full-bleed on super wide screens can look weird
+            // this caps it and starts stretching the image
+            // it's a design choice, that can be changed by commenting below
+            max-height: 100vh;
+        }
+
     }
 
     @include media-query-small-screen() {
@@ -133,6 +140,7 @@ figure.full-bleed {
           #{"calc(100% + #{$spacing-content-sides})"}
           0fr;
     }
+
   }
 
 //#endregion
