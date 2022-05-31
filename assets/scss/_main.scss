@@ -53,8 +53,7 @@ a {
 blockquote {
     border-left: 4px solid $color-divider;
 
-    padding-left: $spacing-unit / 2;
-    padding-top: $spacing-unit / 3;
+    padding-left: $spacing-unit - $spacing-micro-unit;
     padding-bottom: $spacing-unit / 3;
 
     margin-top: $spacing-unit / 2;
@@ -64,6 +63,10 @@ blockquote {
 
     code {
         font-size: 0.8rem;
+    }
+
+    p {
+        margin: 0.5rem 0;
     }
 
     > :last-child {
