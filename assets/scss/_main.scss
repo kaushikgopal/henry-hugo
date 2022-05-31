@@ -323,7 +323,7 @@ figure.full-bleed {
 
             @include font-size-responsive($font-size-regular, $font-size-regular);
 
-            > p, ul, ol {
+            > p, > ul, > ol {
                 margin-bottom: $spacing-unit - $spacing-micro-unit;
                 @include media-query-small-screen() {
                     margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
@@ -331,8 +331,8 @@ figure.full-bleed {
             }
 
             ol, ul {
-                padding-left: $spacing-unit;
-                padding-right: $spacing-unit;
+                padding-left: $spacing-unit + $spacing-micro-unit;
+                padding-right: $spacing-unit + $spacing-micro-unit;
             }
 
             a {
@@ -530,7 +530,7 @@ figure.full-bleed {
 
     .callout:not(figure) {
         border: 2px solid $color-divider;
-        padding: 1rem;
+        padding: $spacing-unit;
         margin-bottom: $spacing-unit;
     }
     ul.callout {
