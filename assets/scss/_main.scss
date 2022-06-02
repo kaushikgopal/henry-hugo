@@ -338,8 +338,8 @@ figure.full-bleed {
                 padding-left: $spacing-unit + $spacing-micro-unit;
                 padding-right: $spacing-unit + $spacing-micro-unit;
                 @include media-query-small-screen() {
-                    padding-left: 0;
-                    padding-right: 0;
+                    padding-left: ($spacing-unit + $spacing-micro-unit)/ 2;
+                    padding-right: ($spacing-unit + $spacing-micro-unit)/ 2;
                 }
 
             }
