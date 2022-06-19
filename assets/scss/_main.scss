@@ -325,7 +325,7 @@ figure.full-bleed {
             clear: left;
             line-height: $base-line-height;
 
-            @include font-size-responsive($font-size-regular, $font-size-regular);
+            @include font-size-responsive($font-size-regular, $font-size-medium);
 
             > p, > ul, > ol {
                 margin-bottom: $spacing-unit - $spacing-micro-unit;
@@ -431,12 +431,10 @@ figure.full-bleed {
 
             .footnotes {
                 font-size: $font-size-medium;
-                padding: $spacing-unit 0;
-                margin-bottom: $spacing-unit;
+                padding: $spacing-unit 0 0 0;
                 @include media-query-small-screen() {
                     margin-bottom: 0;
                 }
-
 
                 ol {
                     margin-left: 0;
@@ -445,20 +443,26 @@ figure.full-bleed {
         }
 
         .post-meta {
-            margin-top: $spacing-micro-unit;
             text-transform: none;
+            padding-top: $spacing-unit * 2 ;
+            @include media-query-small-screen() {
+                padding-top: $spacing-unit;
+            }
 
-            div {
-                margin: $spacing-micro-unit 0 $spacing-micro-unit 0;
+            .post-date {
+                color: $color-text;
+                @include font-size-responsive($font-size-regular, $font-size-medium);
             }
 
             .post-permalink {
-                border-top: 1px solid $color-text;
+                /* border-top: 1px solid $color-text; */
                 width: 20%;
-                padding-top: 1rem;
+                margin-bottom: 0;
 
                 a {
+                    @include font-size-responsive($font-size-medium, $font-size-small);
                     color: $color-text2;
+                    text-decoration: none;
 
                     &:hover {
                         color: $color-link;
@@ -466,9 +470,6 @@ figure.full-bleed {
                 }
             }
 
-            .post-date {
-                color: $color-text;
-            }
 
             .post-taxonomies {
                 margin: 1rem 0 1.5rem 0;
@@ -479,7 +480,7 @@ figure.full-bleed {
             .post-related {
                 border: 3px solid $color-divider;
                 padding: 1rem;
-                margin-top: $spacing-unit * 3;
+                margin-top: $spacing-unit;
 
                 h4 {
                     font-family: $header-2-font-family;
@@ -505,7 +506,7 @@ figure.full-bleed {
             }
 
             .post-taxonomy {
-                border: 2px solid;
+                border: 2px solid $color-divider;
                 margin-right: 1rem;
                 padding: $spacing-micro-unit $spacing-micro-unit * 2;
                 text-align: center;

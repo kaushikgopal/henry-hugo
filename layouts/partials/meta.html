@@ -1,9 +1,9 @@
 <div class="post-meta">
+
+    <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
     {{ if .Params.externalLink }}
         <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
     {{ end }}
-
-    <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
 
 
     {{ $n := (add (len (.Params.categories | default slice)) -1) }}
@@ -24,5 +24,5 @@
         </ul>
     </div>
     {{ end }}
-    
+
 </div>
