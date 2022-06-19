@@ -1,4 +1,70 @@
-<video controls muted playsinline>
-    <source src="{{ .Get 0 }}"
+{{- /*  hugo-video shortcode
+/*
+/*    This file is part of hugo-video shortcode.
+/*    A Hugo component shortcode to embed videos using the HTML video element.
+/*
+/*    @copyright  @2019 onwards Nicolas Martignoni (nicolas@martignoni.net)
+/*    @source     https://github.com/martignoni/hugo-video
+/*    @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+/*
+*/ -}}
+
+{{- $video_src := or (.Get "src") (.Get 0) -}}
+
+{{/*  <video controls muted playsinline>
+    <source src="{{ $video_src }}"
             type="video/mp4">
+</video>  */}}
+
+{{- $video_mp4 := "" -}}
+{{- $video_webm := "" -}}
+{{- $video_ogg := "" -}}
+{{- $video_dl := "" -}}
+{{- $width := "100%" -}}
+{{- $filenotfound := true -}}
+{{- $unsupportedfile := true -}}
+
+{{- /* Find in page bundle all valid video files with matching name. */ -}}
+{{- with $video_src -}}
+  {{- $filenotfound = false -}}
+
+    {{- if or (strings.HasSuffix . "mp4") (strings.HasSuffix . "m4v") -}}
+        {{- $unsupportedfile = false -}}
+        {{- $video_mp4 = . -}}
+    {{- end -}}
+
+    {{- if (strings.HasSuffix . "webm") -}}
+      {{- $unsupportedfile = false -}}
+      {{- $video_webm = . -}}
+    {{- end -}}
+
+    {{- if (strings.HasSuffix . "ogv") -}}
+      {{- $unsupportedfile = false -}}
+      {{- $video_ogg = . -}}
+    {{- end -}}
+
+{{- end -}}
+
+{{- if $filenotfound -}}
+    {{- /* No file of given name was found, we stop here. */ -}}
+    {{- errorf "No file with filename %v found." $video_src -}}
+{{- else if $unsupportedfile -}}
+    {{- errorf "No valid video file with filename %v found." $video_src -}}
+{{- else -}}
+<video {{ if ne (.Get "controls") "false" }}controls {{ end }}preload="auto" width="{{ or (.Get "width") $width }}" {{ with .Get "height" }}height="{{.}}"{{ end }} {{ if eq (.Get "autoplay") "true" }}autoplay {{ end }}{{ if eq (.Get "loop") "true" }}loop {{ end }}{{ if ne (.Get "muted") "false" }}muted {{ end }}playsinline>
+  {{- with $video_webm }}
+    <source src="{{ . }}" type="video/webm">
+    {{- $video_dl = . -}}
+  {{- end }}
+  {{- with $video_ogg }}
+    <source src="{{ . }}" type="video/ogg">
+    {{- $video_dl = . -}}
+  {{- end }}
+  {{- with $video_mp4 }}
+    <source src="{{ . }}" type="video/mp4">
+    {{- $video_dl = . -}}
+  {{- end }}
+  <span>{{ i18n "videoUnsupported" $video_dl | safeHTML}}</span>
 </video>
+{{- end -}}
+
