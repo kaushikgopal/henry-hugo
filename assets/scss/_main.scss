@@ -296,7 +296,7 @@ figure.full-bleed {
 
             .post-title {
                 color: $color-text2;
-                margin: $spacing-unit 0 $spacing-unit/2 0;
+                margin: $spacing-unit 0 $spacing-micro-unit 0;
                 font-weight: bold;
                 font-family: $header-2-font-family;
 
@@ -321,7 +321,11 @@ figure.full-bleed {
         }
 
         .post-content {
-            padding-top: $spacing-unit;
+            padding-top: $spacing-unit * 2;
+            @include media-query-small-screen() {
+                padding-top: $spacing-unit;
+            }
+
             clear: left;
             line-height: $base-line-height;
 
