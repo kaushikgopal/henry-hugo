@@ -297,11 +297,12 @@ figure.full-bleed {
 
             .post-title {
                 color: $color-text2;
-                margin: $spacing-unit 0 $spacing-micro-unit 0;
+                margin: $spacing-unit 0 $spacing-micro-unit/2 0;
                 font-weight: bold;
                 font-family: $header-2-font-family;
+                line-height: 1.2;
 
-                @include font-size-responsive($font-size-xlarge + 10px, $font-size-large);
+                @include font-size-responsive($font-size-xlarge, $font-size-large + 5px);
 
                 .article-link {
                     color: $color-text2;
