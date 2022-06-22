@@ -360,12 +360,6 @@ figure.full-bleed {
                 }
             }
 
-            hr {
-                border: 1px solid $color-divider;
-                margin: 0 0 $spacing-unit 0;
-                width: 100%;
-            }
-
             // make it compariable to :284 .post-title
             h1 {
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
@@ -407,6 +401,37 @@ figure.full-bleed {
             .highlight {
                 margin-bottom: $spacing-unit;
             }
+
+
+            //#region Drop Cap support
+            hr {
+                // border: 1px solid $color-divider;
+                // margin: 0 0 $spacing-unit 0;
+                // width: 100%;
+                display:none;
+
+                + p {
+                    // &:nth-child(1):first-letter,
+                    &:first-letter {
+
+                        float: left;
+                        font-family: $header-2-font-family;
+                        line-height: 30px;
+                        padding-right: $spacing-micro-unit;
+
+                        @include media-query-small-screen() {
+                            font-size: 50px;
+                            padding-top: 12px;
+                        }
+
+                        @include media-query-laptop() {
+                            font-size: 56px;
+                            padding-top: 17px;
+                        }
+                    }
+                }
+            }
+            //#endregion
 
             figure {
                 figcaption {
