@@ -175,10 +175,10 @@ figure.full-bleed {
 }
 
 .goto.top {
-    bottom: (2 * $spacing-micro-unit);
+    top: (2 * $spacing-micro-unit);
 }
 .goto.bottom {
-    top: (2 * $spacing-micro-unit);
+    bottom: (2 * $spacing-micro-unit);
 }
 
 //#region #site-content {
