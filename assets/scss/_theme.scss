@@ -17,29 +17,31 @@ $spacing-micro-unit: 6px;
 $spacing-content-sides: $spacing-unit;
 
 $mobile-width: 375px;
-$tablet-width: 685px;
-$screen-width: 780px;
+$tablet-width: 600px;
+$screen-width: 740px;
 
-$font-family-base: "ibm-plex-serif", "IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;
+$font-family-0: "ibm-plex-serif", "IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;
 $header-font-family: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;
 $header-2-font-family: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
 $fixed-width-font-family: "SF Mono", SFMono-Regular, ui-monospace, "ibm-plex-mono", "IBM Plex Mono", "Consolas",
   monospace;
 
+  // TODO: change to the standard one (css SF font)
+
 $background-color: hsl(211.6, 18.1%, 20.6%);
-
-$color-text: hsl(0, 0%, 73.3%);
-$color-text2: hsl(0, 0%, 96.1%);
-$color-textunderline: hsl(0, 0%, 47.5%);
-$color-code: hsl(34.3, 42.9%, 80.8%);
-
-$color-link2: $color-text2;
-$color-link: hsl(4.9, 60.4%, 60.4%); // ck orange : used in most hovers
 
 $color-header-index: lighten($background-color, 10%);
 $color-header: lighten($background-color, 60%);
+$color-text: hsl(0, 0%, 73.3%);
+$color-text2: hsl(0, 0%, 96.1%);
+$color-textunderline: hsl(0, 0%, 47.5%);
+$color-link: hsl(4.9, 60.4%, 60.4%); // ck orange : used in most hovers
+$color-link2: $color-text2;
 
 $color-divider: $color-textunderline;
+$color-blockquote: $color-divider;
+$color-blockquote-border: $color-divider;
+$color-code: hsl(34.3, 42.9%, 80.8%);
 
 //#endregion
 

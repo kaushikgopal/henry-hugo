@@ -1,8 +1,7 @@
 //#region HTML Styles
 body {
-    font-family: $font-family-base;
+    font-family: $font-family-0;
     font-size: $font-size-regular;
-    font-weight: 450;
     color: $color-text;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -52,7 +51,12 @@ a {
 }
 
 blockquote {
-    border-left: 4px solid $color-divider;
+    color: $color-blockquote;
+
+    border-color: $color-blockquote-border;
+    border-left: 4px solid $color-blockquote-border;
+
+    // TODO: add var for color & border-left
 
     padding-left: $spacing-unit - $spacing-micro-unit;
     padding-bottom: $spacing-unit / 3;
