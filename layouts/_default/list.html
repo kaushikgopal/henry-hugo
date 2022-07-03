@@ -1,47 +1,55 @@
 {{ define "content" }}
 
 
-    {{ if .Data.Terms }}
+<section class="post-index">
 
-        <section class="post-index">
-            {{ range $group, $pages := .Data.Terms }}
-                <h2 class="post-list-header" id="{{ $group }}">#{{ $group }}</h2>
-                <ul class="post-list-content">
-                    {{ range $pages }}
-                        {{ .Render "li" }}
-                    {{ end }}
-                </ul>
-            {{ end }}
-        </section>
+    {{ if .Content }}
+        <h2 class="post-list-header">{{ .Title }}</h2>
+        {{.Content}}
+    {{ end }}
+
+
+    {{ $pages := "" }}
+
+    {{ if eq .Type "blog" }}
+        <!-- show *all* posts (otherwise only /blog posts will be filtered) -->
+        {{ $pages = .Site.RegularPages }}
+    {{ else }}
+        {{ $pages = .Pages }}
+    {{ end}}
+
+    <!-- filter pages that shouldn't be shown on index -->
+    {{ $pages = where $pages "Params.noindex" "!=" true }}
+
+    <!-- filter out invisible sections (unless your listing the invisible section page itself) -->
+    {{ if not (in .Site.Params.InvisibleSections .Type) }}
+        {{ $pages = where $pages ".Type" "not in" .Site.Params.InvisibleSections }}
+    {{ end }}
+
+
+    {{ if .Data.Terms }}
+    <!-- category or tag pages -->
+        {{ range $group, $pages := .Data.Terms }}
+            <h2 class="post-list-header" id="{{ $group }}">#{{ $group }}</h2>
+            <div class="post-list-content">
+                {{ range $pages }}
+                    {{ .Render "li" }}
+                {{ end }}
+            </div>
+        {{ end }}
 
     {{ else }}
-
-        <section class="post-index">
-
-            {{ if .Content }}
-                <h2 class="post-list-header">{{ .Title }}</h2>
-                {{.Content}}
-            {{ end }}
-
-
-            {{ $pages := .Pages }}
-
-            {{ if eq .Type "blog" }}
-                {{ $pages = .Site.RegularPages }}
-            {{ end}}
-
-            {{ $pages := where $pages "Params.noindex" "!=" true }}
-
-            {{ range $pages.GroupByDate "2006" }}
-                <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
-                <ul class="post-list-content">
-                    {{ range .Pages }}
-                        {{ .Render "li" }}
-                    {{ end }}
-                </ul>
-            {{ end }}
-        </section>
+    <!-- index page(s) -->
+         {{ range $pages.GroupByDate "2006" }}
+             <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
+             <ul class="post-list-content">
+                 {{ range .Pages }}
+                     {{ .Render "li" }}
+                 {{ end }}
+             </ul>
+        {{ end }}
 
     {{ end }}
 
+</section>
 {{ end }}
