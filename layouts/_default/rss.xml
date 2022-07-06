@@ -11,6 +11,7 @@
 {{- end -}}
 
 {{- $pages := where $pages "Section" "not in" site.Params.invisibleSections -}}
+{{- $pages := where $pages "Params.noindex" "!=" true -}}
 
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
