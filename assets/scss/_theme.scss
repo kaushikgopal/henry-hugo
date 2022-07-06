@@ -26,6 +26,7 @@ $font-family-2: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;    
 $font-family-3: ui-monospace, "SF Mono", SFMono-Regular, "ibm-plex-mono", "IBM Plex Mono", "Consolas",      // monospace
 monospace;
 
+// remember to update head-additions with the same theme
 $background-color: hsl(211.6, 18.1%, 20.6%);
 
 $color-header-index: lighten($background-color, 10%);
