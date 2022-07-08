@@ -535,9 +535,10 @@ figure.full-bleed {
             .post-taxonomy {
                 border: 2px solid $color-divider;
                 margin-right: 1rem;
-                padding: $spacing-micro-unit $spacing-micro-unit * 2;
+
                 text-align: center;
                 font-size: 1.2rem;
+                font-weight: 500;
 
                 &:hover {
                     color: $color-link;
@@ -545,8 +546,13 @@ figure.full-bleed {
                 }
 
                 a {
-                    text-decoration: none;
+                    display: block;
+                    padding: $spacing-micro-unit $spacing-micro-unit * 2;
+
                     color: inherit;
+                    text-decoration: none;
+
+
                     &:hover {
                         color: inherit;
                     }
