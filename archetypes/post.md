@@ -48,5 +48,5 @@ categories = []
 +++
 
 <!---
-See https://kaushik.page/blog/henry-jekyll-theme/ for details on how to use Henry
+See https://kau.sh/blog/henry-jekyll-theme/ for details on how to use Henry
 --->

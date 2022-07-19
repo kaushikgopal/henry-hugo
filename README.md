@@ -2,7 +2,7 @@
 
 <p align="center"><img src="images/henry.png"></p>
 
-Henry is a [Hugo](https://gohugo.io/) theme with a gorgeous reading experience, chock-full of features. To find out more about all the features check out this [blog post](https://kaushik.page/blog/henry-hugo-theme/).
+Henry is a [Hugo](https://gohugo.io/) theme with a gorgeous reading experience, chock-full of features. To find out more about all the features check out this [blog post](https://kau.sh/blog/henry-hugo-theme/).
 
 <p align="center"><img src="images/screenshot.png"></p>
 
@@ -42,7 +42,7 @@ Bug reports and pull requests are welcome on [GitHub](https://github.com/kaushik
 Here are a couple of blogs that use Henry:
 
 1. [Karthick Gopal's blog](https://karthickg.com/blog)
-2. [Kaushik Gopal's blog](https://kaushik.page/blog)
+2. [Kaushik Gopal's blog](https://kau.sh/blog)
 
 # License
 
