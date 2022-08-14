@@ -10,9 +10,9 @@
 
 {{- $video_src := or (.Get "src") (.Get 0) -}}
 
-{{/*  <video controls muted playsinline>
-    <source src="{{ $video_src }}"
-            type="video/mp4">
+{{/*
+  <video controls muted playsinline>
+    <source src="{{ $video_src }}" type="video/mp4">
 </video>  */}}
 
 {{- $video_mp4 := "" -}}
@@ -50,7 +50,13 @@
 {{- else if $unsupportedfile -}}
     {{- errorf "No valid video file with filename %v found." $video_src -}}
 {{- else -}}
-<video {{ if ne (.Get "controls") "false" }}controls {{ end }}preload="auto" width="{{ or (.Get "width") $width }}" {{ with .Get "height" }}height="{{.}}"{{ end }} {{ if eq (.Get "autoplay") "true" }}autoplay {{ end }}{{ if eq (.Get "loop") "true" }}loop {{ end }}{{ if ne (.Get "muted") "false" }}muted {{ end }}playsinline>
+<video  {{ if ne (.Get "controls") "false" }}controls {{ end }}
+        width="{{ or (.Get "width") $width }}"
+        {{ with .Get "height" }}height="{{.}}" {{ end }}
+        {{ if ne (.Get "autoplay") "false" }}autoplay {{ end }}
+        {{ if ne (.Get "muted") "false" }}muted {{ end }}
+        {{ if ne (.Get "loop") "false" }}loop {{ end }}
+        playsinline>
   {{- with $video_webm }}
     <source src="{{ . }}" type="video/webm">
     {{- $video_dl = . -}}
