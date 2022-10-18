@@ -158,7 +158,7 @@ figure.full-bleed {
 
     text-align: center;
     position: fixed;
-    width: 30px;
+    width: $font-size-medium * 2;
     right: (2 * $spacing-micro-unit);
     border-radius: 50%;
 
@@ -303,7 +303,7 @@ figure.full-bleed {
                 font-family: $font-family-1;
                 line-height: 1.2;
 
-                @include font-size-responsive($font-size-xlarge, $font-size-large + 5px);
+                @include font-size-responsive($font-size-xlarge, $font-size-large);
 
                 .article-link {
                     color: $color-text2;
