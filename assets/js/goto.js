@@ -38,7 +38,7 @@
  * @param within  the time window in milliseconds, defaults to 300
  * @param timerId an optional key, defaults to func
  */
-function callOnce(func, within = 300, timerId = null) {
+function callOnce(func, within = 1800, timerId = null) {
   window.callOnceTimers = window.callOnceTimers || {};
   if (timerId == null) timerId = func;
   var timer = window.callOnceTimers[timerId];
