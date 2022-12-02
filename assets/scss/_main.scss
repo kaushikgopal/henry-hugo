@@ -606,6 +606,7 @@ figure.full-bleed {
 .sidenote-hover {
     border-color: $color-link;
     color: $color-link;
+    z-index: 1;
 }
 
 //#region code snippets
