@@ -436,8 +436,11 @@ figure.full-bleed {
 
             figure {
                 figcaption {
-                    font-size: $font-size-medium;
-                    margin-top: $spacing-micro-unit;
+
+                    margin-top: $spacing-micro-unit / 2;
+
+                    font-size: $font-size-small;
+                    font-size: 0.8rem;
                 }
 
                 // handle alignment of figcaptoin(s)
