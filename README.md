@@ -22,8 +22,11 @@ cd blog-henry
 git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
 
 # 3. configure blog
-## inside your config.toml file
+## add this line to your config.toml
 theme = "henry"
+
+# 4. add some posts!
+cp themes/henry/content/* content/
 
 # run Hugo!
 hugo server -D
