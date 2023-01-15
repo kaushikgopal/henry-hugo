@@ -25,12 +25,12 @@ git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
 ## add this line to your config.toml
 theme = "henry"
 
-# 4. add some posts!
-cp themes/henry/content/* content/
-
 # run Hugo!
 hugo server -D
 open http://localhost:1313/
+
+# dummy posts are in henry's content folder
+# feel free to mark them as drafts or delete before you start blogging!
 ```
 
 You're good to go. Happy blogging!
