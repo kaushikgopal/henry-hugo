@@ -1,6 +1,5 @@
 {{ define "content" }}
 
-
 <section class="post-index">
 
     {{ if .Content }}
@@ -21,11 +20,12 @@
     <!-- filter pages that shouldn't be shown on index -->
     {{ $pages = where $pages "Params.noindex" "!=" true }}
 
+    {{ if .Site.Params.InvisibleSections }}
     <!-- filter out invisible sections (unless your listing the invisible section page itself) -->
-    {{ if not (in .Site.Params.InvisibleSections .Type) }}
-        {{ $pages = where $pages ".Type" "not in" .Site.Params.InvisibleSections }}
+        {{ if not (in .Site.Params.InvisibleSections .Section) }}
+            {{ $pages = where $pages ".Type" "not in" .Site.Params.InvisibleSections }}
+        {{ end }}
     {{ end }}
-
 
     {{ if .Data.Terms }}
     <!-- category or tag pages -->
@@ -43,7 +43,7 @@
          {{ range $pages.GroupByDate "2006" }}
              <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
              <ul class="post-list-content">
-                 {{ range .Pages }}
+                {{ range $pages }}
                      {{ .Render "li" }}
                  {{ end }}
              </ul>
