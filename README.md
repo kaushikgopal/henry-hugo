@@ -27,12 +27,12 @@ theme = "henry"
 [params]
     ExternalLinkIndicator = "»"
 
-# run Hugo!
+# 4. run Hugo!
 hugo server -D
 open http://localhost:1313/
 
-# dummy posts are in henry's content folder
-# feel free to mark them as drafts or delete before you start blogging!
+# sample posts are in henry's content folder : themes/henry/content
+# if you want to see some samples, just mark them from draft true → false
 ```
 
 You're good to go. Happy blogging!
