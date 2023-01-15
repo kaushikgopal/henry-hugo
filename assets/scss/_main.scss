@@ -252,13 +252,18 @@ figure.full-bleed {
                     // display: inline;
                     color: darken($color-textunderline, 8%);
                     margin: 0;
-                    clear: left;
                     white-space: nowrap;
+                    display: block;
+                    float:right;
+                    padding-top: 0.34rem;
 
                     @include font-size-responsive($font-size-medium, $font-size-small);
                 }
 
                 a.post-link-url {
+                    display: block;
+                    float:left;
+
                     color: $color-text2;
                     text-decoration: none;
                     padding-right: $spacing-micro-unit;
