@@ -184,6 +184,8 @@ figure.full-bleed {
 
 //#region #site-content {
     .post-index {
+        margin-top: $spacing-content-sides;
+
         h2.post-list-header {
             color: $color-header-index;
             font-family: $font-family-3;
