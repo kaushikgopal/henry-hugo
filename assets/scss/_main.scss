@@ -725,7 +725,8 @@ article.post-content {
 .powered-by {
     font-size: 0.75rem;
     text-align: center;
-    margin: $spacing-unit * 1.5 $spacing-unit;
+    margin: $spacing-unit $spacing-unit;
+    padding-bottom: $spacing-unit;
 
     > a {
         text-decoration: none;
