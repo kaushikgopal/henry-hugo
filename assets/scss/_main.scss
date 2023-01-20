@@ -192,15 +192,17 @@ figure.full-bleed {
         margin-top: $spacing-content-sides;
 
         h2.post-list-header {
+
             color: $color-header-index;
-            font-family: $font-family-3;
             font-size: $font-size-regular * 1.25;
             font-weight: normal;
+
+            margin-top: $spacing-unit * 1.15;
             margin-bottom: $spacing-unit;
         }
 
         h2.post-list-header + ul {
-            margin: 0;
+            margin: 0 0 0 $spacing-content-sides;
         }
 
 
