@@ -16,7 +16,7 @@
     {{ $related := .Site.RegularPages.Related . }}
     {{ with $related }}
     <div class="post-related">
-        <h4> Related: </h4>
+        <h4> Related posts: </h4>
         <ul class="post-related-links">
             {{ range . }}
             <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>

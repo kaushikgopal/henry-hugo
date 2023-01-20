@@ -15,15 +15,18 @@ li {
     }
 }
 
-h1, h1 a,
-h2, h2 a,
-h3, h3 a,
-h4, h4 a,
-h5, h5 a,
-h6, h6 a {
-    color: $accent-color;
+h1,
+h2,
+h3,
+h4 {
+  a {
+    color: $color-text2;
     font-weight: bold;
+
+    text-underline-offset: $spacing-micro-unit;
+  }
 }
+
 
 figure {
     margin-bottom: $spacing-unit;
@@ -66,7 +69,9 @@ blockquote {
     margin-top: $spacing-unit / 2;
     margin-bottom: $spacing-unit;
 
+    @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
     font-style: italic;
+    font-weight: 500;
 
     code {
         font-size: 0.8rem;
@@ -161,16 +166,18 @@ figure.full-bleed {
     display: none;
     @include opacity(0);
 
-    text-align: center;
     position: fixed;
     width: $font-size-medium * 2;
     right: (2 * $spacing-micro-unit);
-    border-radius: 50%;
 
+    border-radius: 50%;
     border: 2px solid $color-textunderline;
     background-color: $background-color;
 
     @include css-transition-opacity();
+
+    font-family: $font-family-3;
+    text-align: center;
 
     a {
         text-decoration: none;
@@ -189,7 +196,12 @@ figure.full-bleed {
 
 //#region #site-content {
     .post-index {
-        margin-top: $spacing-content-sides;
+        margin-top: $spacing-content-sides * 2.5;
+
+        @include media-query-small-screen() {
+            margin-top: $spacing-content-sides * 1.5;
+        }
+
 
         h2.post-list-header {
 
@@ -349,10 +361,11 @@ figure.full-bleed {
             @include font-size-responsive($font-size-regular, $font-size-medium);
 
             > p, > ul, > ol {
-                margin-bottom: $spacing-unit - $spacing-micro-unit;
-                @include media-query-small-screen() {
-                    margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
-                }
+                margin: 0 0 ($spacing-unit) 0;
+                // margin-bottom: $spacing-unit - $spacing-micro-unit;
+                // @include media-query-small-screen() {
+                //     margin-bottom: $spacing-unit - 2 * $spacing-micro-unit;
+                // }
             }
 
             ol, ul {
@@ -383,7 +396,6 @@ figure.full-bleed {
             h3 {
                 font-size: 1rem;
                 font-style: italic;
-                font-weight: normal;
 
                 @include font-size-responsive();
                 margin-bottom: 0.5rem;
@@ -425,13 +437,13 @@ figure.full-bleed {
                         padding-right: $spacing-micro-unit;
 
                         @include media-query-small-screen() {
+                            padding-top: $spacing-micro-unit;
                             font-size: 50px;
-                            padding-top: 12px;
                         }
 
                         @include media-query-laptop() {
+                            padding-top: $spacing-micro-unit * 1.5;
                             font-size: 56px;
-                            padding-top: 17px;
                         }
                     }
                 }
@@ -440,9 +452,9 @@ figure.full-bleed {
 
             figure {
                 figcaption {
-
                     margin-top: $spacing-micro-unit / 2;
 
+                    color: $color-textunderline;
                     font-size: $font-size-small;
                     font-size: 0.8rem;
                 }
@@ -476,7 +488,19 @@ figure.full-bleed {
                 }
 
                 ol {
-                    margin-left: 0;
+                    margin: $spacing-unit $spacing-unit 0 0;
+
+                    // half border on top
+                    padding-top: $spacing-unit;
+                    padding-bottom: $spacing-unit;
+                    background-image: linear-gradient($color-divider,$color-divider);
+                    background-size: 50% 2px;
+                    background-position: top left;
+                    background-repeat: no-repeat;
+
+                    li {
+                        margin-bottom: $spacing-unit / 2;
+                    }
                 }
             }
         }
@@ -517,13 +541,15 @@ figure.full-bleed {
             }
 
             .post-related {
-                border: 3px solid $color-divider;
-                padding: 1rem;
-                margin-top: $spacing-unit;
+                margin: $spacing-unit * 2 0;
 
                 &:hover {
                     color: $color-text2;
-                    border-color: $color-text2;
+                }
+
+                h4 {
+                    color: $color-text;
+                    margin-bottom: $spacing-micro-unit;
                 }
 
                 a {
@@ -544,12 +570,12 @@ figure.full-bleed {
                 margin-right: 1rem;
 
                 text-align: center;
-                font-size: 1.2rem;
+                font-size: $font-size-medium;
                 font-weight: 500;
 
                 &:hover {
-                    color: $color-link;
-                    border-color: $color-link;
+                    color: $color-text;
+                    border-color: $color-link2;
                 }
 
                 a {
@@ -569,11 +595,13 @@ figure.full-bleed {
     }
 
     .draft {
-        background-color: $color-link;
-        border-radius: $spacing-unit / 2;
+        border-radius: $spacing-micro-unit;
         border: 2px solid #000;
 
+        background-color: $color-link;
+        font-family: $font-family-3;
         color: black;
+
         font-size: $font-size-small * 0.89;
         font-weight: bold;
 
@@ -586,7 +614,7 @@ figure.full-bleed {
     }
 
     .callout:not(figure) {
-        border: 2px solid $color-divider;
+        border: $spacing-micro-unit solid $color-header-index;
         padding: $spacing-unit;
         margin-bottom: $spacing-unit;
     }
@@ -602,6 +630,7 @@ figure.full-bleed {
 
 .sidenote {
     padding-left: 2 * $spacing-micro-unit;
+    // padding: $spacing-micro-unit 0 $spacing-micro-unit (2 *$spacing-micro-unit);
     margin-bottom: 1.5rem;
 
     border-left: 1px solid $color-textunderline;
@@ -611,7 +640,7 @@ figure.full-bleed {
 }
 
 .sidenote-hover {
-    border-color: $color-link;
+    border-color: $color-related-post-border;
     color: $color-link;
     z-index: 1;
 }
@@ -620,6 +649,7 @@ figure.full-bleed {
 code {
     font-family: $font-family-3;
 }
+
 article.post-content {
     pre {
         font-size: 0.75rem;
