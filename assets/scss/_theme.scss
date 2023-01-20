@@ -28,13 +28,14 @@ monospace;
 
 // remember to update head-additions with the same theme
 $background-color: hsl(211.6, 18.1%, 20.6%);
+$accent-color: hsl(4.9, 60.4%, 60.4%);
 
 $color-header-index: lighten($background-color, 10%);
 $color-header: lighten($background-color, 60%);
 $color-text: hsl(0, 0%, 73.3%);
 $color-text2: hsl(0, 0%, 96.1%);
 $color-textunderline: hsl(0, 0%, 47.5%);
-$color-link: hsl(4.9, 60.4%, 60.4%); // ck orange : used in most hovers
+$color-link: $accent-color; // ck orange : used in most hovers
 $color-link2: $color-text2;
 
 $color-divider: $color-textunderline;

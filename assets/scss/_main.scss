@@ -4,6 +4,7 @@ body {
     font-size: $font-size-regular;
     color: $color-text;
     background-color: $background-color;
+    accent-color: $accent-color;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -20,7 +21,7 @@ h3, h3 a,
 h4, h4 a,
 h5, h5 a,
 h6, h6 a {
-    color: $color-header;
+    color: $accent-color;
     font-weight: bold;
 }
 
@@ -30,11 +31,15 @@ figure {
 
 a {
     color: $color-text;
+    text-decoration-color: $color-textunderline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
 
     &:hover {
-        text-decoration: $color-textunderline underline;
+        text-decoration: none;
     }
 }
+
 
 .icon {
     > svg {
@@ -358,16 +363,6 @@ figure.full-bleed {
 
             }
 
-            a {
-                text-decoration-color: $color-textunderline;
-                text-underline-offset: 4px;
-                text-decoration-thickness: 2px;
-
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-
             // make it compariable to :284 .post-title
             h1 {
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
@@ -635,6 +630,17 @@ article.post-content {
     p > code {
         font-size: 0.98rem;
         color: $color-code;
+    }
+
+    .footnote-ref {
+        text-decoration: none;
+        font-weight: bold;
+        font-size: .8rem;
+
+        &:hover {
+            color: $accent-color;
+            text-decoration: underline;
+        }
     }
 }
 //#endregion
