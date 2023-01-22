@@ -38,8 +38,8 @@
 
         {{ end }}
     {{ end }}
-{{ else if (fileExists "static/images/avatar.png") }}
-    {{ $banner = (printf "%v/%v" .Site.BaseURL "images/avatar.png") }}
+{{ else if (fileExists "static/images/avatar.webp") }}
+    {{ $banner = (printf "%v/%v" .Site.BaseURL "images/avatar.webp") }}
 {{ end }}
 
 <!-- must be at least 120x120px -->
