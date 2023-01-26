@@ -652,12 +652,20 @@ figure.full-bleed {
     color: $color-textunderline;
     font-style: italic;
     font-size: 0.8rem;
+
+    a {
+        color: $color-textunderline;
+    }
 }
 
 .sidenote-hover {
     border-color: $color-related-post-border;
     color: $color-link;
     z-index: 1;
+    a {
+        color: $color-link;
+        text-decoration-color: $color-link;
+    }
 }
 
 //#region code snippets
