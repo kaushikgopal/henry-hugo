@@ -106,24 +106,39 @@ blockquote {
 
 #site-footer,
 .post-index,
-
 figure.full-bleed,
 .post-header,
 .post-content,
-.post-meta,
-#site-footer,
-.post-index {
+.post-meta {
     min-width: $mobile-width;
 
     display: grid;
     grid-template-columns:
+        .5fr
+        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1.5fr;
+
+    // revert to 1fr on both sides
+    // for smaller screens
+    @include media-query-small-screen() {
+        grid-template-columns:
         1fr
-        #{"min(65ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
+    }
 
     > * {
         grid-column: 2;
     }
+}
+
+// 1fr on both sides
+// for main page
+.post-index {
+    grid-template-columns:
+        1fr
+        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
 }
 
 
