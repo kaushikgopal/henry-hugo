@@ -72,20 +72,20 @@
         const $fnItems = $footnotes.find("ol li");
 
         $("sup").each(function (index) {
-            const $footnoteText = $fnItems.eq(index).text().trim();
-            createSideNote($(this), $footnoteText, startPosition);
+            const $footnoteHtml = $fnItems.eq(index).html();
+            createSideNote($(this), $footnoteHtml, startPosition);
         });
 
         $footnotes.hide();
     }
 
-    function createSideNote(superscript, footnoteText, startPosition) {
+    function createSideNote(superscript, footnoteHtml, startPosition) {
 
-        // console.log(" ---> " + superscript.text() + " : " + footnoteText);
+        // console.log(" ---> " + superscript.text() + " : " + footnoteHtml);
 
         // construct side note <div>
         let div = $(document.createElement('div'))
-            .text(footnoteText)
+            .html(footnoteHtml)
             .addClass("sidenote");
 
         const topPosition = superscript.offset();
