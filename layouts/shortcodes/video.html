@@ -19,7 +19,8 @@
 {{- $video_webm := "" -}}
 {{- $video_ogg := "" -}}
 {{- $video_dl := "" -}}
-{{- $width := "100%" -}}
+{{- $width := .Get 1 | default "100%" }}
+
 {{- $filenotfound := true -}}
 {{- $unsupportedfile := true -}}
 
@@ -52,7 +53,6 @@
 {{- else -}}
 <video  {{ if ne (.Get "controls") "false" }}controls {{ end }}
         width="{{ or (.Get "width") $width }}"
-        {{ with .Get "height" }}height="{{.}}" {{ end }}
         {{ if ne (.Get "autoplay") "false" }}autoplay {{ end }}
         {{ if ne (.Get "muted") "false" }}muted {{ end }}
         {{ if ne (.Get "loop") "false" }}loop {{ end }}
