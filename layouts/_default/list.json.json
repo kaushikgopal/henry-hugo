@@ -1,5 +1,24 @@
-{{ $list := .Pages -}}
-{{ $length := (len $list) -}}
+{{- $pctx := . -}}
+{{- if .IsHome -}}
+    {{ $pctx = .Site }}
+{{- end -}}
+
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+    {{- $pages = $pctx.RegularPages -}}
+{{- else -}}
+    {{- $pages = $pctx.Pages -}}
+{{- end -}}
+
+{{- $pages := where $pages "Section" "not in" site.Params.invisibleSections -}}
+{{- $pages := where $pages "Params.noindex" "!=" true -}}
+
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+    {{- $pages = $pages | first $limit -}}
+{{- end -}}
+
+{{ $length := (len $pages) -}}
 {
     "version" : "https://jsonfeed.org/version/1",
     "title" : "{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}",
@@ -24,7 +43,7 @@
 
     "items" : [
 
-    {{ range $index, $element := $list -}}
+    {{ range $index, $element := $pages -}}
     {
         "title" : {{ .Title | jsonify }},
         "date_published" : "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
