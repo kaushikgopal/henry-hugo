@@ -13,3 +13,10 @@ min_version = "0.84.0"
 [author]
   name = "Kaushik Gopal"
   homepage = "https://kau.sh"
+
+[outputs]
+    page = ["HTML"]
+    home = ["HTML", "RSS", "JSON"]
+    section = ["HTML","RSS"]
+    taxonomyTerm = ["HTML"]
+    taxonomy = ["HTML","RSS"]
