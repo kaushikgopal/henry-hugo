@@ -55,6 +55,9 @@
           "name" : "{{ . }}"
         },
         {{ end -}}
+        {{ with .Params.Summary -}}
+          "summary" : {{ . | jsonify }},
+        {{ end -}}
         "content_html" : {{ .Content | jsonify }}
     }{{ if ne (add $index 1) $length }},{{ end }}
     {{ end -}}
