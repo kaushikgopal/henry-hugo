@@ -522,9 +522,26 @@ figure.full-bleed {
 
         .post-meta {
             text-transform: none;
-            padding-top: $spacing-unit * 2 ;
+            padding-top: $spacing-unit * 2;
             @include media-query-small-screen() {
                 padding-top: $spacing-unit;
+            }
+
+            .post-meta-addition {
+                font-style: italic;
+                @include font-size-responsive($font-size-medium, $font-size-small);
+
+                color: $color-divider;
+                a {
+                    color: $color-divider;
+                    text-decoration-color: $color-divider;
+                }
+
+                margin-bottom: $spacing-unit;
+                @include media-query-small-screen() {
+                    margin-bottom: $spacing-unit / 2;
+                }
+
             }
 
             .post-date {

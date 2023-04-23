@@ -35,7 +35,7 @@ $color-header: lighten($background-color, 60%);
 $color-text: hsl(0, 0%, 73.3%);
 $color-text2: hsl(0, 0%, 96.1%);
 $color-textunderline: hsl(0, 0%, 47.5%);
-$color-link: $accent-color; // ck orange : used in most hovers
+$color-link: $accent-color;
 $color-link2: $color-text2;
 
 $color-divider: $color-textunderline;
