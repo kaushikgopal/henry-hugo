@@ -32,6 +32,17 @@ figure {
     margin-bottom: $spacing-unit;
 }
 
+.youtube-player-parent {
+    margin-bottom: $spacing-unit;
+
+    // hugo's css code
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
 a {
     color: $color-text;
     text-decoration-color: $color-textunderline;
