@@ -353,7 +353,7 @@ figure.full-bleed {
             }
 
             .post-author {
-                color: $color-textunderline;
+                color: darken($color-header-index, 30%);
                 font-weight: normal;
                 font-style: italic;
             }
@@ -552,7 +552,7 @@ figure.full-bleed {
                 font-style: italic;
                 @include font-size-responsive($font-size-medium, $font-size-small);
 
-                color: $color-divider;
+                color: $color-header-index;
                 a {
                     color: $color-divider;
                     text-decoration-color: $color-divider;
