@@ -667,7 +667,7 @@ figure.full-bleed {
     }
 
     .callout:not(figure) {
-        border: $spacing-micro-unit solid $color-header-index;
+        border: $spacing-micro-unit solid $color-blockquote-border;
         padding: $spacing-unit;
         margin-bottom: $spacing-unit;
     }
