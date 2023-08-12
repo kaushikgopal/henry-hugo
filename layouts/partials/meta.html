@@ -2,7 +2,10 @@
 
     {{- partial "post-meta-additions.html" . -}}
 
+    {{ if not (eq .Layout "page") }}
     <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
+    {{ end }}
+
     {{ if .Params.externalLink }}
         <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
     {{ end }}
