@@ -119,8 +119,7 @@ blockquote {
 .post-index,
 figure.full-bleed,
 .post-header,
-.post-content,
-.post-meta {
+.post-content {
     min-width: $mobile-width;
 
     display: grid;
@@ -517,25 +516,26 @@ figure.full-bleed {
             }
 
             .footnotes {
-                font-size: $font-size-medium;
+
                 padding: $spacing-unit 0 0 0;
+                font-size: $font-size-medium;
+
                 @include media-query-small-screen() {
                     margin-bottom: 0;
+                    font-size: $font-size-small;
                 }
 
                 ol {
-                    margin: $spacing-unit $spacing-unit 0 0;
+                    padding: 2rem 1rem 2rem 4rem;
 
-                    // half border on top
-                    padding-top: $spacing-unit;
-                    padding-bottom: $spacing-unit;
-                    background-image: linear-gradient($color-divider,$color-divider);
-                    background-size: 50% 2px;
-                    background-position: top left;
-                    background-repeat: no-repeat;
+                    @include media-query-small-screen() {
+                        padding: 1.5rem 0.5rem 1.5rem 2.5rem;
+                    }
+
+                    border: $spacing-micro-unit solid $color-textunderline;
 
                     li {
-                        margin-bottom: $spacing-unit / 2;
+                        margin-bottom: $spacing-micro-unit;
                     }
                 }
             }
@@ -544,9 +544,6 @@ figure.full-bleed {
         .post-meta {
             text-transform: none;
             padding-top: $spacing-unit * 2;
-            @include media-query-small-screen() {
-                padding-top: $spacing-unit;
-            }
 
             .post-meta-addition {
                 font-style: italic;
@@ -558,9 +555,9 @@ figure.full-bleed {
                     text-decoration-color: $color-divider;
                 }
 
-                margin-bottom: $spacing-unit;
+                margin-bottom: $spacing-unit * 2;
                 @include media-query-small-screen() {
-                    margin-bottom: $spacing-unit / 2;
+                    margin-bottom: $spacing-unit * 1.5;
                 }
 
             }

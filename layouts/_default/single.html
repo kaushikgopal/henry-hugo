@@ -29,9 +29,11 @@
 
         <article class="post-content">
             {{ .Content }}
+
+            {{- partial "meta.html" . -}}
+
         </article>
 
-        {{- partial "meta.html" . -}}
 
     </section>
 {{end}}
