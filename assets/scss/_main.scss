@@ -543,7 +543,11 @@ figure.full-bleed {
 
         .post-meta {
             text-transform: none;
-            padding-top: $spacing-unit * 2;
+
+            @include media-query-laptop() {
+                margin-top: $spacing-unit * 2;
+            }
+
 
             .post-meta-addition {
                 font-style: italic;
@@ -555,9 +559,9 @@ figure.full-bleed {
                     text-decoration-color: $color-divider;
                 }
 
-                margin-bottom: $spacing-unit * 2;
+                margin: $spacing-unit*2 0 $spacing-unit 0;
                 @include media-query-small-screen() {
-                    margin-bottom: $spacing-unit * 1.5;
+                    margin: $spacing-unit 0;
                 }
 
             }
