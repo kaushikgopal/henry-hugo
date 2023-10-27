@@ -4,8 +4,8 @@
 
 $font-size-regular: 16px;
 
-$font-size-xlarge: $font-size-regular * 2;
-$font-size-large: $font-size-regular * 1.5;
+$font-size-xlarge: $font-size-regular * 1.5;
+$font-size-large: $font-size-regular * 1.25;
 //regular
 $font-size-medium: $font-size-regular * 0.875;
 $font-size-small: $font-size-regular * 0.75;
@@ -20,29 +20,33 @@ $mobile-width: 375px;
 $tablet-width: 600px;
 $screen-width: 740px;
 
-$font-family-0: "ibm-plex-serif", "IBM Plex Serif", ui-serif, Georgia, "Times New Roman", serif;            // base font
-$font-family-1: "ibm-plex-serif", "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;   // header 2
+$font-family-0: "IBM Plex Serif", "ibm-plex-serif", ui-serif, Georgia, "Times New Roman", serif;            // base font
+$font-family-1: "IBM Plex Serif", "ibm-plex-serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;   // header 2
 $font-family-2: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;                                // header 1
 $font-family-3: ui-monospace, "SF Mono", SFMono-Regular, "ibm-plex-mono", "IBM Plex Mono", "Consolas",      // monospace
 monospace;
 
-// remember to update head-additions with the same theme
+// remember to update head-additions with background-color
 $background-color: hsl(211.6, 18.1%, 20.6%);
-$accent-color: hsl(4.9, 60.4%, 60.4%);
+$accent-color: #ffe713;
+$color-divider: #b6ae5e;
 
-$color-header-index: lighten($background-color, 10%);
-$color-header: lighten($background-color, 60%);
-$color-text: hsl(0, 0%, 73.3%);
-$color-text2: hsl(0, 0%, 96.1%);
-$color-textunderline: hsl(0, 0%, 47.5%);
+
+$color-text: #f2f2f2;
+$color-text2: lighten($color-text, 20%);
+$color-text3: darken($color-text, 50%);
+$color-textunderline: rgba($color-divider, .7);
 $color-link: $accent-color;
-$color-link2: $color-text2;
+$color-link2: lighten($color-link, 2%);
 
-$color-divider: $color-textunderline;
-$color-blockquote: $color-divider;
-$color-blockquote-border: $color-divider;
-$color-code: hsl(34.3, 42.9%, 80.8%);
+$color-header: darken($accent-color, 25%);
+$color-header-index: lighten($color-text2, 10%);
+
+$color-blockquote: lighten($accent-color, 25%);
+$color-blockquote-border: darken($accent-color, 25%);
 $color-related-post-border: $color-blockquote-border;
+
+$color-code: #64ea64;
 
 //#endregion
 
