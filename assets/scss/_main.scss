@@ -366,11 +366,12 @@ figure.full-bleed {
         }
 
         .post-header {
-            margin-top: $spacing-unit * 4;
-
+            margin-top: $spacing-unit * 2;
+            margin-bottom: $spacing-unit;
             @include media-query-small-screen() {
-                margin-top: $spacing-unit * 1.5;
                 float: none;
+                margin-top: $spacing-unit;
+                margin-bottom: $spacing-unit/2;
             }
 
             .post-author {
@@ -381,7 +382,6 @@ figure.full-bleed {
 
             .post-title {
                 color: $color-text2;
-                margin: $spacing-unit 0 $spacing-micro-unit/2 0;
                 font-weight: bold;
                 font-family: $font-family-1;
                 line-height: 1.2;
