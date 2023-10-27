@@ -124,18 +124,9 @@ figure.full-bleed,
 
     display: grid;
     grid-template-columns:
-        .5fr
-        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1.5fr;
-
-    // revert to 1fr on both sides
-    // for smaller screens
-    @include media-query-small-screen() {
-        grid-template-columns:
         1fr
         #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-    }
 
     > * {
         grid-column: 2;
@@ -149,18 +140,6 @@ figure.full-bleed,
       #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
       1fr;
 }
-
-
-
-// 1fr on both sides
-// for main page
-.post-index {
-    grid-template-columns:
-        1fr
-        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
-}
-
 
 figure.full-bleed {
     grid-template-columns:
@@ -384,7 +363,7 @@ figure.full-bleed {
         }
 
         .post-content {
-            padding-top: $spacing-unit * 2;
+            padding-top: $spacing-unit;
             @include media-query-small-screen() {
                 padding-top: $spacing-unit;
             }
