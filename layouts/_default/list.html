@@ -40,13 +40,13 @@
 
     {{ else }}
     <!-- index page(s) -->
-         {{ range $pages.GroupByDate "2006" }}
-             <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
-             <ul class="post-list-content">
-                {{ range .Pages }}
-                     {{ .Render "li" }}
-                 {{ end }}
-             </ul>
+        {{ range $pages.GroupByDate "2006" }}
+            <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
+            <div class="post-list-content">
+                {{ range $pages }}
+                    {{ .Render "li" }}
+                {{ end }}
+            </div>
         {{ end }}
 
     {{ end }}

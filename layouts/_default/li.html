@@ -1,21 +1,59 @@
-<li class="post-link">
-    <div class="post-descriptor">
-        <a class="linklog"
-            {{ if .Params.externalLink }}
-                href="{{ .Params.externalLink }}">
-                    {{ .Site.Params.ExternalLinkIndicator }}
-            {{ else if eq .Type "s" }}
-                href="/s">
-                    &#9005;
+<div class="post-link">
+    <div class="post-metadata">
+        <div class="post-descriptor">
+            <a class="linklog"
+                    {{ if .Params.externalLink }}
+                          href="{{ .Params.externalLink }}">{{ .Site.Params.ExternalLinkIndicator }}
+                    {{ else if eq .Type "s" }}
+                          href="/s">&#9005;
+                    {{ else }}
+                          >
+                    {{ end }}
+            </a>
+        </div>
+
+        <a class="post-link-url" href="{{ .RelPermalink }}">
+            {{ if not (eq .Type "log") }}
+                {{ .Title }}
             {{ else }}
-                >
-                &nbsp;
-            {{ end }}
+                {{ .Date.Format "January 2006" }}
+            {{ end}}
         </a>
-    </div>
-    <a class="post-link-url" href="{{ .RelPermalink }}">{{ .Title }}</a>
-    {{ if .Draft }}
+
+        {{ if .Draft }}
         <span class="draft">Draft</span>
-    {{ end }}
-    <p class="post-link-date">{{ .Date.Format "Jan 2" }}</p>
-</li>
+        {{ end }}
+
+        <!--<div class="post-metametadata">
+
+            {{ if not (eq .Type "log") }}
+            <div class="post-link-date">{{ .PublishDate.Format "2006.01.02" }}</div>
+            {{ end}}
+
+
+            {{ if .Params.Categories }}
+            {{ $category := index .Params.Categories 0}}
+            <div class="category">
+                <a href="/categories/#{{$category}}">#{{ $category }}</a>
+            </div>
+            {{ end }}
+
+
+            {{ if eq .Type "ppt" }}
+            <div class="category">
+                <a href="/ppt">#ppt</a>
+            </div>
+            {{ end}}
+
+        </div>-->
+
+    </div>
+
+    <div class="post-summary">
+        <div class="post-summary-content">
+            {{ .Summary }}
+        </div>
+    </div>
+
+
+</div>

@@ -124,15 +124,21 @@ figure.full-bleed,
 
     display: grid;
     grid-template-columns:
+        0.25fr
+        #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+
+    @include media-query-small-screen() {
+        grid-template-columns:
         1fr
         #{"min(60ch, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
+    }
 
     > * {
         grid-column: 2;
     }
 }
-
 
 #site-footer{
     grid-template-columns:
@@ -158,7 +164,6 @@ figure.full-bleed {
             // it's a design choice, that can be changed by commenting below
             max-height: 100vh;
         }
-
     }
 
     @include media-query-small-screen() {
@@ -218,7 +223,7 @@ figure.full-bleed {
 
 
         h2.post-list-header {
-            color: $accent-color;
+            color: $color-divider;
             font-size: $font-size-regular * 1.25;
             font-weight: normal;
 
@@ -231,86 +236,125 @@ figure.full-bleed {
         }
 
 
-        ul.post-list-content {
-            float: left;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+         .post-list-content {
+             // when i want to quickly see list of tags/categories
+             /* display:none; */
 
-            .post-link {
-                font-family: $font-family-2;
-                @include font-size-responsive($font-size-regular + 2px, $font-size-medium + 2px);
+             .post-link {
+                 box-sizing: border-box;
+                 flex-wrap: wrap;
+                 flex: 0 1 auto;
 
-                display: block;
-                float: left;
-                clear: left;
-                margin: ($spacing-micro-unit + 2) 0;
-                @include media-query-small-screen() {
-                    margin: ($spacing-micro-unit) 0;
-                }
+                 margin-bottom: $spacing-unit * 2;
+                 @include media-query-small-screen() {
+                     margin-bottom: $spacing-unit * 1.5;
+                 }
 
-                .post-descriptor {
-                    float: left;
+                 //#region Modified layout
+                 .post-metadata {
+                     margin-right: 1%;
+                     margin-bottom: 0.25rem;
+                     line-height: 1.25;
+                 }
 
-                    width: $spacing-unit/2;
+                 //#endregion
 
-                    :first-child {
-                        color: $color-divider;
-                        padding-right: $spacing-micro-unit; // makes sure we maximize hover state
-                        text-decoration: none;
+                 .post-metadata {
 
-                        &:hover {
-                            color: $color-text;
-                        }
-                    }
+                     .post-descriptor {
+                         float: left;
+                         width: $spacing-unit/2;
 
-                    // add the above two + breathing room
-                    margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit + 4);
+                         :first-child {
+                             color: $color-divider;
+                             padding-right: $spacing-micro-unit; // makes sure we maximize hover state
+                             padding-top: $spacing-micro-unit; // makes sure we maximize hover state
+                             text-decoration: none;
 
-                    .linklog {
-                        font-family: $font-family-3;
+                             &:hover {
+                                 color: $color-text;
+                             }
+                         }
 
-                        width: 100%;
-                        display: block;
+                         // add the above two
+                         margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit);
 
-                        color: $color-textunderline;
-                        &:hover {
-                            color: $color-link;
-                        }
-                    }
-                }
+                         .linklog {
+                             font-family: $font-family-3;
+                             font-size: $font-size-small * 0.8;
+                             width: 100%;
+                             display: block;
+                             color: $color-textunderline;
 
-                .post-link-date {
-                    // display: inline;
-                    color: darken($color-textunderline, 8%);
-                    margin: 0;
-                    white-space: nowrap;
-                    display: block;
-                    float:right;
-                    padding-top: 0.34rem;
+                             &:hover {
+                                 color: $color-link;
+                             }
+                         }
+                     }
 
-                    @include font-size-responsive($font-size-medium, $font-size-small);
-                }
+                     .post-link-url {
+                         font-family: $font-family-1;
+                         font-size: $font-size-regular;
+                         font-weight: 500;
+                         color: $color-text2;
+                         text-decoration: none;
 
-                a.post-link-url {
-                    display: block;
-                    float:left;
+                         &:hover {
+                             border-bottom: 2px solid;
+                         }
+                     }
 
-                    color: $color-text2;
-                    text-decoration: none;
-                    padding-right: $spacing-micro-unit;
+                     .post-metametadata {
 
-                    &:hover {
-                        color: $color-link;
+                         font-family: $font-family-3;
+                         font-size: $font-size-regular * 0.6;
 
-                        // text-decoration: underline;
-                        // text-decoration-color: #797979;
-                        // text-underline-offset: 4px;
-                        // text-decoration-thickness: 2px;
-                    }
-                }
-            }
-        }
+                         display: flex;
+                         flex-direction: column;
+                         align-items: flex-start;
+                         margin: 0.2rem 0;
+
+                         @include media-query-small-screen() {
+                             flex-direction: row;
+                             align-items: center;
+                             gap: $spacing-micro-unit * 1.5;
+                         }
+
+                         .post-link-date {
+                             color: darken($color-text, 25%);
+                         }
+
+                         .category {
+                             a {
+                                 color: darken($color-text, 25%);
+                                 text-decoration: underline;
+                                 text-decoration-color: $color-textunderline;
+                                 text-decoration-thickness: 2px;
+
+                                 &:hover {
+                                     color: $color-text;
+                                     text-decoration: none;
+                                 }
+                             }
+                         }
+                     }
+
+                 }
+
+                 .post-summary {
+                     .post-summary-content {
+                         color: $color-text3;
+
+                         display: -webkit-box;
+                         -webkit-line-clamp: 5;
+                         -webkit-box-orient: vertical;
+                         overflow: hidden;
+
+                         @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
+                     }
+                 }
+             }
+         }
     }
 
     .post {
@@ -504,6 +548,7 @@ figure.full-bleed {
                 }
 
                 ol {
+                    color: $color-text3;
                     padding: 2rem 1rem 2rem 4rem;
 
                     @include media-query-small-screen() {
@@ -520,6 +565,7 @@ figure.full-bleed {
         }
 
         .post-meta {
+
             text-transform: none;
 
             @include media-query-laptop() {
@@ -565,7 +611,6 @@ figure.full-bleed {
                 }
             }
 
-
             .post-taxonomies {
                 display: flex;
                 justify-content: flex-start;
@@ -574,13 +619,19 @@ figure.full-bleed {
             .post-related {
                 margin: $spacing-unit * 2 0;
 
+                color: $color-text3;
+
+                @include font-size-responsive($font-size-medium, $font-size-small);
+
                 &:hover {
                     color: $color-text2;
                 }
 
                 h4 {
-                    color: $color-text;
                     margin-bottom: $spacing-micro-unit;
+
+                    color: $color-text3;
+                    @include font-size-responsive($font-size-regular, $font-size-medium);
                 }
 
                 a {
@@ -596,8 +647,10 @@ figure.full-bleed {
                 margin-right: 1rem;
 
                 text-align: center;
-                font-size: $font-size-medium;
+                font-size: $font-size-small;
                 font-weight: 500;
+
+                color: $color-text3;
 
                 &:hover {
                     color: $color-link;
