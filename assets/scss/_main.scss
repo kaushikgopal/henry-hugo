@@ -394,6 +394,7 @@ figure.full-bleed {
 
             // make it compariable to :284 .post-title
             h1 {
+                font-family: $font-family-2;
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
                 margin: 1.5rem 0 1rem 0rem;
             }
@@ -403,11 +404,13 @@ figure.full-bleed {
             }
 
             h2 {
+                font-family: $font-family-2;
                 @include font-size-responsive($font-size-large, $font-size-large - 2px);
                 margin: 1rem 0 1rem 0;
             }
 
             h3 {
+                font-family: $font-family-2;
                 font-size: 1rem;
                 font-style: italic;
 
