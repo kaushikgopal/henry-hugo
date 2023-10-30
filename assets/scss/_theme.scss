@@ -20,9 +20,9 @@ $mobile-width: 375px;
 $tablet-width: 600px;
 $screen-width: 740px;
 
-$font-family-0: "IBM Plex Serif", "ibm-plex-serif", ui-serif, Georgia, "Times New Roman", serif;            // base font
+$font-family-0: "IBM Plex Sans", "ibm-plex-sans", "Inter", ui-sans-serif, sans-serif; // base font
 $font-family-1: "IBM Plex Serif", "ibm-plex-serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;   // header 2
-$font-family-2: "ibm-plex-sans", "IBM Plex Sans", ui-sans-serif, sans-serif;                                // header 1
+$font-family-2: $font-family-1;                       // header 1
 $font-family-3: ui-monospace, "SF Mono", SFMono-Regular, "ibm-plex-mono", "IBM Plex Mono", "Consolas",      // monospace
 monospace;
 
