@@ -17,17 +17,17 @@ $spacing-micro-unit: 6px;
 $spacing-content-sides: $spacing-unit;
 
 $mobile-width: 375px;
-$tablet-width: 600px;
-$screen-width: 740px;
+$tablet-width: 652px;
+$screen-width: 734px;
 
 // base font
-$font-family-0: "IBM Plex Sans", "ibm-plex-sans", ui-sans-serif, sans-serif;
+$font-family-0: "IBM Plex Sans", "SF Pro Display", "Helvetica Neue","Helvetica","Arial", ui-sans-serif, sans-serif;
 // header 1: primary/main titles
-$font-family-1: "IBM Plex Serif", "ibm-plex-serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
+$font-family-1: "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
 // header 2: secondary titles/headers inside content
 $font-family-2: $font-family-1;
 // monospace
-$font-family-3: ui-monospace, "SF Mono", SFMono-Regular, "ibm-plex-mono", "IBM Plex Mono", "Consolas",
+$font-family-3: ui-monospace, "SF Mono", SFMono-Regular,  "IBM Plex Mono", "Consolas",
 monospace;
 
 // remember to update head-additions with background-color
@@ -61,12 +61,32 @@ $color-code: #64ea64;
       @content;
   }
 }
-
 @mixin media-query-laptop() {
   @media only screen and (min-width: $tablet-width + 1px) {
       @content;
   }
 }
+/*
+// these are better ways to do the same thing
+// replace above with the below
+
+@mixin tablet-size() {
+  @media only screen and (max-width: 1068px) {
+    @content;
+  }
+}
+@mixin mobile-size() {
+  @media only screen and (max-width: $screen-width) {
+    @content;
+  }
+}
+
+// Usage:
+//    font-size: 2rem;
+//    @include tablet-size() { font-size: 1rem; }
+//    @include mobile-size() { font-size: 0.75rem; }
+*/
+
 
 @mixin font-size-responsive($size: $font-size-regular, $size-small: $font-size-medium) {
   font-size: $size;
@@ -74,6 +94,7 @@ $color-code: #64ea64;
       font-size: $size-small;
   }
 }
+
 
 @mixin opacity($opacity: 75) {
   filter: alpha(opacity=$opacity);

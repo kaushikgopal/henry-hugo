@@ -124,27 +124,25 @@ figure.full-bleed,
 
     display: grid;
     grid-template-columns:
-        0.25fr
-        #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
-
-    @include media-query-small-screen() {
-        grid-template-columns:
         1fr
         #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+    @media only screen and (max-width: 1068px) {
+        grid-template-columns:
+        1fr
+        #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+    }
+    @media only screen and (max-width: 734px) {
+        grid-template-columns:
+        1fr
+        #{"min(#{$mobile-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
 
     > * {
         grid-column: 2;
     }
-}
-
-#site-footer{
-    grid-template-columns:
-      1fr
-      #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
-      1fr;
 }
 
 figure.full-bleed {
