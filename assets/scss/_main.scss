@@ -114,7 +114,6 @@ blockquote {
 
 //#region Layout
 
-
 #site-footer,
 .post-index,
 figure.full-bleed,
@@ -408,7 +407,6 @@ figure.full-bleed {
         }
 
         .post-content {
-            font-style: $font-family-2;
             padding: $spacing-content-sides 0 $spacing-content-sides * 1.5;
 
             @include media-query-small-screen() {
@@ -416,9 +414,10 @@ figure.full-bleed {
             }
 
             clear: left;
-            line-height: $base-line-height;
 
+            font-style: $font-family-2;
             @include font-size-responsive($font-size-regular, $font-size-medium);
+            letter-spacing: .012em;
 
             > p, > ul, > ol {
                 margin: 0 0 ($spacing-unit) 0;
@@ -750,6 +749,7 @@ article.post-content {
     ul code,
     p > code {
         color: $color-code;
+        @include font-size-responsive(1rem, 0.8rem);
     }
 
     .footnote-ref {
