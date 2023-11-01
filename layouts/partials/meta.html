@@ -14,7 +14,7 @@
     {{ $n := (add (len (.Params.categories | default slice)) -1) }}
     {{ range $i, $c := .Params.categories  }}
         {{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
-        <div class="post-taxonomy"><a href="/categories#{{ $c | urlize }}">#{{ $c }}</a></div>
+        <div class="post-taxonomy"><a href="/categories/{{ $c | urlize }}">#{{ $c }}</a></div>
         {{ if eq $i $n }} </div> {{ end }}
     {{ end }}
 
