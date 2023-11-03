@@ -120,7 +120,7 @@ figure.full-bleed,
 .post-header,
 .post-content,
 .post-meta {
-    min-width: $mobile-width;
+    min-width: 325px;
 
     display: grid;
     grid-template-columns:
@@ -136,7 +136,7 @@ figure.full-bleed,
     @media only screen and (max-width: 734px) {
         grid-template-columns:
         1fr
-        #{"min(#{$mobile-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(#{325px}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
 
