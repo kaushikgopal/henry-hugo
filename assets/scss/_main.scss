@@ -640,6 +640,10 @@ figure.full-bleed {
                         color: $color-link;
                     }
                 }
+
+                .post-related-links {
+                    margin-left: $spacing-content-sides - 2px;
+                }
             }
 
             .post-taxonomy {
