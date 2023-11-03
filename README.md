@@ -22,10 +22,21 @@ cd blog-henry
 git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
 
 # 3. configure blog
-## add these lines to your config.toml
+## add these lines to your hugo.toml config file
 theme = "henry"
 [params]
     ExternalLinkIndicator = "»"
+
+[outputs]
+    page = ["HTML"]
+    home = ["HTML", "RSS", "JSON"]
+    section = ["HTML","RSS"]
+    taxonomy = ["HTML","RSS"]
+
+[outputFormats]
+[outputFormats.RSS]
+    mediatype = "application/rss"
+    baseName = "feed"
 
 # 4. run Hugo!
 hugo server -D
