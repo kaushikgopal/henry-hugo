@@ -214,6 +214,7 @@ figure.full-bleed {
 //#region #site-content {
     .post-index {
         margin-top: $spacing-content-sides * 2.5;
+        padding-bottom: $spacing-content-sides * 2.5;
 
         @include media-query-small-screen() {
             margin-top: $spacing-content-sides * 1.5;
