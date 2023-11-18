@@ -30,7 +30,7 @@
     {{ if .Data.Terms }}
     <!-- in a category or tag page -->
         {{ range $group, $pages := .Data.Terms }}
-            <h2 class="post-list-header" id="{{ $group }}">#{{ $group }}</h2>
+            <h2 class="post-list-header term" id="{{ $group }}">#{{ $group }}</h2>
             <div class="post-list-content">
                 {{ range $pages }}
                     {{ .Render "li" }}
@@ -41,7 +41,7 @@
     {{ else }}
     <!-- in a main list page -->
         {{ range $pages.GroupByDate "2006" }}
-            <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
+            <h2 class="post-list-header year" id="{{ .Key }}">{{ .Key }}</h2>
             <div class="post-list-content">
                 {{ range $pages }}
                     {{ .Render "li" }}
