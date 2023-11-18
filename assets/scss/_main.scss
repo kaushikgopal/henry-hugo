@@ -843,21 +843,31 @@ article.post-content {
     }
 }
 
-.nav-rhs {
+
+.post-index .nav-rhs {
   position: fixed;
+  //.nav-link {
+    background: rgba(0,0,0,0.75);
+    padding: 0 .3rem;
+  //}
+}
+.post .nav-rhs {
+  position: absolute;
+}
+
+.nav-rhs {
   top:0;
   right: 20px;
 
   @include site-top-margin();
   @include font-size-responsive($font-size-regular, $font-size-small);
 
+  font-weight: bold;
+
   ol, ul {
     list-style-type: none;
     text-align: right;
   }
-
-  font-weight: bold;
-
 }
 
 .powered-by {
