@@ -124,12 +124,12 @@ figure.full-bleed,
 
     display: grid;
     grid-template-columns:
-        1fr
+        0.25fr
         #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     @media only screen and (max-width: 1068px) {
         grid-template-columns:
-        1fr
+        0.25fr
         #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
@@ -213,13 +213,8 @@ figure.full-bleed {
 
 //#region #site-content {
     .post-index {
-        margin-top: $spacing-content-sides * 2.5;
-        padding-bottom: $spacing-content-sides * 2.5;
 
-        @include media-query-small-screen() {
-            margin-top: $spacing-content-sides * 1.5;
-        }
-
+        @include site-top-margin();
 
         h2.post-list-header {
             color: $color-divider;
@@ -846,6 +841,21 @@ article.post-content {
             }
         }
     }
+}
+
+.nav-rhs {
+  position: fixed;
+  top:0;
+  right: 20px;
+
+  @include site-top-margin();
+  @include font-size-responsive($font-size-regular, $font-size-small);
+
+  ol, ul {
+    list-style-type: none;
+    text-align: right;
+  }
+
 }
 
 .powered-by {

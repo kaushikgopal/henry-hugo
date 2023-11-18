@@ -66,6 +66,7 @@ $color-code: #64ea64;
       @content;
   }
 }
+
 /*
 // these are better ways to do the same thing
 // replace above with the below
@@ -109,6 +110,15 @@ $color-code: #64ea64;
     -o-transition: opacity 1s ease-in;
        transition: opacity 1s ease-in;
 }
+
+@mixin site-top-margin() {
+  margin-top: $spacing-content-sides * 2.5;
+
+  @include media-query-small-screen() {
+    margin-top: $spacing-content-sides * 1.5;
+  }
+}
+
 
 // Using media queries with like this:
 // @include media-query-mobile() {

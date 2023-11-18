@@ -28,7 +28,7 @@
     {{ end }}
 
     {{ if .Data.Terms }}
-    <!-- category or tag pages -->
+    <!-- in a category or tag page -->
         {{ range $group, $pages := .Data.Terms }}
             <h2 class="post-list-header" id="{{ $group }}">#{{ $group }}</h2>
             <div class="post-list-content">
@@ -39,7 +39,7 @@
         {{ end }}
 
     {{ else }}
-    <!-- index page(s) -->
+    <!-- in a main list page -->
         {{ range $pages.GroupByDate "2006" }}
             <h2 class="post-list-header" id="{{ .Key }}">{{ .Key }}</h2>
             <div class="post-list-content">
@@ -48,8 +48,11 @@
                 {{ end }}
             </div>
         {{ end }}
-
     {{ end }}
 
 </section>
+
+<!-- show RHS navbar content -->
+{{- partial "navbar.html" . -}}
+
 {{ end }}
