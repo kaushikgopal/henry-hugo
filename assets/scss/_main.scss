@@ -836,10 +836,11 @@ article.post-content {
   font-weight: bold;
 
   .nav-link {
-    background: rgba(0,0,0,0.5);
-    padding: 0 0 0 .3rem;
+    @include nav-link();
   }
-  .nav-link.tag { color: $color-text3; }
+  .nav-link.tag {
+    @include nav-link-muted();
+  }
 
   ol, ul {
     list-style-type: none;

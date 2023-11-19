@@ -64,7 +64,13 @@ $color-related-post-border: $color-blockquote-border;
       @content;
   }
 }
-
+// Using media queries with like this:
+// @include media-query-mobile() {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
 /*
 // these are better ways to do the same thing
 // replace above with the below
@@ -94,7 +100,6 @@ $color-related-post-border: $color-blockquote-border;
   }
 }
 
-
 @mixin opacity($opacity: 75) {
   filter: alpha(opacity=$opacity);
   -moz-opacity: ($opacity * 0.01);
@@ -117,14 +122,15 @@ $color-related-post-border: $color-blockquote-border;
   }
 }
 
+@mixin nav-link() {
+  background: rgba(0,0,0,0.5);
+  padding: 0 0 0 .3rem;
+}
+@mixin nav-link-muted() {
+  @include nav-link();
+  color: $color-text3;
+}
 
-// Using media queries with like this:
-// @include media-query-mobile() {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
 
 //#endregion
 
