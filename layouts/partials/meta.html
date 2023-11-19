@@ -1,6 +1,5 @@
 {{- partial "post-meta-additions.html" . -}}
 
-
 {{ if not (eq .Layout "page") }}
 <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
 {{ end }}
@@ -9,14 +8,15 @@
     <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
 {{ end }}
 
-{{/*
 {{ $n := (add (len (.Params.categories | default slice)) -1) }}
 {{ range $i, $c := .Params.categories  }}
-    {{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
+{{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
     <div class="post-taxonomy"><a href="/categories/{{ $c | urlize }}">#{{ $c }}</a></div>
     {{ if eq $i $n }} </div> {{ end }}
 {{ end }}
-*/}}
+
+<!-- show RHS navbar content -->
+{{- partial "navbar.html" . -}}
 
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
@@ -29,6 +29,3 @@
     </ul>
 </div>
 {{ end }}
-
-<!-- show RHS navbar content -->
-{{- partial "navbar.html" . -}}
