@@ -1,8 +1,60 @@
 <nav class="nav-rhs">
     <ul>
-        <li><a class="nav-link" href="/feed.xml">rss</a></li>
         <li><a class="nav-link" href="/">home</a></li>
-        <li><a class="nav-link" href="/blog">posts</a></li>
-        <li><a class="nav-link site-title" href="/categories">categories</a></li>
+        <li class="last-fixed"><a class="nav-link" href="/feed.xml">rss</a></li>
+
+        <!-- SINGLE post pages -->
+        {{ if eq .Kind "page" }}
+            <!-- show the parent section  -->
+            <li><a class="nav-link" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
+
+            <!-- if BLOG post -->
+            {{ if eq .Section "blog" }}
+                <!-- show Categories  -->
+                {{ range $c := .Params.categories }}
+                <li><a class="nav-link category" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
+                {{ end }}
+
+                <!-- show Tags  -->
+                {{ range $t := .Params.tags }}
+                <li><a class="nav-link tag" href="/categories/{{ $t | urlize }}">#{{$t}}</a></li>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        <!-- SECTION list pages -->
+        {{ if eq .Kind "section" }}
+
+            <!-- show other sections  -->
+            {{ $thisSection := .Page.Section }}
+            {{ range .Site.Sections }}
+                <!-- exclude section currently being show  -->
+                {{ if not (eq .Section $thisSection) }}
+                    <!-- exclude invisible section  -->
+                    {{ if not (in .Site.Params.InvisibleSections .Section) }}
+                    <li><a class="nav-link" href="{{ .Permalink }}">{{.Section}}</a></li>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+
+            <!-- in blog list page alone, show taxonomies/categories and tags  -->
+            {{ if eq .Section "blog" }}
+                {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+                <li><a class="nav-link" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
+                {{ end }}
+            {{ end }}
+
+        {{ end }}
+
+        <!-- TAXONOMY pages like category/tag list pages -->
+        {{ if eq .Kind "taxonomy" }}
+            <!-- show all posts link  -->
+            <li><a class="nav-link" href="/blog">posts</a></li>
+        {{ end }}
+
+        <!-- if TAXONOMY list page like categories/tips/ -->
+        {{ if eq .Kind "term" }}
+        <li><a class="nav-link" href="/{{.Section}}">{{.Section}}</a></li>
+        {{ end }}
     </ul>
 </nav>
