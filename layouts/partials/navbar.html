@@ -5,8 +5,10 @@
 
         <!-- SINGLE post pages -->
         {{ if eq .Kind "page" }}
-            <!-- show the parent section  -->
+            <!-- show the parent section if exists-->
+            {{ if .Section }}
             <li><a class="nav-link" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
+            {{ end }}
 
             <!-- if BLOG post -->
             {{ if eq .Section "blog" }}
