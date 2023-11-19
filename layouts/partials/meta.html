@@ -1,5 +1,6 @@
 {{- partial "post-meta-additions.html" . -}}
 
+
 {{ if not (eq .Layout "page") }}
 <div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
 {{ end }}
@@ -27,3 +28,6 @@
     </ul>
 </div>
 {{ end }}
+
+<!-- show RHS navbar content -->
+{{- partial "navbar.html" . -}}
