@@ -127,7 +127,7 @@ figure.full-bleed,
         0.25fr
         #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-    @media only screen and (max-width: 1068px) {
+    @media only screen and (max-width: 1068px) {  // picked 1068 from apple's blog
         grid-template-columns:
         0.25fr
         #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
@@ -828,40 +828,52 @@ article.post-content {
 }
 
 
-.post-index .nav-rhs {
-  position: fixed;
-
-}
-.post .nav-rhs {
-  position: absolute;
-}
-
 .nav-rhs {
+  @include font-size-responsive($font-size-regular, $font-size-small);
+  @include site-top-margin();
+
+  position: fixed;
   top:0;
   right: 20px;
 
-  @include site-top-margin();
-  @include font-size-responsive($font-size-regular - 2px, $font-size-small - 2px);
-
   font-weight: bold;
 
-
-  //.nav-link {
+  .nav-link {
     background: rgba(0,0,0,0.5);
     padding: 0 0 0 .3rem;
-  //}
+  }
   .nav-link.tag { color: $color-text3; }
-
 
   ol, ul {
     list-style-type: none;
     text-align: right;
   }
-
   .last-fixed {
     margin-bottom: 1rem;
   }
 
+}
+
+// picked 1200 by manually checking when a sidenote might interfere with one of the nav-rhs nav-links
+@media only screen and (max-width: 1200px) {
+.post .nav-rhs {
+  position: relative;
+  top: 0;
+  right: 0;
+
+  margin-top: $spacing-content-sides;
+
+  ol, ul {
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: $spacing-content-sides / 2;
+    column-gap: $spacing-content-sides / 2;
+
+    li { margin: 0 }
+  }
+
+  .nav-link { padding:.11rem; }
+}
 }
 
 .powered-by {
