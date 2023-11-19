@@ -11,12 +11,12 @@
             <!-- if BLOG post -->
             {{ if eq .Section "blog" }}
                 <!-- show Categories  -->
-                {{ range $c := .Params.categories }}
+                {{ range $c := .Params.Categories }}
                 <li><a class="nav-link category" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
                 {{ end }}
 
                 <!-- show Tags  -->
-                {{ range $t := .Params.tags }}
+                {{ range $t := .Params.Tags }}
                 <li><a class="nav-link tag" href="/categories/{{ $t | urlize }}">#{{$t}}</a></li>
                 {{ end }}
             {{ end }}
