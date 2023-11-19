@@ -249,11 +249,6 @@ figure.full-bleed {
                      margin-right: 1%;
                      margin-bottom: 0.25rem;
                      line-height: 1.25;
-                 }
-
-                 //#endregion
-
-                 .post-metadata {
 
                      .post-descriptor {
                          float: left;
@@ -287,14 +282,16 @@ figure.full-bleed {
                      }
 
                      .post-link-url {
+
                          font-family: $font-family-1;
                          font-size: $font-size-regular;
                          font-weight: 500;
                          color: $color-text2;
+
                          text-decoration: none;
 
                          &:hover {
-                             border-bottom: 2px solid;
+                             border-bottom: 2px solid $color-textunderline;
                          }
                      }
 
@@ -377,7 +374,7 @@ figure.full-bleed {
             .post-title {
                 color: $color-text2;
                 font-weight: bold;
-                font-family: $font-family-1;
+                font-family: $font-family-2;
                 line-height: 1.2;
 
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
@@ -881,13 +878,15 @@ article.post-content {
     text-align: center;
     margin: $spacing-unit $spacing-unit;
     padding-bottom: $spacing-unit;
+    color: $color-text3;
 
     > a {
-        text-decoration: none;
-        color: $color-link2;
+      color: $color-text3;
+      text-decoration: underline;
 
         &:hover {
-            color: $color-link;
+          color: $color-link;
+          text-decoration-color: $color-divider;
         }
     }
 }
