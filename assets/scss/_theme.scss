@@ -124,7 +124,7 @@ $color-related-post-border: $color-blockquote-border;
 
 @mixin nav-link() {
   background: rgba(0,0,0,0.5);
-  padding: 0 0 0 .3rem;
+  padding: 0 .3rem;
 }
 @mixin nav-link-muted() {
   @include nav-link();
