@@ -19,7 +19,7 @@
 
                 <!-- show Tags  -->
                 {{ range $t := .Params.Tags }}
-                <li><a class="nav-link tag" href="/categories/{{ $t | urlize }}">#{{$t}}</a></li>
+                <li><a class="nav-link tag" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
                 {{ end }}
             {{ end }}
         {{ end }}
