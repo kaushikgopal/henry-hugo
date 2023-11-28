@@ -238,14 +238,16 @@ figure.full-bleed {
              // when i want to quickly see list of tags/categories
              /* display:none; */
 
+             @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
+
              .post-link {
                  box-sizing: border-box;
                  flex-wrap: wrap;
                  flex: 0 1 auto;
 
-                 margin-bottom: $spacing-unit * 2;
+                 margin-bottom: $spacing-unit * 1.2;
                  @include media-query-small-screen() {
-                     margin-bottom: $spacing-unit * 1.5;
+                     margin-bottom: $spacing-unit;
                  }
 
                  //#region Modified layout
@@ -287,8 +289,7 @@ figure.full-bleed {
 
                      .post-link-url {
 
-                         font-family: $font-family-1;
-                         font-size: $font-size-regular;
+                         font-family: $font-family-2;
                          font-weight: 500;
                          color: $color-text2;
 
@@ -344,8 +345,6 @@ figure.full-bleed {
                          -webkit-line-clamp: 5;
                          -webkit-box-orient: vertical;
                          overflow: hidden;
-
-                         @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
                      }
                  }
              }
