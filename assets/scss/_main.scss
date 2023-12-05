@@ -2,9 +2,9 @@
 body {
     font-family: $font-family-0;
     font-size: $font-size-regular;
-    color: $color-text;
-    background-color: $background-color;
-    accent-color: $accent-color;
+    color: $color-text1;
+    background-color: $color-background;
+    accent-color: $color-accent;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -44,8 +44,8 @@ figure {
 }
 
 a {
-    color: $color-text;
-    text-decoration-color: $color-textunderline;
+    color: $color-text1;
+    text-decoration-color: $color-text-underline;
     text-underline-offset: 4px;
     text-decoration-thickness: 2px;
 
@@ -71,8 +71,8 @@ a {
 blockquote {
     color: $color-blockquote;
 
-    border-color: $color-blockquote-border;
-    border-left: 4px solid $color-blockquote-border;
+    border-color: $color-blockquote;
+    border-left: 4px solid $color-blockquote;
 
     padding-left: $spacing-unit - $spacing-micro-unit;
     padding-bottom: $spacing-unit / 3;
@@ -192,8 +192,8 @@ figure.full-bleed {
     right: (2 * $spacing-micro-unit);
 
     border-radius: 50%;
-    border: 2px solid $color-textunderline;
-    background-color: $background-color;
+    border: 2px solid $color-text-underline;
+    background-color: $color-background;
 
     @include css-transition-opacity();
 
@@ -202,7 +202,7 @@ figure.full-bleed {
 
     a {
         text-decoration: none;
-        color: $color-text;
+        color: $color-text1;
         width: 100%;
         display:block;
     }
@@ -267,7 +267,7 @@ figure.full-bleed {
                              text-decoration: none;
 
                              &:hover {
-                                 color: $color-text;
+                                 color: $color-text1;
                              }
                          }
 
@@ -279,10 +279,10 @@ figure.full-bleed {
                              font-size: $font-size-small * 0.8;
                              width: 100%;
                              display: block;
-                             color: $color-textunderline;
+                             color: $color-text-underline;
 
                              &:hover {
-                                 color: $color-link;
+                                 color: $color-text-link;
                              }
                          }
                      }
@@ -296,7 +296,7 @@ figure.full-bleed {
                          text-decoration: none;
 
                          &:hover {
-                             border-bottom: 2px solid $color-textunderline;
+                             border-bottom: 2px solid $color-text-underline;
                          }
                      }
 
@@ -317,18 +317,18 @@ figure.full-bleed {
                          }
 
                          .post-link-date {
-                             color: darken($color-text, 25%);
+                             color: darken($color-text1, 25%);
                          }
 
                          .category {
                              a {
-                                 color: darken($color-text, 25%);
+                                 color: darken($color-text1, 25%);
                                  text-decoration: underline;
-                                 text-decoration-color: $color-textunderline;
+                                 text-decoration-color: $color-text-underline;
                                  text-decoration-thickness: 2px;
 
                                  &:hover {
-                                     color: $color-text;
+                                     color: $color-text1;
                                      text-decoration: none;
                                  }
                              }
@@ -369,7 +369,7 @@ figure.full-bleed {
             }
 
             .post-author {
-                color: darken($color-header-index, 30%);
+                color: $color-header-index;
                 font-weight: normal;
                 font-style: italic;
             }
@@ -390,7 +390,7 @@ figure.full-bleed {
                         text-decoration: underline;
                     }
                     .linklog {
-                        color: $color-link;
+                        color: $color-text-link;
                     }
                 }
 
@@ -510,7 +510,7 @@ figure.full-bleed {
                 figcaption {
                     margin-top: $spacing-micro-unit / 2;
 
-                    color: $color-textunderline;
+                    color: $color-text-underline;
                     font-size: $font-size-small;
                     font-size: 0.8rem;
                 }
@@ -554,8 +554,6 @@ figure.full-bleed {
                         padding: 1.5rem 0.5rem 1.5rem 2.5rem;
                     }
 
-                    border: 2px solid $color-textunderline;
-
                     li {
                         margin-bottom: $spacing-micro-unit;
                     }
@@ -566,7 +564,7 @@ figure.full-bleed {
         .post-meta {
             text-transform: none;
             padding: $spacing-content-sides 0;
-            background-color: darken($background-color, 5%);
+            background-color: darken($color-background, 5%);
 
             .post-meta-addition {
                 font-style: italic;
@@ -586,7 +584,7 @@ figure.full-bleed {
             }
 
             .post-date {
-                color: $color-text;
+                color: $color-text1;
                 @include font-size-responsive($font-size-regular, $font-size-medium);
             }
 
@@ -601,7 +599,7 @@ figure.full-bleed {
                     text-decoration: none;
 
                     &:hover {
-                        color: $color-link;
+                        color: $color-text-link;
                     }
                 }
             }
@@ -633,7 +631,7 @@ figure.full-bleed {
                     color: inherit;
                     text-decoration: none;
                     &:hover {
-                        color: $color-link;
+                        color: $color-text-link;
                     }
                 }
 
@@ -652,7 +650,7 @@ figure.full-bleed {
                 color: $color-text3;
 
                 &:hover {
-                    color: $color-link;
+                    color: $color-text-link;
                 }
 
                 a {
@@ -676,7 +674,7 @@ figure.full-bleed {
         border-radius: $spacing-micro-unit;
         border: 2px solid #000;
 
-        background-color: $color-link;
+        background-color: $color-text-link;
         font-family: $font-family-3;
         color: black;
 
@@ -692,7 +690,7 @@ figure.full-bleed {
     }
 
     .callout:not(figure) {
-        border: $spacing-micro-unit solid $color-blockquote-border;
+        border: $spacing-micro-unit solid $color-blockquote;
         padding: $spacing-unit;
         margin-bottom: $spacing-unit;
     }
@@ -711,23 +709,24 @@ figure.full-bleed {
     // padding: $spacing-micro-unit 0 $spacing-micro-unit (2 *$spacing-micro-unit);
     margin-bottom: 1.5rem;
 
-    border-left: 1px solid $color-textunderline;
-    color: $color-textunderline;
+    border-left: 1px solid $color-text-underline;
+    color: $color-text-underline;
     font-style: italic;
     font-size: 0.8rem;
 
     a {
-        color: $color-textunderline;
+        color: $color-text-underline;
     }
 }
 
 .sidenote-hover {
-    border-color: $color-related-post-border;
-    color: $color-link;
+    border-color: $color-blockquote;
+    border-width: 2px;
+    color: $color-text-link;
     z-index: 1;
     a {
-        color: $color-link;
-        text-decoration-color: $color-link;
+        color: $color-text-link;
+        text-decoration-color: $color-text-link;
     }
 }
 
@@ -756,7 +755,7 @@ article.post-content {
         font-size: .8rem;
 
         &:hover {
-            color: $accent-color;
+            color: $color-accent;
             text-decoration: underline;
         }
     }
@@ -765,7 +764,7 @@ article.post-content {
 
 #site-footer {
     padding: $spacing-content-sides * 3 0;
-    background-color: darken($background-color, 10%);
+    background-color: darken($color-background, 10%);
 
     .newsletter {
         grid-column: 2;
@@ -889,7 +888,7 @@ article.post-content {
       text-decoration: underline;
 
         &:hover {
-          color: $color-link;
+          color: $color-text-link;
           text-decoration-color: $color-divider;
         }
     }

@@ -31,23 +31,22 @@ $font-family-3: ui-monospace, "SF Mono", SFMono-Regular,  "IBM Plex Mono", "Cons
 monospace;
 
 // remember to update head-additions with background-color
-$background-color: hsl(211.6, 18.1%, 20.6%);
-$accent-color: #ffe713;
-$color-divider: #fad73d;
+$color-background: hsl(211.6, 18.1%, 20.6%);
+$color-accent: #fad73d;
+$color-divider: $color-accent;
 $color-code: #64ea64;
 
-$color-text: #f2f2f2;
-$color-text2: lighten($color-text, 20%);
-$color-text3: darken($color-text, 50%);
-$color-textunderline: rgba($color-divider, 0.75);
-$color-link: $accent-color;
-$color-link2: lighten($color-link, 2%);
-$color-header: darken($accent-color, 25%);
-$color-header-index: lighten($color-text2, 10%);
+$color-text1: #f2f2f2;
+$color-text2: lighten($color-text1, 20%);
+$color-text3: darken($color-text1, 50%);
 
-$color-blockquote: lighten($accent-color, 25%);
-$color-blockquote-border: darken($accent-color, 25%);
-$color-related-post-border: $color-blockquote-border;
+$color-text-underline: $color-accent;
+$color-text-link: $color-accent;
+
+$color-header: darken($color-accent, 5%);
+$color-header-index: $color-header;
+
+$color-blockquote: $color-accent;
 
 
 //#endregion
