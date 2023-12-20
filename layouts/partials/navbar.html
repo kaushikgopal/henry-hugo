@@ -58,5 +58,7 @@
         {{ if eq .Kind "term" }}
         <li><a class="nav-link" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
+
+        {{- partial "navbar-additions.html" . -}}
     </ul>
 </nav>
