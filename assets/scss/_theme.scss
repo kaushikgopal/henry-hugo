@@ -20,15 +20,10 @@ $mobile-width: 375px;
 $tablet-width: 652px;
 $screen-width: 734px;
 
-// base font
-$font-family-0: "IBM Plex Sans", "SF Pro Display", "Helvetica Neue","Helvetica","Arial", ui-sans-serif, sans-serif;
-// header 1: primary/main titles
-$font-family-1: $font-family-0;
-// header 2: secondary titles/headers inside content
-$font-family-2: "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
-// monospace
-$font-family-3: ui-monospace, "SF Mono", SFMono-Regular,  "IBM Plex Mono", "Consolas",
-monospace;
+$font-fam-base: "IBM Plex Sans", "SF Pro Display", "Helvetica Neue","Helvetica","Arial", ui-sans-serif, sans-serif;
+$font-fam-head: "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
+$font-fam-headx: $font-fam-base;
+$font-fam-mono: ui-monospace, "SF Mono", SFMono-Regular,  "IBM Plex Mono", "Consolas", monospace;
 
 // remember to update head-additions with background-color
 $color-background: hsl(211.6, 18.1%, 20.6%);

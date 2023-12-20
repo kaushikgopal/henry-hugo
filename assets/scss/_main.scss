@@ -1,6 +1,6 @@
 //#region HTML Styles
 body {
-    font-family: $font-family-0;
+    font-family: $font-fam-base;
     font-size: $font-size-regular;
     color: $color-text1;
     background-color: $color-background;
@@ -197,7 +197,7 @@ figure.full-bleed {
 
     @include css-transition-opacity();
 
-    font-family: $font-family-3;
+    font-family: $font-fam-mono;
     text-align: center;
 
     a {
@@ -279,7 +279,7 @@ figure.full-bleed {
                          margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit);
 
                          .linklog {
-                             font-family: $font-family-3;
+                             font-family: $font-fam-mono;
                              font-size: $font-size-small * 0.8;
                              width: 100%;
                              display: block;
@@ -293,7 +293,7 @@ figure.full-bleed {
 
                      .post-link-url {
 
-                         font-family: $font-family-2;
+                         font-family: $font-fam-head;
                          font-weight: 500;
                          color: $color-text2;
 
@@ -306,7 +306,7 @@ figure.full-bleed {
 
                      .post-metametadata {
 
-                         font-family: $font-family-3;
+                         font-family: $font-fam-mono;
                          font-size: $font-size-regular * 0.6;
 
                          display: flex;
@@ -375,13 +375,15 @@ figure.full-bleed {
             .post-author {
                 color: $color-header-index;
                 font-weight: normal;
+                font-family: $font-fam-headx;
                 font-style: italic;
+                font-size: $font-size-medium;
             }
 
             .post-title {
                 color: $color-text2;
                 font-weight: bold;
-                font-family: $font-family-2;
+                font-family: $font-fam-head;
                 line-height: 1.2;
 
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
@@ -413,7 +415,7 @@ figure.full-bleed {
 
             clear: left;
 
-            font-style: $font-family-2;
+            font-style: $font-fam-head;
             @include font-size-responsive($font-size-regular, $font-size-medium);
             letter-spacing: .012em;
 
@@ -437,7 +439,7 @@ figure.full-bleed {
 
             // make it compariable to :284 .post-title
             h1 {
-                font-family: $font-family-2;
+                font-family: $font-fam-head;
                 @include font-size-responsive($font-size-xlarge, $font-size-large);
                 margin: 1.5rem 0 1rem 0rem;
             }
@@ -447,13 +449,13 @@ figure.full-bleed {
             }
 
             h2 {
-                font-family: $font-family-2;
+                font-family: $font-fam-head;
                 @include font-size-responsive($font-size-large, $font-size-large - 2px);
                 margin: 1rem 0 1rem 0;
             }
 
             h3 {
-                font-family: $font-family-2;
+                font-family: $font-fam-head;
                 font-size: 1rem;
                 //font-style: italic;
 
@@ -492,7 +494,7 @@ figure.full-bleed {
                     &:first-letter {
 
                         float: left;
-                        font-family: $font-family-1;
+                        font-family: $font-fam-headx;
                         line-height: 30px;
                         padding-right: $spacing-micro-unit;
 
@@ -679,7 +681,7 @@ figure.full-bleed {
         border: 2px solid #000;
 
         background-color: $color-text-link;
-        font-family: $font-family-3;
+        font-family: $font-fam-mono;
         color: black;
 
         font-size: $font-size-small * 0.89;
@@ -736,7 +738,7 @@ figure.full-bleed {
 
 //#region code snippets
 code {
-    font-family: $font-family-3;
+    font-family: $font-fam-mono;
 }
 
 article.post-content {
