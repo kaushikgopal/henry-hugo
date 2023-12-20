@@ -216,31 +216,33 @@ figure.full-bleed {
 }
 
 //#region #site-content {
+
     .post-index {
 
         @include site-top-margin();
 
+        > * {
+            margin-bottom: $spacing-content-sides;
+        }
+
         h2.post-list-header {
             color: $color-divider;
+
+            font-family: $font-fam-headx;
             font-size: $font-size-regular * 1.25;
             font-weight: normal;
 
-            margin-top: $spacing-content-sides * 1.5;
-            margin-bottom: $spacing-micro-unit;
-        }
+             margin-top: $spacing-content-sides;
 
-        h2.post-list-header + ul {
-            margin: 0 0 0 $spacing-content-sides;
-            @include font-size-responsive($font-size-medium, $font-size-medium - 2px);
+            + ul {
+                margin-left: $spacing-content-sides;
+                @include font-size-responsive($font-size-medium, $font-size-medium - 2px);
+            }
         }
 
          .post-list-content {
              // when i want to quickly see list of tags/categories
              /* display:none; */
-
-             &:first-of-type {
-                 margin-top: $spacing-content-sides;
-             }
 
              @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
 
