@@ -43,7 +43,7 @@
         {{ range $pages.GroupByDate "2006" }}
             <h2 class="post-list-header year" id="{{ .Key }}">{{ .Key }}</h2>
             <div class="post-list-content">
-                {{ range $pages }}
+                {{ range .Pages }}
                     {{ .Render "li" }}
                 {{ end }}
             </div>
