@@ -41,7 +41,10 @@
     {{ else }}
     <!-- in a main list page -->
         {{ range $pages.GroupByDate "2006" }}
-            <h2 class="post-list-header year" id="{{ .Key }}">{{ .Key }}</h2>
+            <h2 class="post-list-header year" id="{{ .Key }}">
+                {{ .Key }}
+                <!-- {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }} -->
+            </h2>
             <div class="post-list-content">
                 {{ range .Pages }}
                     {{ .Render "li" }}
