@@ -30,8 +30,10 @@ theme = "henry"
 [outputs]
     page = ["HTML"]
     home = ["HTML", "RSS", "JSON"]
-    section = ["HTML","RSS"]
-    taxonomy = ["HTML","RSS"]
+    # adding rss to section so things like categories/programming/feed.xml
+    section = ["HTML","RSS", "JSON"]
+    # not adding rss to taxonomy, since we don't want categories/feed.xml
+    taxonomy = ["HTML"]
 
 [outputFormats]
 [outputFormats.RSS]
