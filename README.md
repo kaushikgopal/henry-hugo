@@ -27,19 +27,6 @@ theme = "henry"
 [params]
     ExternalLinkIndicator = "»"
 
-[outputs]
-    page = ["HTML"]
-    home = ["HTML", "RSS", "JSON"]
-    # adding rss to section so things like categories/programming/feed.xml
-    section = ["HTML","RSS", "JSON"]
-    # not adding rss to taxonomy, since we don't want categories/feed.xml
-    taxonomy = ["HTML"]
-
-[outputFormats]
-[outputFormats.RSS]
-    mediatype = "application/rss"
-    baseName = "feed"
-
 # 4. run Hugo!
 hugo server -D
 open http://localhost:1313/
@@ -49,6 +36,42 @@ open http://localhost:1313/
 ```
 
 You're good to go. Happy blogging!
+
+## Optional configurations
+
+Here are some recommended customizations to make in your `hugo.toml` config file in addition to what was mentioned above.
+
+### RSS/JSON feed customizations
+
+```toml
+## hugo.toml
+
+# enable .json RSS feeds
+[outputFormats]
+# output formats
+# https://gohugo.io/templates/output-formats/#output-format-definitions
+[outputFormats.rss]
+    mediatype = "application/rss"
+    # change RSS path for default XML feed to /feed.xml (default index.xml)
+    baseName = "feed"
+[outputFormats.json]
+    # change RSS path for JSON feed to /feed.json
+    baseName = "feed"
+
+# configure RSS feeds for specific pages
+[outputs]
+# output format for pages
+# https://gohugo.io/templates/output-formats/#output-formats-for-pages
+    page = ["html"]
+    home = ["html", "rss","json"]
+    # sections = directories e.g. blog, letters, ppt
+    section = ["html","rss","json"]
+    # taxonomies = virtual tags/directories e.g. categories, tags (built-in)
+    # no rss for these as they're mostly "list" pages
+    taxonomy = ["html"]
+    # terms = values of taxonomies e.g. categories/programming
+    term = ["html", "rss","json"]
+```
 
 # Contributing
 
