@@ -73,6 +73,29 @@ Here are some recommended customizations to make in your `hugo.toml` config file
     term = ["html", "rss","json"]
 ```
 
+### Related posts customization
+
+```toml
+## hugo.toml
+[related]
+    includeNewer = true
+    threshold = 80
+    toLower = true
+
+# weight index distribution tags > categories > title
+[[related.indices]]
+    name = "tags"
+    weight = 80
+
+[[related.indices]]
+    name = "categories"
+    weight = 20
+
+[[related.indices]]
+    name = "title"
+    weight = 10
+```
+
 # Contributing
 
 Bug reports and pull requests are welcome on [GitHub](https://github.com/kaushikgopal/henry-hugo). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
