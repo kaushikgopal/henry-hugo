@@ -54,7 +54,7 @@
             <li><a class="nav-link" href="/blog">posts</a></li>
         {{ end }}
 
-        <!-- if TAXONOMY list page like categories/tips/ -->
+        <!-- if TAXONOMY list page has values like categories/tips/ -->
         {{ if eq .Kind "term" }}
         <li><a class="nav-link" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
