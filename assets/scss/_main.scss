@@ -388,7 +388,7 @@ figure.full-bleed {
                 font-family: $font-fam-head;
                 line-height: 1.2;
 
-                @include font-size-responsive($font-size-xlarge, $font-size-large);
+                @include font-size-responsive($font-size-xlarge + 2, $font-size-large + 2);
 
                 .article-link {
                     color: $color-text2;
@@ -442,7 +442,7 @@ figure.full-bleed {
             // make it compariable to :284 .post-title
             h1 {
                 font-family: $font-fam-head;
-                @include font-size-responsive($font-size-xlarge, $font-size-large);
+                @include font-size-responsive($font-size-xlarge - 2, $font-size-large - 2);
                 margin: 1.5rem 0 1rem 0rem;
             }
 
