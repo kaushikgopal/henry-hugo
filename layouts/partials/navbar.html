@@ -1,7 +1,6 @@
 <nav class="nav-rhs">
     <ul>
-        <li><a class="nav-link" href="/">home</a></li>
-        <li class="last-fixed"><a class="nav-link" href="/feed.xml">rss</a></li>
+        {{- partial "navbar-main.html" . -}}
 
         <!-- SINGLE post pages -->
         {{ if eq .Kind "page" }}
