@@ -47,7 +47,7 @@ a {
     color: $color-text1;
     text-decoration-color: $color-text-underline;
     text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
+    //text-decoration-thickness: 2px;
 
     &:hover {
         text-decoration: none;
@@ -69,10 +69,9 @@ a {
 }
 
 blockquote {
-    color: $color-blockquote;
-
-    border-color: $color-blockquote;
-    border-left: 4px solid $color-blockquote;
+    // color: ($color-blockquote);
+    border-color: ($color-blockquote);
+    border-left: 4px solid ($color-blockquote);
 
     padding-left: $spacing-unit - $spacing-micro-unit;
     padding-bottom: $spacing-unit / 3;
@@ -417,7 +416,6 @@ figure.full-bleed {
 
             clear: left;
 
-            font-style: $font-fam-head;
             @include font-size-responsive($font-size-regular, $font-size-medium);
             letter-spacing: .012em;
 
@@ -439,9 +437,12 @@ figure.full-bleed {
 
             }
 
+            h1, h2, h3, h4 {
+                font-family: $font-fam-headx;
+                color:$color-header;
+            }
             // make it compariable to :284 .post-title
             h1 {
-                font-family: $font-fam-head;
                 @include font-size-responsive($font-size-xlarge - 2, $font-size-large - 2);
                 margin: 1.5rem 0 1rem 0rem;
             }
@@ -451,13 +452,11 @@ figure.full-bleed {
             }
 
             h2 {
-                font-family: $font-fam-head;
                 @include font-size-responsive($font-size-large, $font-size-large - 2px);
                 margin: 1rem 0 1rem 0;
             }
 
             h3 {
-                font-family: $font-fam-head;
                 font-size: 1rem;
                 //font-style: italic;
 
