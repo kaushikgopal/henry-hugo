@@ -122,12 +122,12 @@ figure.full-bleed,
     min-width: 325px;
 
     display: grid;
+
     // regular (huge) screens
     grid-template-columns:
         0.25fr
         #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-
     @media only screen and (max-width: 1068px) {  // picked 1068 from apple's blog
         // tablet sizes
         grid-template-columns:
@@ -135,22 +135,13 @@ figure.full-bleed,
         #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 734px) {
         // mobile size
         grid-template-columns:
         1fr
-        #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(#{325px}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
-
-    @media only screen and (max-width: $screen-width) {
-        // mobile size
-        grid-template-columns:
-        1fr
-        #{"min(#{$mobile-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
-    }
-
 
     > * {
         grid-column: 2;
