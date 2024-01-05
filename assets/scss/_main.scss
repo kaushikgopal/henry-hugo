@@ -261,35 +261,14 @@ figure.full-bleed {
                      margin-bottom: 0.25rem;
                      line-height: 1.25;
 
-                     .post-descriptor {
-                         float: left;
-                         width: ($spacing-unit/2 + ($spacing-micro-unit * 1.25));
+                     .linklog {
+                         font-family: $font-fam-mono;
+                         font-size: $font-size-small * 0.8;
+                         color: $color-text-underline;
 
-                         :first-child {
-                             color: $color-divider;
-                             padding-right: $spacing-micro-unit; // makes sure we maximize hover state
-                             padding-top: $spacing-micro-unit/2; // makes sure we maximize hover state
-                             text-decoration: none;
+                         margin-right: 2px;
 
-                             &:hover {
-                                 color: $color-text1;
-                             }
-                         }
-
-                         // add the above two
-                         margin-left: -1 * ($spacing-unit/2 + ($spacing-micro-unit * 1.25));
-
-                         .linklog {
-                             font-family: $font-fam-mono;
-                             font-size: $font-size-small * 0.8;
-                             width: 100%;
-                             display: block;
-                             color: $color-text-underline;
-
-                             &:hover {
-                                 color: $color-text-link;
-                             }
-                         }
+                         text-decoration: none;
                      }
 
                      .post-link-url {

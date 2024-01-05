@@ -1,26 +1,18 @@
 <div class="post-link">
     <div class="post-metadata">
-        <div class="post-descriptor">
-            {{ if .Params.externalLink }}
-                <a class="linklog" href="{{ .Params.externalLink }}">{{ .Site.Params.ExternalLinkIndicator }}</a>
-            {{ else if eq .Section "s" }}
-                <a class="linklog" href="/s">&#9005;</a>
-            {{ else if eq .Section "letter" }}
-                <span class="linklog">&#x1F4E8;</span>
-            {{ end }}
-        </div>
+        {{ if .Params.externalLink }}
+            <a class="linklog" href="{{ .Params.externalLink }}">{{ .Site.Params.ExternalLinkIndicator }}</a>
+        {{ else if eq .Section "s" }}
+            <a class="linklog" href="/s">&#9005;</a>
+        {{ else if eq .Section "letter" }}
+            <span class="linklog">&#x1F4E8;</span>
+        {{ end }}
 
         <a class="post-link-url" href="{{ .RelPermalink }}">
-            {{ if not (eq .Section "log") }}
-                {{ .Title }}
-            {{ else }}
-                {{ .Date.Format "January 2006" }}
-            {{ end}}
+            {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
         </a>
 
-        {{ if .Draft }}
-        <span class="draft">Draft</span>
-        {{ end }}
+        {{ if .Draft }}<span class="draft">Draft</span>{{ end }}
 
         <!--<div class="post-metametadata">
 
