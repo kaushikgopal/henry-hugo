@@ -41,7 +41,9 @@
             <!-- in blog list page alone, show taxonomies/categories and tags  -->
             {{ if eq .Section "blog" }}
                 {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-                <li><a class="nav-link" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
+                    {{ if (gt (len $taxonomy) 0) }}
+                        <li><a class="nav-link" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
+                    {{ end }}
                 {{ end }}
             {{ end }}
 
