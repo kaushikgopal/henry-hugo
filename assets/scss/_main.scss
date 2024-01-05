@@ -135,13 +135,22 @@ figure.full-bleed,
         #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
-    @media only screen and (max-width: 734px) {
+    @media only screen and (max-width: 800px) {
         // mobile size
         grid-template-columns:
         1fr
-        #{"min(#{325px}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
+
+    @media only screen and (max-width: $screen-width) {
+        // mobile size
+        grid-template-columns:
+        1fr
+        #{"min(#{$mobile-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+    }
+
 
     > * {
         grid-column: 2;
@@ -263,12 +272,12 @@ figure.full-bleed {
 
                      .post-descriptor {
                          float: left;
-                         width: $spacing-unit/2;
+                         width: ($spacing-unit/2 + ($spacing-micro-unit * 1.25));
 
                          :first-child {
                              color: $color-divider;
                              padding-right: $spacing-micro-unit; // makes sure we maximize hover state
-                             padding-top: $spacing-micro-unit; // makes sure we maximize hover state
+                             padding-top: $spacing-micro-unit/2; // makes sure we maximize hover state
                              text-decoration: none;
 
                              &:hover {
@@ -277,7 +286,7 @@ figure.full-bleed {
                          }
 
                          // add the above two
-                         margin-left: -1 * ($spacing-unit/2 + $spacing-micro-unit);
+                         margin-left: -1 * ($spacing-unit/2 + ($spacing-micro-unit * 1.25));
 
                          .linklog {
                              font-family: $font-fam-mono;
