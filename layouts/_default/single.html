@@ -4,16 +4,19 @@
             <h1 class="post-title">
             {{ if .Params.externalLink }}
                 <a href="{{ .Params.externalLink }}" class='article-link'>{{ .Title }}<span class="linklog"> {{ .Site.Params.ExternalLinkIndicator }}</span></a>
-            {{ else if eq .Type "log" }}
+            {{ else if eq .Section "log" }}
                 {{ if .Title }}
                     {{.Title}}
                 {{ else }}
                     {{ .Date.Format "January 2006" }}
                 {{end}}
+            {{ else if eq .Section "s" }}
+                {{ .Title }}&nbsp;&#9005;
+            {{ else if eq .Section "letter" }}
+                {{ .Title }}&nbsp;&nbsp;&#x1F4E8;
             {{ else }}
                 {{ .Title }}
             {{ end }}
-
             {{ if .Draft }} <span class="draft">Draft</span> {{ end }}
             </h1>
 

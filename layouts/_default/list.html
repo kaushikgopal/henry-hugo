@@ -10,7 +10,7 @@
 
     {{ $pages := "" }}
 
-    {{ if eq .Type "blog" }}
+    {{ if eq .Section "blog" }}
         <!-- show *all* posts (otherwise only /blog posts will be filtered) -->
         {{ $pages = .Site.RegularPages }}
     {{ else }}
@@ -23,7 +23,7 @@
     {{ if .Site.Params.InvisibleSections }}
     <!-- filter out invisible sections (unless your listing the invisible section page itself) -->
         {{ if not (in .Site.Params.InvisibleSections .Section) }}
-            {{ $pages = where $pages ".Type" "not in" .Site.Params.InvisibleSections }}
+            {{ $pages = where $pages ".Section" "not in" .Site.Params.InvisibleSections }}
         {{ end }}
     {{ end }}
 
