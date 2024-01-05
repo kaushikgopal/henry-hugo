@@ -1,15 +1,18 @@
 <div>
-    Title: {{.Title}} <br>
-    Kind: {{.Kind}} <br>
-    Section: {{.Section}} <br>
-    Type: {{.Type}} (use Section typically)<br>
-    Layout: {{.Layout}}<br>
-    Site Author: {{.Site.Author.FullName}}<br>
-    Author: {{ .Params.Author }} <br>
-    Categories: {{ .Params.Categories }} <br>
-    Tags: {{ .Params.Tags }} <br>
-    Date: {{.Date.Format "2006-01-02 Monday"}}<br>
-    Environment: {{ hugo.Environment }} <br>
+    Title— {{.Title}} <br>
+    Kind— {{.Kind}} <br>
+    BaseUrl— {{.Site.BaseURL}}  <br>
+    Permalink— {{.Permalink}} <br>
+    RelPermalink— {{.RelPermalink}} <br>
+    Section— {{.Section}} — {{ strings.TrimSuffix "/" (.Section | absURL)}} <br>
+    Type— {{.Type}} | <i>use Section typically</i><br>
+    Layout— {{.Layout}}<br>
+    Site Author— {{.Site.Author.FullName}}<br>
+    Author— {{ .Params.Author }} <br>
+    Categories— {{ .Params.Categories }} <br>
+    Tags— {{ .Params.Tags }} <br>
+    Date— {{.Date.Format "2006-01-02 Monday"}}<br>
+    Environment— {{ hugo.Environment }} <br>
     -- <br>
-    Params: {{.Params}}<br>
+    Params— {{.Params}}<br>
 </div>
