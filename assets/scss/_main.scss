@@ -220,6 +220,8 @@ figure.full-bleed {
 
         @include site-top-margin();
 
+        font-size: $font-size-regular;
+
         > * {
             margin-bottom: $spacing-content-sides;
         }
@@ -228,7 +230,6 @@ figure.full-bleed {
             color: $color-divider;
 
             font-family: $font-fam-headx;
-            font-size: $font-size-regular * 1.25;
             font-weight: normal;
 
              margin-top: $spacing-content-sides;
@@ -243,8 +244,6 @@ figure.full-bleed {
              // when i want to quickly see list of tags/categories
              /* display:none; */
 
-             @include font-size-responsive($font-size-regular - 2px, $font-size-medium - 2px);
-
              .post-link {
                  box-sizing: border-box;
                  flex-wrap: wrap;
@@ -252,7 +251,7 @@ figure.full-bleed {
 
                  margin-bottom: $spacing-unit * 1.2;
                  @include media-query-small-screen() {
-                     margin-bottom: $spacing-unit;
+                     margin-bottom: $spacing-unit * 1.5;
                  }
 
                  //#region Modified layout
@@ -263,21 +262,16 @@ figure.full-bleed {
 
                      .linklog {
                          font-family: $font-fam-mono;
-                         font-size: $font-size-small * 0.8;
                          color: $color-text-underline;
-
-                         margin-right: 2px;
-
+                         margin-right: $spacing-micro-unit;
                          text-decoration: none;
                      }
 
                      .post-link-url {
-
                          font-family: $font-fam-head;
-                         font-weight: 500;
                          color: $color-text2;
-
                          text-decoration: none;
+                         font-weight: 500;
 
                          &:hover {
                              border-bottom: 2px solid $color-text-underline;
@@ -287,7 +281,6 @@ figure.full-bleed {
                      .post-metametadata {
 
                          font-family: $font-fam-mono;
-                         font-size: $font-size-regular * 0.6;
 
                          display: flex;
                          flex-direction: column;
@@ -323,6 +316,11 @@ figure.full-bleed {
 
                  .post-summary {
                      .post-summary-content {
+
+                         @include media-query-small-screen() {
+                             display: none;
+                         }
+
                          color: $color-text3;
 
                          display: -webkit-box;
