@@ -459,6 +459,23 @@ figure.full-bleed {
                 margin-bottom: $spacing-unit;
             }
 
+            .callout {
+                &:not(figure) {
+                    border: $spacing-micro-unit solid $color-blockquote;
+                    padding: $spacing-unit;
+                    margin-bottom: $spacing-unit;
+                }
+
+                ol, ul {
+                    margin: $spacing-micro-unit 0;
+                    padding-left: 2 * $spacing-content-sides; // reset
+                }
+
+                img {
+                    // figure usually has a margin so no need here
+                    margin-bottom: 0;
+                }
+            }
 
             //#region Drop Cap support
             hr {
@@ -673,19 +690,8 @@ figure.full-bleed {
         margin-top: $spacing-micro-unit;
     }
 
-    .callout:not(figure) {
-        border: $spacing-micro-unit solid $color-blockquote;
-        padding: $spacing-unit;
-        margin-bottom: $spacing-unit;
-    }
-    ul.callout {
-        margin-left: 0;
-        padding-left: 30px; // reset
-    }
-    img.callout {
-        // figure usually has a margin so no need here
-        margin-bottom: 0;
-    }
+
+
 //#endregion }
 
 .sidenote {
