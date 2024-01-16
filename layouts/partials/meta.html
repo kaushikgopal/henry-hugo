@@ -15,9 +15,6 @@
     {{ if eq $i $n }} </div> {{ end }}
 {{ end }}
 
-<!-- show RHS navbar content -->
-{{- partial "navbar.html" . -}}
-
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
 <div class="post-related">

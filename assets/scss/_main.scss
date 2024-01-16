@@ -577,10 +577,8 @@ figure.full-bleed {
                     text-decoration-color: $color-divider;
                 }
 
-                margin: $spacing-unit 0;
-                @include media-query-small-screen() {
-                    margin: $spacing-unit 0;
-                }
+                margin-bottom: $spacing-content-sides / 2;
+
 
             }
 
@@ -845,24 +843,25 @@ article.post-content {
 
 // picked 1200 by manually checking when a sidenote might interfere with one of the nav-rhs nav-links
 @media only screen and (max-width: 1200px) {
-.post .nav-rhs {
-  position: relative;
-  top: 0;
-  right: 0;
+    .post .nav-rhs {
+      position: relative;
+      top: 0;
+      right: 0;
 
-  margin-top: $spacing-content-sides;
+      margin-top: $spacing-content-sides;
 
-  ol, ul {
-    display: flex;
-    flex-flow: row wrap;
-    row-gap: $spacing-content-sides / 2;
-    column-gap: $spacing-content-sides / 2;
+      ol, ul {
+        display: flex;
+        flex-flow: row wrap;
+        row-gap: $spacing-content-sides/1.25;
+        column-gap: $spacing-micro-unit;
+        padding-left: 0;
 
-    li { margin: 0 }
-  }
+        li { margin: 0 }
+      }
 
-  .nav-link { padding:.11rem; }
-}
+      .nav-link { padding: $spacing-micro-unit; }
+    }
 }
 
 .powered-by {

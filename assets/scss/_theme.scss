@@ -118,7 +118,13 @@ $color-blockquote: $color-accent;
 
 @mixin nav-link() {
   background: rgba(0,0,0,0.5);
-  padding: 0 .3rem;
+  padding: 0 .2rem;
+
+  text-decoration: none;
+  &:hover {
+    // text-decoration: underline;
+    color: $color-accent;
+  }
 }
 @mixin nav-link-muted() {
   @include nav-link();

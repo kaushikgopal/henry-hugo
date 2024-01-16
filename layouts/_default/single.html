@@ -31,6 +31,9 @@
 
         <article class="post-content">
             {{ .Content }}
+
+            <!-- show RHS navbar content -->
+            {{- partial "navbar.html" . -}}
         </article>
 
         <div class="post-meta">
