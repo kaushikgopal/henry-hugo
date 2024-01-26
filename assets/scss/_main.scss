@@ -222,10 +222,6 @@ figure.full-bleed {
 
         font-size: $font-size-regular;
 
-        > * {
-            margin-bottom: $spacing-content-sides;
-        }
-
         h2.post-list-header {
             color: $color-divider;
 
@@ -251,7 +247,7 @@ figure.full-bleed {
 
                  margin-bottom: $spacing-unit * 1.2;
                  @include media-query-small-screen() {
-                     margin-bottom: $spacing-unit * 1.5;
+                     margin-bottom: $spacing-unit * 2;
                  }
 
                  //#region Modified layout
@@ -268,10 +264,10 @@ figure.full-bleed {
                      }
 
                      .post-link-url {
-                         font-family: $font-fam-head;
+                         font-family: $font-fam-headx;
                          color: $color-text2;
                          text-decoration: none;
-                         font-weight: 500;
+                         font-weight: 400;
 
                          &:hover {
                              border-bottom: 2px solid $color-text-underline;
@@ -360,8 +356,8 @@ figure.full-bleed {
 
             .post-title {
                 color: $color-text2;
-                font-weight: bold;
-                font-family: $font-fam-head;
+                font-weight: 450;
+                font-family: $font-fam-headx;
                 line-height: 1.2;
 
                 @include font-size-responsive($font-size-xlarge + 2, $font-size-large + 2);

@@ -118,7 +118,11 @@ $color-blockquote: $color-accent;
 
 @mixin nav-link() {
   background: rgba(0,0,0,0.5);
-  padding: 0 .2rem;
+  padding: .4rem;
+
+  font-family: $font-fam-mono;
+  letter-spacing: -0.03rem;
+  font-weight: 450;
 
   text-decoration: none;
   &:hover {
