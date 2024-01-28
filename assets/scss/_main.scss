@@ -430,7 +430,7 @@ figure.full-bleed {
             }
             // make it compariable to :284 .post-title
             h1 {
-                @include font-size-responsive($font-size-xlarge - 2, $font-size-large - 2);
+                @include font-size-responsive($font-size-xlarge, $font-size-large);
                 margin: 1.5rem 0 1rem 0rem;
             }
 
@@ -439,14 +439,12 @@ figure.full-bleed {
             }
 
             h2 {
-                @include font-size-responsive($font-size-large, $font-size-large - 2px);
+                @include font-size-responsive($font-size-large - 2px, $font-size-large - 4px);
                 margin: 1rem 0 1rem 0;
             }
 
             h3 {
-                font-size: 1rem;
                 //font-style: italic;
-
                 @include font-size-responsive();
                 margin-bottom: 0.5rem;
             }
