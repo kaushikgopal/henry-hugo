@@ -93,6 +93,15 @@ $mobile-content-width: 325px;
   }
 }
 
+@mixin content-bottom-space() {
+  padding-bottom: $spacing-content-sides * 2.5;
+
+  @include media-query-small-screen() {
+    padding-bottom: $spacing-content-sides * 1.5;
+  }
+}
+
+
 @mixin nav-link() {
   background: rgba(0,0,0,0.5);
   padding: .4rem;

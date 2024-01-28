@@ -224,8 +224,9 @@ figure.full-bleed {
 //#region #site-content {
 
     .post-index {
-
         @include site-top-margin();
+        @include content-bottom-space();
+
 
         font-size: $font-size-regular;
 
@@ -344,7 +345,8 @@ figure.full-bleed {
     }
 
     .post {
-        padding-top: $spacing-unit/2;
+        @include site-top-margin();
+
 
         @include font-size-responsive();
         @include media-query-small-screen() {
@@ -369,6 +371,8 @@ figure.full-bleed {
             }
 
             .post-title {
+                @include site-top-margin();
+
                 color: $color-text2;
                 font-weight: 450;
                 font-family: $font-fam-headx;
@@ -387,15 +391,12 @@ figure.full-bleed {
                         color: $color-text-link;
                     }
                 }
-
-                @include media-query-small-screen() {
-                    margin-top: 0;
-                }
             }
         }
 
         .post-content {
-            padding: $spacing-content-sides 0 $spacing-content-sides * 1.5;
+            @include site-top-margin();
+            @include content-bottom-space();
 
             @include media-query-small-screen() {
                 padding-top: $spacing-unit;
@@ -572,7 +573,7 @@ figure.full-bleed {
 
         .post-meta {
             text-transform: none;
-            padding: $spacing-content-sides 0;
+            padding: $spacing-content-sides * 2 0;
             background-color: darken($color-background, 5%);
 
             .post-meta-addition {
@@ -821,13 +822,7 @@ article.post-content {
     }
 }
 
-
-
-
-
-
-
-.post .nav-rhs {
+.nav-rhs {
     @include font-size-responsive($font-size-regular, $font-size-small);
     @include site-top-margin();
 
@@ -843,11 +838,12 @@ article.post-content {
     ol, ul {
         list-style-type: none;
         text-align: right;
+        li { margin-bottom: $spacing-micro-unit + 2px; }
     }
 
     // hover on top right
     position: fixed;
-    top:0;
+    top:$spacing-content-sides * 2.5; // same as site-top-margin
     right: 20px;
 
     .last-fixed {
@@ -867,7 +863,7 @@ article.post-content {
         ol, ul {
             display: flex;
             flex-flow: row wrap;
-            row-gap: $spacing-content-sides/1.25;
+            row-gap: 0;
             column-gap: $spacing-micro-unit;
             padding-left: 0;
 
