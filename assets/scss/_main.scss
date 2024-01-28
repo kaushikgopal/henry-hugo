@@ -126,14 +126,14 @@ figure.full-bleed,
 
     // regular (huge) screens
     grid-template-columns:
-        1fr
+        0.75fr
         #{"min(#{653px}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
 
     // tablet sizes
     @media only screen and (max-width: $tablet-max-width) {  // picked 1068 from apple's blog
         grid-template-columns:
-        1fr
+        0.75fr
         #{"min(#{$tablet-content-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
@@ -824,55 +824,64 @@ article.post-content {
 }
 
 
-.nav-rhs {
-  @include font-size-responsive($font-size-regular, $font-size-small);
-  @include site-top-margin();
 
-  position: fixed;
-  top:0;
-  right: 20px;
 
-  font-weight: bold;
 
-  .nav-link {
-    @include nav-link();
-  }
-  .nav-link.tag {
-    @include nav-link-muted();
-  }
 
-  ol, ul {
-    list-style-type: none;
-    text-align: right;
-  }
-  .last-fixed {
-    margin-bottom: 1rem;
-  }
 
-}
+.post .nav-rhs {
+    @include font-size-responsive($font-size-regular, $font-size-small);
+    @include site-top-margin();
 
-// picked 1200 by manually checking when a sidenote might interfere with one of the nav-rhs nav-links
-@media only screen and (max-width: 1200px) {
-    .post .nav-rhs {
-      position: relative;
-      top: 0;
-      right: 0;
+    font-weight: bold;
 
-      margin-top: $spacing-content-sides;
-
-      ol, ul {
-        display: flex;
-        flex-flow: row wrap;
-        row-gap: $spacing-content-sides/1.25;
-        column-gap: $spacing-micro-unit;
-        padding-left: 0;
-
-        li { margin: 0 }
-      }
-
-      .nav-link { padding: $spacing-micro-unit; }
+    .nav-link {
+        @include nav-link();
     }
+    .nav-link.tag {
+        @include nav-link-muted();
+    }
+
+    ol, ul {
+        list-style-type: none;
+        text-align: right;
+    }
+
+    // hover on top right
+    position: fixed;
+    top:0;
+    right: 20px;
+
+    .last-fixed {
+        margin-bottom: 1rem;
+    }
+
+    // picked this by checking when a sidenote
+    // might interfere with one of the nav-rhs nav-links
+    // embedded in the post
+    @media only screen and (max-width: $tablet-content-width) {
+        position: relative;
+        top: 0;
+        right: 0;
+
+        margin-top: $spacing-content-sides;
+
+        ol, ul {
+            display: flex;
+            flex-flow: row wrap;
+            row-gap: $spacing-content-sides/1.25;
+            column-gap: $spacing-micro-unit;
+            padding-left: 0;
+
+            li { margin: 0 }
+        }
+
+        .nav-link { padding: $spacing-micro-unit; }
+    }
+
+
 }
+
 
 .powered-by {
     font-size: 0.75rem;
