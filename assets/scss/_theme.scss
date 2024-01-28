@@ -16,10 +16,6 @@ $spacing-unit: 18px;
 $spacing-micro-unit: 6px;
 $spacing-content-sides: $spacing-unit;
 
-$mobile-width: 375px;
-$tablet-width: 652px;
-$screen-width: 734px;
-
 $font-fam-base: "IBM Plex Sans", "SF Pro Display", "Helvetica Neue","Helvetica","Arial", ui-sans-serif, sans-serif;
 $font-fam-head: "IBM Plex Serif", "ff-tisa-web-pro", Georgia, "Times New Roman", serif;
 $font-fam-headx: $font-fam-base;
@@ -48,43 +44,24 @@ $color-blockquote: $color-accent;
 
 //#region Mixins
 
-@mixin media-query-small-screen() {
-  @media only screen and (max-width: $tablet-width) {
-      @content;
-  }
-}
+$screen-content-width: 653px;
+
+$tablet-max-width: 1068px;
+$tablet-content-width: 576px;
+
+$mobile-max-width: 734px;
+$mobile-content-width: 325px;
+
 @mixin media-query-laptop() {
-  @media only screen and (min-width: $tablet-width + 1px) {
+  @media only screen and (min-width: $tablet-max-width + 1px) {
       @content;
   }
 }
-// Using media queries with like this:
-// @include media-query-mobile() {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-/*
-// these are better ways to do the same thing
-// replace above with the below
-
-@mixin tablet-size() {
-  @media only screen and (max-width: 1068px) {
+@mixin media-query-small-screen() {
+  @media only screen and (max-width: $mobile-max-width) {
     @content;
   }
 }
-@mixin mobile-size() {
-  @media only screen and (max-width: $screen-width) {
-    @content;
-  }
-}
-
-// Usage:
-//    font-size: 2rem;
-//    @include tablet-size() { font-size: 1rem; }
-//    @include mobile-size() { font-size: 0.75rem; }
-*/
 
 
 @mixin font-size-responsive($size: $font-size-regular, $size-small: $font-size-medium) {

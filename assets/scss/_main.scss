@@ -119,27 +119,29 @@ figure.full-bleed,
 .post-header,
 .post-content,
 .post-meta {
+    // extremely small screen sizes
     min-width: 325px;
 
     display: grid;
 
     // regular (huge) screens
     grid-template-columns:
-        0.25fr
-        #{"min(#{$screen-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr
+        #{"min(#{653px}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
-    @media only screen and (max-width: 1068px) {  // picked 1068 from apple's blog
-        // tablet sizes
-        grid-template-columns:
-        0.25fr
-        #{"min(#{$tablet-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
-    }
-    @media only screen and (max-width: 734px) {
-        // mobile size
+
+    // tablet sizes
+    @media only screen and (max-width: $tablet-max-width) {  // picked 1068 from apple's blog
         grid-template-columns:
         1fr
-        #{"min(#{325px}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        #{"min(#{$tablet-content-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
+        1fr;
+    }
+    // mobile size
+    @media only screen and (max-width: $mobile-max-width) {
+        grid-template-columns:
+        1fr
+        #{"min(#{$mobile-content-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
         1fr;
     }
 
@@ -149,12 +151,16 @@ figure.full-bleed,
 }
 
 figure.full-bleed {
+
+    // regular (huge) screens
     grid-template-columns:
         0fr
         100%
         0fr;
 
-    @include media-query-laptop() {
+    // tablet sizes
+    @media only screen and (max-width: $tablet-max-width) {
+        // fix
         grid-column: 1 / 4;
 
         img {
@@ -167,7 +173,8 @@ figure.full-bleed {
         }
     }
 
-    @include media-query-small-screen() {
+    @media only screen and (max-width: $mobile-max-width) {
+        // fix
       margin-left: -$spacing-content-sides;
 
       grid-template-columns:
