@@ -407,7 +407,7 @@ figure.full-bleed {
             @include font-size-responsive($font-size-regular, $font-size-medium);
             letter-spacing: .012em;
 
-            > p, > ul, > ol {
+            > p, > ul, > ol, > pre {
                 margin: 0 0 ($spacing-unit) 0;
                 // margin-bottom: $spacing-unit - $spacing-micro-unit;
                 // @include media-query-small-screen() {
