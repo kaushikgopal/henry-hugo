@@ -1,11 +1,14 @@
 <div class="post-link">
     <div class="post-metadata">
+
         {{ if .Params.externalLink }}
-            <a class="linklog" href="{{ .Params.externalLink }}">{{ .Site.Params.ExternalLinkIndicator }}</a>
+            <a class="postimoji" href="{{ .Params.externalLink }}">{{- partial "postimoji.html" . -}}</a>
         {{ else if eq .Section "s" }}
-            <a class="linklog" href="/s">&#9005;</a>
+            <a class="postimoji" href="/s">{{- partial "postimoji.html" . -}}</a>
         {{ else if eq .Section "letter" }}
-            <span class="linklog">&#x1F4E8;</span>
+            <span class="postimoji">{{- partial "postimoji.html" . -}}</span>
+        {{ else if .Params.postimoji }}
+            <span class="postimoji">{{- partial "postimoji.html" . -}}</span>
         {{ end }}
 
         <a class="post-link-url" href="{{ .RelPermalink }}">

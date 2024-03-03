@@ -285,7 +285,7 @@ figure.full-bleed {
     .post-index {
         @include site-top-margin();
         @include content-bottom-space();
-        margin-left: $spacing-content-sides; // breathing room for linklog + left-window
+        margin-left: $spacing-content-sides; // breathing room for postimoji + left-window
 
         font-size: $font-size-regular;
 
@@ -323,11 +323,11 @@ figure.full-bleed {
                      margin-bottom: 0.25rem;
                      line-height: 1.25;
 
-                     .linklog {
+                     .postimoji {
                          font-family: $font-fam-mono;
                          color: $color-text-underline;
                          margin-right: $spacing-micro-unit;
-                         margin-left: -1 * ($spacing-unit + 2 * $spacing-micro-unit) + 2px; // so its on the margin
+                         margin-left: -1 * ($spacing-unit + 2 * $spacing-micro-unit + 4px); // so its on the margin
                          text-decoration: none;
                      }
 
@@ -446,7 +446,7 @@ figure.full-bleed {
                     &:hover {
                         text-decoration: underline;
                     }
-                    .linklog {
+                    .postimoji {
                         color: $color-text-link;
                     }
                 }

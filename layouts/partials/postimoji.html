@@ -1,0 +1,9 @@
+{{ if .Params.postimoji }}
+{{ .Params.postimoji }}
+{{ else if .Params.externalLink }}
+🔗
+{{ else if eq .Section "s" }}
+&#9005;
+{{ else if eq .Section "letter" }}
+&#x1F4E8;
+{{ end }}
