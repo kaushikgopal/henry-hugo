@@ -141,8 +141,8 @@ figure.full-bleed,
     @media only screen and (max-width: $mobile-max-width) {
         grid-template-columns:
         1fr
-        #{"min(#{$mobile-content-width}, calc(100% - 2 * #{$spacing-content-sides}))"}
-        1fr;
+        #{"min(#{$mobile-content-width}, calc(100% - 3 * #{$spacing-content-sides}))"}
+        0.75fr;
     }
 
     > * {
@@ -285,7 +285,7 @@ figure.full-bleed {
     .post-index {
         @include site-top-margin();
         @include content-bottom-space();
-
+        margin-left: $spacing-content-sides; // breathing room for linklog + left-window
 
         font-size: $font-size-regular;
 
@@ -327,6 +327,7 @@ figure.full-bleed {
                          font-family: $font-fam-mono;
                          color: $color-text-underline;
                          margin-right: $spacing-micro-unit;
+                         margin-left: -1 * ($spacing-unit + 2 * $spacing-micro-unit) + 2px; // so its on the margin
                          text-decoration: none;
                      }
 
@@ -345,7 +346,6 @@ figure.full-bleed {
                      }
 
                      .post-metametadata {
-
                          font-family: $font-fam-mono;
 
                          display: flex;
