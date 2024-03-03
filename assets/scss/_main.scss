@@ -223,6 +223,65 @@ figure.full-bleed {
 
 //#region #site-content {
 
+    .letter-head .nav-subscribe {
+        // only applies to subscribe button shown
+        // on letter pages, at the very top
+        padding: $spacing-unit;
+    }
+
+    .nav-subscribe {
+        background-color: darken($color-background, 10%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        a {
+            background-color: $color-accent;
+            border-radius: $spacing-micro-unit;
+
+            display: flex;
+            align-items: center;
+            gap: $spacing-micro-unit;
+
+            padding: $spacing-micro-unit $spacing-unit;
+
+            color: $color-background;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: $font-fam-mono;
+            letter-spacing: -0.025rem;
+
+            -webkit-transition: background-color .2s ease-in-out;
+            transition: background-color .2s ease-in-out;
+        }
+
+        a svg {
+            width: 1.5rem;
+            margin: 0;
+            border: none;
+        }
+
+        a:hover {
+            background-color: $color-background;
+            color: $color-text1;
+        }
+
+        a:last-child {
+            text-decoration: none;
+            -webkit-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+        a:last-child:hover {
+            -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+
+        }
+    }
+
+
     .post-index {
         @include site-top-margin();
         @include content-bottom-space();
