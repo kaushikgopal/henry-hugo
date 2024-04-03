@@ -332,16 +332,17 @@ figure.full-bleed {
                      }
 
                      .post-link-url {
+                         font-weight: 400;
                          font-family: $font-fam-headx;
                          color: $color-text2;
 
-                         text-decoration-color: transparentize($color-text-underline, 0.7);
-                         text-underline-offset: 4px;
-                         text-decoration-thickness: 4px;
-                         font-weight: 400;
+                         text-decoration: none;
                          &:hover {
-                             border-bottom: 2px solid $color-text-underline;
-
+                             text-decoration: underline;
+                             //border-bottom: 2px solid $color-text-underline;
+                             text-decoration-color: transparentize($color-text-underline, 0.2);
+                             text-underline-offset: 6px;
+                             text-decoration-thickness: 4px;
                          }
                      }
 
