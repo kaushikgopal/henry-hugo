@@ -19,7 +19,7 @@ hugo new site blog-henry
 cd blog-henry
 
 # 2. clone Henry
-git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
+git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
 
 # 3. configure blog
 ## add these lines to your hugo.toml config file
