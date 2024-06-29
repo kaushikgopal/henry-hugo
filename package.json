@@ -1,0 +1,15 @@
+{
+  "name": "henry",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><img src=\"images/henry.png\"></p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}

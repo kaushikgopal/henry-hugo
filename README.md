@@ -96,10 +96,25 @@ Here are some recommended customizations to make in your `hugo.toml` config file
     weight = 10
 ```
 
-# Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/kaushikgopal/henry-hugo). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+# Use TailwindCSS
 
+## install Tailwind
+
+```shell
+cd themes/henry
+npm init -y
+npm install -D tailwindcss  # install Tailwind as a dev dependency
+```
+
+We are not installing PostCSS (like much of the internet recommends)
+
+## setup Tailwind
+
+
+```shell
+npx tailwindcss init
+```
 
 # Henry in the Wild
 
@@ -112,3 +127,5 @@ Here are a couple of blogs that use Henry:
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+
+_Bug reports and pull requests are welcome on [GitHub](https://github.com/kaushikgopal/henry-hugo). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct._
