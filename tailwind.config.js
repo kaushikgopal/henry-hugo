@@ -1,9 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+    /* Content sources to tell Tailwind which files to scan for used class names for
+         generating the needed CSS. More info:
+         - https://tailwindcss.com/docs/content-configuration#configuring-source-paths
+      */
+    content: [
+      "./layouts/**/*.html",
+      "./content/**/*.{html,md}",
+      "./themes/henry/layouts/**/*.html",
+    ],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
 }
 

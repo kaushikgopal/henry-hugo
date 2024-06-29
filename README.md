@@ -116,6 +116,16 @@ We are not installing PostCSS (like much of the internet recommends)
 npx tailwindcss init
 ```
 
+## Running with Tailwind (temporary)
+
+```shell
+# from themes/henry
+npm run watch
+
+# from the root of your Hugo site
+hugo server
+```
+
 # Henry in the Wild
 
 Here are a couple of blogs that use Henry:
