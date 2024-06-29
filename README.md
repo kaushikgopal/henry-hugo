@@ -99,32 +99,29 @@ Here are some recommended customizations to make in your `hugo.toml` config file
 
 # Use TailwindCSS
 
-## install Tailwind
+## run server
+
+```shell
+./bin/dev   # from main hugo directory
+```
+
+the `./bin/dev` command calls `npm run dev` which in turn uses `npm-run-all` to run multiple scripts concurrently. You can see the commands in the `package.json` file
+
+
+## setup (first time)
+
+_You typically don't need to do this._
 
 ```shell
 cd themes/henry
-npm init -y
-npm install -D tailwindcss  # install Tailwind as a dev dependency
+
+npm init -y                 # creates package.json (say yes to everything
+npm install -D tailwindcss  # installs tailwindcss as a dependency
+npx tailwindcss init        # creates a tailwind.config.js file
 ```
 
 We are not installing PostCSS (like much of the internet recommends)
 
-## setup Tailwind
-
-
-```shell
-npx tailwindcss init
-```
-
-## Running with Tailwind (temporary)
-
-```shell
-# from themes/henry
-npm run watch
-
-# from the root of your Hugo site
-hugo server
-```
 
 # Henry in the Wild
 
