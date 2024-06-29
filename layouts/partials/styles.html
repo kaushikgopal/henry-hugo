@@ -4,4 +4,4 @@
 {{ $css = $css | minify | fingerprint }}
 {{ end }}
 
-<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
