@@ -5,9 +5,9 @@ module.exports = {
          - https://tailwindcss.com/docs/content-configuration#configuring-source-paths
       */
     content: [
-      "./layouts/**/*.html",
-      "./content/**/*.{html,md}",
-      "./themes/henry/layouts/**/*.html",
+        "../../content/**/*.{html,md}",
+        "../../layouts/**/*.html",
+        "./layouts/**/*.html",
     ],
     theme: {
         extend: {},
