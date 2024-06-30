@@ -12,6 +12,11 @@ module.exports = {
     theme: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        function ({addUtilities}) {
+            console.log ('Tailwind CSS root directory:', process.cwd ());
+        },
+        require ('@tailwindcss/typography'),
+    ],
 }
 
