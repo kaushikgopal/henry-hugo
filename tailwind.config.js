@@ -15,7 +15,8 @@ module.exports = {
             'serif': ['kg-serif'],
             'mono': ['kg-mono'],
         },
-        extend: {},
+        extend: {
+        },
     },
     plugins: [
         function ({addUtilities}) {
