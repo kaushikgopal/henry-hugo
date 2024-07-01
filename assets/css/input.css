@@ -1,4 +1,5 @@
 @import "fonts.css";
+@import "../../../../assets/css/custom.css";
 
 @tailwind base;
 @tailwind components;
