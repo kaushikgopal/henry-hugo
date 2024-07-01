@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="{{ .Language }}" class="no-js">
 {{- partial "head.html" . -}}
-<body>
-    {{/*
-    {{- partial "debug_hugo.html" . -}}
-    */}}
-    <div class="goto bottom">
-        <a href="#site-footer">↓</a>
-    </div>
-    <div id="site-content">
-    {{- block "content" . }}{{- end }}
-    </div>
+<body class="min-h-screen bg-slate-950 text-slate-200">
+{{/*
+{{- partial "debug_hugo.html" . -}}
+*/}}
 
-    <footer id="site-footer">
-        {{- partial "footer.html" . -}}
-    </footer>
+{{- block "content" . }}
+<!-- Blocks may include default content. -->
+{{- end }}
 
-    <div class="goto top">
-        <a href="#site-content">↑</a>
-    </div>
-
-    {{- partial "script.html" . -}}
 </body>
 </html>
