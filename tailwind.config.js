@@ -10,6 +10,11 @@ module.exports = {
         "./layouts/**/*.html",
     ],
     theme: {
+        fontFamily: {
+            'sans': ['kg-sans'],
+            'serif': ['kg-serif'],
+            'mono': ['kg-mono'],
+        },
         extend: {},
     },
     plugins: [

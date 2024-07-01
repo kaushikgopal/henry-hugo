@@ -1,6 +1,142 @@
-/*
-! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
-*/
+/* Serif font */
+
+@font-face {
+  font-family: kg-serif;
+
+  src: url("../fonts/kg-serif-regular.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-serif-regular.woff2") format("woff2-variations");
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-serif;
+
+  src: url("../fonts/kg-serif-regular-italic.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-serif-regular-italic.woff2") format("woff2-variations");
+
+  font-weight: normal;
+
+  font-style: italic;
+}
+
+@font-face {
+  font-family: kg-serif;
+
+  src: url("../fonts/kg-serif-bold.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-serif-bold.woff2") format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-serif;
+
+  src: url("../fonts/kg-serif-bold-italic.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-serif-bold-italic.woff2") format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: italic;
+}
+
+/* Sans font */
+
+@font-face {
+  font-family: kg-sans;
+
+  src: url("../fonts/kg-sans-regular.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-sans-regular.woff2") format("woff2-variations");
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-sans;
+
+  src: url("../fonts/kg-sans-regular-italic.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-sans-regular-italic.woff2") format("woff2-variations");
+
+  font-weight: normal;
+
+  font-style: italic;
+}
+
+@font-face {
+  font-family: kg-sans;
+
+  src: url("../fonts/kg-sans-bold.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-sans-bold.woff2") format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-sans;
+
+  src: url("../fonts/kg-sans-bold-italic.woff2") format("woff2 supports variations"),
+         url("../fonts/kg-sans-bold-italic.woff2") format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: italic;
+}
+
+/* Monospace font */
+
+@font-face {
+  font-family: kg-mono;
+
+  src:  url('../fonts/kg-mono.woff2') format("woff2 supports variations"),
+          url('../fonts/kg-mono.woff2') format("woff2-variations");
+
+  font-weight: 100;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-mono;
+
+  src:  url('../fonts/kg-mono.woff2') format("woff2 supports variations"),
+          url('../fonts/kg-mono.woff2') format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: kg-mono;
+
+  src:  url('../fonts/kg-mono-italic.woff2') format("woff2 supports variations"),
+          url('../fonts/kg-mono-italic.woff2') format("woff2-variations");
+
+  font-weight: 100;
+
+  font-style: italic;
+}
+
+@font-face {
+  font-family: kg-mono;
+
+  src:  url('../fonts/kg-mono-italic.woff2') format("woff2 supports variations"),
+          url('../fonts/kg-mono-italic.woff2') format("woff2-variations");
+
+  font-weight: bold;
+
+  font-style: italic;
+}
+
+/* ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -46,7 +182,7 @@ html,
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: kg-sans;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -135,7 +271,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: kg-mono;
   /* 1 */
   font-feature-settings: normal;
   /* 2 */
@@ -657,11 +793,6 @@ video {
 .bg-indigo-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
-
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
 .p-2 {
