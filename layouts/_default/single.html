@@ -1,12 +1,15 @@
 {{ define "content" }}
 
     {{ if eq .Section "letter" }}
-        <div class="letter-head">{{- block "footer-nav" . }}{{- end }}</div>
+    <div class="letter-head">{{- block "footer-nav" . }}{{- end }}</div>
     {{ end }}
 
-    <section class="post">
-        <header class="post-header">
-            <h1 class="post-title">
+    <section class="post
+                    w-3/4 m-auto mt-12">
+        <header class="post-header
+                       mb-8">
+            <h1 class="post-title
+                       text-3xl font-medium font-serif">
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
                 <a href="{{ .Params.externalLink }}" class='article-link'>
@@ -26,7 +29,8 @@
             {{ if .Draft }} <span class="draft">Draft</span> {{ end }}
             </h1>
 
-            <h4 class="post-author">
+            <h4 class="post-author
+                       text-sm text-slate-600">
             {{ if .Params.author }}
                 {{ .Params.author }}
             {{ else if .Site.Author.name }}
@@ -36,7 +40,10 @@
 
         </header>
 
-        <article class="post-content">
+        <article class="post-content
+                        space-y-4
+                        text-slate-300
+                        ">
             {{ .Content }}
 
             <!-- show RHS navbar content -->
