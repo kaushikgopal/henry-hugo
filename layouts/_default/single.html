@@ -4,54 +4,60 @@
     <div class="letter-head">{{- block "footer-nav" . }}{{- end }}</div>
     {{ end }}
 
-    <section class="post
-                    w-3/4 m-auto mt-12">
-        <header class="post-header
-                       mb-8">
-            <h1 class="post-title
-                       text-3xl font-medium font-serif">
-            <!-- Handle external links differently -->
-            {{ if .Params.externalLink }}
-                <a href="{{ .Params.externalLink }}" class='article-link'>
-                    {{ .Title }}
-                </a>
-                {{- partial "postimoji.html" . -}}
+<section class="post
+                w-3/4 max-w-3xl m-auto py-12">
+
+    <header class="post-header
+                   mb-8">
+
+        <h1 class="post-title
+                   text-3xl font-medium font-serif">
+        <!-- Handle external links differently -->
+        {{ if .Params.externalLink }}
+            <a href="{{ .Params.externalLink }}" class='article-link'>
+                {{ .Title }}
+            </a>
+            {{- partial "postimoji.html" . -}}
+        {{ else }}
+            <!-- Title -->
+            {{ if eq .Section "log" }}
+                {{ .Date.Format "January 2006" }}
             {{ else }}
-                <!-- Title -->
-                {{ if eq .Section "log" }}
-                    {{ .Date.Format "January 2006" }}
-                {{ else }}
-                    {{ .Title }}
-                {{ end }}
-                {{- partial "postimoji.html" . -}}
+                {{ .Title }}
             {{ end }}
+            {{- partial "postimoji.html" . -}}
+        {{ end }}
 
-            {{ if .Draft }} <span class="draft">Draft</span> {{ end }}
-            </h1>
+        {{ if .Draft }} <span class="draft">Draft</span> {{ end }}
+        </h1>
 
-            <h4 class="post-author
-                       text-sm text-slate-600">
-            {{ if .Params.author }}
-                {{ .Params.author }}
-            {{ else if .Site.Author.name }}
-                {{ .Site.Author.name }}
-            {{ end}}
-            </h4>
+        <h4 class="post-author
+                   text-sm text-slate-600">
+        {{ if .Params.author }}
+            {{ .Params.author }}
+        {{ else if .Site.Author.name }}
+            {{ .Site.Author.name }}
+        {{ end}}
+        </h4>
 
-        </header>
+    </header>
 
-        <article class="post-content
-                        space-y-4
-                        text-slate-300
-                        ">
-            {{ .Content }}
+    <article class="post-content
+                    space-y-4
+                    text-slate-300
+                    ">
+        {{ .Content }}
+    </article>
 
-            <!-- show RHS navbar content -->
-            {{- partial "navbar.html" . -}}
-        </article>
+</section>
 
-        <div class="post-meta">
-            {{- partial "meta.html" . -}}
-        </div>
-    </section>
+<div class="post-meta
+            bg-[#152027]">
+    <div class="w-3/4 max-w-3xl m-auto">
+    <!-- show RHS navbar content -->
+    {{- partial "nav.html" . -}}
+    {{- partial "meta.html" . -}}
+    </div>
+</div>
+
 {{end}}
