@@ -31,7 +31,12 @@
     </a>
     </h1>
 
-    {{ if .Draft }}<span class="draft">Draft</span>{{ end }}
+    {{ if .Draft }}
+    <span class="rounded-sm
+                 bg-amber-300 uppercase text-xs text-black font-bold
+                 px-2 py-0.5
+                 draft">Draft</span>
+    {{ end }}
 
     <!--<div class="post-metametadata">
 
