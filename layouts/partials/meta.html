@@ -1,11 +1,12 @@
 {{- partial "post-meta-additions.html" . -}}
 
 {{ if not (eq .Layout "page") }}
-<div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
+<div class="post-date mt-2
+            text-sm text-slate-600">{{ .Date.Format "Jan 2006" }}</div>
 {{ end }}
 
 {{ if .Params.externalLink }}
-    <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
+<div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
 {{ end }}
 
 {{ $n := (add (len (.Params.categories | default slice)) -1) }}
@@ -17,7 +18,7 @@
 
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
-<div class="post-related">
+<div class="post-related mt-6">
     <h4> Related: </h4>
     <ul class="post-related-links">
         {{ range . }}

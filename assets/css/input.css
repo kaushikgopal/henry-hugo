@@ -17,15 +17,18 @@
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-    @apply font-serif font-medium;
+    @apply font-serif font-medium text-amber-200;
 }
 .post-content h1 { @apply text-2xl ; }
+.post-content h1 code { @apply text-2xl ; }
 .post-content h2 { @apply text-xl ; }
+.post-content h2 code { @apply text-xl ; }
 .post-content h3 { @apply text-lg ; }
+.post-content h3 code { @apply text-lg ; }
 .post-content h4 { @apply font-bold ; }
 
 
-.post-content code { @apply text-sm text-amber-200; }
+.post-content code { @apply text-sm text-amber-100; }
 .post-content pre { @apply p-4 border border-black rounded-md overflow-auto; }
 .post-content pre code { @apply text-xs; }
 

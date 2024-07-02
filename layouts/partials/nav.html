@@ -1,25 +1,36 @@
-<nav class="nav-rhs">
-    <ul>
-        {{- partial "navbar-main.html" . -}}
+<nav class="nav pt-8">
+    <ul class="tags
+               flex flex-row gap-2">
+
+        {{- partial "nav-before.html" . -}}
 
         <!-- SINGLE post pages -->
         {{ if eq .Kind "page" }}
             <!-- show the parent section if exists-->
             {{ if .Section }}
-            <li><a class="nav-link" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
+            <li><a class="nav-link type w-fit rounded-sm
+                          border border-amber-300 hover:bg-amber-300 bg-transparent text-amber-300 hover:text-black
+                          uppercase text-xs
+                          px-1.5 py-0.5" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
             {{ end }}
 
             <!-- if BLOG post -->
             {{ if eq .Section "blog" }}
+
                 <!-- show Categories  -->
                 {{ range $c := .Params.Categories }}
-                <li><a class="nav-link category" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
+                <li><a class="nav-link border border-slate-500 hover:bg-slate-500 bg-transparent text-slate-500 hover:text-black
+                              uppercase text-xs
+                              px-1.5 py-0.5" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
                 {{ end }}
 
                 <!-- show Tags  -->
                 {{ range $t := .Params.Tags }}
-                <li><a class="nav-link tag" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
+                <li><a class="nav-link border border-slate-500 hover:bg-slate-500 bg-transparent text-slate-500 hover:text-black
+                              uppercase text-xs
+                              px-1.5 py-0.5" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
                 {{ end }}
+
             {{ end }}
         {{ end }}
 
@@ -33,7 +44,9 @@
                 {{ if not (eq .Section $thisSection) }}
                     <!-- exclude invisible section  -->
                     {{ if not (in .Site.Params.InvisibleSections .Section) }}
-                    <li><a class="nav-link" href="{{ .Permalink }}">{{.Section}}</a></li>
+                    <li><a class="nav-link w-fit border border-amber-300 rounded-sm
+                                  uppercase text-xs text-amber-300
+                                  px-1.5" href="{{ .Permalink }}">{{.Section}}</a></li>
                     {{ end }}
                 {{ end }}
             {{ end }}
@@ -42,7 +55,9 @@
             {{ if eq .Section "blog" }}
                 {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
                     {{ if (gt (len $taxonomy) 0) }}
-                        <li><a class="nav-link" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
+                    <li><a class="nav-link nav-link border border-slate-500 hover:bg-slate-500 bg-transparent text-slate-500 hover:text-black
+                                  uppercase text-xs
+                                  px-1.5 py-0.5" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
                     {{ end }}
                 {{ end }}
             {{ end }}
@@ -60,6 +75,6 @@
         <li><a class="nav-link" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
 
-        {{- partial "navbar-additions.html" . -}}
+        {{- partial "navbar-after.html" . -}}
     </ul>
 </nav>
