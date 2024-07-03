@@ -1,12 +1,11 @@
 {{ define "content" }}
 {{ partial "letter-subscribe.html" . }}
 <section class="post
-                flex flex-col
-                min-w-[333px]
+                flex flex-col items-center
                 pt-24 pb-12">
 
     <header class="post-header
-                   w-3/4 max-w-3xl mx-auto
+                   w-3/4 max-w-3xl min-w-[333px]
                    mb-8">
 
         <h1 class="post-title
@@ -43,7 +42,8 @@
 
     <!-- to accommodate full-bleed we apply the width constraints differently input.css -->
     <article class="post-content
-                    w-3/4 max-w-3xl mx-auto">
+                    flex flex-col items-center
+                    ">
         {{ .Content }}
     </article>
 

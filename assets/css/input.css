@@ -66,9 +66,19 @@
         @apply text-xs;
     }
 
-    .post-content figure figcaption {
-        @apply no-underline font-medium text-xs pt-1;
+    .post-content > *:not(figure.full-bleed) {
+        @apply w-3/4 max-w-3xl min-w-[333px];
     }
+
+    .post-content figure.full-bleed {
+        width: 100%;
+        max-height: 100vh;
+    }
+
+    .post-content figure figcaption {
+        @apply text-center no-underline font-medium text-xs pt-1;
+    }
+
     .post-content figure img {
         @apply border-4 border-black rounded-md;
     }
@@ -103,31 +113,31 @@
 
 
     .pill-purple {
-        @apply  w-fit border border-purple-700 rounded-sm
+        @apply w-fit border border-purple-700 rounded-sm
         px-1.5 py-0.5
         bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white
         uppercase no-underline;
     }
 
     .pill-amber {
-        @apply  w-fit border border-amber-300 rounded-sm
+        @apply w-fit border border-amber-300 rounded-sm
         px-1.5 py-0.5
         bg-transparent hover:bg-amber-300 text-amber-300 hover:text-black
         uppercase no-underline;
     }
 
     .pill-amber-solid {
-        @apply  w-fit border border-amber-300 rounded-sm
+        @apply w-fit border border-amber-300 rounded-sm
         px-1.5 py-0.5
         bg-amber-300 text-black
         uppercase font-bold no-underline;
     }
 
     .pill-slate {
-        @apply  w-fit border border-slate-500 rounded-sm
-                px-1.5 py-0.5
-                bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black
-                uppercase no-underline;
+        @apply w-fit border border-slate-500 rounded-sm
+        px-1.5 py-0.5
+        bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black
+        uppercase no-underline;
     }
 
 }
