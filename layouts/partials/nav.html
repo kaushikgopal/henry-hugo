@@ -8,7 +8,7 @@
         {{ if eq .Kind "page" }}
             <!-- show the parent section if exists-->
             {{ if .Section }}
-            <li><a class="nav-link type w-fit rounded-sm
+            <li><a class="nav-link w-fit rounded-sm
                           border border-amber-300 hover:bg-amber-300 bg-transparent text-amber-300 hover:text-black
                           uppercase text-xs
                           px-1.5 py-0.5" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
@@ -67,14 +67,18 @@
         <!-- TAXONOMY pages like category/tag list pages -->
         {{ if eq .Kind "taxonomy" }}
             <!-- show all posts link  -->
-            <li><a class="nav-link" href="/blog">posts</a></li>
+            <li><a class="nav-link border border-slate-500 hover:bg-slate-500 bg-transparent text-slate-500 hover:text-black
+                              uppercase text-xs
+                              px-1.5 py-0.5" href="/blog">posts</a></li>
         {{ end }}
 
         <!-- if TAXONOMY list page has values like categories/tips/ -->
         {{ if eq .Kind "term" }}
-        <li><a class="nav-link" href="/{{.Section}}">{{.Section}}</a></li>
+        <li><a class="nav-link border border-slate-500 hover:bg-slate-500 bg-transparent text-slate-500 hover:text-black
+                              uppercase text-xs
+                              px-1.5 py-0.5" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
 
-        {{- partial "navbar-after.html" . -}}
+        {{- partial "nav-after.html" . -}}
     </ul>
 </nav>

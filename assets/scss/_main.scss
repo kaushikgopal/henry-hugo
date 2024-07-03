@@ -606,29 +606,6 @@ figure.full-bleed {
                 }
             }
 
-            .footnotes {
-
-                padding: $spacing-unit 0 0 0;
-                font-size: $font-size-medium;
-
-                @include media-query-small-screen() {
-                    margin-bottom: 0;
-                    font-size: $font-size-small;
-                }
-
-                ol {
-                    color: $color-text3;
-                    padding: 2rem 1rem 2rem 4rem;
-
-                    @include media-query-small-screen() {
-                        padding: 1.5rem 0.5rem 1.5rem 2.5rem;
-                    }
-
-                    li {
-                        margin-bottom: $spacing-micro-unit;
-                    }
-                }
-            }
         }
 
         .post-meta {

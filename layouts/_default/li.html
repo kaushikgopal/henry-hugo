@@ -1,14 +1,16 @@
 <article>
 
-<aside class="mt-10
-            post-metadata">
+<aside class="mt-6
+              post-metadata">
 
     <div class="tags
                 flex flex-row gap-2">
-        <div class="type w-fit border border-amber-300 rounded-sm
-                    uppercase text-xs text-amber-300
-                    px-1.5
-                    ">
+
+        <a class="nav-link w-fit rounded-sm
+                    border border-amber-300 hover:bg-amber-300 bg-transparent text-amber-300 hover:text-black
+                    uppercase text-xs
+                    px-1.5 py-0.5"
+           href="/{{.Section}}">
         {{ if .Params.externalLink }}link
         {{ else if eq .Section "letter" }}letter
         {{ else if eq .Section "s" }}short
@@ -16,13 +18,14 @@
         {{ else if eq .Section "ppt" }}talk
         {{ else }}page
         {{ end }}
-        </div>
+        </a>
+
 
         {{ if .Draft }}
         <div class="draft
                     w-fit border border-amber-300 rounded-sm bg-amber-300
                     uppercase text-xs text-black font-bold
-                    px-1.5
+                    px-1.5 py-0.5
                     draft">Draft</div>
         {{ end }}
     </div>

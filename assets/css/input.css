@@ -19,7 +19,7 @@
 .post-content h4 {
     @apply font-serif font-medium text-amber-200;
 }
-.post-content h1 { @apply text-2xl ; }
+.post-content h1 { @apply text-2xl; }
 .post-content h1 code { @apply text-2xl ; }
 .post-content h2 { @apply text-xl ; }
 .post-content h2 code { @apply text-xl ; }
@@ -33,3 +33,6 @@
 .post-content pre code { @apply text-xs; }
 
 .post-content figure img { @apply border border-black rounded-md; }
+
+.footnotes hr { @apply border border-slate-500; }
+.footnotes ol { @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6; }

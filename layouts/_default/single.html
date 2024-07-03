@@ -1,11 +1,7 @@
 {{ define "content" }}
 
-    {{ if eq .Section "letter" }}
-    <div class="letter-head">{{- block "footer-nav" . }}{{- end }}</div>
-    {{ end }}
-
 <section class="post
-                w-3/4 max-w-3xl m-auto py-12">
+                w-3/4 max-w-3xl m-auto pt-24 pb-12">
 
     <header class="post-header
                    mb-8">
@@ -43,7 +39,7 @@
     </header>
 
     <article class="post-content
-                    space-y-4
+                    space-y-6
                     text-slate-300
                     ">
         {{ .Content }}
