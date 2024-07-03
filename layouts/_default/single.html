@@ -42,17 +42,15 @@
 
     <!-- to accommodate full-bleed we apply the width constraints differently input.css -->
     <article class="post-content
-                    flex flex-col items-center
-                    ">
+                    flex flex-col items-center">
         {{ .Content }}
     </article>
 
 </section>
 
 <div class="post-meta bg-henry-1
-            flex flex-col
-            min-w-[333px]">
-<section class="w-3/4 max-w-3xl mx-auto">
+            flex flex-col items-center">
+<section class="w-3/4 max-w-3xl min-w-[333px]">
     {{- partial "meta.html" . -}}
 </section>
 </div>
