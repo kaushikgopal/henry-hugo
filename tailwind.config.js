@@ -16,6 +16,10 @@ module.exports = {
             'mono': ['kg-mono'],
         },
         extend: {
+            colors: {
+                "henry-0": "#1c2b33",
+                "henry-1": "#152027",
+            },
         },
     },
     plugins: [

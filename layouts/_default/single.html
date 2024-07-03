@@ -1,5 +1,7 @@
 {{ define "content" }}
 
+{{ partial "letter-subscribe.html" . }}
+
 <section class="post
                 w-3/4 max-w-3xl m-auto pt-24 pb-12">
 
@@ -47,8 +49,7 @@
 
 </section>
 
-<div class="post-meta
-            bg-[#152027]">
+<div class="post-meta bg-henry-1">
     <div class="w-3/4 max-w-3xl m-auto">
     <!-- show RHS navbar content -->
     {{- partial "nav.html" . -}}

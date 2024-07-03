@@ -32,7 +32,7 @@
 .post-content pre { @apply p-4 border border-black rounded-md overflow-auto; }
 .post-content pre code { @apply text-xs; }
 
-.post-content figure img { @apply border border-black rounded-md; }
+.post-content figure img { @apply border-4 border-black rounded-md; }
 
-.footnotes hr { @apply border border-slate-500; }
+.footnotes hr { @apply border border-slate-500 mt-10; }
 .footnotes ol { @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6; }
