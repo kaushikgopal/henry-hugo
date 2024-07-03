@@ -6,10 +6,7 @@
     <div class="tags
                 flex flex-row gap-2">
 
-        <a class="nav-link w-fit rounded-sm
-                    border border-amber-300 hover:bg-amber-300 bg-transparent text-amber-300 hover:text-black
-                    uppercase text-xs
-                    px-1.5 py-0.5"
+        <a class="nav-link pill-amber text-xs"
            href="/{{.Section}}">
         {{ if .Params.externalLink }}link
         {{ else if eq .Section "letter" }}letter
@@ -23,17 +20,14 @@
 
         {{ if .Draft }}
         <div class="draft
-                    w-fit border border-amber-300 rounded-sm bg-amber-300
-                    uppercase text-xs text-black font-bold
-                    px-1.5 py-0.5
-                    draft">Draft</div>
+                    pill-amber-solid text-xs">Draft</div>
         {{ end }}
     </div>
 
     <h1 class="post-link-url
                mt-1
                text-2xl">
-    <a href="{{ .RelPermalink }}">
+    <a class="no-underline" href="{{ .RelPermalink }}">
         {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
     </a>
     </h1>

@@ -6,33 +6,130 @@
 @tailwind utilities;
 
 @layer base {
+    article {
+        @apply text-slate-300 space-y-6;
+    }
+
     a {
-        @apply underline-offset-4;
+        @apply underline underline-offset-4
+        hover:no-underline hover:text-amber-300;
     }
 }
 
-.post-content a { @apply underline hover:no-underline;}
+@layer components {
 
-.post-content h1,
-.post-content h2,
-.post-content h3,
-.post-content h4 {
-    @apply font-serif font-medium text-amber-200;
+    .post-content h1,
+    .post-content h2,
+    .post-content h3,
+    .post-content h4 {
+        @apply font-serif font-medium text-amber-200;
+    }
+
+    .post-content h1 {
+        @apply text-2xl;
+    }
+
+    .post-content h1 code {
+        @apply text-2xl ;
+    }
+
+    .post-content h2 {
+        @apply text-xl ;
+    }
+
+    .post-content h2 code {
+        @apply text-xl ;
+    }
+
+    .post-content h3 {
+        @apply text-lg ;
+    }
+
+    .post-content h3 code {
+        @apply text-lg ;
+    }
+
+    .post-content h4 {
+        @apply font-bold ;
+    }
+
+
+    .post-content code {
+        @apply text-sm text-amber-100;
+    }
+
+    .post-content pre {
+        @apply p-4 border border-black rounded-md overflow-auto;
+    }
+
+    .post-content pre code {
+        @apply text-xs;
+    }
+
+    .post-content figure figcaption {
+        @apply no-underline font-medium text-xs pt-1;
+    }
+    .post-content figure img {
+        @apply border-4 border-black rounded-md;
+    }
+
+    .post-content .callout:not(figure) {
+        @apply border-4 border-amber-200 p-4 space-y-2;
+    }
+
+    .post-content .callout ol li {
+        @apply ms-6 list-decimal;
+    }
+
+    .post-content .callout ul li {
+        @apply ms-6 list-disc;
+    }
+
+    .post-content .footnote-ref {
+        @apply font-bold no-underline ps-0.5;
+    }
+
+    .post-content .footnote-backref {
+        @apply font-bold text-white no-underline hover:text-amber-300;
+    }
+
+    .footnotes hr {
+        @apply border border-slate-500 mt-10;
+    }
+
+    .footnotes ol {
+        @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6;
+    }
+
+
+    .pill-purple {
+        @apply  w-fit border border-purple-700 rounded-sm
+        px-1.5 py-0.5
+        bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white
+        uppercase no-underline;
+    }
+
+    .pill-amber {
+        @apply  w-fit border border-amber-300 rounded-sm
+        px-1.5 py-0.5
+        bg-transparent hover:bg-amber-300 text-amber-300 hover:text-black
+        uppercase no-underline;
+    }
+
+    .pill-amber-solid {
+        @apply  w-fit border border-amber-300 rounded-sm
+        px-1.5 py-0.5
+        bg-amber-300 text-black
+        uppercase font-bold no-underline;
+    }
+
+    .pill-slate {
+        @apply  w-fit border border-slate-500 rounded-sm
+                px-1.5 py-0.5
+                bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black
+                uppercase no-underline;
+    }
+
 }
-.post-content h1 { @apply text-2xl; }
-.post-content h1 code { @apply text-2xl ; }
-.post-content h2 { @apply text-xl ; }
-.post-content h2 code { @apply text-xl ; }
-.post-content h3 { @apply text-lg ; }
-.post-content h3 code { @apply text-lg ; }
-.post-content h4 { @apply font-bold ; }
 
 
-.post-content code { @apply text-sm text-amber-100; }
-.post-content pre { @apply p-4 border border-black rounded-md overflow-auto; }
-.post-content pre code { @apply text-xs; }
-
-.post-content figure img { @apply border-4 border-black rounded-md; }
-
-.footnotes hr { @apply border border-slate-500 mt-10; }
-.footnotes ol { @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6; }
