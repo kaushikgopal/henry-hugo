@@ -12,7 +12,8 @@
                    text-3xl font-medium font-serif">
         <!-- Handle external links differently -->
         {{ if .Params.externalLink }}
-            <a href="{{ .Params.externalLink }}" class='article-link'>
+            <a href="{{ .Params.externalLink }}"
+               class="article-link decoration-2">
                 {{ .Title }}
             </a>
             {{- partial "postimoji.html" . -}}
@@ -26,7 +27,9 @@
             {{- partial "postimoji.html" . -}}
         {{ end }}
 
-        {{ if .Draft }} <span class="draft">Draft</span> {{ end }}
+        {{ if .Draft }}
+            <span class="draft pill-amber-solid text-lg">Draft</span>
+        {{ end }}
         </h1>
 
         <h4 class="post-author
