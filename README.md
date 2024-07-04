@@ -8,7 +8,7 @@ Henry is a [Hugo](https://gohugo.io/) theme with a gorgeous reading experience, 
 
 # Getting Started
 
-The easiest way to get up and running with a Hugo blog using Henry is as follows:
+These are the instructions for setting up a hugo blog with the Henry theme.
 
 ```shell
 # 1. Install Hugo
@@ -23,15 +23,25 @@ git clone -b tailwindcss/kg https://github.com/kaushikgopal/henry-hugo.git theme
 # brew install node # if you don't have npm installed
 cd themes/henry
 npm install -D tailwindcss
-
+npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css
 
 # 3. configure blog
 ## add these lines to your hugo.toml config file
 theme = "henry"
 
 # 4. run Hugo!
-cd ../.. # go back to the root of your hugo project
-foreman start -f themes/henry/Procfile.dev
+
+# Option 1: in two separate tabs
+npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
+ # go back to the root of your hugo project
+cd ../.. && hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify
+--noHTTPCache --printI18nWarnings --buildDrafts
+
+
+# Option 2: single command
+./bin/dev
+
+
 # open http://0.0.0.0:1313/
 
 # sample posts are in henry's content folder : themes/henry/content
@@ -39,6 +49,8 @@ foreman start -f themes/henry/Procfile.dev
 ```
 
 You're good to go. Happy blogging!
+
+Now, whenever you need to get your hugo blog up and running again, just run `./bin/dev`.
 
 ## Optional configurations
 
@@ -98,33 +110,6 @@ Here are some recommended customizations to make in your `hugo.toml` config file
     name = "title"
     weight = 10
 ```
-
-
-# Use TailwindCSS
-
-## run server
-
-```shell
-./bin/dev   # from main hugo directory
-```
-
-the `./bin/dev` command calls `npm run dev` which in turn uses `npm-run-all` to run multiple scripts concurrently. You can see the commands in the `package.json` file
-
-
-## setup (first time)
-
-_You typically don't need to do this._
-
-```shell
-cd themes/henry
-
-npm init -y                 # creates package.json (say yes to everything
-npm install -D tailwindcss  # installs tailwindcss as a dependency
-npx tailwindcss init        # creates a tailwind.config.js file
-```
-
-We are not installing PostCSS (like much of the internet recommends)
-
 
 # Henry in the Wild
 
