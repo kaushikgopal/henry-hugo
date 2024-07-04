@@ -13,7 +13,7 @@
         <!-- Handle external links differently -->
         {{ if .Params.externalLink }}
             <a href="{{ .Params.externalLink }}"
-               class="article-link decoration-2">
+               class="article-link decoration-1 decoration-slate-300 underline-offset-6">
                 {{ .Title }}
             </a>
             {{- partial "postimoji.html" . -}}
@@ -52,7 +52,8 @@
 </section>
 
 <div class="post-meta bg-henry-1
-            flex flex-col items-center">
+            flex flex-col items-center
+            pb-10">
 <section class="w-3/4 max-w-3xl min-w-[333px]">
     {{- partial "meta.html" . -}}
 </section>

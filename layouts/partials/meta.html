@@ -7,7 +7,9 @@
 {{ end }}
 
 {{ if .Params.externalLink }}
-<div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
+<div class="post-permalink mt-1">
+    <a class="text-sm text-slate-500" href="{{ .RelPermalink }}">Permalink</a>
+</div>
 {{ end }}
 
 {{ $n := (add (len (.Params.categories | default slice)) -1) }}
