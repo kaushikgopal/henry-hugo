@@ -19,7 +19,7 @@ hugo new site blog-henry
 cd blog-henry
 
 # 2. clone Henry
-git clone -b tailwindcss/kg https://github.com/kaushikgopal/henry-hugo.git themes/henry
+git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
 # brew install node # if you don't have npm installed
 cd themes/henry
 npm install -D tailwindcss
