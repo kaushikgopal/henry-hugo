@@ -1,2 +1,2 @@
-css: cd themes/henry && npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
-hugo: hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify --noHTTPCache --printI18nWarnings --buildDrafts
+css: npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
+hugo: cd ../.. && hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify --noHTTPCache --printI18nWarnings --buildDrafts
