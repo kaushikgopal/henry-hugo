@@ -24,8 +24,6 @@ git clone git@github.com:kaushikgopal/henry-hugo.git themes/henry
 # 3. configure blog
 ## add these lines to your hugo.toml config file
 theme = "henry"
-[params]
-    ExternalLinkIndicator = "»"
 
 # 4. run Hugo!
 hugo server -D
