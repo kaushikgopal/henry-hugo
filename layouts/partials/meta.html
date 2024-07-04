@@ -12,13 +12,6 @@
 </div>
 {{ end }}
 
-{{ $n := (add (len (.Params.categories | default slice)) -1) }}
-{{ range $i, $c := .Params.categories  }}
-{{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
-    <div class="post-taxonomy"><a href="/categories/{{ $c | urlize }}">#{{ $c }}</a></div>
-    {{ if eq $i $n }} </div> {{ end }}
-{{ end }}
-
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
 <div class="related-posts pt-6 pb-20">

@@ -64,6 +64,16 @@
         <li><a class="nav-link pill-slate text-xs" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
 
+
+        {{ $n := (add (len (.Params.categories | default slice)) -1) }}
+        {{ range $i, $c := .Params.categories  }}
+        {{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
+        <li><a class="nav-link pill-amber text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
+        {{ if eq $i $n }} </div> {{ end }}
+        {{ end }}
+
+
+
         {{- partial "nav-after.html" . -}}
     </ul>
 </nav>
