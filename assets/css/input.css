@@ -1,5 +1,5 @@
 @import "fonts.css";
-@import "../../../../assets/css/custom.css";
+@import "../../../../assets/css/input-custom.css";
 
 @tailwind base;
 @tailwind components;
@@ -111,7 +111,6 @@
         @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6;
     }
 
-
     .pill-purple {
         @apply w-fit border border-purple-700 rounded-sm
         px-1.5 py-0.5
@@ -137,7 +136,7 @@
         @apply w-fit border border-slate-500 rounded-sm
         px-1.5 py-0.5
         bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black
-        uppercase no-underline;
+        uppercase underline;
     }
 
 }
