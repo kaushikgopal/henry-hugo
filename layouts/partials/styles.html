@@ -1,10 +1,7 @@
-{{ $css := resources.Get "scss/style.scss" }}
+{{ $css := resources.Get "css/output.css" }}
 
-{{ if .Site.IsServer }}
-    {{ $css = $css | toCSS (dict "targetPath" "css/style.css" "enableSourceMap" true) }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{ else }}
-    {{ $css = $css | toCSS (dict "targetPath" "css/style.css" "enableSourceMap" false) }}
-    {{ $css = $css | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ if not hugo.IsServer }}
+{{ $css = $css | minify | fingerprint }}
 {{ end }}
+
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

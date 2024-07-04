@@ -1,0 +1,13 @@
+{
+  "name": "henry",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><img src=\"images/henry.png\"></p>",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "tailwindcss": "^3.4.4"
+  }
+}

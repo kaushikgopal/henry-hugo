@@ -1,52 +1,65 @@
-<div class="post-link">
-    <div class="post-metadata">
+<div class="mt-8">
 
-        {{ if .Params.externalLink }}
-            <a class="postimoji" href="{{ .Params.externalLink }}">{{- partial "postimoji.html" . -}}</a>
-        {{ else if eq .Section "s" }}
-            <a class="postimoji" href="/s">{{- partial "postimoji.html" . -}}</a>
-        {{ else if eq .Section "letter" }}
-            <span class="postimoji">{{- partial "postimoji.html" . -}}</span>
-        {{ else if .Params.postimoji }}
-            <span class="postimoji">{{- partial "postimoji.html" . -}}</span>
+<aside class="post-metadata">
+
+    <div class="tags
+                flex flex-row gap-2">
+
+        <a class="nav-link pill-amber text-xs"
+           href="/{{.Section}}">
+        {{ if .Params.externalLink }}link
+        {{ else if eq .Section "letter" }}letter
+        {{ else if eq .Section "s" }}short
+        {{ else if eq .Section "blog" }}post
+        {{ else if eq .Section "ppt" }}talk
+        {{ else }}page
         {{ end }}
-
-        <a class="post-link-url" href="{{ .RelPermalink }}">
-            {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
         </a>
 
-        {{ if .Draft }}<span class="draft">Draft</span>{{ end }}
 
-        <!--<div class="post-metametadata">
-
-            {{ if not (eq .Section "log") }}
-            <div class="post-link-date">{{ .PublishDate.Format "2006.01.02" }}</div>
-            {{ end}}
-
-
-            {{ if .Params.Categories }}
-            {{ $category := index .Params.Categories 0}}
-            <div class="category">
-                <a href="/categories/#{{$category}}">#{{ $category }}</a>
-            </div>
-            {{ end }}
-
-
-            {{ if eq .Section "ppt" }}
-            <div class="category">
-                <a href="/ppt">#ppt</a>
-            </div>
-            {{ end}}
-
-        </div>-->
-
+        {{ if .Draft }}
+        <div class="draft
+                    pill-amber-solid text-xs">Draft</div>
+        {{ end }}
     </div>
 
-    <div class="post-summary">
-        <div class="post-summary-content">
-            {{ .Summary }}
+    <h1 class="post-link-url
+               mt-1
+               text-2xl">
+    <a class="no-underline" href="{{ .RelPermalink }}">
+        {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
+    </a>
+    </h1>
+
+    <!--<div class="post-metametadata">
+
+        {{ if not (eq .Section "log") }}
+        <div class="post-link-date">{{ .PublishDate.Format "2006.01.02" }}</div>
+        {{ end}}
+
+
+        {{ if .Params.Categories }}
+        {{ $category := index .Params.Categories 0}}
+        <div class="category">
+            <a href="/categories/#{{$category}}">#{{ $category }}</a>
         </div>
-    </div>
+        {{ end }}
+
+
+        {{ if eq .Section "ppt" }}
+        <div class="category">
+            <a href="/ppt">#ppt</a>
+        </div>
+        {{ end}}
+
+    </div>-->
+</aside>
+
+<article class="post-summary
+            text-slate-400
+            line-clamp-3 hidden md:block">
+{{ .Summary }}
+</article>
 
 
 </div>

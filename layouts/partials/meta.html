@@ -1,27 +1,25 @@
-{{- partial "post-meta-additions.html" . -}}
+{{- partial "nav.html" . -}}
+{{- partial "meta-custom.html" . -}}
 
 {{ if not (eq .Layout "page") }}
-<div class="post-date">{{ .Date.Format "Jan 2006" }}</div>
+<div class="post-date mt-2
+            text-sm text-slate-600">{{ .Date.Format "Jan 2006" }}</div>
 {{ end }}
 
 {{ if .Params.externalLink }}
-    <div class="post-permalink"><a href="{{ .RelPermalink }}">Permalink</a></div>
-{{ end }}
-
-{{ $n := (add (len (.Params.categories | default slice)) -1) }}
-{{ range $i, $c := .Params.categories  }}
-{{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
-    <div class="post-taxonomy"><a href="/categories/{{ $c | urlize }}">#{{ $c }}</a></div>
-    {{ if eq $i $n }} </div> {{ end }}
+<div class="post-permalink mt-1">
+    <a class="text-sm text-slate-500" href="{{ .RelPermalink }}">Permalink</a>
+</div>
 {{ end }}
 
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
-<div class="post-related">
-    <h4> Related: </h4>
-    <ul class="post-related-links">
+<div class="related-posts pt-6 pb-20">
+    <h4 class="font-medium text-slate-500"> Related: </h4>
+    <ul class="post-related-links mt-2 ms-3.5">
         {{ range . }}
-        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        <li class="related-post list-disc w-fit
+                   text-slate-600"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
         {{ end }}
     </ul>
 </div>
