@@ -20,14 +20,19 @@ cd blog-henry
 
 # 2. clone Henry
 git clone -b tailwindcss/kg https://github.com/kaushikgopal/henry-hugo.git themes/henry
+# brew install node # if you don't have npm installed
+cd themes/henry
+npm install -D tailwindcss
+
 
 # 3. configure blog
 ## add these lines to your hugo.toml config file
 theme = "henry"
 
 # 4. run Hugo!
+cd ../.. # go back to the root of your hugo project
 foreman start -f themes/henry/Procfile.dev
-open http://0.0.0.0:1313/
+# open http://0.0.0.0:1313/
 
 # sample posts are in henry's content folder : themes/henry/content
 # if you want to see some samples, just mark them from draft true → false
