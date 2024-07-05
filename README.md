@@ -37,10 +37,8 @@ npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
 cd ../.. && hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify
 --noHTTPCache --printI18nWarnings --buildDrafts
 
-
-# Option 2: single command
-./bin/dev
-
+# Option 2: use a single dev script
+# See my blog post on this https://kau.sh/blog/tailwind-hugo#bonus-tip
 
 # open http://0.0.0.0:1313/
 
