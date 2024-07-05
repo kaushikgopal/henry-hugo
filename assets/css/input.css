@@ -21,7 +21,7 @@
     .post-content h2,
     .post-content h3,
     .post-content h4 {
-        @apply font-serif font-medium text-amber-200;
+        @apply font-serif font-bold text-amber-200;
     }
 
     .post-content h1 {
@@ -75,7 +75,7 @@
     }
 
     .post-content figure figcaption {
-        @apply text-center no-underline font-medium text-xs pt-1;
+        @apply text-center no-underline font-bold text-xs pt-1;
     }
 
     .post-content figure img {

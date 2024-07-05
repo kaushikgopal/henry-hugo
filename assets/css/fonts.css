@@ -15,24 +15,12 @@
 @font-face {
     font-family: kg-serif;
     src: url("../fonts/kg-serif-medium.ttf");
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-medium-italic.ttf");
-    font-weight: 500;
-    font-style: italic;
-}
-@font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-bold.ttf");
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: kg-serif;
-    src: url("../fonts/kg-serif-bold-italic.ttf");
+    src: url("../fonts/kg-serif-medium-italic.ttf");
     font-weight: bold;
     font-style: italic;
 }
@@ -56,27 +44,13 @@
     font-family: kg-sans;
     src: url("../fonts/kg-sans-medium.woff2") format("woff2 supports variations"),
          url("../fonts/kg-sans-medium.woff2") format("woff2-variations");
-    font-weight: 500;
+    font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: kg-sans;
     src: url("../fonts/kg-sans-medium-italic.woff2") format("woff2 supports variations"),
          url("../fonts/kg-sans-medium-italic.woff2") format("woff2-variations");
-    font-weight: 500;
-    font-style: italic;
-}
-@font-face {
-    font-family: kg-sans;
-    src: url("../fonts/kg-sans-bold.woff2") format("woff2 supports variations"),
-         url("../fonts/kg-sans-bold.woff2") format("woff2-variations");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: kg-sans;
-    src: url("../fonts/kg-sans-bold-italic.woff2") format("woff2 supports variations"),
-         url("../fonts/kg-sans-bold-italic.woff2") format("woff2-variations");
     font-weight: bold;
     font-style: italic;
 }
