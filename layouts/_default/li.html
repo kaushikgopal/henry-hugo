@@ -24,8 +24,8 @@
     </div>
 
     <h1 class="post-link-url
-               mt-1
-               text-2xl">
+               mt-1 lg:mt-2
+               text-2xl lg:text-3xl">
     <a class="no-underline" href="{{ .RelPermalink }}">
         {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
     </a>
@@ -55,9 +55,9 @@
     </div>-->
 </aside>
 
-<article class="post-summary
-            text-slate-400
-            line-clamp-3 hidden md:block">
+<article class="post-summary hidden md:block
+                text-slate-400 line-clamp-3
+                lg:mt-2">
 {{ .Summary }}
 </article>
 
