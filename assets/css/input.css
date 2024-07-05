@@ -52,6 +52,13 @@
         @apply font-bold ;
     }
 
+    .post-content ol li {
+        @apply ms-6 list-decimal;
+    }
+
+    .post-content ul li {
+        @apply ms-6 list-disc;
+    }
 
     .post-content code {
         @apply text-sm text-amber-100;
@@ -86,13 +93,6 @@
         @apply border-4 border-amber-200 p-4 space-y-2;
     }
 
-    .post-content .callout ol li {
-        @apply ms-6 list-decimal;
-    }
-
-    .post-content .callout ul li {
-        @apply ms-6 list-disc;
-    }
 
     .post-content .footnote-ref {
         @apply font-bold no-underline ps-0.5;
