@@ -42,9 +42,9 @@
 <!-- in a category or tag page -->
 
 {{ range $group, $pages := .Data.Terms }}
-    <h2 class="mt-4
-               text-slate-400 font-bold
-               post-list-header term"
+    <h2 class="post-list-header term
+               pill-slate
+               mt-10 font-bold"
         id="{{ $group }}">#{{ $group }}</h2>
 
     <div class="post-list-content">
