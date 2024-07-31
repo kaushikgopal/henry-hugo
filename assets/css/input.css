@@ -69,7 +69,7 @@
     }
 
     .post-content pre code {
-        @apply text-xs;
+        @apply text-xs leading-5;
     }
 
     .post-content > *:not(figure.full-bleed) {
