@@ -17,6 +17,10 @@
 
 @layer components {
 
+    .post-content hr {
+        @apply border border-slate-500 mt-6;
+    }
+
     .post-content h1,
     .post-content h2,
     .post-content h3,
@@ -69,7 +73,7 @@
     }
 
     .post-content pre code {
-        @apply text-xs leading-5;
+        @apply text-sm;
     }
 
     .post-content > *:not(figure.full-bleed) {
