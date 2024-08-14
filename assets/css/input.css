@@ -65,7 +65,7 @@
     }
 
     .post-content code {
-        @apply text-sm text-amber-100;
+        @apply text-base text-amber-100;
     }
 
     .post-content pre {
