@@ -101,6 +101,10 @@
         @apply border-4 border-amber-200 p-4 space-y-2;
     }
 
+    .post-content blockquote {
+        @apply border-l-4 border-amber-200 pl-6 pt-4 pb-4 pr-2
+               leading-relaxed bg-henry-1;
+    }
 
     .post-content .footnote-ref {
         @apply font-bold no-underline ps-0.5;
