@@ -81,16 +81,19 @@
     }
 
     .post-content figure.full-bleed {
-        width: 100%;
-        max-height: 100vh;
+        @apply w-full max-h-lvh border-l-0 border-r-0;
     }
 
     .post-content figure figcaption {
         @apply text-center no-underline font-bold text-xs pt-1;
     }
 
-    .post-content figure img {
+    .post-content *:not(figure.full-bleed) img {
         @apply border-4 border-black rounded-md;
+    }
+
+    .post-content figure.full-bleed img {
+        @apply border-t-4 border-b-4 border-black;
     }
 
     .post-content figure img.borderless {
