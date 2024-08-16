@@ -93,6 +93,10 @@
         @apply border-4 border-black rounded-md;
     }
 
+    .post-content figure img.borderless {
+        @apply border-0;
+    }
+
     .post-content .callout:not(figure) {
         @apply border-4 border-amber-200 p-4 space-y-2;
     }
