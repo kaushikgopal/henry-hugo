@@ -58,25 +58,25 @@
 /* Monospace font */
 @font-face {
     font-family: kg-mono;
-    src:  url('../fonts/kg-mono.ttf');
+    src:  url('../fonts/kg-mono.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: kg-mono;
-    src:  url('../fonts/kg-mono.ttf');
+    src:  url('../fonts/kg-mono-bold.otf');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
     font-family: kg-mono;
-    src:  url('../fonts/kg-mono-italic.ttf');
+    src:  url('../fonts/kg-mono-italic.otf');
     font-weight: normal;
     font-style: italic;
 }
 @font-face {
     font-family: kg-mono;
-    src:  url('../fonts/kg-mono-italic.ttf');
+    src:  url('../fonts/kg-mono-bold-italic.otf');
     font-weight: bold;
     font-style: italic;
 }
