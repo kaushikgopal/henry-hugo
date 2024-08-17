@@ -81,7 +81,7 @@
     }
 
     .post-content figure.full-bleed {
-        @apply w-full max-h-lvh border-l-0 border-r-0;
+        @apply w-full border-l-0 border-r-0;
     }
 
     .post-content figure figcaption {
@@ -93,6 +93,7 @@
     }
 
     .post-content figure.full-bleed img {
+        width: 100%;
         @apply border-t-4 border-b-4 border-black;
     }
 
