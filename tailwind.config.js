@@ -13,7 +13,7 @@ module.exports = {
         fontFamily: {
             'sans': ['kg-sans'],
             'serif': ['kg-serif'],
-            'mono': ['SF Mono', 'ui-monospace', 'kg-mono'],
+            'mono': ['kg-mono', 'SF Mono', 'ui-monospace'],
         },
         extend: {
             colors: {
