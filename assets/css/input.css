@@ -68,8 +68,8 @@
         @apply p-4 border border-black rounded-md overflow-auto;
     }
 
-    .post-content pre code {
-        @apply text-sm text-amber-100;
+    .post-content code {
+        @apply text-base text-amber-100;
     }
 
     .post-content > *:not(figure.full-bleed) {
