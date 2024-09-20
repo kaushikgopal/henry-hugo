@@ -1,0 +1,37 @@
+{{ if eq (.Param "search.enabled") true }}
+
+<!-- Hugo fuse-search libraries -->
+{{ $js := resources.Get "js/fuse.6.4.0.js" }}
+{{- $secureJS := $js |  resources.Minify | resources.Fingerprint -}}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ $js := resources.Get "js/fuse-search.js" }}
+{{- $secureJS := $js |  resources.Minify | resources.Fingerprint -}}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}" crossorigin="anonymous"></script>
+<script>setupSearch();</script>
+
+<!-- Hugo fuse-search topSearchbar -->
+{{- if eq (.Param "search.topSearchbar.enabled") true -}}
+<div id="fuse-search-top-searchbar" class="fuse-search-top-searchbar-{{ .Param "search.topSearchbar.position" }}">
+  <input id="fuse-search-top-searchbar-input" tabindex="0" placeholder="search">
+  <ul id="fuse-search-top-searchbar-results"></ul>
+</div>
+<script>fusesearchTopSearchbar = setupTopSearchbar();</script>
+{{- if eq (.Param "search.keyboardControlled") "topSearchbar" -}}
+<script>setupKeyboardHandler(fusesearchTopSearchbar);</script>
+{{- end -}}
+{{- end -}}
+
+<!-- Hugo fuse-search fullscreenSearchbar -->
+{{- if eq (.Param "search.fullscreenSearchbar.enabled") true -}}
+<div id="fuse-search-fullscreen-searchbar" class="fuse-search-fullscreen-searchbar-{{ .Param "search.fullscreenSearchbar.theme" }}">
+  <a id="fuse-search-fullscreen-searchbar-close">×</a>
+  <input id="fuse-search-fullscreen-searchbar-input" tabindex="0" placeholder="search">
+  <ul id="fuse-search-fullscreen-searchbar-results"></ul>
+</div>
+<script>fusesearchFullscreenSearchbar = setupFullscreenSearchbar();</script>
+{{- if eq (.Param "search.keyboardControlled") "fullscreenSearchbar" -}}
+<script>setupKeyboardHandler(fusesearchFullscreenSearchbar);</script>
+{{- end -}}
+{{- end -}}
+
+{{- end -}}

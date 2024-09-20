@@ -1,0 +1,6 @@
+{{- if eq (.Param "search.enabled") true -}}
+
+{{ $style := resources.Get "scss/fuse-search.scss" | resources.ToCSS (dict "outputStyle" "compressed") | resources.Fingerprint }}
+	<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" type="text/css">
+
+{{- end -}}

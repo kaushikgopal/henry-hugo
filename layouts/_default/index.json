@@ -1,0 +1,12 @@
+{{ if eq ($.Param "search.enabled") true }}
+{{- $.Scratch.Add "index" slice -}}
+{{- range (where .Site.AllPages "Kind" "page") -}}
+	{{- $page := . -}}
+	{{- $entry := dict "permalink" .RelPermalink "lang" .Language.Lang "title" .Title "contents" .Plain -}}
+	{{- range ($.Param "search.searchableParams") -}}
+		{{- $entry = merge $entry (dict . ($page.Param .)) }}
+	{{- end -}}
+    {{- $.Scratch.Add "index" $entry -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}
+{{- end -}}

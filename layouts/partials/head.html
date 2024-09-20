@@ -9,8 +9,8 @@
     </script>
 
     {{- partial "styles.html" . -}}
-
     {{- partial "seo.html" . -}}
+    {{ partial "fuse-search/head.html" . }}
 
     {{ if (fileExists "static/images/favicon.png") }}
         <link rel="icon" href="/images/favicon.png" type="image/png">
