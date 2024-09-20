@@ -80,10 +80,16 @@ class Searchbar {
         this.init();
     }
 
-    itemHtml(item) {
-        return '<li><a href="' + item.permalink + '" tabindex="0">' +
+    itemHtml(item, isFirst, isLast) {
+        let classes = 'px-2 text-right bg-henry-1/90 py-1';
+
+        if (isFirst) classes += ' pt-4';
+        if (isLast) classes += ' pb-4';
+        if (!isLast || !isFirst) classes += ''; // Add a border between items
+
+        return '<li class="' + classes + '"><a href="' + item.permalink + '" tabindex="0">' +
                 '<span class="title">' + item.title + '</span>' +
-                '<span class="text">' + item.permalink + '</span>' +
+                // '<span class="text"> - ' + item.permalink + '</span>' +
                 '</a></li>';
     }
 
@@ -117,11 +123,14 @@ class Searchbar {
                 this.resultsAvailable = false;
                 searchitems = '';
             } else {  // we got results
-                for (let item of results.slice(0, this.search.maxResults)) {
+                const slicedResults = results.slice(0, this.search.maxResults);
+                slicedResults.forEach((item, index) => {
                     if ('item' in item) {
-                        searchitems += this.itemHtml(item.item);
+                        const isFirst = index === 0;
+                        const isLast = index === slicedResults.length - 1;
+                        searchitems += this.itemHtml(item.item, isFirst, isLast);
                     }
-                }
+                });
                 this.resultsAvailable = true;
             }
 

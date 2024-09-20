@@ -8,6 +8,7 @@ module.exports = {
         "../../content/**/*.{html,md}",
         "../../layouts/**/*.html",
         "./layouts/**/*.html",
+        "./assets/js/fuse-search.js",
     ],
     theme: {
         fontFamily: {
