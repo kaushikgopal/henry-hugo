@@ -12,17 +12,20 @@
     <script src="{{ $js.RelPermalink }}" type="module"></script>
 {{ end }}
 
-<!-- Search icon -->
-<div id="search-icon" class="fixed top-4 right-4 cursor-pointer z-50">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
-</div>
+<!-- Search container -->
+<div id="search-container" class="fixed top-4 right-4 flex items-center z-50">
+    <!-- Searchbar -->
+    <div id="searchbar" class="mr-2 hidden relative">
+        <input id="searchbar-input" class="px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none" tabindex="0" placeholder="Search...">
+        <ul id="searchbar-results" class="absolute right-0 mt-2 w-screen max-w-[75vw] min-w-[200px] max-h-[75vh] overflow-y-auto bg-gray-800 rounded-lg shadow-lg"></ul>
+    </div>
 
-<!-- Searchbar input -->
-<div id="fuse-search-searchbar" class="fixed top-4 right-4 w-80 z-50 bg-gray-800 rounded-lg shadow-lg hidden">
-    <input id="fuse-search-searchbar-input" class="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none" tabindex="0" placeholder="Search...">
-    <ul id="fuse-search-searchbar-results" class="mt-2 max-h-60 overflow-y-auto"></ul>
+    <!-- Search icon -->
+    <div id="search-icon" class="cursor-pointer p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+    </div>
 </div>
 
 <script type="module">
@@ -31,38 +34,21 @@
     const { fusesearch, searchbar } = setupSearch();
 
     const searchIcon = document.getElementById('search-icon');
-    const searchBar = document.getElementById('fuse-search-searchbar');
-    const searchInput = document.getElementById('fuse-search-searchbar-input');
+    const searchBar = document.getElementById('searchbar');
+    const searchInput = document.getElementById('searchbar-input');
 
-    // Function to show search bar
-    function showSearchBar() {
-        searchBar.classList.remove('hidden');
-        searchIcon.classList.add('hidden');
-        searchInput.focus();
-    }
-
-    // Function to hide search bar
-    function hideSearchBar() {
-        searchBar.classList.add('hidden');
-        searchIcon.classList.remove('hidden');
+    // Function to toggle search bar visibility
+    function toggleSearchBar() {
+        searchBar.classList.toggle('hidden');
+        if (!searchBar.classList.contains('hidden')) {
+            searchInput.focus();
+        }
     }
 
     // Toggle search bar visibility when clicking the search icon
     searchIcon.addEventListener('click', (e) => {
         e.stopPropagation();
-        showSearchBar();
-    });
-
-    // Hide search bar when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!searchBar.contains(e.target) && !searchIcon.contains(e.target)) {
-            hideSearchBar();
-        }
-    });
-
-    // Prevent hiding when clicking inside the search bar
-    searchBar.addEventListener('click', (e) => {
-        e.stopPropagation();
+        toggleSearchBar();
     });
 </script>
 

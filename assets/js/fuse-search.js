@@ -73,9 +73,9 @@ class FuseSearch {
 class Searchbar {
     constructor(fusesearch) {
         this.search           = fusesearch;
-        this.element_main     = document.getElementById("fuse-search-searchbar");
-        this.element_input    = document.getElementById('fuse-search-searchbar-input');
-        this.element_results  = document.getElementById('fuse-search-searchbar-results');
+        this.element_main     = document.getElementById("searchbar");
+        this.element_input    = document.getElementById('searchbar-input');
+        this.element_results  = document.getElementById('searchbar-results');
         this.initPromise = this.search.init();
         this.init();
     }
