@@ -1,15 +1,15 @@
 {{ if .Site.Params.search.enabled }}
 
-<!-- Hugo fuse-search libraries -->
+<!-- Search related libs (Fuse) -->
 {{ $fuse := resources.Get "js/fuse.6.4.0.js" }}
 {{ $fuseSearch := resources.Get "js/fuse-search.js" }}
-{{ $js := slice $fuse $fuseSearch | resources.Concat "js/search.js" | resources.Minify }}
+{{ $search := slice $fuse $fuseSearch | resources.Concat "js/search.js" | resources.Minify }}
 
 {{ if hugo.IsServer }}
-    <script src="{{ $js.RelPermalink }}" type="module"></script>
+    <script src="{{ $search.RelPermalink }}" type="module"></script>
 {{ else }}
-    {{ $js = $js | fingerprint }}
-    <script src="{{ $js.RelPermalink }}" type="module"></script>
+    {{ $search = $search | fingerprint }}
+    <script src="{{ $search.RelPermalink }}" type="module"></script>
 {{ end }}
 
 <!-- Search container -->
@@ -37,7 +37,7 @@
 </div>
 
 <script type="module">
-    import { setupSearch } from '{{ $js.RelPermalink }}';
+    import { setupSearch } from '{{ $search.RelPermalink }}';
 
     const { fusesearch, searchbar } = setupSearch();
 
