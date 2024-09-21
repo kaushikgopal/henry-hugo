@@ -89,7 +89,7 @@ class Searchbar {
 
         return '<li class="' + classes + '"><a href="' + item.permalink + '" tabindex="0">' +
                 '<span class="title">' + item.title + '</span>' +
-                // '<span class="text"> - ' + item.permalink + '</span>' +
+                '<span class="text text-slate-400 hidden md:inline"> ' + item.permalink + '</span>' +
                 '</a></li>';
     }
 
