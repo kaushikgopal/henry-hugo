@@ -1,15 +1,5 @@
-{{- $pctx := . -}}
-{{- if .IsHome -}}
-    {{ $pctx = .Site }}
-{{- end -}}
-
 {{- $pages := slice -}}
-{{- if or $.IsHome $.IsSection -}}
-    {{- $pages = $pctx.RegularPages -}}
-{{- else -}}
-    {{- $pages = $pctx.Pages -}}
-{{- end -}}
-
+{{- $pages := cond .IsHome .Site.RegularPages .Pages -}}
 {{- $pages := where $pages "Section" "not in" site.Params.invisibleSections -}}
 {{- $pages := where $pages "Params.noindex" "!=" true -}}
 
