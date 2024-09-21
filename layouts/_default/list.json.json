@@ -24,6 +24,7 @@
     "title" : "{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}",
     "description": "Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}",
     "home_page_url" : "{{ .Site.BaseURL }}",
+    "page_count": {{ $length }},
     {{ with .OutputFormats.Get "JSON" -}}
     "feed_url" : "{{ .Permalink }}",
     {{ end -}}
@@ -33,10 +34,11 @@
     {{ with $.Param "favicon" -}}
     "favicon" : "{{ . | absURL }}",
     {{ end -}}
-    {{ with .Site.Author.name -}}
+
+    {{ with .Site.Params.author.name -}}
     "author" : {
-        "name" : "{{ . }}"{{ with $.Site.Author.url }},
-        "url": "{{ . }}"{{ end }}{{ with $.Site.Author.avatar }},
+        "name" : "{{ . }}"{{ with $.Site.Params.author.url }},
+        "url": "{{ . }}"{{ end }}{{ with $.Site.Params.author.avatar }},
         "avatar": "{{ . | absURL }}"{{ end }}
     },
     {{ end -}}

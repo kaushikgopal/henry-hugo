@@ -7,12 +7,14 @@
     Section— {{.Section}} — {{ strings.TrimSuffix "/" (.Section | absURL)}} <br>
     Type— {{.Type}} | <i>use Section typically</i><br>
     Layout— {{.Layout}}<br>
-    Site Author— {{.Site.Author.FullName}}<br>
-    Author— {{ .Params.Author }} <br>
     Categories— {{ .Params.Categories }} <br>
     Tags— {{ .Params.Tags }} <br>
     Date— {{.Date.Format "2006-01-02 Monday"}}<br>
     Environment— {{ hugo.Environment }} <br>
     -- <br>
     Params— {{.Params}}<br>
+
+    -- <br>
+    Author— {{ .Site.Params.author.name }} | {{ ($.Param "author").name }}  <br>
+    Author Img <img src="{{ .Site.Params.author.avatar }}" alt="Author Img" />
 </div>

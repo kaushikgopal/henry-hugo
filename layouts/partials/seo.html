@@ -4,7 +4,7 @@
 {{ end }}
 <title>{{ $title }}</title>
 
-{{ with .Site.Author.name }}
+{{ with .Site.Params.author.name }}
     <meta name="author" content="{{ . }}">
 {{ end }}
 

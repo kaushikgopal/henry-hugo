@@ -35,21 +35,57 @@ features = [
 
 min_version = "0.84.0"
 
+[params]
+[params.search]
+enabled = true
+
+[related]
+includeNewer = true # show related posts from the future
+threshold = 80
+[[related.indices]]
+name = "title"
+weight = 60
+toLower = true
+[[related.indices]]
+name = "tags"
+weight = 30
 
 [author]
 name = "Kaushik Gopal"
 homepage = "https://kau.sh"
 
+# configure RSS feeds for specific pages
 [outputs]
-page = ["HTML"]
-home = ["HTML", "RSS", "JSON"]
-section = ["HTML", "RSS"]
-taxonomyTerm = ["HTML"]
-taxonomy = ["HTML", "RSS"]
+# output format for pages
+# https://gohugo.io/templates/output-formats/#output-formats-for-pages
 
-[params.search]
-enabled = true
-keyboardControlled = "topSearchbar"
+page = ["html"]
+home = ["HTML", "RSS", "JSON", "SEARCH"]
+# sections = directories e.g. blog, letter, ppt
+section = ["HTML", "RSS", "JSON"]
+# taxonomies = virtual tags/directories e.g. categories, tags (built-in)
+# no rss for these as they're mostly "list" pages
+taxonomy = ["html"]
+# terms = values of taxonomies e.g. categories/programming
+term = ["HTML", "RSS", "JSON"]
 
-[params.search.topSearchbar]
-enabled = true
+
+# enable .json RSS feeds
+[outputFormats]
+# output formats
+# https://gohugo.io/templates/output-formats/#output-format-definitions
+
+[outputFormats.RSS]
+mediatype = "application/rss"
+# change RSS path for default XML feed to /feed.xml (default index.xml)
+baseName = "feed"
+
+[outputFormats.JSON]
+# change RSS path for JSON feed to /feed.json
+baseName = "feed"
+
+[outputFormats.SEARCH]
+baseName = "search"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true

@@ -36,8 +36,8 @@
                    text-sm text-slate-600">
         {{ if .Params.author }}
             {{ .Params.author }}
-        {{ else if .Site.Author.name }}
-            {{ .Site.Author.name }}
+        {{ else if .Site.Params.author.name }}
+            {{ .Site.Params.author.name }}
         {{ end}}
         </h4>
 
