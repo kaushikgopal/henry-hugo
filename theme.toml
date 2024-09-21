@@ -4,19 +4,52 @@
 name = "Henry Hugo Theme"
 description = "Henry is a gorgeous Hugo theme optimmized for a good reading experience and packed with features"
 homepage = "https://kau.sh/blog/henry-hugo-theme/"
-tags = ["website", "starter", "responsive", "Disqus", "blog", "Tachyons", "Multilingual", "Stackbit"]
-features = ["clean reading experience", "beautiful font & type", "customizable & versatile", "footnotes", "sidenotes", "multiple image display combinations", "image attribution captions", "external url", "daring fireball style urls", "canonical urls", "alternate urls aliases", "rss feed clean", "seo optimized", "posts", "shortcodes", "related posts"]
+tags = [
+  "website",
+  "starter",
+  "responsive",
+  "Disqus",
+  "blog",
+  "Tachyons",
+  "Multilingual",
+  "Stackbit",
+]
+features = [
+  "clean reading experience",
+  "beautiful font & type",
+  "customizable & versatile",
+  "footnotes",
+  "sidenotes",
+  "multiple image display combinations",
+  "image attribution captions",
+  "external url",
+  "daring fireball style urls",
+  "canonical urls",
+  "alternate urls aliases",
+  "rss feed clean",
+  "seo optimized",
+  "posts",
+  "shortcodes",
+  "related posts",
+]
 
 min_version = "0.84.0"
 
 
 [author]
-  name = "Kaushik Gopal"
-  homepage = "https://kau.sh"
+name = "Kaushik Gopal"
+homepage = "https://kau.sh"
 
 [outputs]
-    page = ["HTML"]
-    home = ["HTML", "RSS", "JSON"]
-    section = ["HTML","RSS"]
-    taxonomyTerm = ["HTML"]
-    taxonomy = ["HTML","RSS"]
+page = ["HTML"]
+home = ["HTML", "RSS", "JSON"]
+section = ["HTML", "RSS"]
+taxonomyTerm = ["HTML"]
+taxonomy = ["HTML", "RSS"]
+
+[params.search]
+enabled = true
+keyboardControlled = "topSearchbar"
+
+[params.search.topSearchbar]
+enabled = true

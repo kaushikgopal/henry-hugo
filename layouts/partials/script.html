@@ -1,5 +1,6 @@
 
-{{ $jq := resources.Get "js/jquery.min.js" }}
+
+{{/*  {{ $jq := resources.Get "js/jquery.min.js" }}
 {{ $sn := resources.Get "js/sidenotes.js" }}
 {{ $gt := resources.Get "js/goto.js" }}
 {{ $js := slice $jq $sn $gt | resources.Concat "js/bundle.js"  }}
@@ -9,4 +10,4 @@
 {{ else }}
     {{ $js = $js | minify | fingerprint }}
     <script src="{{ $js.RelPermalink }}" type="module"></script>
-{{ end }}
+{{ end }}  */}}
