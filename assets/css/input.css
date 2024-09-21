@@ -64,12 +64,15 @@
         @apply ms-6 list-disc;
     }
 
+    /* code blocks */
     .post-content pre {
-        @apply p-4 border border-black rounded-md overflow-auto;
+        @apply p-4 border border-black rounded-md overflow-auto
+               text-sm;
     }
 
+    /* inline code */
     .post-content code {
-        @apply text-base text-amber-100;
+        @apply text-amber-100;
     }
 
     .post-content > *:not(figure.full-bleed) {
