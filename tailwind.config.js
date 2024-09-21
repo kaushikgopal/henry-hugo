@@ -14,9 +14,17 @@ module.exports = {
         fontFamily: {
             'sans': ['kg-sans'],
             'serif': ['kg-serif'],
-            'mono': ['kg-mono', 'SF Mono', 'ui-monospace'],
+            'mono': ['kg-mono'],
         },
         extend: {
+            fontFamily: {
+                'mono': [
+                    'kg-mono',
+                    {
+                        fontFeatureSettings: '"cv02", "cv04", "cv06", "cv07", "cv08"',
+                    },
+                ],
+            },
             colors: {
                 "henry-0": "#1c2b33",
                 "henry-1": "#152027",

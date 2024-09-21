@@ -59,24 +59,7 @@
 @font-face {
     font-family: kg-mono;
     src: url('../fonts/kg-mono.woff2') format("woff2-variations");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: kg-mono;
-    src:  url('../fonts/kg-mono-bold.woff2') format("woff2-variations");;
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: kg-mono;
-    src: url('../fonts/kg-mono-italic.woff2') format("woff2-variations");
-    font-weight: normal;
-    font-style: italic;
-}
-@font-face {
-    font-family: kg-mono;
-    src:  url('../fonts/kg-mono-bold-italic.woff2') format("woff2-variations");
-    font-weight: bold;
-    font-style: italic;
+    font-weight: 100 1000; /* Specify the weight range supported by the font */
+    font-style: oblique 0deg 10deg; /* Specify the style range supported by the font */
+    font-feature-settings: 'cv02','cv04','cv06','cv07','cv08';
 }
