@@ -26,14 +26,14 @@ module.exports = {
                 ],
             },
             colors: {
-                "henry-0": "#1c2b33",
-                "henry-1": "#152027",
+                "henry-0": "#202020",
+                "henry-1": "#101010",
             },
         },
     },
     plugins: [
-        function ({addUtilities}) {
-            console.log ('Tailwind CSS root directory:', process.cwd ());
+        function ({ addUtilities }) {
+            console.log('Tailwind CSS root directory:', process.cwd());
         },
     ],
 }
