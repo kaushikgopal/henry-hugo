@@ -4,6 +4,7 @@
 name = "Henry Hugo Theme"
 description = "Henry is a gorgeous Hugo theme optimmized for a good reading experience and packed with features"
 homepage = "https://kau.sh/blog/henry-hugo-theme/"
+
 tags = [
   "website",
   "starter",
@@ -35,9 +36,13 @@ features = [
 
 min_version = "0.84.0"
 
+
 [params]
-[params.search]
-enabled = true
+[params.author]
+name = "Kaushik Gopal"
+email = "blog@kau.sh"
+url = "https://kau.sh"
+avatar = "/images/kg.jpeg"
 
 [related]
 includeNewer = true # show related posts from the future
@@ -50,15 +55,11 @@ toLower = true
 name = "tags"
 weight = 30
 
-[author]
-name = "Kaushik Gopal"
-homepage = "https://kau.sh"
 
 # configure RSS feeds for specific pages
 [outputs]
 # output format for pages
 # https://gohugo.io/templates/output-formats/#output-formats-for-pages
-
 page = ["html"]
 home = ["HTML", "RSS", "JSON", "SEARCH"]
 # sections = directories e.g. blog, letter, ppt
@@ -83,6 +84,22 @@ baseName = "feed"
 [outputFormats.JSON]
 # change RSS path for JSON feed to /feed.json
 baseName = "feed"
+
+
+[markup]
+defaultMarkdownHandler = 'goldmark'
+
+
+[languages]
+[languages.en]
+languageName = "English"
+languageCode = "en-us"
+weight = 1
+
+
+# Required for search
+[params.search]
+enabled = true
 
 [outputFormats.SEARCH]
 baseName = "search"

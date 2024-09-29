@@ -1,7 +1,7 @@
 <div>
     Title— {{.Title}} <br>
     Kind— {{.Kind}} <br>
-    BaseUrl— {{.Site.BaseURL}}  <br>
+    BaseUrl— {{.Site.BaseURL}} <br>
     Permalink— {{.Permalink}} <br>
     RelPermalink— {{.RelPermalink}} <br>
     Section— {{.Section}} — {{ strings.TrimSuffix "/" (.Section | absURL)}} <br>
@@ -15,6 +15,6 @@
     Params— {{.Params}}<br>
 
     -- <br>
-    Author— {{ .Site.Params.author.name }} | {{ ($.Param "author").name }}  <br>
+    Author— {{ $.Param "author" }} | {{ .Site.Params.author }} <br>
     Author Img <img src="{{ .Site.Params.author.avatar }}" alt="Author Img" />
 </div>
