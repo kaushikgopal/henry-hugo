@@ -29,7 +29,14 @@ npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css
 ## add these lines to your hugo.toml config file
 theme = "henry"
 
-# 4. run Hugo!
+# 4A. run Hugo first time
+pushd themes/henry
+npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
+# accept by hitting y/enter
+# hit ctrl + c to exit
+popd
+
+# 4B. run Hugo!
 
 # Option 1: in two separate tabs
 npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
