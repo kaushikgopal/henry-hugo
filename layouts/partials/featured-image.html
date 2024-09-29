@@ -1,0 +1,62 @@
+{{/*
+    courtesy: https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/layouts/partials/func/GetFeaturedImage.html
+
+    GetFeaturedImage
+
+	This partial gets the url for featured image for a given page.
+
+	If a featured_image was set in the page's front matter, then that will be used.
+
+	If not set, this will search page resources to find an image that contains the word
+	"cover", and if found, returns the path to that resource.
+
+	If no featured_image was set, and there's no "cover" image in page resources, then
+	this partial returns an empty string (which evaluates to false).
+
+	@return RelPermalink to featured image, or an empty string if not found.
+
+*/}}
+
+{{/* Declare a new string variable, $linkToCover */}}
+{{ $linkToCover := "" }}
+{{ $imageKeys := slice "featured_image" "cover" "banner" }}
+
+{{/* Check for any of the specified keys in front matter */}}
+{{ range $imageKeys }}
+  {{ $paramValue := index $.Params . }}
+  {{ with $paramValue }}
+    {{ $linkToCover = trim . "/" | absURL }}
+    {{/* If we find a Page Resource matching the exact value, we use it instead. */}}
+    {{ with $.Resources.GetMatch . }}
+      {{ $linkToCover = .Permalink }}
+    {{ end }}
+    {{ break }}
+  {{ end }}
+{{ end }}
+
+{{/* If no image found in front matter, search in page resources */}}
+{{ if not $linkToCover }}
+  {{ with .Resources.ByType "image" }}
+    {{ $resourceMatch := .GetMatch (printf "**{%s}*" (delimit $imageKeys ",")) }}
+    {{ range $imageKeys }}
+      {{ $exactMatch := $.Resources.GetMatch . }}
+      {{ if $exactMatch }}
+        {{ $linkToCover = $exactMatch.Permalink }}
+        {{ break }}
+      {{ end }}
+    {{ end }}
+    {{ if and (not $linkToCover) $resourceMatch }}
+      {{ $linkToCover = $resourceMatch.Permalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* if no cover image is found, use the site avatar */}}
+{{ if not $linkToCover }}
+  {{ if (fileExists "static/images/avatar.webp") }}
+    {{ $linkToCover = (printf "%v/%v" .Site.BaseURL "images/avatar.webp") }}
+  {{ end }}
+{{ end }}
+
+{{/* return either a permalink, or an empty string. */}}
+{{ return $linkToCover }}
