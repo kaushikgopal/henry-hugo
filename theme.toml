@@ -34,8 +34,37 @@ features = [
   "related posts",
 ]
 
+# hugo min version
 min_version = "0.84.0"
 
+[languages]
+[languages.en]
+languageName = "English"
+languageCode = "en-us"
+weight = 1
+# if you want to try a different markdown handler
+# [markup]
+# defaultMarkdownHandler = 'goldmark'
+
+[permalinks]
+blog = "/:section/:slug"
+ppt = "/:section/:slug"
+s = "/:section/:slug"
+log = "/:section/:year/:month"
+# would have gone "/:section/:year/:month/:day" but allowing flexibility by controlling slug directly
+letter = "/:section/:slug"
+
+[params]
+bioUrl = "https://kau.sh"
+summary = "Code, Culture, Carts & Carnatic Beats: Welcome to Kaush's World"
+avatar = "/images/kg.jpeg"
+sitename = "Kaushik Gopal blog"
+invisibleSections = ["log"]
+# github = "https://github.com/kaushikgopal"
+# facebook = "https://www.facebook.com/kaushikgopal"
+# twitter = "@kaushikgopal"
+# googleAnalytics = ""
+# enableRobotsTXT = true
 
 [params]
 [params.author]
@@ -44,6 +73,7 @@ email = "blog@kau.sh"
 url = "https://kau.sh"
 avatar = "/images/kg.jpeg"
 
+# Related posts
 [related]
 includeNewer = true # show related posts from the future
 threshold = 80
@@ -54,7 +84,6 @@ toLower = true
 [[related.indices]]
 name = "tags"
 weight = 30
-
 
 # configure RSS feeds for specific pages
 [outputs]
@@ -76,33 +105,21 @@ term = ["HTML", "RSS", "JSON"]
 # output formats
 # https://gohugo.io/templates/output-formats/#output-format-definitions
 
-[outputFormats.RSS]
-mediatype = "application/rss"
-# change RSS path for default XML feed to /feed.xml (default index.xml)
-baseName = "feed"
-
-[outputFormats.JSON]
-# change RSS path for JSON feed to /feed.json
-baseName = "feed"
-
-
-[markup]
-defaultMarkdownHandler = 'goldmark'
-
-
-[languages]
-[languages.en]
-languageName = "English"
-languageCode = "en-us"
-weight = 1
-
 
 # Required for search
 [params.search]
 enabled = true
-
 [outputFormats.SEARCH]
 baseName = "search"
 isPlainText = true
 mediaType = "application/json"
 notAlternative = true
+
+# Required for feeds - RSS & JSON
+[outputFormats.RSS]
+mediatype = "application/rss"
+# change RSS path for default XML feed to /feed.xml (default index.xml)
+baseName = "feed"
+[outputFormats.JSON]
+# change RSS path for JSON feed to /feed.json
+baseName = "feed"
