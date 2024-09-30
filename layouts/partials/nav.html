@@ -1,3 +1,5 @@
+{{ $currentSection := .Section | urlize }}
+
 <nav class="nav pt-8">
     <ul class="flex flex-row flex-wrap gap-2">
 
@@ -64,8 +66,11 @@
         {{ end }}
 
 
-        {{ range $c := .Params.categories  }}
-        <li class="category"><a class="pill-amber text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
+        {{ range $c := .Params.categories }}
+            <!-- skip the parent section if exists-->
+            {{ if ne ($c | urlize) $currentSection }}
+            <li class="category"><a class="pill-amber text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
+            {{ end }}
         {{ end }}
 
 
