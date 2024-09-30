@@ -26,8 +26,8 @@ module.exports = {
                 ],
             },
             colors: {
-                "henry-0": "#202020",
-                "henry-1": "#101010",
+                "henry-0": "#1c2b33",
+                "henry-1": "#152027",
             },
         },
     },
