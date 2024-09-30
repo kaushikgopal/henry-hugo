@@ -26,10 +26,10 @@ function setupSearch() {
 
 /* Core search class containing logic for the search engine */
 class FuseSearch {
-    isInit     = false;
-    index      = "/search.json";
-    fuse       = null;
-    maxResults = 10;
+    isInit = false;
+    index = "/search.json";
+    fuse = null;
+    maxResults = 20;
     fuseConfig = {
         shouldSort: true,
         location: 0,
@@ -72,10 +72,10 @@ class FuseSearch {
  */
 class Searchbar {
     constructor(fusesearch) {
-        this.search           = fusesearch;
-        this.element_main     = document.getElementById("searchbar");
-        this.element_input    = document.getElementById('searchbar-input');
-        this.element_results  = document.getElementById('searchbar-results');
+        this.search = fusesearch;
+        this.element_main = document.getElementById("searchbar");
+        this.element_input = document.getElementById('searchbar-input');
+        this.element_results = document.getElementById('searchbar-results');
         this.initPromise = this.search.init();
         this.init();
     }
@@ -88,13 +88,13 @@ class Searchbar {
         if (!isLast || !isFirst) classes += ''; // Add a border between items
 
         return '<li class="' + classes + '"><a href="' + item.permalink + '" tabindex="0">' +
-                '<span class="title">' + item.title + '</span>' +
-                '<span class="text text-slate-400 hidden md:inline"> ' + item.permalink + '</span>' +
-                '</a></li>';
+            '<span class="title">' + item.title + '</span>' +
+            '<span class="text text-slate-400 hidden md:inline"> ' + item.permalink + '</span>' +
+            '</a></li>';
     }
 
     init() {
-        this.visible          = false;
+        this.visible = false;
         this.resultsAvailable = false;
 
         // Renew search whenever the user types
@@ -150,7 +150,7 @@ class Searchbar {
 function fetchJSONFile(path) {
     return new Promise((resolve, reject) => {
         var httpRequest = new XMLHttpRequest();
-        httpRequest.onreadystatechange = function() {
+        httpRequest.onreadystatechange = function () {
             if (httpRequest.readyState === 4) {
                 if (httpRequest.status === 200) {
                     var data = JSON.parse(httpRequest.responseText);
