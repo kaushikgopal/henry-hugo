@@ -1,6 +1,5 @@
 <nav class="nav pt-8">
-    <ul class="tags
-               flex flex-row flex-wrap gap-2">
+    <ul class="flex flex-row flex-wrap gap-2">
 
         {{- partial "nav-before.html" . -}}
 
@@ -8,7 +7,7 @@
         {{ if eq .Kind "page" }}
             <!-- show the parent section if exists-->
             {{ if .Section }}
-            <li><a class="pill-amber text-xs" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
+            <li class="section-page"><a class="pill-amber text-xs" href="/{{.Section}}">{{ if eq .Section "blog" }}posts{{else}}{{.Section}}{{end}}</a></li>
             {{ end }}
 
             <!-- if BLOG post -->
@@ -16,18 +15,18 @@
 
                 <!-- show Categories  -->
                 {{ range $c := .Params.Categories }}
-                <li><a class="nav-link pill-slate text-xs" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
+                <li class="category-page"><a class="pill-slate text-xs" href="/categories/{{ $c | urlize }}">#{{$c}}</a></li>
                 {{ end }}
 
                 <!-- show Tags  -->
                 {{ range $t := .Params.Tags }}
-                <li><a class="nav-link pill-slate text-xs" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
+                <li class="tag-page"><a class="pill-slate text-xs" href="/tags/{{ $t | urlize }}">#{{$t}}</a></li>
                 {{ end }}
 
             {{ end }}
         {{ end }}
 
-        <!-- SECTION list pages -->
+        <!-- SECTION list pages like blog/episodes -->
         {{ if eq .Kind "section" }}
 
             <!-- show other sections  -->
@@ -37,7 +36,7 @@
                 {{ if not (eq .Section $thisSection) }}
                     <!-- exclude invisible section  -->
                     {{ if not (in .Site.Params.InvisibleSections .Section) }}
-                    <li><a class="nav-link pill-amber text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
+                    <li class="section-section"><a class="pill-amber text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
                     {{ end }}
                 {{ end }}
             {{ end }}
@@ -46,7 +45,7 @@
             {{ if eq .Section "blog" }}
                 {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
                     {{ if (gt (len $taxonomy) 0) }}
-                    <li><a class="nav-link pill-slate text-xs" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
+                    <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{$taxonomyname}}</a></li>
                     {{ end }}
                 {{ end }}
             {{ end }}
@@ -56,20 +55,17 @@
         <!-- TAXONOMY pages like category/tag list pages -->
         {{ if eq .Kind "taxonomy" }}
             <!-- show all posts link  -->
-            <li><a class="nav-link pill-slate text-xs" href="/blog">posts</a></li>
+            <li class="taxonomy"><a class="pill-slate text-xs" href="/blog">posts</a></li>
         {{ end }}
 
         <!-- if TAXONOMY list page has values like categories/tips/ -->
         {{ if eq .Kind "term" }}
-        <li><a class="nav-link pill-slate text-xs" href="/{{.Section}}">{{.Section}}</a></li>
+        <li class="term"><a class="pill-slate text-xs" href="/{{.Section}}">{{.Section}}</a></li>
         {{ end }}
 
 
-        {{ $n := (add (len (.Params.categories | default slice)) -1) }}
-        {{ range $i, $c := .Params.categories  }}
-        {{ if eq $i 0 }} <div class="post-taxonomies"> {{ end }}
-        <li><a class="nav-link pill-amber text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
-        {{ if eq $i $n }} </div> {{ end }}
+        {{ range $c := .Params.categories  }}
+        <li class="category"><a class="pill-amber text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
         {{ end }}
 
 
