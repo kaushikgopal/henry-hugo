@@ -34,11 +34,7 @@
 
         <h4 class="post-author
                    text-sm text-slate-600">
-        {{ if .Params.author }}
-            {{ .Params.author }}
-        {{ else if .Site.Params.author.name }}
-            {{ .Site.Params.author.name }}
-        {{ end}}
+        {{ partial "get-authors.html" . }}
         </h4>
 
     </header>

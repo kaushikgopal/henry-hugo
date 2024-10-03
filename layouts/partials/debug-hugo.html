@@ -15,6 +15,6 @@
     Params— {{.Params}}<br>
 
     -- <br>
-    Author— {{ $.Param "author" }} | {{ .Site.Params.author }} <br>
-    Author Img <img src="{{ .Site.Params.author.avatar }}" alt="Author Img" />
+    Author(s) - {{ partial "get-authors.html" . }}
+
 </div>

@@ -1,0 +1,41 @@
+{{/*
+   We look at the following places for authors:
+   - page front matter for an "authors" array
+      - if you provide text that matches hugo.toml, we also hotlink it
+   - hugo.toml for a first author
+      - we pick the first author from authors array in hugo.toml
+*/}}
+
+{{ $authors := slice }}
+
+{{ if .Params.authors }}
+  {{ $authors = .Params.authors }}
+{{ else if .Site.Params.authors }}
+  {{ $firstAuthor := index .Site.Params.authors 0 }}
+  {{ if $firstAuthor.name }}
+    {{ $authors = slice $firstAuthor.name }}
+  {{ else }}
+    {{ $authors = slice $firstAuthor }}
+  {{ end }}
+{{ end }}
+
+{{ $lastIndex := sub (len $authors) 1 }}
+{{ range $index, $name := $authors }}
+  {{ $url := "" }}
+
+  {{ range $.Site.Params.authors }}
+    {{ if eq .name $name }}
+      {{ $url = .url }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $url }}
+    <a href="{{ $url }}">{{ $name }}</a>
+  {{ else }}
+    {{ $name }}
+  {{ end }}
+
+  {{ if ne $index $lastIndex }}
+    ,
+  {{ end }}
+{{ end }}

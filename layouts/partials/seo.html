@@ -28,7 +28,7 @@
 <meta name="twitter:description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.Summary }}{{ end }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}">
 
-{{ $featured_image := partial "featured-image.html" . }}
+{{ $featured_image := partial "get-featured-image.html" . }}
 <!-- must be at least 120x120px -->
 {{ with $featured_image }}
 <meta name="twitter:image" content="{{ $featured_image }}">
