@@ -32,8 +32,8 @@ module.exports = {
             },
             colors: {
                 "henryb": { // henry background
-                    DEFAULT: colors.sky[950],
-                    dark: colors.slate[900],
+                    DEFAULT: "#1c2b33",
+                    dark: "#152027",
                 },
                 'henryc': { // henry contrast
                     lightest: colors.yellow[100],
