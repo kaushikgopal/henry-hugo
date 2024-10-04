@@ -41,6 +41,14 @@ module.exports = {
                     DEFAULT: colors.yellow[300],
                     dark: colors.yellow[500],
                 },
+                'henryc2': { // henry contrast 2
+                    light: colors.purple[200],
+                    DEFAULT: colors.purple[500],
+                    dark: colors.purple[700],
+                },
+                'henryt': { // henry text colors
+                    DEFAULT: "#212121",
+                },
             },
         },
     },
