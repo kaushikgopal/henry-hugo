@@ -28,6 +28,13 @@ module.exports = {
             colors: {
                 "henry-0": "#1c2b33",
                 "henry-1": "#152027",
+                'henry-2': {
+                    lightest: '#fef9c3', // 100
+                    lighter: '#fef08a', // 200
+                    light: '#fde047', // 300
+                    DEFAULT: '#fde047', // yellow-300
+                    dark: '#eab308',
+                },
             },
         },
     },

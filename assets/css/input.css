@@ -10,7 +10,7 @@
     }
 
     a {
-        @apply underline underline-offset-4 hover:no-underline hover:text-henry-2-light;
+        @apply underline underline-offset-4 decoration-slate-500 hover:no-underline hover:text-henry-2-light;
     }
 }
 
