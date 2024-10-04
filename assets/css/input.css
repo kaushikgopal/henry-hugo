@@ -10,8 +10,7 @@
     }
 
     a {
-        @apply underline underline-offset-4
-        hover:no-underline hover:text-amber-300;
+        @apply underline underline-offset-4 hover:no-underline hover:text-henry-2-light;
     }
 }
 
@@ -25,7 +24,7 @@
     .post-content h2,
     .post-content h3,
     .post-content h4 {
-        @apply font-serif font-bold text-amber-200;
+        @apply font-serif font-bold text-henry-2-lighter;
     }
 
     .post-content h1 {
@@ -33,27 +32,27 @@
     }
 
     .post-content h1 code {
-        @apply text-2xl ;
+        @apply text-2xl;
     }
 
     .post-content h2 {
-        @apply text-xl ;
+        @apply text-xl;
     }
 
     .post-content h2 code {
-        @apply text-xl ;
+        @apply text-xl;
     }
 
     .post-content h3 {
-        @apply text-lg ;
+        @apply text-lg;
     }
 
     .post-content h3 code {
-        @apply text-lg ;
+        @apply text-lg;
     }
 
     .post-content h4 {
-        @apply font-bold ;
+        @apply font-bold;
     }
 
     .post-content ol li {
@@ -66,16 +65,15 @@
 
     /* code blocks */
     .post-content pre {
-        @apply p-4 border border-black rounded-md overflow-auto
-               text-sm;
+        @apply p-4 border border-black rounded-md overflow-auto text-sm;
     }
 
     /* inline code */
     .post-content code {
-        @apply text-amber-100;
+        @apply text-henry-2-lightest;
     }
 
-    .post-content > *:not(figure.full-bleed) {
+    .post-content>*:not(figure.full-bleed) {
         @apply w-3/4 max-w-3xl min-w-[333px];
     }
 
@@ -101,12 +99,11 @@
     }
 
     .post-content .callout:not(figure) {
-        @apply border-4 border-amber-200 p-4 space-y-2;
+        @apply border-4 border-henry-2-lighter p-4 space-y-2;
     }
 
     .post-content blockquote {
-        @apply border-l-4 border-amber-200 pl-6 pt-4 pb-4 pr-2
-               leading-relaxed bg-henry-1;
+        @apply border-l-4 border-henry-2-lighter pl-6 pt-4 pb-4 pr-2 leading-relaxed bg-henry-1;
     }
 
     .post-content .footnote-ref {
@@ -114,7 +111,7 @@
     }
 
     .post-content .footnote-backref {
-        @apply font-bold text-white no-underline hover:text-amber-300;
+        @apply font-bold text-white no-underline hover:text-henry-2-light;
     }
 
     .footnotes hr {
@@ -126,33 +123,19 @@
     }
 
     .pill-purple {
-        @apply w-fit border-2 border-purple-700 rounded-lg
-        px-1.5 py-0.5
-        bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white
-        uppercase no-underline font-sans;
+        @apply w-fit border-2 border-purple-700 rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white uppercase no-underline font-sans;
     }
 
-    .pill-amber {
-        @apply w-fit border-2 border-amber-300 rounded-lg
-        px-1.5 py-0.5
-        bg-transparent hover:bg-amber-300 text-amber-300 hover:text-black
-        uppercase no-underline font-sans;
+    .pill-henry-2 {
+        @apply w-fit border-2 border-henry-2-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henry-2-light text-henry-2-light hover:text-black uppercase no-underline font-sans;
     }
 
-    .pill-amber-solid {
-        @apply w-fit border-2 border-amber-300 rounded-lg
-        px-1.5 py-0.5
-        bg-amber-300 text-black
-        uppercase no-underline font-sans font-bold;
+    .pill-henry-2-solid {
+        @apply w-fit border-2 border-henry-2-light rounded-lg px-1.5 py-0.5 bg-henry-2-light text-black uppercase no-underline font-sans font-bold;
     }
 
     .pill-slate {
-        @apply w-fit border-2 border-slate-500 rounded-lg
-        px-1.5 py-0.5
-        bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black
-        uppercase no-underline font-sans;
+        @apply w-fit border-2 border-slate-500 rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-slate-500 text-slate-500 hover:text-black uppercase no-underline font-sans;
     }
 
 }
-
-
