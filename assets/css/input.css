@@ -122,6 +122,10 @@
         @apply list-decimal text-slate-500 mt-2 py-2 pe-1 ps-6;
     }
 
+    .footnotes ol a {
+        @apply decoration-slate-700;
+    }
+
     .pill-purple {
         @apply w-fit border-2 border-purple-700 rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white uppercase no-underline font-sans;
     }
