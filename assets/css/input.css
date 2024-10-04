@@ -10,7 +10,7 @@
     }
 
     a {
-        @apply underline underline-offset-4 decoration-slate-500 hover:no-underline hover:text-henry-2-light;
+        @apply underline underline-offset-4 decoration-slate-500 hover:no-underline hover:text-henryc;
     }
 }
 
@@ -24,7 +24,7 @@
     .post-content h2,
     .post-content h3,
     .post-content h4 {
-        @apply font-serif font-bold text-henry-2-lighter;
+        @apply font-serif font-bold text-henryc-lighter;
     }
 
     .post-content h1 {
@@ -70,7 +70,7 @@
 
     /* inline code */
     .post-content code {
-        @apply text-henry-2-lightest;
+        @apply text-henryc-lightest;
     }
 
     .post-content>*:not(figure.full-bleed) {
@@ -99,11 +99,11 @@
     }
 
     .post-content .callout:not(figure) {
-        @apply border-4 border-henry-2-lighter p-4 space-y-2;
+        @apply border-4 border-henryc-lighter p-4 space-y-2;
     }
 
     .post-content blockquote {
-        @apply border-l-4 border-henry-2-lighter pl-6 pt-4 pb-4 pr-2 leading-relaxed bg-henry-1;
+        @apply border-l-4 border-henryc-lighter pl-6 pt-4 pb-4 pr-2 leading-relaxed bg-henryb-dark;
     }
 
     .post-content .footnote-ref {
@@ -111,7 +111,7 @@
     }
 
     .post-content .footnote-backref {
-        @apply font-bold text-white no-underline hover:text-henry-2-light;
+        @apply font-bold text-white no-underline hover:text-henryc;
     }
 
     .footnotes hr {
@@ -130,12 +130,12 @@
         @apply w-fit border-2 border-purple-700 rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-purple-700 text-purple-500 hover:text-white uppercase no-underline font-sans;
     }
 
-    .pill-henry-2 {
-        @apply w-fit border-2 border-henry-2-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henry-2-light text-henry-2-light hover:text-black uppercase no-underline font-sans;
+    .pill-henryc {
+        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
     }
 
-    .pill-henry-2-solid {
-        @apply w-fit border-2 border-henry-2-light rounded-lg px-1.5 py-0.5 bg-henry-2-light text-black uppercase no-underline font-sans font-bold;
+    .pill-henryc-solid {
+        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc text-black uppercase no-underline font-sans font-bold;
     }
 
     .pill-slate {

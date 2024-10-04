@@ -1,37 +1,36 @@
 <div class="mt-8">
 
-<aside class="post-metadata">
+    <aside class="post-metadata">
 
-    <div class="tags
+        <div class="tags
                 flex flex-row gap-2">
 
-        <a class="nav-link pill-henry-2 text-xs"
-           href="/{{.Section}}">
-        {{ if .Params.externalLink }}link
-        {{ else if eq .Section "letter" }}letter
-        {{ else if eq .Section "s" }}short
-        {{ else if eq .Section "blog" }}post
-        {{ else if eq .Section "ppt" }}talk
-        {{ else }}page
-        {{ end }}
-        </a>
+            <a class="nav-link pill-henryc text-xs" href="/{{.Section}}">
+                {{ if .Params.externalLink }}link
+                {{ else if eq .Section "letter" }}letter
+                {{ else if eq .Section "s" }}short
+                {{ else if eq .Section "blog" }}post
+                {{ else if eq .Section "ppt" }}talk
+                {{ else }}page
+                {{ end }}
+            </a>
 
 
-        {{ if .Draft }}
-        <div class="draft
-                    pill-henry-2-solid text-xs">Draft</div>
-        {{ end }}
-    </div>
+            {{ if .Draft }}
+            <div class="draft
+                    pill-henryc-solid text-xs">Draft</div>
+            {{ end }}
+        </div>
 
-    <h1 class="post-link-url
+        <h1 class="post-link-url
                mt-1 lg:mt-2
                text-2xl lg:text-3xl">
-    <a class="no-underline" href="{{ .RelPermalink }}">
-        {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
-    </a>
-    </h1>
+            <a class="no-underline" href="{{ .RelPermalink }}">
+                {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
+            </a>
+        </h1>
 
-    <!--<div class="post-metametadata">
+        <!--<div class="post-metametadata">
 
         {{ if not (eq .Section "log") }}
         <div class="post-link-date">{{ .PublishDate.Format "2006.01.02" }}</div>
@@ -53,13 +52,13 @@
         {{ end}}
 
     </div>-->
-</aside>
+    </aside>
 
-<article class="post-summary hidden md:block
+    <article class="post-summary hidden md:block
                 text-slate-400 line-clamp-3
                 lg:mt-2">
-{{ .Summary }}
-</article>
+        {{ .Summary }}
+    </article>
 
 
 </div>

@@ -1,3 +1,8 @@
+/* allows us to reference tailwind's colors in our own palette
+ https://tailwindcss.com/docs/customizing-colors
+*/
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     /* Content sources to tell Tailwind which files to scan for used class names for
@@ -26,14 +31,15 @@ module.exports = {
                 ],
             },
             colors: {
-                "henry-0": "#1c2b33",
-                "henry-1": "#152027",
-                'henry-2': {
-                    lightest: '#fef9c3', // 100
-                    lighter: '#fef08a', // 200
-                    light: '#fde047', // 300
-                    DEFAULT: '#fde047', // yellow-300
-                    dark: '#eab308',
+                "henryb": { // henry background
+                    DEFAULT: colors.sky[950],
+                    dark: colors.slate[900],
+                },
+                'henryc': { // henry contrast
+                    lightest: colors.yellow[100],
+                    lighter: colors.yellow[200],
+                    DEFAULT: colors.yellow[300],
+                    dark: colors.yellow[500],
                 },
             },
         },

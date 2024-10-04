@@ -81,7 +81,7 @@ class Searchbar {
     }
 
     itemHtml(item, isFirst, isLast) {
-        let classes = 'px-2 text-right bg-henry-1/90 py-1';
+        let classes = 'px-2 text-right bg-henryb-dark/90 py-1';
 
         if (isFirst) classes += ' pt-4';
         if (isLast) classes += ' pb-4';

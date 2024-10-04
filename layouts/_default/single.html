@@ -10,31 +10,31 @@
 
         <h1 class="post-title
                    text-2xl md:text-3xl font-bold font-serif">
-        <!-- Handle external links differently -->
-        {{ if .Params.externalLink }}
+            <!-- Handle external links differently -->
+            {{ if .Params.externalLink }}
             <a href="{{ .Params.externalLink }}"
-               class="article-link decoration-1 decoration-slate-300 underline-offset-6">
+                class="article-link decoration-1 decoration-slate-300 underline-offset-6">
                 {{ .Title }}
             </a>
             {{- partial "postimoji.html" . -}}
-        {{ else }}
+            {{ else }}
             <!-- Title -->
             {{ if eq .Section "log" }}
-                {{ .Date.Format "January 2006" }}
+            {{ .Date.Format "January 2006" }}
             {{ else }}
-                {{ .Title }}
+            {{ .Title }}
             {{ end }}
             {{- partial "postimoji.html" . -}}
-        {{ end }}
+            {{ end }}
 
-        {{ if .Draft }}
+            {{ if .Draft }}
             <span class="draft pill-amber-solid text-lg">Draft</span>
-        {{ end }}
+            {{ end }}
         </h1>
 
         <h4 class="post-author
                    text-sm text-slate-600">
-        {{ partial "get-authors.html" . }}
+            {{ partial "get-authors.html" . }}
         </h4>
 
     </header>
@@ -48,12 +48,12 @@
 
 </section>
 
-<div class="post-meta bg-henry-1
+<div class="post-meta bg-henryb-dark
             flex flex-col items-center
             pb-10">
-<section class="w-3/4 max-w-3xl min-w-[333px]">
-    {{- partial "meta.html" . -}}
-</section>
+    <section class="w-3/4 max-w-3xl min-w-[333px]">
+        {{- partial "meta.html" . -}}
+    </section>
 </div>
 
 {{end}}

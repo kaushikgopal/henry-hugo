@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="{{ .Language }}" class="no-js">
 {{- partial "head.html" . -}}
+
 <body class="min-h-screen
-             bg-henry-0 text-slate-200">
-{{/*
-{{- partial "debug-hugo.html" . -}}
-*/}}
+             bg-henryb text-slate-200">
+    {{/*
+    {{- partial "debug-hugo.html" . -}}
+    */}}
 
-{{- block "content" . }}
-<!-- Blocks may include default content. -->
-{{- end }}
+    {{- block "content" . }}
+    <!-- Blocks may include default content. -->
+    {{- end }}
 
-{{- partial "search.html" . -}}
+    {{- partial "search.html" . -}}
 </body>
+
 </html>
