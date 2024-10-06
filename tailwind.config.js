@@ -32,22 +32,25 @@ module.exports = {
             },
             colors: {
                 "henryb": { // henry background
-                    DEFAULT: "#1c2b33",
-                    dark: "#152027",
+                    DEFAULT: "#FFFFFF",             // spacey background white
+                    dark: "#212121",                // bold black
                 },
                 'henryc': { // henry contrast
                     lightest: colors.yellow[100],
-                    lighter: colors.yellow[200],
-                    DEFAULT: colors.yellow[300],
-                    dark: colors.yellow[500],
+                    lighter: "#A9EFC8",
+                    DEFAULT: "#3DDC84",             // android/fragmented green
+                    dark: "#105C2F",
                 },
                 'henryc2': { // henry contrast 2
                     light: colors.purple[200],
-                    DEFAULT: colors.purple[500],
+                    DEFAULT: "#E980FC",             // contrasting magenta
                     dark: colors.purple[700],
                 },
                 'henryt': { // henry text colors
-                    DEFAULT: "#212121",
+                    lightest: "#e0e0e0",        // prev - slate-50  // muted underline/decoration
+                    lighter: "#C2C2C2",         // prev - slate-700 // muted links like author
+                    light: "#858585",           // prev - slate-500 // underline/decoration
+                    DEFAULT: "#212121",         // prev - slate-300
                 },
             },
         },
