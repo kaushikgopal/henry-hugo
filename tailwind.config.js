@@ -14,6 +14,7 @@ module.exports = {
         "../../layouts/**/*.html",
         "./layouts/**/*.html",
         "./assets/js/fuse-search.js",
+        "../../assets/css/*.css",
     ],
     theme: {
         fontFamily: {
@@ -32,25 +33,25 @@ module.exports = {
             },
             colors: {
                 "henryb": { // henry background
-                    DEFAULT: "#FFFFFF",             // spacey background white
-                    dark: "#212121",                // bold black
+                    DEFAULT: "#1c2b33",
+                    dark: "#152027",
                 },
                 'henryc': { // henry contrast
                     lightest: colors.yellow[100],
-                    lighter: "#A9EFC8",
-                    DEFAULT: "#3DDC84",             // android/fragmented green
-                    dark: "#105C2F",
+                    lighter: colors.yellow[200],
+                    DEFAULT: colors.yellow[300],
+                    dark: colors.yellow[500],
                 },
                 'henryc2': { // henry contrast 2
                     light: colors.purple[200],
-                    DEFAULT: "#E980FC",             // contrasting magenta
+                    DEFAULT: colors.purple[500],
                     dark: colors.purple[700],
                 },
                 'henryt': { // henry text colors
-                    lightest: "#e0e0e0",        // prev - slate-50  // muted underline/decoration
-                    lighter: "#C2C2C2",         // prev - slate-700 // muted links like author
-                    light: "#858585",           // prev - slate-500 // underline/decoration
-                    DEFAULT: "#212121",         // prev - slate-300
+                    lightest: colors.slate[800],  // muted underline/decoration
+                    lighter: colors.slate[700],  // muted links like author
+                    light: colors.slate[500],    // underline/decoration
+                    DEFAULT: colors.slate[300],  // base text
                 },
             },
         },
