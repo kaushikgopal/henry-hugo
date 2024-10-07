@@ -68,7 +68,7 @@
 
     /* inline code */
     .post-content code {
-        @apply text-henryc-lightest;
+        @apply text-henryc-lightest text-base;
     }
 
     .post-content>*:not(figure.full-bleed) {
@@ -101,7 +101,7 @@
     }
 
     .post-content blockquote {
-        @apply text-henryt-lighter border-l-4 border-henryc pl-6 pt-4 pb-4 pr-2 leading-relaxed bg-henryb-dark;
+        @apply text-henryt-light border-l-4 border-henryc pl-6 pt-4 pb-4 pr-2 leading-relaxed bg-henryb-dark;
     }
 
     .post-content .footnote-ref {
