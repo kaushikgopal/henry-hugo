@@ -20,6 +20,7 @@ cd blog-henry
 
 # 2. clone Henry
 git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
+touch assets/css/{output,override}.css
 # brew install node # if you don't have npm installed
 cd themes/henry
 npm install -D tailwindcss

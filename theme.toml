@@ -66,7 +66,6 @@ invisibleSections = ["log"]
 # googleAnalytics = ""
 # enableRobotsTXT = true
 
-[params]
 [params.author]
 name = "Kaushik Gopal"
 email = "blog@kau.sh"
