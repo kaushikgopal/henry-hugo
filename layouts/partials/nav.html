@@ -14,7 +14,7 @@
         {{ end }}
 
         <!-- if BLOG post -->
-        {{ if eq .Section "blog" }}
+        {{/* {{ if eq .Section "blog" }} */}}
 
         <!-- show Categories  -->
         {{ range $c := .Params.Categories }}
@@ -27,7 +27,7 @@
         {{ end }}
 
         {{ end }}
-        {{ end }}
+        {{/* {{ end }} */}}
 
         <!-- SECTION list pages like blog/episodes -->
         {{ if eq .Kind "section" }}
