@@ -9,7 +9,7 @@
         {{ if eq .Kind "page" }}
         <!-- show the parent section if exists-->
         {{ if .Section }}
-        <li class="section-page"><a class="pill-henryc text-xs" href="/{{.Section}}">{{ if eq .Section "blog"
+        <li class="section-page"><a class="pill-henryc2 text-xs" href="/{{.Section}}">{{ if eq .Section "blog"
                 }}posts{{else}}{{.Section}}{{end}}</a></li>
         {{ end }}
 
@@ -39,7 +39,7 @@
         {{ if not (eq .Section $thisSection) }}
         <!-- exclude invisible section  -->
         {{ if not (in .Site.Params.InvisibleSections .Section) }}
-        <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
+        <li class="section-section"><a class="pill-henryc2 text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
         {{ end }}
         {{ end }}
         {{ end }}
@@ -71,7 +71,7 @@
         {{ range $c := .Params.categories }}
         <!-- skip the parent section if exists-->
         {{ if ne ($c | urlize) $currentSection }}
-        <li class="category"><a class="pill-henryc text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
+        <li class="category"><a class="pill-henryc2 text-xs" href="/categories/{{ $c | urlize }}">{{ $c }}</a></li>
         {{ end }}
         {{ end }}
 
