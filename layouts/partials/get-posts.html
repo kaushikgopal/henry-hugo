@@ -14,8 +14,10 @@
 
 {{ $pages = where $pages "Params.noindex" "!=" true }}
 
-{{ if not (in .Site.Params.InvisibleSections .Section) }}
+{{ with .Site.Params.InvisibleSections }}
+    {{ if not (in .Site.Params.InvisibleSections .Section) }}
     {{ $pages = where $pages ".Section" "not in" .Site.Params.InvisibleSections }}
+    {{ end }}
 {{ end }}
 
 {{ return $pages }}

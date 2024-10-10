@@ -35,23 +35,27 @@
         <!-- show other sections  -->
         {{ $thisSection := .Page.Section }}
         {{ range .Site.Sections }}
-        <!-- exclude section currently being show  -->
-        {{ if not (eq .Section $thisSection) }}
-        <!-- exclude invisible section  -->
-        {{ if not (in .Site.Params.InvisibleSections .Section) }}
-        <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
-        {{ end }}
-        {{ end }}
+
+            <!-- exclude section currently being show  -->
+            {{ if not (eq .Section $thisSection) }}
+                <!-- exclude invisible section if they exist -->
+                {{ with .Site.Params.InvisibleSections }}
+                {{ if not (in .Site.Params.InvisibleSections .Section) }}
+                <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
+                {{ end }}
+                {{ end }}
+            {{ end }}
+
         {{ end }}
 
         <!-- in blog list page alone, show taxonomies/categories and tags  -->
         {{ if eq .Section "blog" }}
-        {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-        {{ if (gt (len $taxonomy) 0) }}
-        <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ " /" | relLangURL}}{{ $taxonomyname | urlize
-                }}">{{$taxonomyname}}</a></li>
-        {{ end }}
-        {{ end }}
+            {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+                {{ if (gt (len $taxonomy) 0) }}
+                <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ " /" | relLangURL}}{{ $taxonomyname | urlize
+                        }}">{{$taxonomyname}}</a></li>
+                {{ end }}
+            {{ end }}
         {{ end }}
 
         {{ end }}
