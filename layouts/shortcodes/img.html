@@ -9,6 +9,7 @@
                 {{ end }}
                 {{ with .Get "width" }}width="{{.}}"{{ end }}
                 {{ with .Get "height" }}height="{{.}}"{{ end }}
+                loading="lazy" decoding="async"
             />
 
             {{ if or (or (.Get "title") (.Get "caption")) (.Get "attr")}}
