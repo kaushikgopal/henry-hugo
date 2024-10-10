@@ -1,0 +1,21 @@
+{{/*
+    This partial assembles the correct set of posts for a given page.
+	@return a slice of posts.
+*/}}
+{{ $pages := slice }}
+
+{{ if .IsHome }}
+    {{ $pages = .Site.RegularPages }}
+{{ else if eq .Section "blog" }}
+    {{ $pages = .Site.RegularPages }}
+{{ else }}
+    {{ $pages = .Pages }}
+{{ end }}
+
+{{ $pages = where $pages "Params.noindex" "!=" true }}
+
+{{ if not (in .Site.Params.InvisibleSections .Section) }}
+    {{ $pages = where $pages ".Section" "not in" .Site.Params.InvisibleSections }}
+{{ end }}
+
+{{ return $pages }}

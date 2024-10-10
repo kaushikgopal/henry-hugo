@@ -1,12 +1,11 @@
-{{- $pages := slice -}}
-{{- $pages := cond .IsHome .Site.RegularPages .Pages -}}
-{{- $pages := where $pages "Section" "not in" site.Params.invisibleSections -}}
-{{- $pages := where $pages "Params.noindex" "!=" true -}}
+{{- $pages := partial "get-posts.html" . -}}
 
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
     {{- $pages = $pages | first $limit -}}
 {{- end -}}
+
+{{ $pageCount := (len $pages) -}}
 
 {{- $title := .Site.Title -}}
 {{- if ne .Title  .Site.Title -}}
@@ -24,7 +23,7 @@
         <title>{{ $title }}</title>
         <link>{{ .Permalink }}</link>
         <description>Recent content - {{ $title }}</description>
-        <generator>Hugo -- gohugo.io</generator>
+        {{ if eq hugo.Environment "development" }} <pageCount>{{len $pages}}</pageCount>{{ end }}
         {{ with .Site.LanguageCode }}<language>{{.}}</language>{{end}}
         {{ with .Site.Params.Author.email }}<managingEditor>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}
         {{ with .Site.Params.Author.email }}<webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}

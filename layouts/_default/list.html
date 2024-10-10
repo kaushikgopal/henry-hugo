@@ -18,24 +18,7 @@
 {{ end }}
 
 
-
-<!-- assemble the correct set of $pages -->
-{{ $pages := "" }}
-{{ if eq .Section "blog" }}
-    <!-- show *all* posts (otherwise only /blog posts will be filtered) -->
-    {{ $pages = .Site.RegularPages }}
-{{ else }}
-    {{ $pages = .Pages }}
-{{ end}}
-<!-- filter pages that shouldn't be shown on index -->
-{{ $pages = where $pages "Params.noindex" "!=" true }}
-{{ if .Site.Params.InvisibleSections }}
-<!-- filter out invisible sections (unless your listing the invisible section page itself) -->
-    {{ if not (in .Site.Params.InvisibleSections .Section) }}
-        {{ $pages = where $pages ".Section" "not in" .Site.Params.InvisibleSections }}
-    {{ end }}
-{{ end }}
-
+{{ $pages := partial "get-posts.html" . }}
 
 
 {{ if .Data.Terms }}
@@ -58,6 +41,8 @@
 {{ else }}
 <!-- in a main list page -->
 
+{{ if eq hugo.Environment "development" }} Total: {{len $pages}} posts{{ end }}
+
 {{ range $pages.GroupByDate "2006" }}
 
     {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
@@ -66,7 +51,7 @@
                post-list-header year"
         id="{{ .Key }}">
         {{ .Key }}
-        <!-- {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }} -->
+         {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
     </h2>
     {{ end }}
 

@@ -1,20 +1,17 @@
-{{- $pages := slice -}}
-{{- $pages := cond .IsHome .Site.RegularPages .Pages -}}
-{{- $pages := where $pages "Section" "not in" site.Params.invisibleSections -}}
-{{- $pages := where $pages "Params.noindex" "!=" true -}}
+{{- $pages := partial "get-posts.html" . -}}
 
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
     {{- $pages = $pages | first $limit -}}
 {{- end -}}
 
-{{ $length := (len $pages) -}}
+{{ $pageCount := (len $pages) -}}
 {
     "version" : "https://jsonfeed.org/version/1",
     "title" : "{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}",
     "description": "Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}",
     "home_page_url" : "{{ .Site.BaseURL }}",
-    "page_count": {{ $length }},
+    "page_count": {{ $pageCount }},
     {{ with .OutputFormats.Get "JSON" -}}
     "feed_url" : "{{ .Permalink }}",
     {{ end -}}
@@ -50,7 +47,7 @@
           "summary" : {{ . | jsonify }},
         {{ end -}}
         "content_html" : {{ .Content | jsonify }}
-    }{{ if ne (add $index 1) $length }},{{ end }}
+    }{{ if ne (add $index 1) $pageCount }},{{ end }}
     {{ end -}}
 
     ]
