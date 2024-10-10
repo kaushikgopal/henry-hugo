@@ -11,7 +11,8 @@
                 {{ else if eq .Section "s" }}short
                 {{ else if eq .Section "blog" }}post
                 {{ else if eq .Section "ppt" }}talk
-                {{ else }}page
+                {{ else }}
+                    {{ .Section | singularize }}
                 {{ end }}
             </a>
 
