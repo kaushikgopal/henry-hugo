@@ -21,29 +21,29 @@
     {{ $pages := partial "get-posts.html" . }}
 
 
-    {{ if .Data.Terms }}
-    <!-- in a category or tag page -->
+    {{ if .Data.Terms }} <!-- in a category or tag page -->
 
-    {{ range $group, $pages := .Data.Terms }}
+
+    {{ $paginator := .Paginate .Data.Terms }}
+    {{ range $key, $value := $paginator.PageGroups }}
     <h2 class="post-list-header term
                pill-slate
-               mt-10 font-bold" id="{{ $group }}">#{{ $group }}</h2>
+               mt-10 font-bold" id="{{ $key }}">#{{ $key }}</h2>
 
     <div class="post-list-content">
-        {{ range $pages }}
+        {{ range $value.Pages }}
         {{ .Render "li" }}
         {{ end }}
     </div>
     {{ end }}
 
 
-    {{ else }}
-    <!-- in a main list page -->
-
+    {{ else }} <!-- in a main list page -->
     {{ if eq hugo.Environment "development" }} Total: {{len $pages}} posts{{ end }}
 
-    {{ range $pages.GroupByDate "2006" }}
 
+    {{ $paginator := .Paginate $pages }}
+    {{ range $paginator.Pages.GroupByDate "2006" }}
     {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
     <h2 class="mt-4
                text-henryt-light font-bold
@@ -60,7 +60,12 @@
     </div>
     {{ end }}
 
+
     {{ end }}
+
+
+    <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
+
 
     <!-- show RHS navbar content -->
     {{- partial "nav.html" . -}}
