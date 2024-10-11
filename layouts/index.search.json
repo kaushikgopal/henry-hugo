@@ -1,4 +1,4 @@
-{{ if eq ($.Param "search.enabled") true }}
+{{ if $.Param "enableSearch" }}
 
 
 {{- $pages := slice -}}
