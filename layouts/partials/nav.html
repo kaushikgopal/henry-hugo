@@ -39,10 +39,11 @@
             <!-- exclude section currently being show  -->
             {{ if not (eq .Section $thisSection) }}
                 <!-- exclude invisible section if they exist -->
-                {{ with .Site.Params.InvisibleSections }}
-                {{ if not (in .Site.Params.InvisibleSections .Section) }}
-                <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
-                {{ end }}
+                {{ $invisibleSections := .Site.Params.InvisibleSections }}
+                {{ if $invisibleSections }}
+                    {{ if not (in $invisibleSections .Section) }}
+                        <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
+                    {{ end }}
                 {{ end }}
             {{ end }}
 
