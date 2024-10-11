@@ -57,6 +57,8 @@ letter = "/:section/:slug"
 [params]
 bioUrl = "https://kau.sh"
 summary = "Code, Culture, Carts & Carnatic Beats: Welcome to Kaush's World"
+enableSearch = true
+enablePagination = false
 avatar = "/images/kg.jpeg"
 sitename = "Kaushik Gopal blog"
 invisibleSections = ["log"]

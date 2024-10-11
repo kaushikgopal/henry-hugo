@@ -19,25 +19,34 @@
 
 
     {{ $pages := partial "get-posts.html" . }}
+    {{ $groupedPages := slice }}
+    {{ $shouldPaginate := .Site.Params.enablePagination | default false }}
     {{ $isTaxonomy := false }}
     {{ $paginator := .Paginate $pages }}
-    {{ $groupedPages := $paginator.Pages.GroupByDate "2006" }}
-    {{ if .Data.Terms }}
+
+
+    {{ if $shouldPaginate }}
+    {{ $groupedPages = $paginator.Pages.GroupByDate "2006" }}
+    {{ else if .Data.Terms }}
     {{ $groupedPages = .Data.Terms.Alphabetical }}
     {{ $isTaxonomy = true }}
+    {{ else }}
+    {{ $groupedPages = $pages.GroupByDate "2006" }}
     {{ end }}
 
 
     {{ if eq hugo.Environment "development" }}
     Total: {{len $pages}} posts <br>
-    isTaxonomy: {{ $isTaxonomy }}
+    GroupedPage count: {{ len $groupedPages }} <br>
+    isTaxonomy: {{ $isTaxonomy }} <br>
+    shouldPaginate: {{ $shouldPaginate }} <br>
     {{ end }}
 
 
     {{ range $groupedPages }}
 
 
-    {{ if $isTaxonomy }}
+    {{ if $isTaxonomy }} <!-- inside a taxonomy page | no pagination-->
     {{ $key := .Name }}
     {{ $groupPages := .Pages }}
     <h2 class="post-list-header term pill-slate mt-10 font-bold" id="{{ $key }}">
@@ -50,7 +59,23 @@
     </div>
 
 
-    {{ else }}
+    {{ else if $shouldPaginate }} <!-- inside a regular list page | pagination -->
+    {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
+    <h2 class="mt-4
+               text-henryt-light font-bold
+               post-list-header year" id="{{ .Key }}">
+        {{ .Key }}
+        {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
+    </h2>
+    {{ end }}
+    <div class="post-list-content">
+        {{ range .Pages }}
+        {{ .Render "li" }}
+        {{ end }}
+    </div>
+
+
+    {{ else }} <!-- inside a regular list page | no pagination -->
     {{ $key := .Key }}
     {{ $groupPages := .Pages }}
     <h2 class="post-list-header pill-slate mt-10 font-bold" id="{{ $key }}">
@@ -64,10 +89,10 @@
     {{ end }}
 
 
-    {{ end }}
+    {{ end }} <!-- range end $groupedPages -->
 
 
-    {{ if not $isTaxonomy }}
+    {{ if and (not $isTaxonomy) $shouldPaginate }}
     <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
     {{ end }}
 
