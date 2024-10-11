@@ -24,8 +24,12 @@
     {{ if .Data.Terms }} <!-- in a category or tag page -->
 
 
-    {{ $paginator := .Paginate .Data.Terms }}
-    {{ range $key, $value := $paginator.PageGroups }}
+    {{ $pages := slice }}
+    {{ range .Data.Terms }}
+    {{ $pages = $pages | append .Pages }}
+    {{ end }}
+    {{ $paginator := .Paginate $pages }}
+    {{ range $key, $value := .Data.Terms }}
     <h2 class="post-list-header term
                pill-slate
                mt-10 font-bold" id="{{ $key }}">#{{ $key }}</h2>
