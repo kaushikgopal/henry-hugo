@@ -19,46 +19,45 @@
 
 
     {{ $pages := partial "get-posts.html" . }}
-
-
-    {{ if .Data.Terms }} <!-- in a category or tag page -->
-
-
-    {{ $pages := slice }}
-    {{ range .Data.Terms }}
-    {{ $pages = $pages | append .Pages }}
-    {{ end }}
+    {{ $isTaxonomy := false }}
     {{ $paginator := .Paginate $pages }}
-    {{ range $key, $value := .Data.Terms }}
-    <h2 class="post-list-header term
-               pill-slate
-               mt-10 font-bold" id="{{ $key }}">#{{ $key }}</h2>
-
-    <div class="post-list-content">
-        {{ range $value.Pages }}
-        {{ .Render "li" }}
-        {{ end }}
-    </div>
+    {{ $groupedPages := $paginator.Pages.GroupByDate "2006" }}
+    {{ if .Data.Terms }}
+    {{ $groupedPages = .Data.Terms.Alphabetical }}
+    {{ $isTaxonomy = true }}
     {{ end }}
 
 
-    {{ else }} <!-- in a main list page -->
-    {{ if eq hugo.Environment "development" }} Total: {{len $pages}} posts{{ end }}
+    {{ if eq hugo.Environment "development" }}
+    Total: {{len $pages}} posts <br>
+    isTaxonomy: {{ $isTaxonomy }}
+    {{ end }}
 
 
-    {{ $paginator := .Paginate $pages }}
-    {{ range $paginator.Pages.GroupByDate "2006" }}
-    {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
-    <h2 class="mt-4
-               text-henryt-light font-bold
-               post-list-header year" id="{{ .Key }}">
-        {{ .Key }}
-        {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
+    {{ range $groupedPages }}
+
+
+    {{ if $isTaxonomy }}
+    {{ $key := .Name }}
+    {{ $groupPages := .Pages }}
+    <h2 class="post-list-header term pill-slate mt-10 font-bold" id="{{ $key }}">
+        #{{ $key }}
     </h2>
-    {{ end }}
-
     <div class="post-list-content">
-        {{ range .Pages }}
+        {{ range $groupPages }}
+        {{ .Render "li" }}
+        {{ end }}
+    </div>
+
+
+    {{ else }}
+    {{ $key := .Key }}
+    {{ $groupPages := .Pages }}
+    <h2 class="post-list-header pill-slate mt-10 font-bold" id="{{ $key }}">
+        #{{ $key }}
+    </h2>
+    <div class="post-list-content">
+        {{ range $groupPages }}
         {{ .Render "li" }}
         {{ end }}
     </div>
@@ -68,12 +67,13 @@
     {{ end }}
 
 
+    {{ if not $isTaxonomy }}
     <div class="pagination">{{ template "_internal/pagination.html" . }}</div>
+    {{ end }}
 
 
     <!-- show RHS navbar content -->
     {{- partial "nav.html" . -}}
-
 
 </div>
 {{ end }}
