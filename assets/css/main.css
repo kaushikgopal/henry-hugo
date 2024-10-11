@@ -137,7 +137,7 @@
     }
 
     .pill-henryc-solid {
-        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc text-black uppercase no-underline font-sans font-bold;
+        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
     }
 
     .pill-slate {
