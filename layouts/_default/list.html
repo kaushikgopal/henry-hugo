@@ -3,69 +3,67 @@
             w-3/4 max-w-3xl mx-auto
             pt-8 md:pt-18 pb-12">
 
-<!-- custom content included in header page -->
-{{ if .Content }}
-<h1 class="post-list-header
+    <!-- custom content included in header page -->
+    {{ if .Content }}
+    <h1 class="post-list-header
            text-3xl font-bold font-serif
            mt-8">
-{{ .Title }}
-</h1>
+        {{ .Title }}
+    </h1>
 
-<article class="post-content
+    <article class="post-content
                 mt-4">
-{{ .Content }}
-</article>
-{{ end }}
+        {{ .Content }}
+    </article>
+    {{ end }}
 
 
-{{ $pages := partial "get-posts.html" . }}
+    {{ $pages := partial "get-posts.html" . }}
 
 
-{{ if .Data.Terms }}
-<!-- in a category or tag page -->
+    {{ if .Data.Terms }}
+    <!-- in a category or tag page -->
 
-{{ range $group, $pages := .Data.Terms }}
+    {{ range $group, $pages := .Data.Terms }}
     <h2 class="post-list-header term
                pill-slate
-               mt-10 font-bold"
-        id="{{ $group }}">#{{ $group }}</h2>
+               mt-10 font-bold" id="{{ $group }}">#{{ $group }}</h2>
 
     <div class="post-list-content">
         {{ range $pages }}
-            {{ .Render "li" }}
+        {{ .Render "li" }}
         {{ end }}
     </div>
-{{ end }}
+    {{ end }}
 
 
-{{ else }}
-<!-- in a main list page -->
+    {{ else }}
+    <!-- in a main list page -->
 
-{{ if eq hugo.Environment "development" }} Total: {{len $pages}} posts{{ end }}
+    {{ if eq hugo.Environment "development" }} Total: {{len $pages}} posts{{ end }}
 
-{{ range $pages.GroupByDate "2006" }}
+    {{ range $pages.GroupByDate "2006" }}
 
     {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
     <h2 class="mt-4
                text-henryt-light font-bold
-               post-list-header year"
-        id="{{ .Key }}">
+               post-list-header year" id="{{ .Key }}">
         {{ .Key }}
-         {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
+        {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
     </h2>
     {{ end }}
 
     <div class="post-list-content">
         {{ range .Pages }}
-            {{ .Render "li" }}
+        {{ .Render "li" }}
         {{ end }}
     </div>
-{{ end }}
+    {{ end }}
 
-{{ end }}
+    {{ end }}
 
-<!-- show RHS navbar content -->
-{{- partial "nav.html" . -}}
+    <!-- show RHS navbar content -->
+    {{- partial "nav.html" . -}}
 
 
 </div>
