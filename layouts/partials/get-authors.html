@@ -1,41 +1,24 @@
-{{/*
-   We look at the following places for authors:
-   - page front matter for an "authors" array
-      - if you provide text that matches hugo.toml, we also hotlink it
-   - hugo.toml for a first author
-      - we pick the first author from authors array in hugo.toml
-*/}}
+{{- $pageAuthors := .Params.authors -}}
+{{- $siteAuthors := .Site.Params.authors -}}
 
-{{ $authors := slice }}
+<!-- create a slice to store author anchor links -->
+{{- $authorLinks := slice -}}
 
-{{ if .Params.authors }}
-  {{ $authors = .Params.authors }}
-{{ else if .Site.Params.authors }}
-  {{ $firstAuthor := index .Site.Params.authors 0 }}
-  {{ if $firstAuthor.name }}
-    {{ $authors = slice $firstAuthor.name }}
-  {{ else }}
-    {{ $authors = slice $firstAuthor }}
-  {{ end }}
-{{ end }}
+<!-- convert single author string to a slice -->
+{{- if (not (in (slice $pageAuthors) ",")) -}}{{- $pageAuthors = slice $pageAuthors -}}{{- end -}}
 
-{{ $lastIndex := sub (len $authors) 1 }}
-{{ range $index, $name := $authors }}
-  {{ $url := "" }}
+{{- range $pageAuthors -}}
+<!-- find the author in the site authors by name -->
+{{- $matchedAuthor := index (where $siteAuthors "name" .) 0 -}}
 
-  {{ range $.Site.Params.authors }}
-    {{ if eq .name $name }}
-      {{ $url = .url }}
-    {{ end }}
-  {{ end }}
+{{- if $matchedAuthor -}}
+{{- $authorLink := printf "<a href=\"%s\" class=\"decoration-henryt-lightest\">%s</a>" $matchedAuthor.url
+$matchedAuthor.name -}}
+{{- $authorLinks = $authorLinks | append $authorLink -}}
+{{- else -}}
+<!-- if no match, just append the plain author name -->
+{{- $authorLinks = $authorLinks | append . -}}
+{{- end -}}
+{{- end -}}
 
-  {{ if $url }}
-    <a href="{{ $url }}" class="decoration-henryt-lightest">{{ $name }}</a>
-  {{ else }}
-    {{ $name }}
-  {{ end }}
-
-  {{ if ne $index $lastIndex }}
-    ,
-  {{ end }}
-{{ end }}
+{{- delimit $authorLinks ", " | safeHTML -}}
