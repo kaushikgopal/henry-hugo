@@ -32,6 +32,7 @@ theme = "henry"
 
 # 4A. run Hugo first time
 pushd themes/henry
+cp tailwind.config.henry.js tailwind.config.js
 npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
 # accept by hitting y/enter
 # hit ctrl + c to exit
