@@ -20,9 +20,10 @@ cd blog-henry
 
 # 2. clone Henry
 git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
-touch assets/css/{output,override}.css
+touch assets/css/{output,override,override-fonts}.css
 # brew install node # if you don't have npm installed
 cd themes/henry
+cp tailwind.config.henry.js tailwind.config.js
 npm install -D tailwindcss
 npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css
 
@@ -32,7 +33,6 @@ theme = "henry"
 
 # 4A. run Hugo first time
 pushd themes/henry
-cp tailwind.config.henry.js tailwind.config.js
 npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
 # accept by hitting y/enter
 # hit ctrl + c to exit
