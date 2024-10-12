@@ -1,2 +1,2 @@
-css: touch ../../assets/css/{output,override}.css && npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
+css: touch ../../assets/css/{output,override,override-fonts}.css && npx tailwindcss -c ../../tailwind.config.henry.js -i assets/css/input.css -o ../../assets/css/output.css --watch
 hugo: cd ../.. && hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify --noHTTPCache --printI18nWarnings --buildDrafts
