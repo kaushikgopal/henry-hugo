@@ -30,23 +30,12 @@ npx tailwindcss -i themes/henry/assets/css/input.css -o ./assets/css/output.css
 ## add these lines to your hugo.toml config file
 theme = "henry"
 
-# 4A. run Hugo first time
-pushd themes/henry
-npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
-# accept by hitting y/enter
-# hit ctrl + c to exit
-popd
+# 4. run Hugo!
 
-# 4B. run Hugo!
-
-# Option 1: in two separate tabs
-npx tailwindcss -i assets/css/input.css -o ../../assets/css/output.css --watch
- # go back to the root of your hugo project
-cd ../.. && hugo server --bind=0.0.0.0 --cleanDestinationDir --logLevel debug  --disableFastRender --gc --minify
---noHTTPCache --printI18nWarnings --buildDrafts
-
-# Option 2: use a single dev script
+# Option: use a single dev script
 # See my blog post on this https://kau.sh/blog/tailwind-hugo#bonus-tip
+
+./bin/dev
 
 # open http://0.0.0.0:1313/
 
