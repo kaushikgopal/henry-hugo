@@ -1,40 +1,40 @@
 <!-- example for how to add podcast subscribe buttons -->
 
 {{ if or (eq .Section "episodes") (.IsHome) }}
-<div class="subscribe-podcast">
+<div class="subscribe-podcast w-[90%] md:w-3/4 mt-7 md:mt-14">
     <div class="subscribe-title text-center text-sm font-bold">Subscribe now:</div>
-    <div class="flex justify-center items-center space-x-8 min-h-[140px]">
-        <div class="subscribe-badge flex flex-col items-center">
-            <a href="http://pca.st/fragmented" class="w-20 h-20">
-                <img src="/images/apps/pocketcasts.svg" alt="Pocket Casts icon">
+    <div class="grid grid-cols-5 gap-2  mt-3 md:mt-6">
+        <div class="subscribe_badge flex flex-col items-center">
+            <a href="http://pca.st/fragmented" class="flex-grow flex items-center justify-center">
+                <img src="/images/apps/pocketcasts.svg" alt="Pocket Casts icon" class="w-full sm:max-w-[100px]">
             </a>
-            <a class="appname text-center text-xs mt-1 decoration-transparent min-h-8"
+            <a class="appname text-center text-xs mt-1  decoration-transparent min-h-8"
                 href="http://pca.st/fragmented">Pocket Casts</a>
         </div>
         <div class="subscribe_badge flex flex-col items-center">
-            <a href="https://podcasts.apple.com/us/podcast/id968779958" class="w-20 h-20">
-                <img src="/images/apps/apple.svg" alt="Apple Podcasts icon">
+            <a href="https://podcasts.apple.com/us/podcast/id968779958">
+                <img src="/images/apps/apple.svg" alt="Apple Podcasts icon" class="w-full sm:max-w-[100px]">
             </a>
             <a class="appname text-center text-xs mt-1 decoration-transparent min-h-8"
                 href="https://podcasts.apple.com/us/podcast/id968779958">Apple Podcasts</a>
         </div>
         <div class="subscribe_badge flex flex-col items-center">
-            <a href="https://rss.simplecast.com/podcasts/1684/rss" class="w-20 h-20">
-                <img src="/images/apps/rss.svg" alt="RSS icon">
+            <a href="https://rss.simplecast.com/podcasts/1684/rss">
+                <img src="/images/apps/rss.svg" alt="RSS icon" class="w-full sm:max-w-[100px]">
             </a>
             <a class="appname text-center text-xs mt-1 decoration-transparent min-h-8"
                 href="https://rss.simplecast.com/podcasts/1684/rss">RSS</a>
         </div>
         <div class="subscribe_badge flex flex-col items-center">
-            <a href="https://open.spotify.com/show/2yHLacgm5hunwsFZeoV8NA?si=1e9b52d9763c445f" class="w-20 h-20">
-                <img src="/images/apps/spotify.svg" alt="Spotify icon">
+            <a href="https://open.spotify.com/show/2yHLacgm5hunwsFZeoV8NA?si=1e9b52d9763c445f">
+                <img src="/images/apps/spotify.svg" alt="Spotify icon" class="w-full sm:max-w-[100px]">
             </a>
             <a class="appname text-center text-xs mt-1 decoration-transparent min-h-8"
                 href="https://open.spotify.com/show/2yHLacgm5hunwsFZeoV8NA?si=1e9b52d9763c445f">Spotify</a>
         </div>
         <div class="subscribe_badge flex flex-col items-center">
-            <a href="https://www.youtube.com/@fragmentedpodcast" class="w-20 h-20">
-                <img src="/images/apps/youtube.svg" alt="YouTube icon" class="w-full h-full">
+            <a href="https://www.youtube.com/@fragmentedpodcast">
+                <img src="/images/apps/youtube.svg" alt="YouTube icon" class="w-full sm:max-w-[100px]">
             </a>
             <a class="appname text-center text-xs mt-1 decoration-transparent min-h-8"
                 href="https://www.youtube.com/@fragmentedpodcast">YouTube</a>
