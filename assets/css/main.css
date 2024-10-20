@@ -153,6 +153,10 @@
         @apply inline-block;
     }
 
+    .page-item:nth-last-child(-n+4):nth-last-child(n+3) {
+        @apply hidden sm:block;
+    }
+
     .page-link {
         @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
     }
