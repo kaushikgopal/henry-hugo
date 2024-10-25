@@ -7,6 +7,10 @@
         @apply text-henryt space-y-6;
     }
 
+    article p {
+        @apply overflow-hidden text-ellipsis;
+    }
+
     a {
         @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
     }
