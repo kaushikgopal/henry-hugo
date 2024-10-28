@@ -1,6 +1,6 @@
 {{ $currentSection := .Section | urlize }}
 
-<nav class="nav pt-8">
+<nav class="nav">
     <ul class="flex flex-row flex-wrap gap-2">
 
         {{- partial "nav-before.html" . -}}
@@ -36,27 +36,27 @@
         {{ $thisSection := .Page.Section }}
         {{ range .Site.Sections }}
 
-            <!-- exclude section currently being show  -->
-            {{ if not (eq .Section $thisSection) }}
-                <!-- exclude invisible section if they exist -->
-                {{ $invisibleSections := .Site.Params.InvisibleSections }}
-                {{ if $invisibleSections }}
-                    {{ if not (in $invisibleSections .Section) }}
-                        <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
-                    {{ end }}
-                {{ end }}
-            {{ end }}
+        <!-- exclude section currently being show  -->
+        {{ if not (eq .Section $thisSection) }}
+        <!-- exclude invisible section if they exist -->
+        {{ $invisibleSections := .Site.Params.InvisibleSections }}
+        {{ if $invisibleSections }}
+        {{ if not (in $invisibleSections .Section) }}
+        <li class="section-section"><a class="pill-henryc text-xs" href="{{ .Permalink }}">{{.Section}}</a></li>
+        {{ end }}
+        {{ end }}
+        {{ end }}
 
         {{ end }}
 
         <!-- in blog list page alone, show taxonomies/categories and tags  -->
         {{ if eq .Section "blog" }}
-            {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
-                {{ if (gt (len $taxonomy) 0) }}
-                <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ " /" | relLangURL}}{{ $taxonomyname | urlize
-                        }}">{{$taxonomyname}}</a></li>
-                {{ end }}
-            {{ end }}
+        {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+        {{ if (gt (len $taxonomy) 0) }}
+        <li class="taxonomy-section"><a class="pill-slate text-xs" href="{{ " /" | relLangURL}}{{ $taxonomyname | urlize
+                }}">{{$taxonomyname}}</a></li>
+        {{ end }}
+        {{ end }}
         {{ end }}
 
         {{ end }}
