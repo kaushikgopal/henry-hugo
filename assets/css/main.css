@@ -26,7 +26,7 @@
     .post-content h2,
     .post-content h3,
     .post-content h4 {
-        @apply font-serif font-bold text-henryc;
+        @apply font-title font-bold text-henryc;
     }
 
     .post-content h1 {

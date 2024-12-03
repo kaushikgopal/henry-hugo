@@ -18,9 +18,9 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            'sans': ['kg-sans'],
-            'serif': ['kg-serif'],
-            'mono': ['kg-mono'],
+            'title' : ['kg-serif'],
+            'sans'  : ['"kg-sans"'], // body
+            'mono'  : ['kg-mono'],
         },
         extend: {
             fontFamily: {
