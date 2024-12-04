@@ -54,12 +54,3 @@
     font-weight: bold;
     font-style: italic;
 }
-
-/* Monospace font */
-@font-face {
-    font-family: kg-mono;
-    src: url('../fonts/kg-mono.woff2') format("woff2-variations");
-    font-weight: 100 1000; /* Specify the weight range supported by the font */
-    font-style: oblique 0deg 10deg; /* Specify the style range supported by the font */
-    font-feature-settings: 'cv02','cv04','cv06','cv07','cv08';
-}
