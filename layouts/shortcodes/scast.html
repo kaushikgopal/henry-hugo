@@ -1,0 +1,41 @@
+{{/* Shortcode to insert Simplecast audio player.
+You only provide the Download url that Simplecast provides as "MP3 Download"
+
+There are currently two patterns of URLs:
+
+1.
+https://cdn.simplecast.com/audio/20f35050-e836-44cd-8f7f-fd13e8cb2e44/episodes/c763ebae-3eb3-47f4-aa35-f4c4d0a2a30f/audio/0e9f5ec5-9869-46f9-a3b1-765bf29ff246/default_tc.mp3?aid=rss_feed&feed=LpAGSLnY
+2.
+https://cdn.simplecast.com/audio/20f350/20f35050-e836-44cd-8f7f-fd13e8cb2e44/eb75aecf-c022-41e9-ae20-49b5673f7266/198_tc.mp3?nocache
+
+Both of these will translate to embed urls that looks like this:
+
+1. https://player.simplecast.com/c763ebae-3eb3-47f4-aa35-f4c4d0a2a30f?dark=true
+2. https://player.simplecast.com/eb75aecf-c022-41e9-ae20-49b5673f7266?dark=true
+
+*/}}
+
+{{- $src := "" -}}
+{{- if .IsNamedParams -}}
+{{- $src = .Get "src" -}}
+{{- else -}}
+{{- $src = .Get 0 -}}
+{{- end -}}
+
+{{- if $src -}}
+{{- $audioID := "" -}}
+{{- if findRE "/episodes/" $src -}}
+{{- $audioID = replaceRE ".*/episodes/([a-z0-9-]+)/audio.*" "$1" $src -}}
+{{- else -}}
+{{- $audioID = replaceRE ".*/([a-z0-9-]+)/([a-z0-9-]+)_tc\\.mp3.*" "$1" $src -}}
+{{- end -}}
+
+<p>
+    <iframe width="100%" class="h-[52px] sm:h-[200px] w-full" frameborder="no" scrolling="no" seamless
+        src="https://player.simplecast.com/{{ $audioID }}?dark=true">
+    </iframe>
+</p>
+<p class="!mt-2">
+    <a class="download-link font-semibold text-right text-sm block" href="{{ $src }}">Download directly</a>
+</p>
+{{- end -}}
