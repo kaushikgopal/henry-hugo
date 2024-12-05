@@ -12,7 +12,7 @@
                 {{ else if eq .Section "blog" }}post
                 {{ else if eq .Section "ppt" }}talk
                 {{ else }}
-                    {{ .Section | singularize }}
+                {{ .Section | singularize }}
                 {{ end }}
             </a>
 
@@ -23,9 +23,9 @@
             {{ end }}
         </div>
 
-        <h1 class="post-link-url
-               mt-1 lg:mt-2
-               text-2xl lg:text-3xl">
+        <h1 class=" post-link-url
+                    mt-1 lg:mt-2
+                    md:text-2xl lg:text-3xl">
             <a class="no-underline" href="{{ .RelPermalink }}">
                 {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
             </a>
