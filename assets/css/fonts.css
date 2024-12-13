@@ -1,26 +1,26 @@
 
 /* Serif font */
 @font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-regular.ttf");
+    font-family: kg-title;
+    src: url("../fonts/kg-title.otf");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-regular-italic.ttf");
+    font-family: kg-title;
+    src: url("../fonts/kg-title-italic.otf");
     font-weight: normal;
     font-style: italic;
 }
 @font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-medium.ttf");
+    font-family: kg-title;
+    src: url("../fonts/kg-title-bold.otf");
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
-    font-family: kg-serif;
-    src: url("../fonts/kg-serif-medium-italic.ttf");
+    font-family: kg-title;
+    src: url("../fonts/kg-title-bold-italic.otf");
     font-weight: bold;
     font-style: italic;
 }
