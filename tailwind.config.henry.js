@@ -18,7 +18,7 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            'title' : ['kg-serif'],
+            'title' : ['kg-title'],
             'sans'  : ['"kg-sans"'], // body
             'mono'  : ['kg-mono'],
         },
