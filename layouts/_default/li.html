@@ -1,11 +1,11 @@
-<div class="mt-8">
+<div class="mt-6 md:mt-8">
 
     <aside class="post-metadata">
 
         <div class="tags
                 flex flex-row gap-2">
 
-            <a class="nav-link pill-henryc text-xs" href="/{{.Section}}">
+            <a class="nav-link pill-henryc hidden md:block" href="/{{.Section}}">
                 {{ if .Params.externalLink }}link
                 {{ else if eq .Section "letter" }}letter
                 {{ else if eq .Section "s" }}short
@@ -19,13 +19,13 @@
 
             {{ if .Draft }}
             <div class="draft
-                    pill-henryc2-solid text-xs">Draft</div>
+                    pill-henryc2-solid">Draft</div>
             {{ end }}
         </div>
 
         <h1 class=" post-link-url
                     mt-1 lg:mt-2
-                    md:text-2xl lg:text-3xl">
+                    md:text-2xl lg:text-3xl font-semibold">
             <a class="no-underline" href="{{ .RelPermalink }}">
                 {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
             </a>
