@@ -2,13 +2,13 @@
 {{ partial "single-before.html" . }}
 <section class="post
                 flex flex-col items-center
-                pt-8 md:pt-18 pb-12">
+                pt-8 md:pt-24 pb-12">
 
     <header class="post-header
                    w-3/4 max-w-3xl min-w-[333px]
                    mb-8">
 
-        <h1 class="post-title text-henryt
+        <h1 class="post-title text-henryt text-center
                    text-2xl md:text-3xl font-bold font-title">
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
@@ -32,7 +32,8 @@
         </h1>
 
         <h4 class="post-author
-                   text-sm text-henryt-light">
+                   pt-2 md:pt-4
+                   text-sm text-henryt-light text-center">
             {{ partial "get-authors.html" . }}
         </h4>
 

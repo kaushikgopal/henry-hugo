@@ -3,173 +3,172 @@
 @tailwind utilities;
 
 @layer base {
-    article {
-        @apply text-henryt space-y-6;
-    }
+  article {
+    @apply text-henryt space-y-6;
+  }
 
-    article p {
-        @apply overflow-hidden text-ellipsis;
-    }
+  article p {
+    @apply overflow-hidden text-ellipsis;
+  }
 
-    a {
-        @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
-    }
+  a {
+    @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
+  }
 }
 
 @layer components {
+  .post-content hr {
+    @apply border border-henryt-lighter mt-6;
+  }
 
-    .post-content hr {
-        @apply border border-henryt-lighter mt-6;
-    }
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 {
+    @apply font-title font-bold text-henryc;
+  }
 
-    .post-content h1,
-    .post-content h2,
-    .post-content h3,
-    .post-content h4 {
-        @apply font-title font-bold text-henryc;
-    }
+  .post-content h1 {
+    @apply text-2xl;
+  }
 
-    .post-content h1 {
-        @apply text-2xl;
-    }
+  .post-content h1 code {
+    @apply text-2xl;
+  }
 
-    .post-content h1 code {
-        @apply text-2xl;
-    }
+  .post-content h2 {
+    @apply text-xl;
+  }
 
-    .post-content h2 {
-        @apply text-xl;
-    }
+  .post-content h2 code {
+    @apply text-xl;
+  }
 
-    .post-content h2 code {
-        @apply text-xl;
-    }
+  .post-content h3 {
+    @apply text-lg;
+  }
 
-    .post-content h3 {
-        @apply text-lg;
-    }
+  .post-content h3 code {
+    @apply text-lg;
+  }
 
-    .post-content h3 code {
-        @apply text-lg;
-    }
+  .post-content h4 {
+    @apply font-bold;
+  }
 
-    .post-content h4 {
-        @apply font-bold;
-    }
+  .post-content ol li {
+    @apply ms-6 list-decimal;
+  }
 
-    .post-content ol li {
-        @apply ms-6 list-decimal;
-    }
+  .post-content ul li {
+    @apply ms-6 list-disc;
+  }
 
-    .post-content ul li {
-        @apply ms-6 list-disc;
-    }
+  /* code blocks */
+  .post-content pre {
+    @apply p-4 border border-black rounded-md overflow-auto text-sm;
+  }
 
-    /* code blocks */
-    .post-content pre {
-        @apply p-4 border border-black rounded-md overflow-auto text-sm;
-    }
+  /* inline code */
+  .post-content code {
+    @apply text-henryc-lightest text-base;
+  }
 
-    /* inline code */
-    .post-content code {
-        @apply text-henryc-lightest text-base;
-    }
+  .post-content > *:not(figure.full-bleed) {
+    @apply w-3/4 max-w-3xl min-w-[333px];
+  }
 
-    .post-content>*:not(figure.full-bleed) {
-        @apply w-3/4 max-w-3xl min-w-[333px];
-    }
+  .post-content figure.full-bleed {
+    @apply w-full border-l-0 border-r-0;
+  }
 
-    .post-content figure.full-bleed {
-        @apply w-full border-l-0 border-r-0;
-    }
+  .post-content figure figcaption {
+    @apply text-center no-underline font-bold text-xs pt-1;
+  }
 
-    .post-content figure figcaption {
-        @apply text-center no-underline font-bold text-xs pt-1;
-    }
+  .post-content *:not(figure.full-bleed) img {
+    @apply border-4 border-black rounded-md;
+  }
 
-    .post-content *:not(figure.full-bleed) img {
-        @apply border-4 border-black rounded-md;
-    }
+  .post-content figure.full-bleed img {
+    width: 100%;
+    @apply border-t-4 border-b-4 border-black;
+  }
 
-    .post-content figure.full-bleed img {
-        width: 100%;
-        @apply border-t-4 border-b-4 border-black;
-    }
+  .post-content figure img.borderless {
+    @apply border-0;
+  }
 
-    .post-content figure img.borderless {
-        @apply border-0;
-    }
+  .post-content .callout:not(figure) {
+    @apply border-4 border-henryc p-4 space-y-2;
+  }
 
-    .post-content .callout:not(figure) {
-        @apply border-4 border-henryc p-4 space-y-2;
-    }
+  .post-content blockquote {
+    @apply md:!w-[60%] text-henryt-light bg-henryb-dark p-4 italic text-sm md:text-base;
+  }
 
-    .post-content blockquote {
-        @apply text-henryt-light border-l-2 border-henryc pl-6 pt-2 pb-2 pr-2 italic text-sm md:text-base ;
-    }
+  .post-content .footnote-ref {
+    @apply font-bold no-underline ps-0.5;
+  }
 
-    .post-content .footnote-ref {
-        @apply font-bold no-underline ps-0.5;
-    }
+  .post-content .footnote-backref {
+    @apply font-bold text-white no-underline hover:text-henryc;
+  }
 
-    .post-content .footnote-backref {
-        @apply font-bold text-white no-underline hover:text-henryc;
-    }
+  .footnotes hr {
+    @apply border border-henryt-light mt-10;
+  }
 
-    .footnotes hr {
-        @apply border border-henryt-light mt-10;
-    }
+  .footnotes ol {
+    @apply list-decimal text-henryt-light mt-2 py-2 pe-1 ps-6;
+  }
 
-    .footnotes ol {
-        @apply list-decimal text-henryt-light mt-2 py-2 pe-1 ps-6;
-    }
+  .footnotes ol a {
+    @apply decoration-henryt-lighter;
+  }
 
-    .footnotes ol a {
-        @apply decoration-henryt-lighter;
-    }
+  .pill-henryc2 {
+    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc2-dark text-henryc2-dark hover:text-white uppercase no-underline font-sans;
+  }
 
-    .pill-henryc2 {
-        @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc2-dark text-henryc2-dark hover:text-white uppercase no-underline font-sans;
-    }
+  .pill-henryc2-solid {
+    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
+  }
 
-    .pill-henryc2-solid {
-        @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
-    }
+  .pill-henryc {
+    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
+  }
 
-    .pill-henryc {
-        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
-    }
+  .pill-henryc-solid {
+    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
+  }
 
-    .pill-henryc-solid {
-        @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
-    }
+  .pill-slate {
+    @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
+  }
 
-    .pill-slate {
-        @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
-    }
+  /* Pagination styles */
+  .pagination {
+    @apply flex flex-wrap justify-center items-center space-x-2 my-8;
+  }
 
-    /* Pagination styles */
-    .pagination {
-        @apply flex flex-wrap justify-center items-center space-x-2 my-8;
-    }
+  .page-item {
+    @apply inline-block;
+  }
 
-    .page-item {
-        @apply inline-block;
-    }
+  .page-item:nth-last-child(-n + 4):nth-last-child(n + 3) {
+    @apply hidden sm:block;
+  }
 
-    .page-item:nth-last-child(-n+4):nth-last-child(n+3) {
-        @apply hidden sm:block;
-    }
+  .page-link {
+    @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
+  }
 
-    .page-link {
-        @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
-    }
+  .page-item.active .page-link {
+    @apply bg-henryc text-black font-bold;
+  }
 
-    .page-item.active .page-link {
-        @apply bg-henryc text-black font-bold;
-    }
-
-    .page-item.disabled .page-link {
-        @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
-    }
+  .page-item.disabled .page-link {
+    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
+  }
 }
