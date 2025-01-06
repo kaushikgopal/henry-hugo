@@ -25,7 +25,7 @@
 
         <h1 class=" post-link-url
                     mt-1 lg:mt-2
-                    md:text-2xl lg:text-3xl font-semibold">
+                    text-xl md:text-2xl lg:text-3xl font-semibold">
             <a class="no-underline" href="{{ .RelPermalink }}">
                 {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
             </a>
