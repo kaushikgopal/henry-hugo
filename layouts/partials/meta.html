@@ -12,6 +12,10 @@
 </div>
 {{ end }}
 
+{{ if .Params.bsky }}
+{{ partial "comments-bsky.html" . }}
+{{ end }}
+
 {{ $related := .Site.RegularPages.Related . }}
 {{ with $related }}
 <div class="related-posts pt-6 pb-10">
