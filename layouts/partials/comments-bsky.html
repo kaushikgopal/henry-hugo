@@ -1,3 +1,3 @@
-<div id="comments-section" data-bsky-uri="{{ .Params.bsky }}"></div>
-{{ $comments := resources.Get "js/comments.js" }}
+<div id="comments-bsky" data-bsky-uri="{{ .Params.bsky }}"></div>
+{{ $comments := resources.Get "js/comments-bsky.js" }}
 <script src="{{ $comments.RelPermalink }}"></script>

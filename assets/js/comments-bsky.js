@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const commentsSection = document.getElementById("comments-section");
+  const commentsSection = document.getElementById("comments-bsky");
   const bskyWebUrl = commentsSection?.getAttribute("data-bsky-uri");
 
   if (!bskyWebUrl) return;
@@ -163,7 +163,8 @@ function renderComment(comment) {
     const avatarImg = document.createElement("img");
     avatarImg.src = author.avatar;
     avatarImg.alt = "avatar";
-    avatarImg.className = "avatar";
+    avatarImg.className =
+      "avatar w-[50px] border-2 border-henryc rounded-full overflow-hidden";
     authorDiv.appendChild(avatarImg);
   }
 
