@@ -129,11 +129,17 @@ function renderComment(comment) {
   const { post } = comment;
   const { author } = post;
 
+  // Top-level container for the comment
   const commentDiv = document.createElement("div");
-  commentDiv.className = "comment";
+  commentDiv.className = "comment flex items-start space-x-4 my-4";
 
-  const authorDiv = document.createElement("div");
-  authorDiv.className = "author flex items-center space-x-2";
+  // Left column: avatar linking to profile
+  const avatarCol = document.createElement("div");
+  avatarCol.className = "avatar-col pt-2";
+
+  const avatarLink = document.createElement("a");
+  avatarLink.href = `https://bsky.app/profile/${author.did}`;
+  avatarLink.target = "_blank";
 
   if (author.avatar) {
     const avatarImg = document.createElement("img");
@@ -141,31 +147,44 @@ function renderComment(comment) {
     avatarImg.alt = "avatar";
     avatarImg.className =
       "avatar w-[32px] border border-henryc rounded-full overflow-hidden";
-    authorDiv.appendChild(avatarImg);
+    avatarLink.appendChild(avatarImg);
   }
+
+  avatarCol.appendChild(avatarLink);
+  commentDiv.appendChild(avatarCol);
+
+  // Right column: author name, text, actions
+  const rightCol = document.createElement("div");
+  rightCol.className = "flex flex-col flex-1";
+
+  // Author name
+  const authorDiv = document.createElement("div");
+  authorDiv.className = "author flex items-center space-x-2";
 
   const authorLink = document.createElement("a");
   authorLink.href = `https://bsky.app/profile/${author.did}`;
   authorLink.target = "_blank";
   authorLink.textContent = author.displayName ?? author.handle;
-  authorDiv.appendChild(authorLink);
 
   // const handleSpan = document.createElement("span");
   // handleSpan.textContent = `@${author.handle}`;
   // authorDiv.appendChild(handleSpan);
 
-  commentDiv.appendChild(authorDiv);
+  authorDiv.appendChild(authorLink);
+  rightCol.appendChild(authorDiv);
 
+  // Comment text
   const contentP = document.createElement("p");
   contentP.textContent = post.record.text;
-  contentP.className = "ml-10 text-henryt-light";
-  commentDiv.appendChild(contentP);
+  contentP.className = "mt-1 text-henryt-light";
+  rightCol.appendChild(contentP);
 
+  // Actions link
   const postUrl = `https://bsky.app/profile/${author.did}/post/${post.uri
     .split("/")
     .pop()}`;
   const actionsDiv = document.createElement("div");
-  actionsDiv.className = "actions ml-10 text-henryt-lighter text-sm";
+  actionsDiv.className = "actions text-henryt-lighter text-sm mt-1";
 
   const actionsLink = document.createElement("a");
   actionsLink.href = postUrl;
@@ -175,12 +194,13 @@ function renderComment(comment) {
   } reposts | ${post.likeCount ?? 0} likes`;
 
   actionsDiv.appendChild(actionsLink);
-  commentDiv.appendChild(actionsDiv);
+  rightCol.appendChild(actionsDiv);
 
+  // Nested replies
   if (comment.replies && comment.replies.length > 0) {
     const nestedRepliesDiv = document.createElement("div");
     nestedRepliesDiv.className =
-      "nested-replies ml-10 my-4 pl-4 py-2 border-l border-henryt-lighter";
+      "nested-replies my-4 pl-4 border-l border-henryt-lighter";
 
     const sortedReplies = comment.replies.sort(sortByLikes);
     for (const reply of sortedReplies) {
@@ -188,10 +208,11 @@ function renderComment(comment) {
         nestedRepliesDiv.appendChild(renderComment(reply));
       }
     }
-
-    commentDiv.appendChild(nestedRepliesDiv);
+    rightCol.appendChild(nestedRepliesDiv);
   }
 
+  // Combine left and right columns
+  commentDiv.appendChild(rightCol);
   return commentDiv;
 }
 
