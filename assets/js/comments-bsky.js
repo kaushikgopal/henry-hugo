@@ -97,55 +97,31 @@ async function getPostThread(atUri) {
 }
 
 function renderComments(thread, container) {
-  container.innerHTML = "";
+  const likeCountEl = document.getElementById("likeCount");
+  const repostCountEl = document.getElementById("repostCount");
+  const replyCountEl = document.getElementById("replyCount");
+  const postLink = document.getElementById("post-link");
+  const replyLink = document.getElementById("reply-link");
+  const commentsContainer = document.getElementById("comments-container");
+
+  likeCountEl.textContent = thread.post.likeCount ?? 0;
+  repostCountEl.textContent = thread.post.repostCount ?? 0;
+  replyCountEl.textContent = thread.post.replyCount ?? 0;
 
   const postUrl = `https://bsky.app/profile/${
     thread.post.author.did
   }/post/${thread.post.uri.split("/").pop()}`;
-
-  const metaDiv = document.createElement("div");
-  const link = document.createElement("a");
-  link.href = postUrl;
-  link.target = "_blank";
-  link.textContent = `${thread.post.likeCount ?? 0} likes | ${
-    thread.post.repostCount ?? 0
-  } reposts | ${thread.post.replyCount ?? 0} replies`;
-  metaDiv.appendChild(link);
-
-  container.appendChild(metaDiv);
-
-  const commentsHeader = document.createElement("h2");
-  commentsHeader.textContent = "Comments";
-  container.appendChild(commentsHeader);
-
-  const replyText = document.createElement("p");
-  replyText.textContent = "Reply on Bluesky ";
-  const replyLink = document.createElement("a");
+  postLink.href = postUrl;
   replyLink.href = postUrl;
-  replyLink.target = "_blank";
-  replyLink.textContent = "here";
-  replyText.appendChild(replyLink);
-  container.appendChild(replyText);
 
-  const divider = document.createElement("hr");
-  container.appendChild(divider);
-
+  commentsContainer.innerHTML = "";
   if (thread.replies && thread.replies.length > 0) {
-    const commentsContainer = document.createElement("div");
-    commentsContainer.id = "comments-container";
-
     const sortedReplies = thread.replies.sort(sortByLikes);
     for (const reply of sortedReplies) {
       if (isThreadViewPost(reply)) {
         commentsContainer.appendChild(renderComment(reply));
       }
     }
-
-    container.appendChild(commentsContainer);
-  } else {
-    const noComments = document.createElement("p");
-    noComments.textContent = "No comments available.";
-    container.appendChild(noComments);
   }
 }
 
@@ -164,7 +140,7 @@ function renderComment(comment) {
     avatarImg.src = author.avatar;
     avatarImg.alt = "avatar";
     avatarImg.className =
-      "avatar w-[50px] border-2 border-henryc rounded-full overflow-hidden";
+      "avatar w-[50px] border border-henryc rounded-full overflow-hidden";
     authorDiv.appendChild(avatarImg);
   }
 
@@ -193,7 +169,8 @@ function renderComment(comment) {
 
   if (comment.replies && comment.replies.length > 0) {
     const nestedRepliesDiv = document.createElement("div");
-    nestedRepliesDiv.className = "nested-replies";
+    nestedRepliesDiv.className =
+      "nested-replies ml-4 my-4 pl-4 py-2 border-l border-henryt-lighter";
 
     const sortedReplies = comment.replies.sort(sortByLikes);
     for (const reply of sortedReplies) {

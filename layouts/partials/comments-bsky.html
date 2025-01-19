@@ -1,3 +1,21 @@
-<div id="comments-bsky" data-bsky-uri="{{ .Params.bsky }}"></div>
-{{ $comments := resources.Get "js/comments-bsky.js" }}
-<script src="{{ $comments.RelPermalink }}"></script>
+<div id="comments-bsky" data-bsky-uri="{{ .Params.bsky }}" class="text-henryt-light my-12 ">
+    <h2 id="comments-header" class="font-bold">Comments via 🦋</h2>
+
+    <div id="post-meta" class="mt-2 mb-4">
+
+      <a id="post-link" class="decoration-henryt-lightest" href="#" target="_blank">
+        <span id="likeCount">0</span> likes |
+        <span id="repostCount">0</span> reposts |
+        <span id="replyCount">0</span> replies
+      </a>
+
+        <p id="reply-text"><a id="reply-link" href="#" target="_blank">Join the conversation</a></p>
+    </div>
+
+
+
+    <div id="comments-container"></div>
+
+  </div>
+  {{ $comments := resources.Get "js/comments-bsky.js" }}
+  <script src="{{ $comments.RelPermalink }}"></script>
