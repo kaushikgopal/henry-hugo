@@ -199,8 +199,7 @@ function renderComment(comment) {
   // Nested replies
   if (comment.replies && comment.replies.length > 0) {
     const nestedRepliesDiv = document.createElement("div");
-    nestedRepliesDiv.className =
-      "nested-replies my-4 pl-4 border-l border-henryt-lighter";
+    nestedRepliesDiv.className = "nested-replies my-4";
 
     const sortedReplies = comment.replies.sort(sortByLikes);
     for (const reply of sortedReplies) {
