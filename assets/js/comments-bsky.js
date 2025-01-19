@@ -133,14 +133,14 @@ function renderComment(comment) {
   commentDiv.className = "comment";
 
   const authorDiv = document.createElement("div");
-  authorDiv.className = "author";
+  authorDiv.className = "author flex items-center space-x-2";
 
   if (author.avatar) {
     const avatarImg = document.createElement("img");
     avatarImg.src = author.avatar;
     avatarImg.alt = "avatar";
     avatarImg.className =
-      "avatar w-[50px] border border-henryc rounded-full overflow-hidden";
+      "avatar w-[32px] border border-henryc rounded-full overflow-hidden";
     authorDiv.appendChild(avatarImg);
   }
 
@@ -150,18 +150,19 @@ function renderComment(comment) {
   authorLink.textContent = author.displayName ?? author.handle;
   authorDiv.appendChild(authorLink);
 
-  const handleSpan = document.createElement("span");
-  handleSpan.textContent = `@${author.handle}`;
-  authorDiv.appendChild(handleSpan);
+  // const handleSpan = document.createElement("span");
+  // handleSpan.textContent = `@${author.handle}`;
+  // authorDiv.appendChild(handleSpan);
 
   commentDiv.appendChild(authorDiv);
 
   const contentP = document.createElement("p");
   contentP.textContent = post.record.text;
+  contentP.className = "ml-10 text-henryt";
   commentDiv.appendChild(contentP);
 
   const actionsDiv = document.createElement("div");
-  actionsDiv.className = "actions";
+  actionsDiv.className = "actions ml-10 text-henryt-lighter text-sm";
   actionsDiv.textContent = `${post.replyCount ?? 0} replies | ${
     post.repostCount ?? 0
   } reposts | ${post.likeCount ?? 0} likes`;
@@ -170,7 +171,7 @@ function renderComment(comment) {
   if (comment.replies && comment.replies.length > 0) {
     const nestedRepliesDiv = document.createElement("div");
     nestedRepliesDiv.className =
-      "nested-replies ml-4 my-4 pl-4 py-2 border-l border-henryt-lighter";
+      "nested-replies ml-10 my-4 pl-4 py-2 border-l border-henryt-lighter";
 
     const sortedReplies = comment.replies.sort(sortByLikes);
     for (const reply of sortedReplies) {
