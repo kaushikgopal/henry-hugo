@@ -161,11 +161,20 @@ function renderComment(comment) {
   contentP.className = "ml-10 text-henryt-light";
   commentDiv.appendChild(contentP);
 
+  const postUrl = `https://bsky.app/profile/${author.did}/post/${post.uri
+    .split("/")
+    .pop()}`;
   const actionsDiv = document.createElement("div");
   actionsDiv.className = "actions ml-10 text-henryt-lighter text-sm";
-  actionsDiv.textContent = `${post.replyCount ?? 0} replies | ${
+
+  const actionsLink = document.createElement("a");
+  actionsLink.href = postUrl;
+  actionsLink.target = "_blank";
+  actionsLink.textContent = `${post.replyCount ?? 0} replies | ${
     post.repostCount ?? 0
   } reposts | ${post.likeCount ?? 0} likes`;
+
+  actionsDiv.appendChild(actionsLink);
   commentDiv.appendChild(actionsDiv);
 
   if (comment.replies && comment.replies.length > 0) {
