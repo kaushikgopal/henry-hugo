@@ -158,7 +158,7 @@ function renderComment(comment) {
 
   const contentP = document.createElement("p");
   contentP.textContent = post.record.text;
-  contentP.className = "ml-10 text-henryt";
+  contentP.className = "ml-10 text-henryt-light";
   commentDiv.appendChild(contentP);
 
   const actionsDiv = document.createElement("div");
