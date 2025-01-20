@@ -159,11 +159,12 @@ function renderComment(comment) {
 
   // Author name
   const authorDiv = document.createElement("div");
-  authorDiv.className = "author flex items-center space-x-2";
+  authorDiv.className = "author flex items-center";
 
   const authorLink = document.createElement("a");
   authorLink.href = `https://bsky.app/profile/${author.did}`;
   authorLink.target = "_blank";
+  authorLink.className = "no-underline";
   authorLink.textContent = author.displayName ?? author.handle;
 
   // const handleSpan = document.createElement("span");
@@ -189,6 +190,7 @@ function renderComment(comment) {
   const actionsLink = document.createElement("a");
   actionsLink.href = postUrl;
   actionsLink.target = "_blank";
+  actionsLink.className = "decoration-henryt-lightest";
   actionsLink.textContent = `${post.replyCount ?? 0} replies | ${
     post.repostCount ?? 0
   } reposts | ${post.likeCount ?? 0} likes`;
