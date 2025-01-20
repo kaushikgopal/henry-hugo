@@ -47,6 +47,9 @@ categories: []
 # banner: /images/content/soul.jpg | ./henry.webp
 
 summary: Mini desc. used in twitter & SEO
+
+# if you want comments enabled via bluesky
+bsky:
 ---
 
 <!---
