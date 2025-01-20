@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentsSection = document.getElementById("comments-bsky");
   const bskyWebUrl = commentsSection?.getAttribute("data-bsky-uri");
 
-  if (!bskyWebUrl) return;
+  if (!bskyWebUrl) {
+    console.warn("bluesky web url not found");
+    return;
+  }
 
   (async () => {
     try {
@@ -100,8 +103,7 @@ function renderComments(thread, container) {
   const likeCountEl = document.getElementById("likeCount");
   const repostCountEl = document.getElementById("repostCount");
   const replyCountEl = document.getElementById("replyCount");
-  const postLink = document.getElementById("post-link");
-  const replyLink = document.getElementById("reply-link");
+  const commentPostLink = document.getElementById("comment-post-meta-reply");
   const commentsContainer = document.getElementById("comments-container");
 
   likeCountEl.textContent = thread.post.likeCount ?? 0;
@@ -111,8 +113,7 @@ function renderComments(thread, container) {
   const postUrl = `https://bsky.app/profile/${
     thread.post.author.did
   }/post/${thread.post.uri.split("/").pop()}`;
-  postLink.href = postUrl;
-  replyLink.href = postUrl;
+  commentPostLink.href = postUrl;
 
   commentsContainer.innerHTML = "";
   if (thread.replies && thread.replies.length > 0) {
@@ -129,92 +130,54 @@ function renderComment(comment) {
   const { post } = comment;
   const { author } = post;
 
-  // Top-level container for the comment
-  const commentDiv = document.createElement("div");
-  commentDiv.className = "comment flex items-start space-x-4 my-4";
+  const template = document.getElementById("comment-template");
+  const commentClone = template.content.cloneNode(true);
 
-  // Left column: avatar linking to profile
-  const avatarCol = document.createElement("div");
-  avatarCol.className = "avatar-col pt-2";
+  const avatarLink = commentClone.querySelector(".avatar-link");
+  const avatarImg = commentClone.querySelector(".avatar-img");
+  const authorLink = commentClone.querySelector(".author-link");
+  const authorName = commentClone.querySelector(".author-name");
+  const commentText = commentClone.querySelector(".comment-text");
 
-  const avatarLink = document.createElement("a");
   avatarLink.href = `https://bsky.app/profile/${author.did}`;
-  avatarLink.target = "_blank";
+  authorLink.href = `https://bsky.app/profile/${author.did}`;
 
   if (author.avatar) {
-    const avatarImg = document.createElement("img");
     avatarImg.src = author.avatar;
-    avatarImg.alt = "avatar";
-    avatarImg.className =
-      "avatar w-[32px] border border-henryc rounded-full overflow-hidden";
-    avatarLink.appendChild(avatarImg);
+    avatarImg.alt = author.displayName ?? author.handle;
+    avatarImg.title = author.handle;
   }
 
-  avatarCol.appendChild(avatarLink);
-  commentDiv.appendChild(avatarCol);
+  authorName.textContent = author.displayName ?? author.handle;
+  authorName.title = author.handle;
 
-  // Right column: author name, text, actions
-  const rightCol = document.createElement("div");
-  rightCol.className = "flex flex-col flex-1";
+  commentText.textContent = post.record.text;
 
-  // Author name
-  const authorDiv = document.createElement("div");
-  authorDiv.className = "author flex items-center";
-
-  const authorLink = document.createElement("a");
-  authorLink.href = `https://bsky.app/profile/${author.did}`;
-  authorLink.target = "_blank";
-  authorLink.className = "no-underline";
-  authorLink.textContent = author.displayName ?? author.handle;
-
-  // const handleSpan = document.createElement("span");
-  // handleSpan.textContent = `@${author.handle}`;
-  // authorDiv.appendChild(handleSpan);
-
-  authorDiv.appendChild(authorLink);
-  rightCol.appendChild(authorDiv);
-
-  // Comment text
-  const contentP = document.createElement("p");
-  contentP.textContent = post.record.text;
-  contentP.className = "mt-1 text-henryt-light";
-  rightCol.appendChild(contentP);
-
-  // Actions link
-  const postUrl = `https://bsky.app/profile/${author.did}/post/${post.uri
+  // actions
+  const actionsLink = commentClone.querySelector(".actions-link");
+  const commentUrl = `https://bsky.app/profile/${author.did}/post/${post.uri
     .split("/")
     .pop()}`;
-  const actionsDiv = document.createElement("div");
-  actionsDiv.className = "actions text-henryt-lighter text-sm mt-1";
-
-  const actionsLink = document.createElement("a");
-  actionsLink.href = postUrl;
-  actionsLink.target = "_blank";
-  actionsLink.className = "decoration-henryt-lightest";
+  actionsLink.href = commentUrl;
   actionsLink.textContent = `${post.replyCount ?? 0} replies | ${
     post.repostCount ?? 0
   } reposts | ${post.likeCount ?? 0} likes`;
 
-  actionsDiv.appendChild(actionsLink);
-  rightCol.appendChild(actionsDiv);
-
   // Nested replies
   if (comment.replies && comment.replies.length > 0) {
-    const nestedRepliesDiv = document.createElement("div");
-    nestedRepliesDiv.className = "nested-replies my-4";
-
     const sortedReplies = comment.replies.sort(sortByLikes);
+    const nestedRepliesContainer = document.createElement("div");
+    nestedRepliesContainer.className = "comment nested-replies ml-14";
+
     for (const reply of sortedReplies) {
       if (isThreadViewPost(reply)) {
-        nestedRepliesDiv.appendChild(renderComment(reply));
+        nestedRepliesContainer.appendChild(renderComment(reply));
       }
     }
-    rightCol.appendChild(nestedRepliesDiv);
+    commentClone.appendChild(nestedRepliesContainer);
   }
 
-  // Combine left and right columns
-  commentDiv.appendChild(rightCol);
-  return commentDiv;
+  return commentClone;
 }
 
 function sortByLikes(a, b) {

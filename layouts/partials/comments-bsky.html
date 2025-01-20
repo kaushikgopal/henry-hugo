@@ -1,19 +1,63 @@
-<div id="comments-bsky" data-bsky-uri="{{ .Params.bsky }}" class="text-henryt-lighter my-12">
-    <h2 id="comments-header" class="font-bold text-henryt-light">Comments via 🦋</h2>
+<div
+  id="comments-bsky"
+  data-bsky-uri="{{ .Params.bsky }}"
+  class="text-henryt-lighter my-12"
+>
+  <div id="comment-post">
+    <h2 class="comment-post-header font-bold text-henryt-light">
+      Comments via 🦋
+    </h2>
 
-    <div id="post-meta" class="mt-2 mb-10">
-
-      <a id="post-link" class="decoration-henryt-lightest" href="#" target="_blank">
+    <div class="comment-post-meta mt-2 mb-10">
+      <a
+        class="comment-post-meta-actions decoration-henryt-lightest"
+        href="#"
+        target="_blank"
+      >
         <span id="likeCount">0</span> likes |
         <span id="repostCount">0</span> reposts |
         <span id="replyCount">0</span> replies
       </a>
 
-        <p id="reply-text"><a id="reply-link" href="#" target="_blank">Join the conversation</a></p>
+      <a
+        id="comment-post-meta-reply"
+        class="block decoration-henryt-lightest"
+        href="#"
+        target="_blank"
+      >
+        Join the conversation
+      </a>
     </div>
-
-    <div id="comments-container"></div>
-
   </div>
-  {{ $comments := resources.Get "js/comments-bsky.js" }}
-  <script src="{{ $comments.RelPermalink }}"></script>
+
+  <div id="comments-container"></div>
+
+  <template id="comment-template">
+    <div class="comment flex items-start space-x-4 my-8">
+      <div class="avatar pe-2 pt-2">
+        <a class="avatar-link" href="" target="_blank">
+          <img
+            class="avatar-img h-[40px] w-[40px] border border-henryc rounded-full overflow-hidden"
+            src=""
+            alt="avatar"
+          />
+        </a>
+      </div>
+
+      <div class="comment-body">
+        <a class="author-link" href="#" target="_blank">
+          <span class="author-name" title=""></span>
+        </a>
+
+        <p class="comment-text"></p>
+
+        <div class="comment-actions mt-1 text-henryt-lighter text-sm">
+          <a class="actions-link" href="#" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+
+{{ $comments := resources.Get "js/comments-bsky.js" }}
+<script src="{{ $comments.RelPermalink }}"></script>
