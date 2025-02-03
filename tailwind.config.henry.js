@@ -19,19 +19,11 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      title: ["kg-title"],
-      sans: ['"kg-sans"'], // body
-      mono: ["kg-mono"],
+      sans:   ["Figtree"],
+      title:  ["Fraunces"],
+      mono:   ["Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", "monospace"],
     },
     extend: {
-      fontFamily: {
-        mono: [
-          "kg-mono",
-          {
-            fontFeatureSettings: '"cv02", "cv04", "cv06", "cv07", "cv08"',
-          },
-        ],
-      },
       colors: {
         henryb: {
           // henry background

@@ -23,9 +23,9 @@
             {{ end }}
         </div>
 
-        <h1 class=" post-link-url
+        <h1 class=" post-link-url font-title font-semibold
                     mt-1 lg:mt-2
-                    text-xl md:text-2xl lg:text-3xl font-semibold">
+                    text-xl md:text-2xl lg:text-3xl">
             <a class="no-underline" href="{{ .RelPermalink }}">
                 {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
             </a>

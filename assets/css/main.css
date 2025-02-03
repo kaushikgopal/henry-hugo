@@ -25,7 +25,7 @@
   .post-content h2,
   .post-content h3,
   .post-content h4 {
-    @apply font-title font-bold text-henryc;
+    @apply font-title font-semibold text-henryc;
   }
 
   .post-content h1 {
@@ -71,7 +71,7 @@
 
   /* inline code */
   .post-content code {
-    @apply text-henryc-lightest text-base;
+    @apply text-henryc-lightest text-sm md:text-base;
   }
 
   .post-content > *:not(figure.full-bleed) {
@@ -104,7 +104,10 @@
   }
 
   .post-content blockquote {
-    @apply md:!w-[60%] text-henryt-light bg-henryb-dark p-4 italic text-sm md:text-base;
+    @apply  md:!w-[60%] p-4
+          bg-henryb-dark border-l-4 border-henryc-lighter
+            italic
+            text-sm md:text-base;
   }
 
   .post-content .footnote-ref {
