@@ -11,6 +11,11 @@
     @apply overflow-hidden text-ellipsis;
   }
 
+  article > :not([hidden]) ~ :not([hidden]) {
+    /* increase space between paragraphs every so slightly */
+    --tw-space-y-reverse: -0.25;
+  }
+
   a {
     @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
   }
