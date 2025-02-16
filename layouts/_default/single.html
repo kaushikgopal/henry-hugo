@@ -13,7 +13,7 @@
                    text-2xl md:text-3xl ">
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
-            <a href="{{ .Params.externalLink }}" class="article-link decoration-1  underline-offset-6">
+            <a href="{{ .Params.externalLink }}" class="article-link decoration-1 underline-offset-8">
                 {{ .Title }}
             </a>
             {{- partial "postimoji.html" . -}}
