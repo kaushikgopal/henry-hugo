@@ -19,6 +19,10 @@
   a {
     @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
   }
+
+  article a {
+    @apply font-medium text-henryc no-underline;
+  }
 }
 
 @layer components {
@@ -119,15 +123,11 @@
   }
 
   .post-content .footnote-ref {
-    @apply font-bold no-underline ps-0.5;
+    @apply font-bold no-underline text-henryt-light hover:text-henryc ps-0.5;
   }
 
   .post-content .footnote-backref {
     @apply font-bold text-white no-underline hover:text-henryc;
-  }
-
-  .footnotes hr {
-    @apply border border-henryt-light mt-10;
   }
 
   .footnotes ol {
