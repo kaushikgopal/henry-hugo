@@ -23,8 +23,8 @@
         </div>
 
         <h1 class=" post-link-url mt-4
-                    font-title
-                    text-2xl lg:text-3xl leading-tight">
+                    md:font-title
+                    text-xl lg:text-3xl leading-tight">
             <a class="no-underline" href="{{ .RelPermalink }}">
                 {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
             </a>
