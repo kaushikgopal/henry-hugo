@@ -3,11 +3,11 @@
             text-sm text-henryt-lighter">{{ .Date.Format "Jan 2006" }}</div>
 {{ end }}
 
-{{ if .Params.externalLink }}
+{{/*  {{ if .Params.externalLink }}
 <div class="post-permalink mt-1">
     <a class="text-sm text-henryt-lighter" href="{{ .RelPermalink }}">Permalink</a>
 </div>
-{{ end }}
+{{ end }}  */}}
 
 {{ if .Params.bsky }}
 {{ partial "comments-bsky.html" . }}
