@@ -35,9 +35,15 @@
         </h1>
 
         <h4 class="post-author
-                   pt-2 md:pt-4
+                   md:pt-1
                    text-sm text-henryt-light">
-            {{ partial "get-authors.html" . }}
+
+            {{ if or (eq .Section "log") (.Params.timeless) }}
+                {{ partial "get-authors.html" . }}
+            {{ else }}
+                {{ .Date.Format "January 2, 2006" }}
+            {{ end }}
+
         </h4>
 
     </header>
@@ -49,11 +55,12 @@
         {{ .Content }}
     </article>
 
+    {{- partial "nav.html" . -}}
+
 </section>
 
 <div class="post-meta bg-henryb-dark
-            flex flex-col items-center
-            py-6">
+            flex flex-col items-center">
     <section class="w-3/4 max-w-3xl min-w-[333px]">
         {{- partial "meta.html" . -}}
     </section>

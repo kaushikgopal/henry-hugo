@@ -143,6 +143,10 @@
     font-size: 10px;
   }
 
+  section.post .pill-henryc2 {
+    @apply border-none;
+  }
+
   .pill-henryc2-solid {
     @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
     font-size: 10px;
@@ -153,6 +157,10 @@
     font-size: 10px;
   }
 
+  section.post .pill-henryc {
+    @apply border-none;
+  }
+
   .pill-henryc-solid {
     @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
     font-size: 10px;
@@ -161,6 +169,10 @@
   .pill-slate {
     @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
     font-size: 10px;
+  }
+
+  section.post .pill-slate {
+    @apply border-none;
   }
 
   /* Pagination styles */
