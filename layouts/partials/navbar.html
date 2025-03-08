@@ -3,9 +3,9 @@
 <div id="site-container"
      class="{{ if $isPage }}absolute top-2 md:top-5 left-2 md:left-5
             {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }}
-            flex items-center">
+            flex items-center z-50">
     <!-- Site avatar/favicon with link -->
-    <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer p-2">
+    <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer">
         {{ $faviconPngPath := "images/favicon.png" }}
         {{ $avatarPath := "images/avatar.webp" }}
         {{ $faviconIcoPath := "favicon.ico" }}
@@ -25,7 +25,10 @@
         {{ end }}
 
         {{ if $imageExists }}
-            <img src="/{{ $imagePath }}" alt="Site Icon" class="h-8 w-8 md:h-10 md:w-10 rounded-full border-2 border-henryt">
+            <img src="/{{ $imagePath }}" alt="Site Icon"
+                 class="rounded-full hover:opacity-80 transition-opacity
+                        h-8 w-8 md:h-10 md:w-10
+                        border-2 border-henryt">
         {{ end }}
     </a>
 </div>
