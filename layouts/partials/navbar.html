@@ -1,5 +1,5 @@
 {{ $isPage := .IsPage }}
-
+{{ if ne .RelPermalink "/" }}
 <div id="site-container"
      class="{{ if $isPage }}absolute top-2 md:top-5 left-2 md:left-5
             {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }} flex items-center z-50">
@@ -28,6 +28,7 @@
         {{ end }}
     </a>
 </div>
+{{ end }}
 
 
 {{ if $.Param "enableSearch" }}
