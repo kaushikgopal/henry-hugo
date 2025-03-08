@@ -2,7 +2,8 @@
 {{ if ne .RelPermalink "/" }}
 <div id="site-container"
      class="{{ if $isPage }}absolute top-2 md:top-5 left-2 md:left-5
-            {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }} flex items-center z-50">
+            {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }}
+            flex items-center">
     <!-- Site avatar/favicon with link -->
     <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer p-2">
         {{ $faviconPngPath := "images/favicon.png" }}
@@ -24,7 +25,7 @@
         {{ end }}
 
         {{ if $imageExists }}
-            <img src="/{{ $imagePath }}" alt="Site Icon" class="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded-full hover:opacity-80 transition-opacity border-2 border-henryt">
+            <img src="/{{ $imagePath }}" alt="Site Icon" class="h-8 w-8 md:h-10 md:w-10 rounded-full border-2 border-henryt">
         {{ end }}
     </a>
 </div>
@@ -46,7 +47,10 @@
 {{ end }}
 
 <!-- Search container -->
-<div id="search-container" class="{{ if $isPage }}absolute top-2 md:top-5 right-2 md:right-5{{ else }}fixed top-2 md:top-5 right-2 md:right-5{{ end }} flex items-center z-50">
+<div id="search-container"
+     class="{{ if $isPage }}absolute top-2 md:top-5 right-2 md:right-5
+            {{ else }}fixed top-2 md:top-5 right-2 md:right-5{{ end }}
+             flex items-center z-50">
     <!-- Searchbar -->
     <div id="searchbar" class="mr-2 hidden relative">
         <input id="searchbar-input"
