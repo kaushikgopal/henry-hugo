@@ -27,7 +27,7 @@
 
 @layer components {
   .post-content hr {
-    @apply border border-henryt-lighter mt-6;
+    @apply border-henryt-lighter mt-6;
   }
 
   .post-content h1,
