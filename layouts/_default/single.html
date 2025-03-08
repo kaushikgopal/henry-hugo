@@ -2,29 +2,31 @@
 {{ partial "single-before.html" . }}
 <section class="post
                 flex flex-col items-center
-                pt-8 md:pt-24 pb-12">
+                pt-14 md:pt-24 pb-12">
 
     <header class="post-header
                    w-3/4 max-w-3xl min-w-[333px]
                    mb-8">
 
         <h1 class="post-title font-title font-bold
-                   text-henryt-dark text-center
-                   text-2xl md:text-3xl ">
+                   text-henryt-dark text-xl md:text-3xl ">
+
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
-            <a href="{{ .Params.externalLink }}" class="article-link decoration-1 underline-offset-8">
-                {{ .Title }}
+            <a href="{{ .Params.externalLink }}" class="article-link no-underline">
+                {{ .Title }} →
             </a>
-            {{- partial "postimoji.html" . -}}
             {{ else }}
-            <!-- Title -->
-            {{ if eq .Section "log" }}
-            {{ .Date.Format "January 2006" }}
-            {{ else }}
-            {{ .Title }}
-            {{ end }}
-            {{- partial "postimoji.html" . -}}
+
+                <!-- Title -->
+                {{ if eq .Section "log" }}
+                {{ .Date.Format "January 2006" }}
+                {{ else }}
+                {{ .Title }}
+                {{ end }}
+
+                {{- partial "postimoji.html" . -}}
+
             {{ end }}
 
             {{ if .Draft }}
@@ -34,7 +36,7 @@
 
         <h4 class="post-author
                    pt-2 md:pt-4
-                   text-sm text-henryt-light text-center">
+                   text-sm text-henryt-light">
             {{ partial "get-authors.html" . }}
         </h4>
 
