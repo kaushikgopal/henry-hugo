@@ -1,3 +1,35 @@
+{{ $isPage := .IsPage }}
+
+<div id="site-container"
+     class="{{ if $isPage }}absolute top-2 md:top-5 left-2 md:left-5
+            {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }} flex items-center z-50">
+    <!-- Site avatar/favicon with link -->
+    <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer p-2">
+        {{ $faviconPngPath := "images/favicon.png" }}
+        {{ $avatarPath := "images/avatar.webp" }}
+        {{ $faviconIcoPath := "favicon.ico" }}
+
+        {{ $imagePath := "" }}
+        {{ $imageExists := false }}
+
+        {{ if (fileExists (printf "static/%s" $faviconPngPath)) }}
+            {{ $imagePath = $faviconPngPath }}
+            {{ $imageExists = true }}
+        {{ else if (fileExists (printf "static/%s" $avatarPath)) }}
+            {{ $imagePath = $avatarPath }}
+            {{ $imageExists = true }}
+        {{ else if (fileExists (printf "static/%s" $faviconIcoPath)) }}
+            {{ $imagePath = $faviconIcoPath }}
+            {{ $imageExists = true }}
+        {{ end }}
+
+        {{ if $imageExists }}
+            <img src="/{{ $imagePath }}" alt="Site Icon" class="h-6 w-6 rounded-full hover:opacity-80 transition-opacity">
+        {{ end }}
+    </a>
+</div>
+
+
 {{ if $.Param "enableSearch" }}
 
 <!-- Search related libs (Fuse) -->
@@ -13,7 +45,7 @@
 {{ end }}
 
 <!-- Search container -->
-<div id="search-container" class="fixed top-2 md:top-5 right-2 md:right-5 flex items-center z-50">
+<div id="search-container" class="{{ if $isPage }}absolute top-2 md:top-5 right-2 md:right-5{{ else }}fixed top-2 md:top-5 right-2 md:right-5{{ end }} flex items-center z-50">
     <!-- Searchbar -->
     <div id="searchbar" class="mr-2 hidden relative">
         <input id="searchbar-input"
