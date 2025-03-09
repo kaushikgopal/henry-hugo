@@ -6,6 +6,7 @@
             flex items-center z-50">
     <!-- Site avatar/favicon with link -->
     <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer">
+        {{ $faviconJpgPath := "images/favicon.jpg" }}
         {{ $faviconPngPath := "images/favicon.png" }}
         {{ $avatarPath := "images/avatar.webp" }}
         {{ $faviconIcoPath := "favicon.ico" }}
@@ -13,7 +14,10 @@
         {{ $imagePath := "" }}
         {{ $imageExists := false }}
 
-        {{ if (fileExists (printf "static/%s" $faviconPngPath)) }}
+        {{ if (fileExists (printf "static/%s" $faviconJpgPath)) }}
+            {{ $imagePath = $faviconJpgPath }}
+            {{ $imageExists = true }}
+        {{ else if (fileExists (printf "static/%s" $faviconPngPath)) }}
             {{ $imagePath = $faviconPngPath }}
             {{ $imageExists = true }}
         {{ else if (fileExists (printf "static/%s" $avatarPath)) }}
