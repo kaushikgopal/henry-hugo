@@ -116,7 +116,7 @@
   }
 
   .post-content blockquote {
-    @apply  md:!w-[60%] p-4
+    @apply  p-4
           bg-henryb-dark border-l-4 border-henryc-lighter
             italic
             text-sm md:text-base;
