@@ -87,7 +87,7 @@
   }
 
   .post-content > *:not(figure.full-bleed) {
-    @apply w-3/4 max-w-3xl min-w-[333px];
+    @apply w-[85%] max-w-3xl min-w-[333px];
   }
 
   .post-content figure.full-bleed {
