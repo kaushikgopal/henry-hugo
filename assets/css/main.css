@@ -34,43 +34,34 @@
   .post-content h2,
   .post-content h3,
   .post-content h4 {
-    @apply font-title font-semibold text-henryc;
-  }
-
-  .post-content h1 {
-    @apply text-2xl;
-  }
-
-  .post-content h1 code {
-    @apply text-2xl;
-  }
-
-  .post-content h2 {
-    @apply text-xl;
-  }
-
-  .post-content h2 code {
-    @apply text-xl;
-  }
-
-  .post-content h3 {
-    @apply text-lg;
-  }
-
-  .post-content h3 code {
-    @apply text-lg;
+    @apply font-semibold text-henryc;
   }
 
   .post-content h4 {
     @apply font-bold;
   }
 
-  .post-content ol li {
-    @apply ms-6 list-decimal;
-  }
 
+  .post-content > ol,
+  .post-content > ul {
+    @apply ms-6 md:ms-8;
+   }
+
+  .callout ol,
+  .callout ul {
+    @apply ms-1 md:ms-2;
+   }
+
+
+  .post-content ol li,
   .post-content ul li {
-    @apply ms-6 list-disc;
+    @apply ms-6;
+  }
+  .post-content ol li {
+    @apply list-decimal;
+  }
+  .post-content ul li {
+    @apply list-disc;
   }
 
   /* code blocks */
@@ -83,7 +74,7 @@
 
   /* inline code */
   .post-content code {
-    @apply text-henryc-lightest text-sm md:text-base;
+    @apply text-henryc-lightest text-base;
   }
 
   .post-content > *:not(figure.full-bleed) {
@@ -112,18 +103,24 @@
   }
 
   .post-content .callout:not(figure) {
-    @apply border-4 border-henryc p-4 space-y-2;
+    @apply border-4 border-henryc p-4
+           space-y-2 px-6 md:px-8
+           text-base md:text-lg;
   }
 
   .post-content blockquote {
-    @apply  p-4
-          bg-henryb-dark border-l-4 border-henryc-lighter
-            italic
-            text-sm md:text-base;
+    @apply border-henryc-lighter bg-henryb-dark border-l-4
+             p-4
+             italic text-base;
+  }
+  .post-content blockquote code{
+    @apply text-sm;
   }
 
   .post-content .footnote-ref {
-    @apply font-bold no-underline text-henryt-light hover:text-henryc ps-0.5;
+    @apply  ps-0.5
+            text-henryt-light hover:text-henryc
+            font-bold no-underline;
   }
 
   .post-content .footnote-backref {
@@ -131,7 +128,9 @@
   }
 
   .footnotes ol {
-    @apply list-decimal text-henryt-light mt-2 py-2 pe-1 ps-6;
+    @apply list-decimal
+           mt-2 py-2 pe-1 ps-4
+           text-base md:text-lg text-henryt-light;
   }
 
   .footnotes ol a {
