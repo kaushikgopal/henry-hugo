@@ -81,15 +81,15 @@ class Searchbar {
     }
 
     itemHtml(item, isFirst, isLast) {
-        let classes = 'px-2 text-right bg-henryb-dark/95 py-1';
+        let classes = 'px-2 text-right bg-henryb-dark py-1';
 
         if (isFirst) classes += ' pt-4';
         if (isLast) classes += ' pb-4';
         if (!isLast || !isFirst) classes += ''; // Add a border between items
 
         return '<li class="' + classes + '"><a href="' + item.permalink + '" tabindex="0">' +
-            '<span class="title text-henryc-lightest">' + item.title + '</span>' +
-            '<span class="text text-henryt-lighter hidden md:inline"> ' + item.permalink + '</span>' +
+            '<span class="title text-henryt-dark">' + item.title + '</span>' +
+            '<span class="text text-henryc hidden md:inline"> ' + item.permalink + '</span>' +
             '</a></li>';
     }
 
