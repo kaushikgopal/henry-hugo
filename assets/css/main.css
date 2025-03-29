@@ -124,7 +124,7 @@
   }
 
   .post-content .footnote-backref {
-    @apply font-bold text-white no-underline hover:text-henryc;
+    @apply font-bold text-henryt-lightest no-underline hover:text-henryc;
   }
 
   .footnotes ol {
