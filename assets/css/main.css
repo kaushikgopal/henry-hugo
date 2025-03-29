@@ -147,7 +147,7 @@
   }
 
   .pill-henryc2-solid {
-    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
+    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-white uppercase no-underline font-sans font-bold;
     font-size: 10px;
   }
 
