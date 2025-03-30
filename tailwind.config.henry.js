@@ -9,14 +9,6 @@ module.exports = {
          generating the needed CSS. More info:
          - https://tailwindcss.com/docs/content-configuration#configuring-source-paths
       */
-  content: [
-    "../../content/**/*.{html,md}",
-    "../../layouts/**/*.html",
-    "./layouts/**/*.html",
-    "./assets/js/fuse-search.js",
-    "./assets/js/comments-bsky.js",
-    "../../assets/css/*.css",
-  ],
   theme: {
     fontFamily: {
       sans:   ["Figtree"],
