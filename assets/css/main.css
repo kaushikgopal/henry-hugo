@@ -1,12 +1,4 @@
-@import "tailwindcss";
-
-@source "../../layouts/index.html";
-@source "../../content/**/*.{html,md}";
-@source "../../layouts/**/*.html";
-@source "./layouts/**/*.html";
-@source "./assets/js/fuse-search.js";
-@source "./assets/js/comments-bsky.js";
-@source "../../assets/css/*.css";
+@import "tailwindcss" source("../../../../.");
 
 @theme {
   --font-sans: "kg-sans", sans-serif;
