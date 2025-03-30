@@ -46,9 +46,4 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    function ({ addUtilities }) {
-      console.log("Tailwind CSS root directory:", process.cwd());
-    },
-  ],
 };
