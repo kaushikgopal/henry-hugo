@@ -11,7 +11,7 @@
     {{- $pages = where $pages "Section" "not in" $invisibleSections -}}
 {{- end -}}
 {{- $pages = where $pages "Params.noindex" "!=" true -}}
-{{- warnf "INFO: search index page count: %v" (len $pages) -}}
+{{- /* warnf "INFO: search index page count: %v" (len $pages) */ -}}
 
 {{- $.Scratch.Add "index" slice -}}
 
