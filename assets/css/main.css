@@ -74,7 +74,7 @@
 
   /* inline code */
   .post-content code {
-    @apply text-henryc-lightest text-base;
+    @apply text-henryc-lighter text-base;
   }
 
   .post-content > *:not(figure.full-bleed) {
