@@ -5,7 +5,7 @@
         <div class="tags
                 flex flex-row gap-2">
 
-            <a class="nav-link pill-henryc hidden md:block" href="/{{.Section}}">
+            <a class="nav-link pill-hc hidden md:block" href="/{{.Section}}">
                 {{ if .Params.externalLink }}link
                 {{ else if eq .Section "letter" }}letter
                 {{ else if eq .Section "s" }}short
@@ -18,7 +18,7 @@
 
 
             {{ if .Draft }}
-            <div class="draft pill-henryc2-solid">Draft</div>
+            <div class="draft pill-hc2-solid">Draft</div>
             {{ end }}
         </div>
 
@@ -55,7 +55,7 @@
     </aside>
 
     <article class="post-summary hidden md:block
-                text-henryt-lighter line-clamp-3
+                text-ht-lighter line-clamp-3
                 lg:mt-2">
         {{ .Summary }}
     </article>

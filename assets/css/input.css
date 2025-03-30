@@ -1,4 +1,4 @@
-@import "fonts.css";
+@import "./fonts.css";
 @import "../../../../assets/css/override-fonts.css";
-@import "main.css";
+@import "./main.css";
 @import "../../../../assets/css/override.css";

@@ -15,7 +15,7 @@
 {{- range $pageAuthors -}}
     {{- $matchedAuthor := index (where $siteAuthors "name" .) 0 -}}
     {{- if $matchedAuthor -}}
-        {{- $authorLink := printf "<a href=\"%s\" class=\"decoration-henryt-lightest\">%s</a>" $matchedAuthor.url $matchedAuthor.name -}}
+        {{- $authorLink := printf "<a href=\"%s\" class=\"decoration-ht-lightest\">%s</a>" $matchedAuthor.url $matchedAuthor.name -}}
         {{- $authorLinks = $authorLinks | append $authorLink -}}
     {{- else -}}
         {{- $authorLinks = $authorLinks | append . -}}

@@ -1,10 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../../layouts/index.html";
+@source "../../content/**/*.{html,md}";
+@source "../../layouts/**/*.html";
+@source "./layouts/**/*.html";
+@source "./assets/js/fuse-search.js";
+@source "./assets/js/comments-bsky.js";
+@source "../../assets/css/*.css";
+
+@theme {
+  --font-sans: "kg-sans", sans-serif;
+  --font-title: "futura-pt", serif;
+  --font-mono: "kg-mono", monospace;
+  --font-mono-font-feature-settings: "cv02", "cv04", "cv06", "cv07", "cv08";
+
+  /* henry background */
+  --color-hbg:         var(--color-slate-50);
+  --color-hbg-dark:    var(--color-slate-200);
+
+  /* henry text */
+  --color-ht-lightest: var(--color-slate-300);
+  --color-ht-lighter:  var(--color-slate-500);
+  --color-ht-light:    var(--color-slate-700);
+  --color-ht:          var(--color-slate-800);
+  --color-ht-dark:     var(--color-slate-900);
+
+  /* henry contrast */
+  --color-hc-lightest: var(--color-orange-200);
+  --color-hc-lighter:  var(--color-orange-500);
+  --color-hc:          var(--color-orange-600);
+  --color-hc-dark:     var(--color-orange-700);
+
+  /* henry contrast 2 */
+  --color-hc2-light: var(--color-purple-200);
+  --color-hc2:       var(--color-purple-500);
+  --color-hc2-dark:  var(--color-purple-700);
+
+}
 
 @layer base {
   article {
-    @apply text-henryt space-y-6;
+    @apply text-ht space-y-6;
   }
 
   article p {
@@ -17,24 +53,24 @@
   }
 
   a {
-    @apply underline underline-offset-4 decoration-henryt-lighter hover:no-underline hover:text-henryc;
+    @apply underline underline-offset-4 decoration-ht-lighter hover:no-underline hover:text-hc;
   }
 
   article a {
-    @apply font-medium text-henryc no-underline;
+    @apply font-medium text-hc no-underline;
   }
 }
 
-@layer components {
+/* @layer components { */
   .post-content hr {
-    @apply border-henryt-lighter mt-6;
+    @apply border-ht-lighter mt-6;
   }
 
   .post-content h1,
   .post-content h2,
   .post-content h3,
   .post-content h4 {
-    @apply font-semibold text-henryc;
+    @apply font-semibold text-hc;
   }
 
   .post-content h4 {
@@ -74,7 +110,7 @@
 
   /* inline code */
   .post-content code {
-    @apply text-henryc-lighter text-base;
+    @apply text-hc-lighter text-base;
   }
 
   .post-content > *:not(figure.full-bleed) {
@@ -103,13 +139,13 @@
   }
 
   .post-content .callout:not(figure) {
-    @apply border-4 border-henryc p-4
+    @apply border-4 border-hc p-4
            space-y-2 px-6 md:px-8
            text-base md:text-lg;
   }
 
   .post-content blockquote {
-    @apply border-henryc-lighter bg-henryb-dark border-l-4
+    @apply border-hc-lighter bg-hbg-dark border-l-4
              p-4
              italic text-base;
   }
@@ -119,54 +155,54 @@
 
   .post-content .footnote-ref {
     @apply  ps-0.5
-            text-henryt-light hover:text-henryc
+            text-ht-light hover:text-hc
             font-bold no-underline;
   }
 
   .post-content .footnote-backref {
-    @apply font-bold text-henryt-lightest no-underline hover:text-henryc;
+    @apply font-bold text-ht-lightest no-underline hover:text-hc;
   }
 
   .footnotes ol {
     @apply list-decimal
            mt-2 py-2 pe-1 ps-4
-           text-base md:text-lg text-henryt-light;
+           text-base md:text-lg text-ht-light;
   }
 
   .footnotes ol a {
-    @apply decoration-henryt-lighter;
+    @apply decoration-ht-lighter;
   }
 
-  .pill-henryc2 {
-    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc2-dark text-henryc2-dark hover:text-white uppercase no-underline font-sans text-xs;
+  .pill-hc2 {
+    @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-hc2-dark text-hc2-dark hover:text-white uppercase no-underline font-sans text-xs;
     font-size: 10px;
   }
 
-  section.post .pill-henryc2 {
+  section.post .pill-hc2 {
     @apply border-none;
   }
 
-  .pill-henryc2-solid {
-    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-white uppercase no-underline font-sans font-bold;
+  .pill-hc2-solid {
+    @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-hc2-dark text-white uppercase no-underline font-sans font-bold;
     font-size: 10px;
   }
 
-  .pill-henryc {
-    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
+  .pill-hc {
+    @apply w-fit border-2 border-hc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-hc text-hc hover:text-black uppercase no-underline font-sans;
     font-size: 10px;
   }
 
-  section.post .pill-henryc {
+  section.post .pill-hc {
     @apply border-none;
   }
 
-  .pill-henryc-solid {
-    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
+  .pill-hc-solid {
+    @apply w-fit border-2 border-hc rounded-lg px-1.5 py-0.5 bg-hc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
     font-size: 10px;
   }
 
   .pill-slate {
-    @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
+    @apply w-fit border-2 border-ht-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-ht-light text-ht-light hover:text-black uppercase no-underline font-sans;
     font-size: 10px;
   }
 
@@ -188,14 +224,14 @@
   }
 
   .page-link {
-    @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
+    @apply px-3 py-2 border border-ht-lighter rounded-md text-ht hover:bg-hbg-dark hover:text-hc transition-colors duration-200 no-underline;
   }
 
   .page-item.active .page-link {
-    @apply bg-henryc text-black font-bold;
+    @apply bg-hc text-black font-bold;
   }
 
   .page-item.disabled .page-link {
-    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
+    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-ht;
   }
-}
+/* } */

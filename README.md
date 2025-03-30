@@ -22,9 +22,8 @@ cd blog-henry
 git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
 touch assets/css/{output,override,override-fonts}.css
 # brew install node # if you don't have npm installed
-cp themes/henry/tailwind.config.henry.js ./tailwind.config.js
-npm install -D tailwindcss
-npx tailwindcss -i themes/henry/assets/css/input.css -o ./assets/css/output.css
+npm install -D tailwindcss @tailwindcss/cli
+npx @tailwindcss/cli -i themes/henry/assets/css/input.css -o ./assets/css/output.css
 
 # 3. configure blog
 ## add these lines to your hugo.toml config file

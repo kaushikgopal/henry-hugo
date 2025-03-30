@@ -62,7 +62,7 @@
     {{ else if $shouldPaginate }} <!-- inside a regular list page | pagination -->
     {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
     <h2 class="mt-4
-               text-henryt-light font-bold
+               text-ht-light font-bold
                post-list-header year" id="{{ .Key }}">
         {{ .Key }}
         {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
