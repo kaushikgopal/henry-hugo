@@ -1,6 +1,3 @@
-# You want to place this Makefile in the blog root directory
-# otherwise the relative paths below will need to be adjusted
-
 default: run
 
 # Set default warning mode if not specified
@@ -10,15 +7,26 @@ default: run
 #  		make build-site log=debug
 log ?= warn
 
-help:	## list out commands with descriptions
+help:		## list out commands with descriptions
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
 
-run:	## (default) run Hugo server & watch Tailwind CSS compiler
-	@## --jobs=2 parallelizes the commands
+run:		## (default) run Hugo server & watch Tailwind CSS compiler
 	@make -j2 run-site run-css
+	# --jobs=2 parallelizes the commands
 
-build:	## build the site
+build:		## build the site
 	@make site css
+
+site:		## build the site
+	@hugo \
+		build \
+		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
+		--logLevel $(log)
+
+css:		## compile Tailwind CSS
+	@npx @tailwindcss/cli \
+		-i ./assets/css/input.css  \
+		-o ./assets/css/output.css
 
 run-css:	## watch Tailwind CSS compiler
 	@npx @tailwindcss/cli \
@@ -32,18 +40,6 @@ run-site:	## run Hugo server
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
 		--logLevel $(log)
 
-
-site:	## build the site
-	@hugo \
-		build \
-		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
-		--logLevel $(log)
-
-css:	## compile Tailwind CSS
-	@npx @tailwindcss/cli \
-		-i ./assets/css/input.css  \
-		-o ./assets/css/output.css
-
-clean:
+clean:		## remove all the generated files
 	rm -rf public
 	rm  -f assets/css/output.css

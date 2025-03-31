@@ -21,20 +21,26 @@ cd blog-henry
 # 2. clone Henry
 git clone https://github.com/kaushikgopal/henry-hugo.git themes/henry
 
-mkdir -p my-blog/assets/css
+mkdir -p assets/css
 cp themes/henry/assets/css/input.css assets/css/
-cp themes/henry/assets/css/theme.css assets/css/
 
 # brew install node # if you don't have npm installed
+npm init -y
 npm install -D tailwindcss @tailwindcss/cli
-npx @tailwindcss/cli -i themes/henry/assets/css/input.css -o ./assets/css/output.css
+npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css
 
 # 3. configure blog
 ## add these lines to your hugo.toml config file
 theme = "henry"
 
 # 4. run Hugo!
+```
 
+You're good to go. Happy blogging!
+
+For making things simpler to run, I recommend using the `Makefile`
+
+```shell
 # 5. use Makefile for convenience
 # See my blog post on this https://kau.sh/blog/tailwind-hugo#bonus-tip
 cp themes/henry/Makefile ./
@@ -46,9 +52,10 @@ make  # and you're up and running!
 # if you want to see some samples, just mark them from draft true → false
 ```
 
-You're good to go. Happy blogging!
+Now, whenever you need to get your hugo blog up and running again, just run `make`.
 
-Now, whenever you need to get your hugo blog up and running again, just run `./bin/dev`.
+To get the list of commands just type in `make help`.
+
 
 ## Optional configurations
 
