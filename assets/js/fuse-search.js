@@ -88,8 +88,8 @@ class Searchbar {
         if (!isLast || !isFirst) classes += ''; // Add a border between items
 
         return '<li class="' + classes + '"><a href="' + item.permalink + '" tabindex="0">' +
-            '<span class="title text-ht-dark">' + item.title + '</span>' +
-            '<span class="text text-hc hidden md:inline"> ' + item.permalink + '</span>' +
+            '<span class="title text-ht-light">' + item.title + '</span>' +
+            '<span class="text text-hc-lighter hidden md:inline"> ' + item.permalink + '</span>' +
             '</a></li>';
     }
 
