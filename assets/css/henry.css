@@ -1,35 +1,3 @@
-@import "tailwindcss" source("../../../../.");
-
-@theme {
-  --font-sans: "kg-sans", sans-serif;
-  --font-title: "futura-pt", serif;
-  --font-mono: "kg-mono", monospace;
-  --font-mono-font-feature-settings: "cv02", "cv04", "cv06", "cv07", "cv08";
-
-  /* henry background */
-  --color-hbg:         var(--color-slate-50);
-  --color-hbg-dark:    var(--color-slate-200);
-
-  /* henry text */
-  --color-ht-lightest: var(--color-slate-300);
-  --color-ht-lighter:  var(--color-slate-500);
-  --color-ht-light:    var(--color-slate-700);
-  --color-ht:          var(--color-slate-800);
-  --color-ht-dark:     var(--color-slate-900);
-
-  /* henry contrast */
-  --color-hc-lightest: var(--color-orange-200);
-  --color-hc-lighter:  var(--color-orange-500);
-  --color-hc:          var(--color-orange-600);
-  --color-hc-dark:     var(--color-orange-700);
-
-  /* henry contrast 2 */
-  --color-hc2-light: var(--color-purple-200);
-  --color-hc2:       var(--color-purple-500);
-  --color-hc2-dark:  var(--color-purple-700);
-
-}
-
 @layer base {
   article {
     @apply text-ht space-y-6;

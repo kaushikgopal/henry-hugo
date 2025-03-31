@@ -1,3 +1,6 @@
+# You want to place this Makefile in the blog root directory
+# otherwise the relative paths below will need to be adjusted
+
 default: run
 
 # Set default warning mode if not specified
@@ -19,13 +22,13 @@ build:	## build the site
 
 run-css:	## watch Tailwind CSS compiler
 	@npx @tailwindcss/cli \
-		-i themes/henry/assets/css/input.css  \
+		-i ./assets/css/input.css  \
 		-o ./assets/css/output.css --watch
 
 run-site:	## run Hugo server
 	@hugo \
 		server \
-		--bind=0.0.0.0 --disableFastRender --noHTTPCache \
+		--bind=0.0.0.0 --disableFastRender \
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
 		--logLevel $(log)
 
@@ -37,8 +40,10 @@ site:	## build the site
 		--logLevel $(log)
 
 css:	## compile Tailwind CSS
-	@touch assets/css/{output,override,override-fonts}.css
 	@npx @tailwindcss/cli \
-		-i themes/henry/assets/css/input.css  \
+		-i ./assets/css/input.css  \
 		-o ./assets/css/output.css
 
+clean:
+	rm -rf public
+	rm  -f assets/css/output.css

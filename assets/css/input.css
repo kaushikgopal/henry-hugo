@@ -1,4 +1,6 @@
-@import "./fonts.css";
-@import "../../../../assets/css/override-fonts.css";
-@import "./main.css";
-@import "../../../../assets/css/override.css";
+/* copy this file to your root project assets/css folder */
+@import "tailwindcss";
+
+@import "../../themes/henry/assets/css/fonts.css";
+@import "../../themes/henry/assets/css/theme.css";
+@import "../../themes/henry/assets/css/henry.css";
