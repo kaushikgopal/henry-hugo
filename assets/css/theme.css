@@ -4,8 +4,8 @@
   --font-mono: "Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", "monospace";
 
   /* henry background */
-  --color-hbg:         "#1c2b33";
-  --color-hbg-dark:    "#152027";
+  --color-hbg:         #1c2b33;
+  --color-hbg-dark:    #152027;
 
   /* henry text */
   --color-ht-lightest: var(--color-slate-800);  /* muted underline/decoration */
