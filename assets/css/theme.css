@@ -8,10 +8,10 @@
   --color-hbg-dark:    "#152027";
 
   /* henry text */
-  --color-ht-lightest: var(--color-slate-800);
-  --color-ht-lighter:  var(--color-slate-700);
-  --color-ht-light:    var(--color-slate-500);
-  --color-ht:          var(--color-slate-300);
+  --color-ht-lightest: var(--color-slate-800);  /* muted underline/decoration */
+  --color-ht-lighter:  var(--color-slate-700);  /* muted links like author */
+  --color-ht-light:    var(--color-slate-500);  /* underline/decoration */
+  --color-ht:          var(--color-slate-300);  /* base text */
   --color-ht-dark:     var(--color-slate-200);
 
   /* henry contrast */
