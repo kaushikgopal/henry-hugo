@@ -1,3 +1,6 @@
+/* ****************************************************************
+                   Light mode colors
+   **************************************************************** */
 @theme {
   --font-sans: "Figtree", sans-serif;
   --font-title: "Fraunces", serif;
@@ -24,4 +27,33 @@
   --color-hc2-light: var(--color-purple-200);
   --color-hc2:       var(--color-purple-500);
   --color-hc2-dark:  var(--color-purple-700);
+}
+
+/* ****************************************************************
+                   DARK Mode Colors
+   ****************************************************************
+   Henry will show the below colors when your system
+   requests dark mode via  prefers-color-scheme CSS media feature.
+   **************************************************************** */
+
+@media (prefers-color-scheme: dark) {
+  .dark {
+    /* henry background */
+    --color-hbg:         #1c2b33;
+    --color-hbg-dark:    #152027;
+
+    /* henry text */
+    --color-ht-lightest: var(--color-slate-800);
+    --color-ht-lighter:  var(--color-slate-600);
+    --color-ht-light:    var(--color-slate-400);
+    --color-ht:          var(--color-slate-300);
+    --color-ht-dark:     var(--color-slate-200);
+
+    /* henry contrast */
+    --color-hc-lightest: var(--color-orange-100);
+    --color-hc-lighter:  var(--color-orange-200);
+    --color-hc:          var(--color-orange-300);
+    --color-hc-dark:     var(--color-orange-500);
+    /* henry contrast 2 */
+  }
 }
