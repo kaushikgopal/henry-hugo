@@ -5,5 +5,6 @@
 <link href='{{ "feed.xml" | absURL }}' rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
 <link href='{{ "feed.xml" | absURL }}' rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
 
-{{/*  Preferably set this similar to your $color-background from _theme.scss */}}
-<meta name="theme-color" content="#2B343E">
+{{/*  Preferably set this similar to your --color-hbg from theme.css */}}
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1c2b33">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c2b33">
