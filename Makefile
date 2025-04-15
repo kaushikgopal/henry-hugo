@@ -10,14 +10,17 @@ log ?= warn
 help:		## list out commands with descriptions
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
 
-run:		## (default) run Hugo server & watch Tailwind CSS compiler
+build:		## hugo build & compile css (one-time)
+	@make site css
+
+run: ##            run Hugo server & watch Tailwind CSS compiler
 	@make -j2 run-site run-css
 	# --jobs=2 parallelizes the commands
 
-build:		## build the site
-	@make site css
+run-caddy: ## [def] run on caddy server
+	@make caddy run
 
-site:		## build the site
+site:		## hugo compile build
 	@hugo \
 		build \
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
@@ -28,7 +31,7 @@ css:		## compile Tailwind CSS
 		-i ./assets/css/input.css  \
 		-o ./assets/css/output.css
 
-run-css:	## watch Tailwind CSS compiler
+run-css:	## run & watch Tailwind CSS compiler
 	@npx @tailwindcss/cli \
 		-i ./assets/css/input.css  \
 		-o ./assets/css/output.css --watch
@@ -36,9 +39,14 @@ run-css:	## watch Tailwind CSS compiler
 run-site:	## run Hugo server
 	@hugo \
 		server \
-		--bind=0.0.0.0 --disableFastRender \
+		--port=1313 --disableFastRender \
 		--cleanDestinationDir --gc --minify --printI18nWarnings --buildDrafts \
 		--logLevel $(log)
+
+caddy: 		## copy local Caddyfile and start Caddy server
+	@cp ./CaddyFile /opt/homebrew/etc/Caddyfile
+	@brew services restart caddy
+	@echo "to stop caddy: brew services stop caddy"
 
 clean:		## remove all the generated files
 	rm -rf public
