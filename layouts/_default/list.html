@@ -20,16 +20,19 @@
 
     {{ $pages := partial "get-posts.html" . }}
     {{ $groupedPages := slice }}
-    {{ $shouldPaginate := .Site.Params.enablePagination | default false }}
+    {{ $isListType := in (slice "home" "section" "taxonomy" "term") .Kind }}
+    {{ $shouldPaginate := and $isListType (.Site.Params.enablePagination | default false) }}
     {{ $isTaxonomy := false }}
-    {{ $paginator := .Paginate $pages }}
-
 
     {{ if $shouldPaginate }}
+    {{ $paginator := .Paginate $pages }}
     {{ $groupedPages = $paginator.Pages.GroupByDate "2006" }}
     {{ else if .Data.Terms }}
     {{ $groupedPages = .Data.Terms.Alphabetical }}
     {{ $isTaxonomy = true }}
+    {{ else if eq .Kind "page" }}
+    <!-- For single pages, just render the content without pagination -->
+    <!-- The single.html template should handle these pages normally -->
     {{ else }}
     {{ $groupedPages = $pages.GroupByDate "2006" }}
     {{ end }}
@@ -40,9 +43,11 @@
     GroupedPage count: {{ len $groupedPages }} <br>
     isTaxonomy: {{ $isTaxonomy }} <br>
     shouldPaginate: {{ $shouldPaginate }} <br>
+    Kind: {{ .Kind }} <br>
+    isListType: {{ $isListType }} <br>
     {{ end }}
 
-
+    {{ if ne .Kind "page" }}
     {{ range $groupedPages }}
 
 
@@ -90,6 +95,7 @@
 
 
     {{ end }} <!-- range end $groupedPages -->
+    {{ end }} <!-- if ne .Kind "page" -->
 
 
     {{ if and (not $isTaxonomy) $shouldPaginate }}
