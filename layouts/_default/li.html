@@ -57,7 +57,7 @@
     <article class="post-summary hidden md:block
                 text-ht-lighter line-clamp-3
                 lg:mt-2">
-        {{ .Summary }}
+        {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
     </article>
 
 
