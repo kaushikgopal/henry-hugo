@@ -43,7 +43,7 @@ languageName = "English"
 languageCode = "en-us"
 weight = 1
 
-# goldmark enables far more useufl functionality
+# goldmark enables far more useful functionality
 [markup]
 defaultMarkdownHandler = 'goldmark'
 [markup.goldmark.parser.attribute]
