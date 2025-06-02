@@ -199,6 +199,8 @@ section.post .pill-slate {
   @apply text-base md:text-lg;
 }
 
+/* Callouts - light theme styles */
+
 .callout {
   @apply mb-4 overflow-hidden border-4;
   background: var(--callout-bg, #f8fafc);
@@ -349,7 +351,7 @@ section.post .pill-slate {
   }
 
   .callout-title {
-      background: var(--callout-title-bg-dark, #111827);
+      /* background: var(--callout-title-bg-dark, #111827); */
       color: var(--callout-title-color-dark, #f9fafb);
       border-color: var(--callout-border-dark, #374151);
   }
