@@ -200,7 +200,7 @@ section.post .pill-slate {
 }
 
 .callout {
-  @apply rounded-lg mb-4 overflow-hidden border-4;
+  @apply mb-4 overflow-hidden border-4;
   background: var(--callout-bg, #f8fafc);
   border-color: var(--callout-border, #e2e8f0);
 }
