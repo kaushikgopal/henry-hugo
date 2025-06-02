@@ -105,17 +105,6 @@
   @apply border-0;
 }
 
-.post-content .callout:not(figure) {
-  @apply border-4 border-hc p-4 space-y-2 px-6 md:px-8 text-base md:text-lg;
-}
-
-.post-content blockquote {
-  @apply border-hc-lighter bg-hbg-dark border-l-4 p-4 italic text-base;
-}
-
-.post-content blockquote code {
-  @apply text-sm;
-}
 
 .post-content .footnote-ref {
   @apply ps-0.5 text-ht-light hover:text-hc font-bold no-underline;
@@ -193,4 +182,280 @@ section.post .pill-slate {
 
 .page-item.disabled .page-link {
   @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-ht;
+}
+
+
+.post-content blockquote {
+  @apply border-hc-lighter bg-hbg-dark border-l-4 p-4 italic text-base;
+}
+
+.post-content blockquote code {
+  @apply text-sm;
+}
+
+/* Obsidian-style Callouts */
+
+.post-content .callout:not(figure) {
+  @apply text-base md:text-lg;
+}
+
+.callout {
+  @apply rounded-lg mb-4 overflow-hidden border-4;
+  background: var(--callout-bg, #f8fafc);
+  border-color: var(--callout-border, #e2e8f0);
+}
+
+.callout-title {
+  @apply flex items-center gap-2 px-4 py-3 font-medium text-sm;
+  color: var(--callout-title-color, #334155);
+}
+
+.callout-icon {
+  @apply flex items-center justify-center w-5 h-5 flex-shrink-0;
+  color: var(--callout-icon-color, #64748b);
+}
+
+.callout-icon svg {
+  @apply w-full h-full;
+}
+
+.callout-title-inner {
+  @apply flex-1 font-semibold;
+}
+
+.callout-fold {
+  @apply w-5 h-5 flex items-center justify-center text-gray-400 cursor-pointer hover:text-gray-600 transition-colors;
+}
+
+.callout-content {
+  @apply px-4 pb-3;
+}
+
+.callout-content > *:first-child {
+  @apply mt-0;
+}
+
+.callout-content > *:last-child {
+  @apply mb-0;
+}
+
+/* Note/Info/FYI - Blue */
+.callout[data-callout="note"],
+.callout[data-callout="info"],
+.callout[data-callout="fyi"] {
+  --callout-bg: #dbeafe;
+  --callout-border: #93c5fd;
+  --callout-title-bg: #bfdbfe;
+  --callout-title-color: #1e40af;
+  --callout-icon-color: #2563eb;
+}
+
+/* TL;DR - Cyan */
+.callout[data-callout="tldr"] {
+  --callout-bg: #cffafe;
+  --callout-border: #67e8f9;
+  --callout-title-bg: #a5f3fc;
+  --callout-title-color: #0e7490;
+  --callout-icon-color: #0891b2;
+}
+
+/* Important/Tip/Hint - Orange */
+.callout[data-callout="important"],
+.callout[data-callout="tip"],
+.callout[data-callout="hint"] {
+  --callout-bg: #fed7aa;
+  --callout-border: #fdba74;
+  --callout-title-bg: #fcd34d;
+  --callout-title-color: #c2410c;
+  --callout-icon-color: #ea580c;
+}
+
+/* Warning/Caution/Attention - Yellow */
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  --callout-bg: #fef3c7;
+  --callout-border: #fcd34d;
+  --callout-title-bg: #fed7aa;
+  --callout-title-color: #d97706;
+  --callout-icon-color: #f59e0b;
+}
+
+/* Error - Red */
+.callout[data-callout="error"] {
+  --callout-bg: #fecaca;
+  --callout-border: #f87171;
+  --callout-title-bg: #fca5a5;
+  --callout-title-color: #dc2626;
+  --callout-icon-color: #ef4444;
+}
+
+/* Failure/Fail/Missing - Pink */
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="missing"] {
+  --callout-bg: #fce7f3;
+  --callout-border: #f9a8d4;
+  --callout-title-bg: #fbcfe8;
+  --callout-title-color: #be185d;
+  --callout-icon-color: #ec4899;
+}
+
+/* Bug - Red/Pink */
+.callout[data-callout="bug"] {
+  --callout-bg: #fee2e2;
+  --callout-border: #fca5a5;
+  --callout-title-bg: #fecaca;
+  --callout-title-color: #dc2626;
+  --callout-icon-color: #ef4444;
+}
+
+/* Example - Purple */
+.callout[data-callout="example"] {
+  --callout-bg: #ede9fe;
+  --callout-border: #c4b5fd;
+  --callout-title-bg: #ddd6fe;
+  --callout-title-color: #7c3aed;
+  --callout-icon-color: #8b5cf6;
+}
+
+/* Quote/Cite - Gray */
+.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+  --callout-bg: #f1f5f9;
+  --callout-border: #cbd5e1;
+  --callout-title-bg: #e2e8f0;
+  --callout-title-color: #475569;
+  --callout-icon-color: #64748b;
+}
+
+/* Question/Help/FAQ - Green */
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"] {
+  --callout-bg: #dcfce7;
+  --callout-border: #86efac;
+  --callout-title-bg: #bbf7d0;
+  --callout-title-color: #166534;
+  --callout-icon-color: #22c55e;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .callout {
+      @apply border-gray-700;
+      background: var(--callout-bg-dark, #1f2937);
+      border-color: var(--callout-border-dark, #374151);
+  }
+
+  .callout-title {
+      background: var(--callout-title-bg-dark, #111827);
+      color: var(--callout-title-color-dark, #f9fafb);
+      border-color: var(--callout-border-dark, #374151);
+  }
+
+  .callout-fold {
+      @apply text-gray-500 hover:text-gray-300;
+  }
+
+  /* Note/Info/FYI - Blue Dark */
+  .callout[data-callout="note"],
+  .callout[data-callout="info"],
+  .callout[data-callout="fyi"] {
+      --callout-bg-dark: #1e3a8a;
+      --callout-border-dark: #3b82f6;
+      --callout-title-bg-dark: #1e40af;
+      --callout-title-color-dark: #dbeafe;
+      --callout-icon-color: #60a5fa;
+  }
+
+  /* TL;DR - Cyan Dark */
+  .callout[data-callout="tldr"] {
+      --callout-bg-dark: #155e75;
+      --callout-border-dark: #0891b2;
+      --callout-title-bg-dark: #0e7490;
+      --callout-title-color-dark: #cffafe;
+      --callout-icon-color: #22d3ee;
+  }
+
+  /* Important/Tip/Hint - Orange Dark */
+  .callout[data-callout="important"],
+  .callout[data-callout="tip"],
+  .callout[data-callout="hint"] {
+      --callout-bg-dark: #9a3412;
+      --callout-border-dark: #ea580c;
+      --callout-title-bg-dark: #c2410c;
+      --callout-title-color-dark: #fed7aa;
+      --callout-icon-color: #fb923c;
+  }
+
+  /* Warning/Caution/Attention - Yellow Dark */
+  .callout[data-callout="warning"],
+  .callout[data-callout="caution"],
+  .callout[data-callout="attention"] {
+      --callout-bg-dark: #92400e;
+      --callout-border-dark: #f59e0b;
+      --callout-title-bg-dark: #d97706;
+      --callout-title-color-dark: #fef3c7;
+      --callout-icon-color: #fbbf24;
+  }
+
+  /* Error - Red Dark */
+  .callout[data-callout="error"] {
+      --callout-bg-dark: #991b1b;
+      --callout-border-dark: #ef4444;
+      --callout-title-bg-dark: #dc2626;
+      --callout-title-color-dark: #fecaca;
+      --callout-icon-color: #f87171;
+  }
+
+  /* Failure/Fail/Missing - Pink Dark */
+  .callout[data-callout="failure"],
+  .callout[data-callout="fail"],
+  .callout[data-callout="missing"] {
+      --callout-bg-dark: #9d174d;
+      --callout-border-dark: #ec4899;
+      --callout-title-bg-dark: #be185d;
+      --callout-title-color-dark: #fce7f3;
+      --callout-icon-color: #f472b6;
+  }
+
+  /* Bug - Red/Pink Dark */
+  .callout[data-callout="bug"] {
+      --callout-bg-dark: #991b1b;
+      --callout-border-dark: #ef4444;
+      --callout-title-bg-dark: #dc2626;
+      --callout-title-color-dark: #fee2e2;
+      --callout-icon-color: #f87171;
+  }
+
+  /* Example - Purple Dark */
+  .callout[data-callout="example"] {
+      --callout-bg-dark: #6b21a8;
+      --callout-border-dark: #8b5cf6;
+      --callout-title-bg-dark: #7c3aed;
+      --callout-title-color-dark: #ede9fe;
+      --callout-icon-color: #a78bfa;
+  }
+
+  /* Quote/Cite - Gray Dark */
+  .callout[data-callout="quote"],
+  .callout[data-callout="cite"] {
+      --callout-bg-dark: #374151;
+      --callout-border-dark: #6b7280;
+      --callout-title-bg-dark: #4b5563;
+      --callout-title-color-dark: #f1f5f9;
+      --callout-icon-color: #9ca3af;
+  }
+
+  /* Question/Help/FAQ - Green Dark */
+  .callout[data-callout="question"],
+  .callout[data-callout="help"],
+  .callout[data-callout="faq"] {
+      --callout-bg-dark: #14532d;
+      --callout-border-dark: #22c55e;
+      --callout-title-bg-dark: #166534;
+      --callout-title-color-dark: #dcfce7;
+      --callout-icon-color: #4ade80;
+  }
 }
