@@ -1,16 +1,45 @@
-{{ $title := .Site.Title }}
-{{ with .Params.title }}
-    {{ $title = (printf "%v · %v" $.Params.title $title) }}
+{{ $authorName := partial "get-authors.html" . | plainify }}
+<meta name="author" content="{{ $authorName }}">
+
+{{ $title := "" }}
+{{ $summary := "" }}
+
+<!-- if showing a list of specific tags/term -->
+{{ if and (eq .Kind "term") .Name }}
+  {{ $title = printf "%v on %v" $authorName .Name }}
+  {{ $summary = printf "%v's thoughts on %v" $authorName .Name }}
+<!-- special handling for the blog "section" -->
+{{ else if and (eq .Kind "section") (eq .Section "blog") }}
+  {{ $title = printf "%v's blog posts" $authorName }}
+  {{ $summary = printf "List of blog posts on %v" $authorName }}
+{{ else if in (slice "section" "taxonomy") .Kind }}
+  {{ $title = printf "%v's %v" $authorName .Name }}
+  {{ $summary = printf "List of %v on %v" .Name $authorName }}
 {{ end }}
+
+<!-- if page has a specific title use that instead -->
+{{ if .Params.title }}
+  {{ $title = .Params.title }}
+{{ end }}
+
+<!-- if pages has a specific summary, use that instead -->
+{{ if .Summary }}
+  {{ $summary = .Summary }}
+{{ end }}
+
+
+<!-- include website name at the end -->
+{{ if .Site.Title }}
+  {{ if $title }}
+    {{ $title = printf "%v - %v" $title .Site.Title }}
+  {{ else }}
+    {{ $title = .Site.Title }}
+  {{ end }}
+{{ end }}
+
+
 <title>{{ $title }}</title>
-
-{{ with .Site.Params.author.name }}
-    <meta name="author" content="{{ . }}">
-{{ end }}
-
-{{ with .Site.Params.Summary }}
-    <meta name="description" content="{{ . }}"/>
-{{ end }}
+<meta name="description" content="{{ $summary }}"/>
 
 {{ if .Params.noindex }}
 <meta name="robots" content="noindex" />
@@ -25,7 +54,7 @@
 <meta name="twitter:site" content="{{ .Site.Params.twitter }}"/>
 <meta name="twitter:title" content="{{ $title }}"/>
 <meta name="twitter:creator" content="{{ .Site.Params.twitter }}"/>
-<meta name="twitter:description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.Summary }}{{ end }}"/>
+<meta name="twitter:description" content="{{ $summary }}"/>
 <meta property="twitter:url" content="{{ .Permalink }}">
 
 {{ $featured_image := partial "get-featured-image.html" . }}
@@ -37,7 +66,7 @@
 
 <!-- OG data -->
 <meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.Summary }}{{ end }}"/>
+<meta property="og:description" content="{{ $summary }}"/>
 
 {{ with .Permalink }}<meta property="og:url" content="{{ . }}">{{ end }}
 <meta property="og:locale" content="{{ .Site.LanguageCode }}">
