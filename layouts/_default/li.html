@@ -1,28 +1,25 @@
-<div class="mt-4 md:mt-10">
+<div class="mt-6 md:mt-10">
 
     <aside class="post-metadata">
 
         <div class="tags
-                flex flex-row gap-2">
+                flex flex-row gap-2 mb-1 md:mb-4">
 
-            <a class="nav-link pill-hc hidden md:block" href="/{{.Section}}">
-                {{ if .Params.externalLink }}link
-                {{ else if eq .Section "letter" }}letter
-                {{ else if eq .Section "s" }}short
-                {{ else if eq .Section "blog" }}post
-                {{ else if eq .Section "ppt" }}talk
-                {{ else }}
-                {{ .Section | singularize }}
-                {{ end }}
+            {{ $postType := .Section | singularize }}
+            {{ $postType = replace $postType "s" "short" }}
+            {{ $postType = replace $postType "ppt" "talk" }}
+            {{ $postType = replace $postType "blog" "post" }}
+            {{ $postType = cond .Params.externalLink "link" $postType }}
+            <a class="nav-link pill-hc {{ $postType }}" href="/{{.Section}}">
+                {{ $postType }}
             </a>
-
 
             {{ if .Draft }}
             <div class="draft pill-hc2-solid">Draft</div>
             {{ end }}
         </div>
 
-        <h1 class=" post-link-url mt-4
+        <h1 class=" post-link-url
                     md:font-title
                     text-xl lg:text-3xl leading-tight">
             <a class="no-underline" href="{{ .RelPermalink }}">
