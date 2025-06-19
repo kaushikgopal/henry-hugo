@@ -1,51 +1,45 @@
+{{ $isPage := .IsPage }}
+
 <div class="site-title fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-[85%] max-w-4xl">
     <div class="w-full">
-        <h1 class="font-title text-2xl text-left flex flex-col items-start">
-            <span class="decoration-wavy decoration-hc underline underline-offset-8 decoration-2">kau.sh</span>
+        <h1 class="font-title text-xl text-left flex flex-col items-start">
+            <!-- Other pages - breadcrumb navigation -->
+            <span class="flex items-center gap-0.5 flex-wrap">
+                <!-- Home link -->
+                <a href="/" class="decoration-wavy decoration-hc underline underline-offset-8 decoration-2 hover:opacity-80 transition-opacity">kau.sh</a>
+
+                {{ if .IsSection }}
+                    <!-- Section list page: kau.sh / section -->
+                    <span class="text-ht-light">/</span>
+                    <span class="text-ht-light">{{ .Section }}</span>
+                {{ else if eq .Kind "taxonomy" }}
+                    <!-- Taxonomy list page: kau.sh / tags -->
+                    <span class="text-ht-light">/</span>
+                    <span class="text-ht-light">{{ .Data.Plural }}</span>
+                {{ else if eq .Kind "term" }}
+                    <!-- Individual tag/category page: kau.sh / tags / tagname -->
+                    <span class="text-ht-light">/</span>
+                    <a href="/{{ .Data.Plural }}/" class="decoration-wavy text-ht-light hover:text-hc transition-colors">{{ .Data.Plural }}</a>
+                    <span class="text-ht-light">/</span>
+                    <span class="text-ht-light">{{ .Title }}</span>
+                {{ else if .IsPage }}
+                    <!-- Single page within a section: kau.sh / section / -->
+                    {{ with .CurrentSection }}
+                        <span class="text-ht-light">/</span>
+                        <a href="{{ .RelPermalink }}" class="decoration-wavy text-ht-light hover:text-hc transition-colors">{{ .Section }}</a>
+                    {{ end }}
+                    <span class="text-ht-light">/</span>
+                {{ else if not .IsHome }}
+                    <!-- Fallback for other page types -->
+                    {{ with .CurrentSection }}
+                        <span class="text-ht-light">/</span>
+                        <a href="{{ .RelPermalink }}" class="decoration-wavy text-ht-light hover:text-hc transition-colors">{{ .Section }}</a>
+                    {{ end }}
+                {{ end }}
+            </span>
         </h1>
     </div>
 </div>
-
-{{ $isPage := .IsPage }}
-{{ if ne .RelPermalink "/" }}
-<div id="site-container"
-     class="{{ if $isPage }}absolute top-2 md:top-5 left-2 md:left-5
-            {{ else }}fixed top-2 md:top-5 left-2 md:left-5{{ end }}
-            flex items-center z-50">
-    <!-- Site avatar/favicon with link -->
-    <a href="{{ if $isPage }}{{ with .CurrentSection }}{{ .RelPermalink }}{{ end }}{{ else }}/{{ end }}" class="cursor-pointer">
-        {{ $faviconJpgPath := "images/favicon.jpg" }}
-        {{ $faviconPngPath := "images/favicon.png" }}
-        {{ $avatarPath := "images/avatar.webp" }}
-        {{ $faviconIcoPath := "favicon.ico" }}
-
-        {{ $imagePath := "" }}
-        {{ $imageExists := false }}
-
-        {{ if (fileExists (printf "static/%s" $faviconJpgPath)) }}
-            {{ $imagePath = $faviconJpgPath }}
-            {{ $imageExists = true }}
-        {{ else if (fileExists (printf "static/%s" $faviconPngPath)) }}
-            {{ $imagePath = $faviconPngPath }}
-            {{ $imageExists = true }}
-        {{ else if (fileExists (printf "static/%s" $avatarPath)) }}
-            {{ $imagePath = $avatarPath }}
-            {{ $imageExists = true }}
-        {{ else if (fileExists (printf "static/%s" $faviconIcoPath)) }}
-            {{ $imagePath = $faviconIcoPath }}
-            {{ $imageExists = true }}
-        {{ end }}
-
-        {{ if $imageExists }}
-            <img src="/{{ $imagePath }}" alt="Site Icon"
-                 class="rounded-full hover:opacity-80 transition-opacity
-                        h-8 w-8 md:h-10 md:w-10
-                        border-2 border-ht">
-        {{ end }}
-    </a>
-</div>
-{{ end }}
-
 
 {{ if $.Param "enableSearch" }}
 
