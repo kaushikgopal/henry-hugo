@@ -1,7 +1,7 @@
 {{ define "content" }}
 <div class="flex flex-col
             w-[85%] max-w-3xl mx-auto
-            pt-8 md:pt-18 pb-12">
+            pt-10 md:pt-20 pb-12">
 
     <!-- custom content included in header page -->
     {{ if .Content }}
@@ -39,6 +39,7 @@
 
 
     {{ if eq hugo.Environment "development" }}
+    <div class="text-sm text-ht-light mt-6">
     Total: {{len $pages}} posts <br>
     GroupedPage count: {{ len $groupedPages }} <br>
     isTaxonomy: {{ $isTaxonomy }} <br>
@@ -46,6 +47,7 @@
     Kind: {{ .Kind }} <br>
     isListType: {{ $isListType }} <br>
     Name: {{ .Name }} <br>
+    </div>
     {{ end }}
 
     {{ if ne .Kind "page" }}
