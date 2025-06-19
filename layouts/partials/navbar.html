@@ -1,3 +1,11 @@
+<div class="site-title fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-[85%] max-w-4xl">
+    <div class="w-full">
+        <h1 class="font-title text-2xl text-left flex flex-col items-start">
+            <span class="decoration-wavy decoration-hc underline underline-offset-8 decoration-2">kau.sh</span>
+        </h1>
+    </div>
+</div>
+
 {{ $isPage := .IsPage }}
 {{ if ne .RelPermalink "/" }}
 <div id="site-container"
@@ -55,8 +63,8 @@
 
 <!-- Search container -->
 <div id="search-container"
-     class="{{ if $isPage }}absolute top-2 md:top-5 right-2 md:right-5
-            {{ else }}fixed top-2 md:top-5 right-2 md:right-5{{ end }}
+     class="{{ if $isPage }}absolute top-5 right-2 md:right-5
+            {{ else }}fixed top-5 right-2 md:right-5{{ end }}
              flex items-center z-50">
     <!-- Searchbar -->
     <div id="searchbar" class="mr-2 hidden relative">
