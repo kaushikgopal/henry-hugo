@@ -1,5 +1,5 @@
 {{ if .Site.Taxonomies.tags }}
-<div class="tag-cloud flex flex-wrap gap-2 items-center mb-8 w-[85%] max-w-4xl mx-auto">
+<div class="tag-cloud flex flex-wrap gap-2">
   {{ $tagCloudCount := .Site.Params.tagCloudCount | default 20 }}
   {{ $sortedTags := .Site.Taxonomies.tags.ByCount }}
   {{ $topTags := first $tagCloudCount $sortedTags }}
