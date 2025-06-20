@@ -7,8 +7,9 @@
             <span class="flex items-center gap-0.5 flex-wrap">
                 <!-- Home link -->
                 <a  href="/"
-                    class="opacity-60 hover:opacity-100 transition-opacity
-                           no-underline">
+                    class="hover:opacity-100 transition-opacity
+                           no-underline
+                           {{ if .IsHome}} opacity-20 {{ else }} opacity-60 {{ end }}">
                     {{ $.Param "sitename" }}
                 </a>
 
