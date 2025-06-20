@@ -1,24 +1,17 @@
 {{ if .Site.Taxonomies.tags }}
-<div class="tag-cloud flex flex-wrap gap-2 justify-center items-center mt-6">
-  {{ $largestFontSize := 1.5 }}
-  {{ $smallestFontSize := 0.875 }}
-  {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
-  {{ $max := add (len (index .Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
-  {{ $min := len (index .Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
-  {{ $spread := sub $max $min }}
-  {{ $fontStep := div $fontSpread $spread }}
+<div class="tag-cloud flex flex-wrap gap-2 items-center mb-8 w-[85%] max-w-4xl mx-auto">
+  {{ $tagCloudCount := .Site.Params.tagCloudCount | default 20 }}
+  {{ $sortedTags := .Site.Taxonomies.tags.ByCount }}
+  {{ $topTags := first $tagCloudCount $sortedTags }}
+  {{ $alphabeticalTags := sort $topTags ".Name" }}
 
-  {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-    {{ $tagCount := len $taxonomy.Pages }}
-    {{ $currentFontSize := (add $smallestFontSize (mul (sub $tagCount $min) $fontStep) ) }}
-    {{ $weight := div (sub (math.Log $tagCount) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
-    {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weight)) }}
+  {{ range $alphabeticalTags }}
+    {{ $tagCount := len .Pages }}
 
-    <a href="/tags/{{ $name | urlize }}/"
+    <a href="/tags/{{ .Name | urlize }}/"
        class="pill-slate no-underline hover:text-hc transition-colors duration-200"
-       style="font-size: {{ $currentFontSize }}rem;"
        title="{{ $tagCount }} {{ if eq $tagCount 1 }}post{{ else }}posts{{ end }}">
-      {{ $name }}
+      {{ .Name }}
     </a>
   {{ end }}
 </div>
