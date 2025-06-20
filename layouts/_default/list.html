@@ -57,8 +57,8 @@
     {{ if $isTaxonomy }} <!-- inside a taxonomy page | no pagination-->
     {{ $key := .Name }}
     {{ $groupPages := .Pages }}
-    <h2 class="post-list-header term pill-slate mt-10 font-bold" id="{{ $key }}">
-        #{{ $key }}
+    <h2 class="post-list-header term mt-10 font-bold" id="{{ $key }}">
+        <a class="pill-slate" href="{{ $key }}/">#{{ $key }}</a>
     </h2>
     <div class="post-list-content">
         {{ range $groupPages }}
@@ -86,7 +86,7 @@
     {{ else }} <!-- inside a regular list page | no pagination -->
     {{ $key := .Key }}
     {{ $groupPages := .Pages }}
-    <h2 class="post-list-header pill-slate mt-10 font-bold" id="{{ $key }}">
+    <h2 class=" mt-10 font-bold text-ht-lighter" id="{{ $key }}">
         #{{ $key }}
     </h2>
     <div class="post-list-content">
