@@ -245,7 +245,7 @@ section.post .pill-slate {
 .callout[data-callout="note"],
 .callout[data-callout="info"],
 .callout[data-callout="fyi"] {
-  --callout-bg: #dbeafe;
+  /* --callout-bg: #dbeafe; */
   --callout-border: #93c5fd;
   --callout-title-bg: #bfdbfe;
   --callout-title-color: #1e40af;
@@ -254,7 +254,7 @@ section.post .pill-slate {
 
 /* TL;DR - Cyan */
 .callout[data-callout="tldr"] {
-  --callout-bg: #cffafe;
+  /* --callout-bg: #cffafe; */
   --callout-border: #67e8f9;
   --callout-title-bg: #a5f3fc;
   --callout-title-color: #0e7490;
@@ -265,7 +265,7 @@ section.post .pill-slate {
 .callout[data-callout="important"],
 .callout[data-callout="tip"],
 .callout[data-callout="hint"] {
-  --callout-bg: #fed7aa;
+  /* --callout-bg: #fed7aa; */
   --callout-border: #fdba74;
   --callout-title-bg: #fcd34d;
   --callout-title-color: #c2410c;
@@ -276,7 +276,7 @@ section.post .pill-slate {
 .callout[data-callout="warning"],
 .callout[data-callout="caution"],
 .callout[data-callout="attention"] {
-  --callout-bg: #fef3c7;
+  /* --callout-bg: #fef3c7; */
   --callout-border: #fcd34d;
   --callout-title-bg: #fed7aa;
   --callout-title-color: #d97706;
@@ -285,7 +285,7 @@ section.post .pill-slate {
 
 /* Error - Red */
 .callout[data-callout="error"] {
-  --callout-bg: #fecaca;
+  /* --callout-bg: #fecaca; */
   --callout-border: #f87171;
   --callout-title-bg: #fca5a5;
   --callout-title-color: #dc2626;
@@ -296,7 +296,7 @@ section.post .pill-slate {
 .callout[data-callout="failure"],
 .callout[data-callout="fail"],
 .callout[data-callout="missing"] {
-  --callout-bg: #fce7f3;
+  /* --callout-bg: #fce7f3; */
   --callout-border: #f9a8d4;
   --callout-title-bg: #fbcfe8;
   --callout-title-color: #be185d;
@@ -305,7 +305,7 @@ section.post .pill-slate {
 
 /* Bug - Red/Pink */
 .callout[data-callout="bug"] {
-  --callout-bg: #fee2e2;
+  /* --callout-bg: #fee2e2; */
   --callout-border: #fca5a5;
   --callout-title-bg: #fecaca;
   --callout-title-color: #dc2626;
@@ -314,7 +314,7 @@ section.post .pill-slate {
 
 /* Example - Purple */
 .callout[data-callout="example"] {
-  --callout-bg: #ede9fe;
+  /* --callout-bg: #ede9fe; */
   --callout-border: #c4b5fd;
   --callout-title-bg: #ddd6fe;
   --callout-title-color: #7c3aed;
@@ -335,7 +335,7 @@ section.post .pill-slate {
 .callout[data-callout="question"],
 .callout[data-callout="help"],
 .callout[data-callout="faq"] {
-  --callout-bg: #dcfce7;
+  /* --callout-bg: #dcfce7; */
   --callout-border: #86efac;
   --callout-title-bg: #bbf7d0;
   --callout-title-color: #166534;
@@ -364,7 +364,7 @@ section.post .pill-slate {
   .callout[data-callout="note"],
   .callout[data-callout="info"],
   .callout[data-callout="fyi"] {
-      --callout-bg-dark: #1e3a8a;
+      /* --callout-bg-dark: #1e3a8a; */
       --callout-border-dark: #3b82f6;
       --callout-title-bg-dark: #1e40af;
       --callout-title-color-dark: #dbeafe;
@@ -373,7 +373,7 @@ section.post .pill-slate {
 
   /* TL;DR - Cyan Dark */
   .callout[data-callout="tldr"] {
-      --callout-bg-dark: #155e75;
+      /* --callout-bg-dark: #155e75; */
       --callout-border-dark: #0891b2;
       --callout-title-bg-dark: #0e7490;
       --callout-title-color-dark: #cffafe;
@@ -384,7 +384,7 @@ section.post .pill-slate {
   .callout[data-callout="important"],
   .callout[data-callout="tip"],
   .callout[data-callout="hint"] {
-      --callout-bg-dark: #9a3412;
+      /* --callout-bg-dark: #9a3412; */
       --callout-border-dark: #ea580c;
       --callout-title-bg-dark: #c2410c;
       --callout-title-color-dark: #fed7aa;
@@ -395,7 +395,7 @@ section.post .pill-slate {
   .callout[data-callout="warning"],
   .callout[data-callout="caution"],
   .callout[data-callout="attention"] {
-      --callout-bg-dark: #92400e;
+      /* --callout-bg-dark: #92400e; */
       --callout-border-dark: #f59e0b;
       --callout-title-bg-dark: #d97706;
       --callout-title-color-dark: #fef3c7;
@@ -404,7 +404,7 @@ section.post .pill-slate {
 
   /* Error - Red Dark */
   .callout[data-callout="error"] {
-      --callout-bg-dark: #991b1b;
+      /* --callout-bg-dark: #991b1b; */
       --callout-border-dark: #ef4444;
       --callout-title-bg-dark: #dc2626;
       --callout-title-color-dark: #fecaca;
@@ -415,7 +415,7 @@ section.post .pill-slate {
   .callout[data-callout="failure"],
   .callout[data-callout="fail"],
   .callout[data-callout="missing"] {
-      --callout-bg-dark: #9d174d;
+      /* --callout-bg-dark: #9d174d; */
       --callout-border-dark: #ec4899;
       --callout-title-bg-dark: #be185d;
       --callout-title-color-dark: #fce7f3;
@@ -424,7 +424,7 @@ section.post .pill-slate {
 
   /* Bug - Red/Pink Dark */
   .callout[data-callout="bug"] {
-      --callout-bg-dark: #991b1b;
+      /* --callout-bg-dark: #991b1b; */
       --callout-border-dark: #ef4444;
       --callout-title-bg-dark: #dc2626;
       --callout-title-color-dark: #fee2e2;
@@ -433,7 +433,7 @@ section.post .pill-slate {
 
   /* Example - Purple Dark */
   .callout[data-callout="example"] {
-      --callout-bg-dark: #6b21a8;
+      /* --callout-bg-dark: #6b21a8; */
       --callout-border-dark: #8b5cf6;
       --callout-title-bg-dark: #7c3aed;
       --callout-title-color-dark: #ede9fe;
@@ -454,7 +454,7 @@ section.post .pill-slate {
   .callout[data-callout="question"],
   .callout[data-callout="help"],
   .callout[data-callout="faq"] {
-      --callout-bg-dark: #14532d;
+      /* --callout-bg-dark: #14532d; */
       --callout-border-dark: #22c55e;
       --callout-title-bg-dark: #166534;
       --callout-title-color-dark: #dcfce7;
