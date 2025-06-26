@@ -4,55 +4,48 @@
             absolute top-6 left-1/2 transform -translate-x-1/2 z-50
             w-[85%] max-w-3xl min-w-[333px] mb-8">
     <div class="w-full">
-        <h1 class="font-title text-xl text-left flex flex-col items-start ">
+        <h1 class="flex flex-col items-start
+                   font-title text-xl text-left
+                   text-ht-lighter
+                   ">
             <!-- Other pages - breadcrumb navigation -->
             <span class="flex items-center gap-0.5 flex-wrap">
                 <!-- Home link -->
                 <a  href="/"
-                    class="hover:opacity-100 transition-opacity
-                           no-underline
-                           {{ if .IsHome}} opacity-20 {{ else }} opacity-60 {{ end }}">
+                    class="no-underline
+                           {{ if .IsHome}} text-ht {{ end }}">
                     {{ $.Param "sitename" }}
+                </a> |
+                <a  href="/blog/"
+                    class='no-underline
+                           {{ if eq .Name "Blogs" }} text-ht {{ end }}'>
+                    posts
+                </a> |
+                <a  href="/tags/"
+                    class='no-underline
+                           {{ if eq .Name "Tags" }} text-ht {{ end }}'>
+                    topics
                 </a>
 
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
-                    <span class="opacity-40">/</span>
-                    <span class="opacity-20">{{ .Section }}</span>
+                    {{ if ne .Name "Blogs" }}
+                        | <span class="text-ht">{{ .Section }}</span>
+                    {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
                     <!-- Taxonomy list page: kau.sh / tags -->
-                    <span class="opacity-40">/</span>
-                    <span class="">{{ .Data.Plural }}</span>
+                    {{ if ne .Name "Tags" }}
+                        | <span class="text-ht">{{ .Data.Plural }}</span>
+                    {{ end }}
                 {{ else if eq .Kind "term" }}
                     <!-- Individual tag/category page: kau.sh / tags / tagname -->
-                    <span class="opacity-40">/</span>
-                    <a href="/{{ .Data.Plural }}/"
-                       class="opacity-60 hover:opacity-100 transition-opacity
-                              no-underline">
-                       {{ .Data.Plural }}
-                    </a>
-                    <span class="opacity-40">/</span>
-                    <span class="">{{ .Title }}</span>
-                {{ else if .IsPage }}
-                    <!-- Single page within a section: kau.sh / section / -->
-                    {{ with .CurrentSection }}
-                        <span class="opacity-40">/</span>
-                        <a href="{{ .RelPermalink }}"
-                           class="opacity-60 hover:opacity-100 transition-opacity
-                                  no-underline">
-                           {{ .Section }}
+                    {{ if ne .Data.Plural "tags" }}
+                        |
+                        <a href="/{{ .Data.Plural }}/" class="no-underline">
+                            {{ .Data.Plural }}
                         </a>
                     {{ end }}
-                {{ else if not .IsHome }}
-                    <!-- Fallback for other page types -->
-                    {{ with .CurrentSection }}
-                        <span class="opacity-40">/</span>
-                        <a href="{{ .RelPermalink }}"
-                           class="opacity-60 hover:opacity-100 transition-opacity
-                                  no-underline">
-                            {{ .Section }}
-                        </a>
-                    {{ end }}
+                    | <span class="text-ht">{{ .Title }}</span>
                 {{ end }}
             </span>
         </h1>
