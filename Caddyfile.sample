@@ -1,4 +1,0 @@
-dev.localhost {
-    tls internal
-    reverse_proxy localhost:1390
-}
