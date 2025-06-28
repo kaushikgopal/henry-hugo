@@ -34,6 +34,10 @@
   @apply text-xl md:text-2xl font-semibold text-hc;
 }
 
+.post-content h2 + ul {
+  @apply -mt-5;
+}
+
 .post-content h3 {
   @apply text-lg md:text-xl font-semibold text-hc;
 }

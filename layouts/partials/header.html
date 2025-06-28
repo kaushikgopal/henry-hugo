@@ -34,7 +34,8 @@
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
                     <!-- Taxonomy list page: kau.sh / tags -->
-                    {{ if ne .Name "Tags" }}
+                    {{ $pageTitle := .Params.pageTitle | default .Name }}
+                    {{ if ne $pageTitle "Tags" }}
                         | <span class="text-ht">{{ .Data.Plural }}</span>
                     {{ end }}
                 {{ else if eq .Kind "term" }}
@@ -46,6 +47,12 @@
                         </a>
                     {{ end }}
                     | <span class="text-ht">{{ .Title }}</span>
+                {{ end }}
+
+                {{ if and .IsPage (ne .Section "blog") }}
+                    | <a href="/{{ .Section }}/" class="no-underline">
+                        {{ .Section }}
+                    </a>
                 {{ end }}
             </span>
         </h1>

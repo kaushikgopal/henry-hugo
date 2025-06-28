@@ -1,8 +1,14 @@
 {{ if .Site.Taxonomies.tags }}
 <div class="tag-cloud flex flex-wrap gap-2">
-  {{ $tagCloudCount := .Site.Params.tagCloudCount | default 20 }}
+  {{ $tagCount := .count | default (.Site.Params.tagCloudCount | default 20) }}
   {{ $sortedTags := .Site.Taxonomies.tags.ByCount }}
-  {{ $topTags := first $tagCloudCount $sortedTags }}
+
+  {{/* If tagCount is -1, show all tags */}}
+  {{ $topTags := $sortedTags }}
+  {{ if gt $tagCount 0 }}
+    {{ $topTags = first $tagCount $sortedTags }}
+  {{ end }}
+
   {{ $alphabeticalTags := sort $topTags ".Name" }}
 
   {{ range $alphabeticalTags }}

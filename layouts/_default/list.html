@@ -3,20 +3,6 @@
             w-[85%] max-w-3xl mx-auto
             pt-10 md:pt-20 pb-12">
 
-    <!-- custom content included in header page -->
-    {{ if .Content }}
-    <h1 class="post-list-header
-           text-3xl font-title font-semibold
-           mt-8">
-        {{ .Title }}
-    </h1>
-
-    <article class="post-content
-                mt-4">
-        {{ .Content }}
-    </article>
-    {{ end }}
-
 
     {{ $pages := partial "get-posts.html" . }}
     {{ $groupedPages := slice }}
@@ -39,7 +25,7 @@
 
 
     {{ if eq hugo.Environment "development" }}
-    <div class="text-sm text-ht-light mt-6">
+    <div class="text-sm text-ht-light mt-5 mb-5">
     Total: {{len $pages}} posts <br>
     GroupedPage count: {{ len $groupedPages }} <br>
     isTaxonomy: {{ $isTaxonomy }} <br>
@@ -47,6 +33,27 @@
     Kind: {{ .Kind }} <br>
     isListType: {{ $isListType }} <br>
     Name: {{ .Name }} <br>
+    </div>
+    {{ end }}
+
+    <!-- custom content included in header page -->
+    {{ if .Content }}
+    <h1 class="post-list-header
+           text-3xl font-title font-semibold
+           mt-8">
+        {{ .Title }}
+    </h1>
+
+    <article class="post-content
+                my-4">
+        {{ .Content }}
+    </article>
+    {{ end }}
+
+    <!-- Show tag cloud for main tags taxonomy page -->
+    {{ if and (eq .Kind "taxonomy") (eq .Type "tags") }}
+    <div class = "mt-10">
+        {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1) }}
     </div>
     {{ end }}
 
