@@ -25,6 +25,11 @@
                     class='no-underline
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
                     topics
+                </a> |
+                <a  href="/about/"
+                    class='no-underline
+                           {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
+                    about
                 </a>
 
                 {{ if .IsSection }}
@@ -48,8 +53,7 @@
                     {{ end }}
                     | <span class="text-ht">{{ .Title }}</span>
                 {{ end }}
-
-                {{ if and .IsPage (ne .Section "blog") }}
+                {{ if and .IsPage .Section (ne .Section "blog") }}
                     | <a href="/{{ .Section }}/" class="no-underline">
                         {{ .Section }}
                     </a>
