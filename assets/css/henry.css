@@ -160,7 +160,7 @@ section.post .pill-hc {
 
 .pill-slate {
   @apply w-fit border-2 border-ht-light rounded-lg
-         p-1.5 bg-transparent hover:bg-ht-light
+         px-1.5 py-0.5 md:py-1.5 bg-transparent hover:bg-ht-light
          text-ht-light hover:text-ht-lightest
          uppercase no-underline font-sans;
   font-size: 10px;
