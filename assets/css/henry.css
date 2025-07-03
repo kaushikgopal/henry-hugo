@@ -39,11 +39,11 @@
 }
 
 .post-content h3 {
-  @apply text-lg md:text-xl font-semibold text-hc;
+  @apply text-lg md:text-xl font-bold text-hc;
 }
 
 .post-content h4 {
-  @apply text-lg md:text-xl font-bold text-hc;
+  @apply text-lg md:text-xl font-semibold text-hc;
 }
 
 .post-content>ol,
