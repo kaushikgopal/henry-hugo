@@ -2,12 +2,14 @@
 <!-- additionally if you have a /letter directory with posts, it'll also show on the top -->
 
 {{ if eq .Section "letter" }}
-<nav class="subscribe-letter bg-hbg-dark
-            p-6">
-    <a class="flex bg-hc-lighter
-               w-fit py-1 px-3 rounded-lg m-auto
-               text-hbg-dark uppercase font-bold font-mono no-underline
-               border border-hbg-dark hover:text-hc-lighter hover:bg-hbg-dark hover:border hover:border-hc-lighter"
+<nav class="subscribe-letter
+            p-6 flex justify-end">
+    <a class="flex bg-hc-lighter rounded-lg w-fit
+              border border-hbg-dark hover:text-hc-lighter hover:bg-hbg-dark hover:border hover:border-hc-lighter
+              py-1 px-3 mr-20
+              text-hbg-dark uppercase font-bold font-mono no-underline
+
+              "
         href="https://buttondown.email/kaush">
         <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" data-slot="icon">
             <path
