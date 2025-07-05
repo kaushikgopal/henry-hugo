@@ -34,7 +34,7 @@
   @apply text-xl md:text-2xl font-semibold text-hc;
 }
 
-.post-content h2 + ul {
+.post-content h2+ul {
   @apply -mt-5;
 }
 
@@ -81,7 +81,7 @@
 
 /* inline code */
 .post-content code {
-  @apply text-hc-lighter text-base;
+  @apply font-semibold text-base;
 }
 
 .post-content>*:not(figure.full-bleed) {
@@ -141,11 +141,7 @@ section.post .pill-hc2 {
 }
 
 .pill-hc {
-  @apply w-fit border-2 border-hc rounded-lg
-         p-1.5
-         bg-transparent hover:bg-hc
-         text-hc hover:text-ht-lightest
-         uppercase no-underline font-sans;
+  @apply w-fit border-2 border-hc rounded-lg p-1.5 bg-transparent hover:bg-hc text-hc hover:text-ht-lightest uppercase no-underline font-sans;
   font-size: 10px;
 }
 
@@ -159,10 +155,7 @@ section.post .pill-hc {
 }
 
 .pill-slate {
-  @apply w-fit border-2 border-ht-light rounded-lg
-         px-1.5 py-0.5 md:py-1.5 bg-transparent hover:bg-ht-light
-         text-ht-light hover:text-ht-lightest
-         uppercase no-underline font-sans;
+  @apply w-fit border-2 border-ht-light rounded-lg px-1.5 py-0.5 md:py-1.5 bg-transparent hover:bg-ht-light text-ht-light hover:text-ht-lightest uppercase no-underline font-sans;
   font-size: 10px;
 }
 
@@ -213,14 +206,23 @@ section.post .pill-slate {
 /* Callouts - light theme styles */
 
 .callout {
-  @apply overflow-hidden border-4;
-  background: var(--callout-bg, #f8fafc);
-  border-color: var(--callout-border, #e2e8f0);
+  @apply overflow-hidden border-6;
+
+  --callout-border: var(--color-ht-lighter);
+  --callout-bg: var(--color-hbg);
+
+  background: var(--callout-bg);
+  border-color: var(--callout-border);
+  border-style: double;
 }
 
 .callout-title {
   @apply flex items-center gap-2 px-4 py-3 font-medium text-sm;
-  color: var(--callout-title-color, #334155);
+  /* color: var(--callout-title-color, #334155); */
+}
+
+.callout-title code {
+  @apply text-sm;
 }
 
 .callout-icon {
@@ -244,11 +246,11 @@ section.post .pill-slate {
   @apply px-4 pb-3;
 }
 
-.callout-content > *:first-child {
+.callout-content>*:first-child {
   @apply mt-0;
 }
 
-.callout-content > *:last-child {
+.callout-content>*:last-child {
   @apply mb-0;
 }
 
@@ -257,30 +259,68 @@ section.post .pill-slate {
 .callout[data-callout="info"],
 .callout[data-callout="fyi"] {
   /* --callout-bg: #dbeafe; */
-  --callout-border: #93c5fd;
+  /* --callout-border: #93c5fd; */
   --callout-title-bg: #bfdbfe;
   --callout-title-color: #1e40af;
   --callout-icon-color: #2563eb;
 }
 
+@media (prefers-color-scheme: dark) {
+  /* Note/Info/FYI - Blue Dark */
+  .callout[data-callout="note"],
+  .callout[data-callout="info"],
+  .callout[data-callout="fyi"] {
+    /* --callout-bg-dark: #1e3a8a; */
+    /* --callout-border-dark: #3b82f6; */
+    --callout-title-bg-dark: #1e40af;
+    --callout-title-color-dark: #dbeafe;
+    --callout-icon-color: #60a5fa;
+  }
+}
+
 /* TL;DR - Cyan */
 .callout[data-callout="tldr"] {
   /* --callout-bg: #cffafe; */
-  --callout-border: #67e8f9;
+  /* --callout-border: #67e8f9; */
   --callout-title-bg: #a5f3fc;
   --callout-title-color: #0e7490;
   --callout-icon-color: #0891b2;
 }
+
+@media (prefers-color-scheme: dark) {
+  .callout[data-callout="tldr"] {
+    /* --callout-bg-dark: #155e75; */
+    /* --callout-border-dark: #0891b2; */
+    --callout-title-bg-dark: #0e7490;
+    --callout-title-color-dark: #cffafe;
+    --callout-icon-color: #22d3ee;
+  }
+}
+
 
 /* Important/Tip/Hint - Orange */
 .callout[data-callout="important"],
 .callout[data-callout="tip"],
 .callout[data-callout="hint"] {
   /* --callout-bg: #fed7aa; */
-  --callout-border: #fdba74;
+  /* --callout-border: #fdba74; */
   --callout-title-bg: #fcd34d;
   --callout-title-color: #c2410c;
   --callout-icon-color: #ea580c;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  /* Important/Tip/Hint - Orange Dark */
+  .callout[data-callout="important"],
+  .callout[data-callout="tip"],
+  .callout[data-callout="hint"] {
+    /* --callout-bg-dark: #9a3412; */
+    /* --callout-border-dark: #ea580c; */
+    --callout-title-bg-dark: #c2410c;
+    --callout-title-color-dark: #fed7aa;
+    --callout-icon-color: #fb923c;
+  }
 }
 
 /* Warning/Caution/Attention - Yellow */
@@ -288,19 +328,45 @@ section.post .pill-slate {
 .callout[data-callout="caution"],
 .callout[data-callout="attention"] {
   /* --callout-bg: #fef3c7; */
-  --callout-border: #fcd34d;
+  /* --callout-border: #fcd34d; */
   --callout-title-bg: #fed7aa;
   --callout-title-color: #d97706;
   --callout-icon-color: #f59e0b;
 }
 
+@media (prefers-color-scheme: dark) {
+
+  /* Warning/Caution/Attention - Yellow Dark */
+  .callout[data-callout="warning"],
+  .callout[data-callout="caution"],
+  .callout[data-callout="attention"] {
+    /* --callout-bg-dark: #92400e; */
+    /* --callout-border-dark: #f59e0b; */
+    --callout-title-bg-dark: #d97706;
+    --callout-title-color-dark: #fef3c7;
+    --callout-icon-color: #fbbf24;
+  }
+}
+
 /* Error - Red */
 .callout[data-callout="error"] {
   /* --callout-bg: #fecaca; */
-  --callout-border: #f87171;
+  /* --callout-border: #f87171; */
   --callout-title-bg: #fca5a5;
   --callout-title-color: #dc2626;
   --callout-icon-color: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  /* Error - Red Dark */
+  .callout[data-callout="error"] {
+    /* --callout-bg-dark: #991b1b; */
+    /* --callout-border-dark: #ef4444; */
+    --callout-title-bg-dark: #dc2626;
+    --callout-title-color-dark: #fecaca;
+    --callout-icon-color: #f87171;
+  }
 }
 
 /* Failure/Fail/Missing - Pink */
@@ -308,46 +374,99 @@ section.post .pill-slate {
 .callout[data-callout="fail"],
 .callout[data-callout="missing"] {
   /* --callout-bg: #fce7f3; */
-  --callout-border: #f9a8d4;
+  /* --callout-border: #f9a8d4; */
   --callout-title-bg: #fbcfe8;
   --callout-title-color: #be185d;
   --callout-icon-color: #ec4899;
 }
 
+@media (prefers-color-scheme: dark) {
+
+  /* Failure/Fail/Missing - Pink Dark */
+  .callout[data-callout="failure"],
+  .callout[data-callout="fail"],
+  .callout[data-callout="missing"] {
+    /* --callout-bg-dark: #9d174d; */
+    /* --callout-border-dark: #ec4899; */
+    --callout-title-bg-dark: #be185d;
+    --callout-title-color-dark: #fce7f3;
+    --callout-icon-color: #f472b6;
+  }
+}
+
 /* Bug - Red/Pink */
 .callout[data-callout="bug"] {
   /* --callout-bg: #fee2e2; */
-  --callout-border: #fca5a5;
+  /* --callout-border: #fca5a5; */
   --callout-title-bg: #fecaca;
   --callout-title-color: #dc2626;
   --callout-icon-color: #ef4444;
 }
 
+@media (prefers-color-scheme: dark) {
+  .callout[data-callout="bug"] {
+    /* --callout-bg-dark: #991b1b; */
+    /* --callout-border-dark: #ef4444; */
+    --callout-title-bg-dark: #dc2626;
+    --callout-title-color-dark: #fee2e2;
+    --callout-icon-color: #f87171;
+  }
+}
+
 /* Example - Purple */
 .callout[data-callout="example"] {
   /* --callout-bg: #ede9fe; */
-  --callout-border: #c4b5fd;
+  /* --callout-border: #c4b5fd; */
   --callout-title-bg: #ddd6fe;
   --callout-title-color: #7c3aed;
   --callout-icon-color: #8b5cf6;
 }
 
+@media (prefers-color-scheme: dark) {
+
+  /* Example - Purple Dark */
+  .callout[data-callout="example"] {
+    /* --callout-bg-dark: #6b21a8; */
+    /* --callout-border-dark: #8b5cf6; */
+    --callout-title-bg-dark: #7c3aed;
+    --callout-title-color-dark: #ede9fe;
+    --callout-icon-color: #a78bfa;
+  }
+}
+
+
+
+
 /* Quote/Cite - Gray */
 .callout[data-callout="quote"],
 .callout[data-callout="cite"] {
   --callout-bg: #f1f5f9;
-  --callout-border: #cbd5e1;
+  /* --callout-border: #cbd5e1; */
   --callout-title-bg: #e2e8f0;
   --callout-title-color: #475569;
   --callout-icon-color: #64748b;
 }
+
+@media (prefers-color-scheme: dark) {
+
+  /* Quote/Cite - Gray Dark */
+  .callout[data-callout="quote"],
+  .callout[data-callout="cite"] {
+    --callout-bg-dark: #374151;
+    /* --callout-border-dark: #6b7280; */
+    --callout-title-bg-dark: #4b5563;
+    --callout-title-color-dark: #f1f5f9;
+    --callout-icon-color: #9ca3af;
+  }
+}
+
 
 /* Question/Help/FAQ - Green */
 .callout[data-callout="question"],
 .callout[data-callout="help"],
 .callout[data-callout="faq"] {
   /* --callout-bg: #dcfce7; */
-  --callout-border: #86efac;
+  /* --callout-border: #86efac; */
   --callout-title-bg: #bbf7d0;
   --callout-title-color: #166534;
   --callout-icon-color: #22c55e;
@@ -355,120 +474,15 @@ section.post .pill-slate {
 
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
-  .callout {
-      @apply border-gray-700;
-      background: var(--callout-bg-dark, #1f2937);
-      border-color: var(--callout-border-dark, #374151);
-  }
-
-  .callout-title {
-      /* background: var(--callout-title-bg-dark, #111827); */
-      color: var(--callout-title-color-dark, #f9fafb);
-      border-color: var(--callout-border-dark, #374151);
-  }
-
-  .callout-fold {
-      @apply text-gray-500 hover:text-gray-300;
-  }
-
-  /* Note/Info/FYI - Blue Dark */
-  .callout[data-callout="note"],
-  .callout[data-callout="info"],
-  .callout[data-callout="fyi"] {
-      /* --callout-bg-dark: #1e3a8a; */
-      --callout-border-dark: #3b82f6;
-      --callout-title-bg-dark: #1e40af;
-      --callout-title-color-dark: #dbeafe;
-      --callout-icon-color: #60a5fa;
-  }
-
-  /* TL;DR - Cyan Dark */
-  .callout[data-callout="tldr"] {
-      /* --callout-bg-dark: #155e75; */
-      --callout-border-dark: #0891b2;
-      --callout-title-bg-dark: #0e7490;
-      --callout-title-color-dark: #cffafe;
-      --callout-icon-color: #22d3ee;
-  }
-
-  /* Important/Tip/Hint - Orange Dark */
-  .callout[data-callout="important"],
-  .callout[data-callout="tip"],
-  .callout[data-callout="hint"] {
-      /* --callout-bg-dark: #9a3412; */
-      --callout-border-dark: #ea580c;
-      --callout-title-bg-dark: #c2410c;
-      --callout-title-color-dark: #fed7aa;
-      --callout-icon-color: #fb923c;
-  }
-
-  /* Warning/Caution/Attention - Yellow Dark */
-  .callout[data-callout="warning"],
-  .callout[data-callout="caution"],
-  .callout[data-callout="attention"] {
-      /* --callout-bg-dark: #92400e; */
-      --callout-border-dark: #f59e0b;
-      --callout-title-bg-dark: #d97706;
-      --callout-title-color-dark: #fef3c7;
-      --callout-icon-color: #fbbf24;
-  }
-
-  /* Error - Red Dark */
-  .callout[data-callout="error"] {
-      /* --callout-bg-dark: #991b1b; */
-      --callout-border-dark: #ef4444;
-      --callout-title-bg-dark: #dc2626;
-      --callout-title-color-dark: #fecaca;
-      --callout-icon-color: #f87171;
-  }
-
-  /* Failure/Fail/Missing - Pink Dark */
-  .callout[data-callout="failure"],
-  .callout[data-callout="fail"],
-  .callout[data-callout="missing"] {
-      /* --callout-bg-dark: #9d174d; */
-      --callout-border-dark: #ec4899;
-      --callout-title-bg-dark: #be185d;
-      --callout-title-color-dark: #fce7f3;
-      --callout-icon-color: #f472b6;
-  }
-
-  /* Bug - Red/Pink Dark */
-  .callout[data-callout="bug"] {
-      /* --callout-bg-dark: #991b1b; */
-      --callout-border-dark: #ef4444;
-      --callout-title-bg-dark: #dc2626;
-      --callout-title-color-dark: #fee2e2;
-      --callout-icon-color: #f87171;
-  }
-
-  /* Example - Purple Dark */
-  .callout[data-callout="example"] {
-      /* --callout-bg-dark: #6b21a8; */
-      --callout-border-dark: #8b5cf6;
-      --callout-title-bg-dark: #7c3aed;
-      --callout-title-color-dark: #ede9fe;
-      --callout-icon-color: #a78bfa;
-  }
-
-  /* Quote/Cite - Gray Dark */
-  .callout[data-callout="quote"],
-  .callout[data-callout="cite"] {
-      --callout-bg-dark: #374151;
-      --callout-border-dark: #6b7280;
-      --callout-title-bg-dark: #4b5563;
-      --callout-title-color-dark: #f1f5f9;
-      --callout-icon-color: #9ca3af;
-  }
 
   /* Question/Help/FAQ - Green Dark */
   .callout[data-callout="question"],
   .callout[data-callout="help"],
   .callout[data-callout="faq"] {
-      /* --callout-bg-dark: #14532d; */
-      --callout-border-dark: #22c55e;
-      --callout-title-bg-dark: #166534;
-      --callout-title-color-dark: #dcfce7;
-      --callout-icon-color: #4ade80;
+    /* --callout-bg-dark: #14532d; */
+    /* --callout-border-dark: #22c55e; */
+    --callout-title-bg-dark: #166534;
+    --callout-title-color-dark: #dcfce7;
+    --callout-icon-color: #4ade80;
   }
 }
