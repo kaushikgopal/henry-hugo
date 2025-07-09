@@ -27,11 +27,11 @@
 }
 
 .post-content h1 {
-  @apply text-2xl md:text-3xl font-semibold text-hc;
+  @apply text-2xl md:text-3xl font-semibold text-ht-dark;
 }
 
 .post-content h2 {
-  @apply text-xl md:text-2xl font-semibold text-hc;
+  @apply text-xl md:text-2xl font-semibold text-ht;
 }
 
 .post-content h2+ul {
@@ -39,11 +39,11 @@
 }
 
 .post-content h3 {
-  @apply text-lg md:text-xl font-bold text-hc;
+  @apply text-lg md:text-xl font-bold text-ht-dark;
 }
 
 .post-content h4 {
-  @apply text-lg md:text-xl font-semibold text-hc;
+  @apply text-lg md:text-xl font-semibold text-ht;
 }
 
 .post-content>ol,
