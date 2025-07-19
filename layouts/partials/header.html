@@ -26,15 +26,21 @@
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
                     topics
                 </a> |
+                <a  href="/letter/"
+                    class='no-underline
+                           {{ if eq .RelPermalink "/letter/" }} text-ht {{ end }}'>
+                    letters
+                </a> |
                 <a  href="/about/"
                     class='no-underline
                            {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
                     about
                 </a>
 
+                <!-- intelligently show section -->
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
-                    {{ if ne .Name "Blogs" }}
+                    {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") }}
                         | <span class="text-ht">{{ .Section }}</span>
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
@@ -58,6 +64,8 @@
                         {{ .Section }}
                     </a>
                 {{ end }}
+
+
             </span>
         </h1>
     </div>
