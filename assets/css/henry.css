@@ -115,7 +115,7 @@
 }
 
 .post-content .footnote-backref {
-  @apply font-bold text-ht-lightest no-underline hover:text-hc;
+  @apply font-bold text-hc2-dark no-underline hover:text-hc;
 }
 
 .footnotes ol {
