@@ -50,7 +50,7 @@
 
         {{ range $pages }}
             <item>
-                <title>{{ .Title }}</title>
+                <title>{{ partial "get-title-for-post.html" . }}</title>
                 <link>{{ .Permalink }}</link>
                 <description>
                     {{ .Content | html }}

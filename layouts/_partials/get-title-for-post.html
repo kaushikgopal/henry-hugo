@@ -1,0 +1,24 @@
+{{/* get-title-for-post.html: Returns first 9 chars of summary or params.summary, with ellipsis */}}
+
+{{ if ne .Type "shorts" }}
+  {{ .Title }}
+{{ else }}
+  {{ $summary := .Title }}
+  {{ $summary = default .Params.summary $summary }}
+  {{ $summary = default .Summary $summary }}
+  {{ $summary = $summary | plainify }}
+
+  {{/* pluck first line (up to newline or period) */}}
+  {{ $first_line := index (split $summary "\n") 0 }}
+  {{ $first_line = index (split $first_line ".") 0 }}
+  {{ $first_line = printf "%s" $first_line }}
+
+  {{/* pick first 9 words, then ellipsis */}}
+  {{ $words := split $first_line " " }}
+  {{ if gt (len $words) 10 }}
+    {{ printf "%s…" (delimit (first 9 $words) " ") }}
+  {{ else }}
+    {{ $first_line }}
+  {{ end }}
+{{ end }}
+

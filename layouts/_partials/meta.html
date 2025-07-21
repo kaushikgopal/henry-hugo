@@ -22,7 +22,7 @@
         {{ range . }}
         <li class="related-post list-disc w-fit text-ht-lighter ">
             <a class="decoration-ht-lightest" href="{{ .RelPermalink }}">
-                 {{ .Title }}
+                {{ partial "get-title-for-post.html" . }}
             </a>
         </li>
         {{ end }}
