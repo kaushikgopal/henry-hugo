@@ -57,16 +57,15 @@
 
         {{ if (eq .Type "shorts") }}
             <a href="{{ .RelPermalink }}"
-               class="relative flex items-center">
+               class="relative flex items-center
+                      !no-underline group">
                 <svg  class="absolute
                              left-0 top-4
                              w-15 h-15
-                             text-ht-lighter
+                             text-ht-lighter opacity-20 dark:opacity-80
                              -translate-y-1/2 -translate-x-2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path></svg>
-                <span class="relative pl-8 -ml-4 font-title italic font-semibold">
-                    <div class="rounded-lg">
+                <span class="relative pl-8 -ml-4 font-title italic font-semibold group-hover:underline">
                     {{ .Summary }}
-                    </div>
                 </span>
             </a>
         {{ else }}
