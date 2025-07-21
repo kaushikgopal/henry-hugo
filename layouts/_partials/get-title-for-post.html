@@ -6,7 +6,7 @@
   {{ $summary := .Title }}
   {{ $summary = default .Params.summary $summary }}
   {{ $summary = default .Summary $summary }}
-  {{ $summary = $summary | plainify }}
+  {{ $summary = $summary | plainify | htmlUnescape }}
 
   {{/* pluck first line (up to newline or period) */}}
   {{ $first_line := index (split $summary "\n") 0 }}
