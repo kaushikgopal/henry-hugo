@@ -18,8 +18,28 @@
             {{ end }}
         </div>
 
-        <!-- TODO: need to come up with a title for Short (RSS) -->
-        {{ if not (eq .Type "shorts") }}
+        {{ if eq .Type "shorts" }}
+        <!-- Shorts layout -->
+        <article class='post-summary
+                        font-title italic font-semibold
+                        text-sm lg:text-lg'>
+            <a href="{{ .RelPermalink }}"
+               class="relative flex items-center
+                      !no-underline group">
+                <svg  class="absolute
+                             left-0 top-4
+                             w-15 h-15
+                             text-ht-lighter opacity-20 dark:opacity-80
+                             -translate-y-1/2 -translate-x-2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path></svg>
+                <span class="relative pl-8 -ml-4 font-title italic font-semibold group-hover:underline">
+                    {{ .Summary }}
+                </span>
+            </a>
+        </article>
+
+
+        {{ else }}
+        <!-- Regular post layout -->
         <h1 class=" post-link-url
                     font-title font-semibold
                     text-xl lg:text-3xl leading-tight">
@@ -41,39 +61,17 @@
             {{ end }}
 
         </h1>
+
+        <article class='post-summary
+                        hidden md:block
+                        line-clamp-3
+                        lg:mt-2'>
+            <div class='hidden md:block text-ht-lighter line-clamp-3 lg:mt-2'>
+                {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+            </div>
+        </article>
         {{ end }}
+
     </aside>
-
-    <article class='post-summary
-                    {{ if (eq .Type "shorts") }}
-                        font-title italic font-semibold
-                        text-sm lg:text-lg
-                    {{ else }}
-                       hidden md:block
-                       line-clamp-3
-                       lg:mt-2
-                    {{ end }}
-                    '>
-
-        {{ if (eq .Type "shorts") }}
-            <a href="{{ .RelPermalink }}"
-               class="relative flex items-center
-                      !no-underline group">
-                <svg  class="absolute
-                             left-0 top-4
-                             w-15 h-15
-                             text-ht-lighter opacity-20 dark:opacity-80
-                             -translate-y-1/2 -translate-x-2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path></svg>
-                <span class="relative pl-8 -ml-4 font-title italic font-semibold group-hover:underline">
-                    {{ .Summary }}
-                </span>
-            </a>
-        {{ else }}
-        <div class='hidden md:block text-ht-lighter line-clamp-3 lg:mt-2'>
-            {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
-        </div>
-        {{ end }}
-    </article>
-
 
 </div>
