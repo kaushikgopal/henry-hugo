@@ -14,7 +14,10 @@
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
             <a href="{{ .Params.externalLink }}" class="article-link no-underline">
-                {{ .Title }} →
+                {{ .Title }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
             </a>
             {{ else }}
 

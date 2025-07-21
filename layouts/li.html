@@ -5,56 +5,75 @@
         <div class="tags
                 flex flex-row gap-2 mb-1 md:mb-4">
 
-            {{ $postType := .Section | singularize }}
-            {{ $postType = replace $postType "s" "short" }}
+            {{ $postType := .Type | singularize }}
             {{ $postType = replace $postType "ppt" "talk" }}
             {{ $postType = replace $postType "blog" "post" }}
             {{ $postType = cond .Params.externalLink "link" $postType }}
-            <a class="nav-link pill-hc {{ $postType }}" href="/{{.Section}}">
+            {{/*  <a class="nav-link pill-hc {{ $postType }}" href="/{{.Section}}">
                 {{ $postType }}
-            </a>
+            </a>  */}}
 
             {{ if .Draft }}
             <div class="draft pill-hc2-solid">Draft</div>
             {{ end }}
         </div>
 
+        <!-- TODO: need to come up with a title for Short (RSS) -->
+        {{ if not (eq .Type "shorts") }}
         <h1 class=" post-link-url
                     font-title font-semibold
                     text-xl lg:text-3xl leading-tight">
+
             <a class="no-underline" href="{{ .RelPermalink }}">
-                {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else }} {{ .Title }} {{ end }}
+                {{ if eq .Section "log" }}
+                    {{ .Date.Format "January 2006" }}
+                 {{ else }}
+                    {{ .Title }}
+                 {{ end }}
             </a>
+
+            {{ if (eq $postType "link")}}
+            <a class="text-ht-light inline-flex items-center w-5 h-5" href="{{ .Params.externalLink }}">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </a>
+            {{ end }}
+
         </h1>
-
-        <!--<div class="post-metametadata">
-
-        {{ if not (eq .Section "log") }}
-        <div class="post-link-date">{{ .PublishDate.Format "2006.01.02" }}</div>
-        {{ end}}
-
-
-        {{ if .Params.Categories }}
-        {{ $category := index .Params.Categories 0}}
-        <div class="category">
-            <a href="/categories/#{{$category}}">#{{ $category }}</a>
-        </div>
         {{ end }}
-
-
-        {{ if eq .Section "ppt" }}
-        <div class="category">
-            <a href="/ppt">#ppt</a>
-        </div>
-        {{ end}}
-
-    </div>-->
     </aside>
 
-    <article class="post-summary hidden md:block
-                text-ht-lighter line-clamp-3
-                lg:mt-2">
-        {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+    <article class='post-summary
+                    {{ if (eq .Type "shorts") }}
+                        font-title italic font-semibold
+                        text-sm lg:text-lg
+                    {{ else }}
+                       hidden md:block
+                       line-clamp-3
+                       lg:mt-2
+                    {{ end }}
+                    '>
+
+        {{ if (eq .Type "shorts") }}
+            <a href="{{ .RelPermalink }}"
+               class="relative flex items-center">
+                <svg  class="absolute
+                             left-0 top-4
+                             w-15 h-15
+                             text-ht-lighter
+                             -translate-y-1/2 -translate-x-2 pointer-events-none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path></svg>
+                <span class="relative pl-8 -ml-4 font-title italic font-semibold">
+                    <div class="rounded-lg">
+                    {{ .Summary }}
+                    </div>
+                </span>
+            </a>
+        {{ else }}
+        <div class='hidden md:block text-ht-lighter line-clamp-3 lg:mt-2'>
+            {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+        </div>
+        {{ end }}
     </article>
 
 
