@@ -14,13 +14,16 @@
 {{ end }}
 
 {{ $related := .Site.RegularPages.Related . }}
+{{ $related := where $related "Type" "ne" "log" }}
 {{ with $related }}
 <div class="related-posts pt-6 pb-8">
     <h4 class="font-bold text-ht-light"> Related: </h4>
     <ul class="post-related-links mt-2 ms-3.5">
         {{ range . }}
         <li class="related-post list-disc w-fit text-ht-lighter ">
-            <a class="decoration-ht-lightest" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <a class="decoration-ht-lightest" href="{{ .RelPermalink }}">
+                 {{ .Title }}
+            </a>
         </li>
         {{ end }}
     </ul>
