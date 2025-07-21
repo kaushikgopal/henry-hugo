@@ -1,15 +1,15 @@
 {{ $isPage := .IsPage }}
 
 <div class="site-title
-            absolute top-6 left-1/2 transform -translate-x-1/2 z-50
+            absolute top-7 md:top-6.5 left-1/2 transform -translate-x-1/2 z-50
             w-[85%] max-w-3xl min-w-[333px] mb-8">
     <div class="w-full">
         <h1 class="flex flex-col items-start
-                   font-title text-xl text-left
+                   md:text-xl text-left
                    text-ht-lighter
                    ">
             <!-- Other pages - breadcrumb navigation -->
-            <span class="flex items-center gap-0.5 flex-wrap">
+            <span class="flex items-center gap-1 flex-wrap">
                 <!-- Home link -->
                 <a  href="/"
                     class="no-underline
@@ -87,7 +87,7 @@
 
 <!-- Search container -->
 <div id="search-container"
-     class="{{ if $isPage }}absolute top-5 right-2 md:right-5
+     class="{{ if $isPage }}absolute top-4 right-2 md:right-5
             {{ else }}fixed top-5 right-2 md:right-5{{ end }}
              flex items-center z-50">
     <!-- Searchbar -->
