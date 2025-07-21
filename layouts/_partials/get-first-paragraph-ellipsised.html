@@ -1,0 +1,20 @@
+{{/*
+    Renders the first paragraph of a given text content and appends an ellipsis
+    if there is more than one paragraph.
+
+    @param . (string) The HTML content to process.
+*/}}
+
+{{ $content := . }}
+{{/* Find the first paragraph */}}
+{{ $firstP_matches := findRE `(?s)<p>.*?</p>` $content 1 }}
+
+{{ if $firstP_matches }}
+    {{ $firstP_html := index $firstP_matches 0 }}
+    {{ $firstP_text := $firstP_html | plainify | chomp }}
+    {{- $firstP_text -}}
+
+    {{/* Check if there is more than one paragraph */}}
+    {{ $p_tags := findRE `<p>` $content }}
+    {{ if gt (len $p_tags) 1 }}…{{ end }}
+{{ end }}
