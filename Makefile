@@ -51,3 +51,10 @@ caddy: 		## copy local Caddyfile and start Caddy server
 clean:		## remove all the generated files
 	rm -rf public
 	rm  -f assets/css/output.css
+
+post:		## create a new post ## make post slug=test-post
+	@hugo new content -k post content/blog/$$(date +%Y-%m-%d)-$(slug).md
+
+short:		## create a new short ## make short slug=test-short
+	@hugo new content -k short content/blog/$$(date +%Y-%m-%d)-$(slug).md
+
