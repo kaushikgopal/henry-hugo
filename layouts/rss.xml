@@ -29,7 +29,7 @@
         {{ with .Site.Params.Author.email }}<webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
         {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}
         {{/* most recent time the content of channel was modified */}}
-        {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" | safeHTML }}</lastBuildDate>{{ end }}
+        {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 GMT" | safeHTML }}</lastBuildDate>{{ end }}
         {{ if (fileExists (printf "%s/%s" "static" .Site.Params.avatar)) }}
             <image>
                 <url>{{.Site.BaseURL}}/{{.Site.Params.avatar}}</url>
@@ -58,7 +58,7 @@
                 {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
                 <guid>{{ .Permalink }}</guid>
                 {{/* original publication date for channel or item */}}
-                <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" | safeHTML }}</pubDate>
+                <pubDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 GMT" | safeHTML }}</pubDate>
             </item>
         {{ end }}
     </channel>
