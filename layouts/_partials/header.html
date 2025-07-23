@@ -15,22 +15,22 @@
                     class="no-underline
                            {{ if .IsHome}} text-ht {{ end }}">
                     {{ $.Param "sitename" }}
-                </a> &nbsp;|&nbsp;
+                </a> |
                 <a  href="/blog/"
                     class='no-underline
                            {{ if eq .Name "Blogs" }} text-ht {{ end }}'>
                     posts
-                </a> &nbsp;|&nbsp;
+                </a> |
                 <a  href="/tags/"
                     class='no-underline
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
                     topics
-                </a> &nbsp;|&nbsp;
+                </a> |
                 <a  href="/letter/"
                     class='no-underline
                            {{ if eq .RelPermalink "/letter/" }} text-ht {{ end }}'>
                     letters
-                </a> &nbsp;|&nbsp;
+                </a> |
                 <a  href="/about/"
                     class='no-underline
                            {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
@@ -41,26 +41,26 @@
                 {{ if .IsSection }}
                     <!-- Section list page: kau.sh / section -->
                     {{ if and (ne .RelPermalink "/blog/") (ne .RelPermalink "/letter/") }}
-                        &nbsp;|&nbsp; <span class="text-ht">{{ .Section }}</span>
+                        | <span class="text-ht">{{ .Section }}</span>
                     {{ end }}
                 {{ else if eq .Kind "taxonomy" }}
                     <!-- Taxonomy list page: kau.sh / tags -->
                     {{ $pageTitle := .Params.pageTitle | default .Name }}
                     {{ if ne $pageTitle "Tags" }}
-                        &nbsp;|&nbsp; <span class="text-ht">{{ .Data.Plural }}</span>
+                        | <span class="text-ht">{{ .Data.Plural }}</span>
                     {{ end }}
                 {{ else if eq .Kind "term" }}
                     <!-- Individual tag/category page: kau.sh / tags / tagname -->
                     {{ if ne .Data.Plural "tags" }}
-                        &nbsp;|&nbsp;
+                        |
                         <a href="/{{ .Data.Plural }}/" class="no-underline">
                             {{ .Data.Plural }}
                         </a>
                     {{ end }}
-                    &nbsp;|&nbsp; <span class="text-ht">{{ .Title }}</span>
+                    | <span class="text-ht">{{ .Title }}</span>
                 {{ end }}
                 {{ if and .IsPage .Section (ne .Section "blog") }}
-                    &nbsp;|&nbsp; <a href="/{{ .Section }}/" class="no-underline">
+                    | <a href="/{{ .Section }}/" class="no-underline">
                         {{ .Section }}
                     </a>
                 {{ end }}
