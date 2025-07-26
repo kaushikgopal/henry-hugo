@@ -190,7 +190,9 @@ section.post .pill-slate {
 
 
 .post-content blockquote {
-  @apply border-hc-lighter bg-hbg-dark border-l-4 p-4 italic text-base;
+  @apply font-title italic text-base font-medium
+       bg-hbg-dark p-4
+        border-double border-l-4 border-hc2;
 }
 
 .post-content blockquote code {
