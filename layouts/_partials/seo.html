@@ -1,40 +1,22 @@
 {{ $authorName := partial "get-authors.html" . | plainify }}
 <meta name="author" content="{{ $authorName }}">
 
-{{ $title := "" }}
-{{ $summary := "" }}
+{{ $title := partial "get-title-for-site.html" . }}
 
+
+{{ $summary := "" }}
 <!-- if showing a list of specific tags/term -->
 {{ if and (eq .Kind "term") .Name }}
-  {{ $title = printf "%v on %v" $authorName .Name }}
   {{ $summary = printf "%v's thoughts on %v" $authorName .Name }}
 <!-- special handling for the blog "section" -->
 {{ else if and (eq .Kind "section") (eq .Section "blog") }}
-  {{ $title = printf "%v's blog posts" $authorName }}
   {{ $summary = printf "List of blog posts on %v" $authorName }}
 {{ else if in (slice "section" "taxonomy") .Kind }}
-  {{ $title = printf "%v's %v" $authorName .Name }}
   {{ $summary = printf "List of %v on %v" .Name $authorName }}
 {{ end }}
-
-<!-- if page has a specific title use that instead -->
-{{ if .Params.title }}
-  {{ $title = .Params.title }}
-{{ end }}
-
 <!-- if pages has a specific summary, use that instead -->
 {{ if .Summary }}
   {{ $summary = .Summary }}
-{{ end }}
-
-
-<!-- include website name at the end -->
-{{ if .Site.Title }}
-  {{ if $title }}
-    {{ $title = printf "%v - %v" $title .Site.Title }}
-  {{ else }}
-    {{ $title = .Site.Title }}
-  {{ end }}
 {{ end }}
 
 
@@ -46,7 +28,6 @@
 {{ else if .Params.noarchive }}
 <meta name="robots" content="noarchive" />
 {{ end }}
-
 
 <!-- Twitter Card -->
 <meta name="twitter:dnt" content="on">

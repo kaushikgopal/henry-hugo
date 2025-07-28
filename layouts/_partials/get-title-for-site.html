@@ -1,0 +1,29 @@
+{{ $authorName := partial "get-authors.html" . | plainify }}
+{{ $title := "" }}
+
+<!-- if showing a list of specific tags/term -->
+{{ if and (eq .Kind "term") .Name }}
+  {{ $title = printf "%v on %v" $authorName .Name }}
+<!-- special handling for the blog "section" -->
+{{ else if and (eq .Kind "section") (eq .Section "blog") }}
+  {{ $title = printf "%v's blog posts" $authorName }}
+<!-- everything else -->
+{{ else if in (slice "section" "taxonomy") .Kind }}
+  {{ $title = printf "%v's %v" $authorName .Name }}
+{{ end }}
+
+<!-- if page has a specific title use that instead -->
+{{ if .Params.title }}
+  {{ $title = .Params.title }}
+{{ end }}
+
+<!-- always append website name at the end -->
+{{ if .Site.Title }}
+  {{ if $title }}
+    {{ $title = printf "%v - %v" $title .Site.Title }}
+  {{ else }}
+    {{ $title = .Site.Title }}
+  {{ end }}
+{{ end }}
+
+{{ return $title }}
