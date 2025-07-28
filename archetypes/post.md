@@ -3,6 +3,8 @@ draft: true
 date: '{{ .Date }}'
 slug: '{{ replaceRE "^\\d{4}-\\d{2}-\\d{2}-" "" .File.ContentBaseName }}'
 title: '{{ replace (replaceRE "^\\d{4}-\\d{2}-\\d{2}-" "" .File.ContentBaseName) "-" " " | title }}'
+#timeless: true # pages that don't need a date
+#frontpage: true # pages you want stuck on frontpage
 # summary: "Mini desc. used in twitter & SEO"
 # tags:
 #   - tag1
