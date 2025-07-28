@@ -2,8 +2,8 @@
                    Light mode colors
    **************************************************************** */
 @theme {
-  --font-sans: "Figtree", sans-serif;
-  --font-title: "Fraunces", serif;
+  --font-sans: "Figtree", "IBM Plex Sans", sans-serif;
+  --font-title: "Fraunces", "IBM Plex Serif", serif;
   --font-mono: "Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", "monospace";
 
   /* henry background */
