@@ -109,13 +109,16 @@
   @apply border-0;
 }
 
-
 .post-content .footnote-ref {
   @apply ps-0.5 text-ht-light hover:text-hc font-bold no-underline;
 }
 
 .post-content .footnote-backref {
   @apply font-bold text-hc2-dark no-underline hover:text-hc;
+}
+
+.post-content th {
+  @apply border-b-2 border-ht-light py-2;
 }
 
 .footnotes ol {
