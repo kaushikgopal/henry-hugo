@@ -1,17 +1,17 @@
 {{ if .Site.Taxonomies.tags }}
 <div class="tag-cloud flex flex-wrap gap-2">
   {{ $tagCount := .count | default (.Site.Params.tagCloudCount | default 20) }}
-  {{ $sortedTags := .Site.Taxonomies.tags.ByCount }}
+  {{ $frequentTags := .Site.Taxonomies.tags.ByCount }}
 
   {{/* If tagCount is -1, show all tags */}}
-  {{ $topTags := $sortedTags }}
+  {{ $topTags := $frequentTags }}
   {{ if gt $tagCount 0 }}
-    {{ $topTags = first $tagCount $sortedTags }}
+    {{ $topTags = first $tagCount $frequentTags }}
   {{ end }}
 
-  {{ $alphabeticalTags := sort $topTags ".Name" }}
+  {{/*  {{ $topTags := sort $topTags ".Name" }}   */}}
 
-  {{ range $alphabeticalTags }}
+  {{ range $topTags }}
     {{ $tagCount := len .Pages }}
 
     <a href="/tags/{{ .Name | urlize }}/"
