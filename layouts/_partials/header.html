@@ -5,6 +5,7 @@
             w-[85%] max-w-3xl min-w-[333px] mb-8">
     <div class="w-full">
         <h1 class="flex flex-col items-start
+                   font-semibold
                    md:text-xl text-left
                    text-ht-lighter
                    ">
@@ -15,22 +16,22 @@
                     class="no-underline
                            {{ if .IsHome}} text-ht {{ end }}">
                     {{ $.Param "sitename" }}
-                </a> |
+                </a> <span class="font-normal">|</span>
                 <a  href="/blog/"
                     class='no-underline
                            {{ if eq .Name "Blogs" }} text-ht {{ end }}'>
                     posts
-                </a> |
+                </a><span class="font-normal">|</span>
                 <a  href="/tags/"
                     class='no-underline
                            {{ if eq .Name "Tags" }} text-ht {{ end }}'>
                     topics
-                </a> |
+                </a><span class="font-normal">|</span>
                 <a  href="/letter/"
                     class='no-underline
                            {{ if eq .RelPermalink "/letter/" }} text-ht {{ end }}'>
                     letters
-                </a> |
+                </a><span class="font-normal">|</span>
                 <a  href="/about/"
                     class='no-underline
                            {{ if eq .RelPermalink "/about/" }} text-ht {{ end }}'>
