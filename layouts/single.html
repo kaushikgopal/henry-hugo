@@ -56,7 +56,7 @@
         <!-- Shorts layout -->
         <article class='post-content
                         flex flex-col items-center w-full
-                        text-xl font-title'>
+                        text-xl font-title font-semibold'>
             <svg  class="w-15 h-15 mb-2
                     text-ht-lighter opacity-20 dark:opacity-80
                         -translate-y-1/2 -translate-x-2 pointer-events-none"
@@ -64,7 +64,7 @@
 
             {{ .Content }}
 
-            <div class="text-left text-ht-lighter">
+            <div class="text-left text-ht-lighter font-sans font-normal">
                 - {{ .Date.Format "January 2, 2006" }}
             </div>
         </article>
