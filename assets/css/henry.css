@@ -241,7 +241,7 @@ section.post .pill-slate {
 }
 
 .callout-content {
-  @apply px-4 pb-3;
+  @apply px-8 pb-3;
 }
 
 .callout-content>*:first-child {
@@ -254,15 +254,21 @@ section.post .pill-slate {
 
 
 .callout {
-  @apply overflow-hidden border-6;
+  @apply overflow-hidden py-2 font-semibold;
 
   --callout-border: var(--color-ht-lighter);
-  --callout-bg: var(--color-hbg);
+  --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 50%, white 50%);
 
   background: var(--callout-bg);
-  border-color: var(--callout-border);
   border-style: double;
 }
+@media (prefers-color-scheme: dark) {
+  .callout {
+    --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 70%, black 30%);
+  }
+}
+
+
 .callout-icon {
   @apply flex items-center justify-center w-5 h-5 flex-shrink-0;
   color: var(--callout-icon-color, #64748b);
@@ -421,21 +427,47 @@ section.post .pill-slate {
 }
 
 
-/* Quote/Cite - Gray */
+/* Quote/Cite - Gray with watermark effect */
 .callout[data-callout="quote"],
 .callout[data-callout="cite"] {
-  /* --callout-border: #cbd5e1; */
-  /* --callout-title-bg: #e2e8f0; */
-  /* --callout-title-color: #475569; */
   --callout-icon-color: #64748b;
+  position: relative;
 }
+
+/* Hide title and create watermark effect for quote/cite */
+.callout[data-callout="quote"] .callout-title-inner,
+.callout[data-callout="cite"] .callout-title-inner {
+  display: none;
+}
+
+.callout[data-callout="quote"] .callout-icon,
+.callout[data-callout="cite"] .callout-icon {
+  opacity: 0.15;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.callout[data-callout="quote"] .callout-content,
+.callout[data-callout="cite"] .callout-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode adjustments for quote/cite */
 @media (prefers-color-scheme: dark) {
-  /* Quote/Cite - Gray Dark */
   .callout[data-callout="quote"],
   .callout[data-callout="cite"] {
-    /* --callout-border-dark: #6b7280; */
-    /* --callout-title: #4b5563; */
-    --callout-icon-color: #9ca3af;
+    --callout-icon-color: #ffffff;
+  }
+
+  .callout[data-callout="quote"] .callout-icon,
+  .callout[data-callout="cite"] .callout-icon {
+    opacity: 0.2;
   }
 }
 
