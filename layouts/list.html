@@ -38,7 +38,7 @@
 
     <!-- custom content included in header page -->
     {{ if .Content }}
-        <h1 class="post-list-header
+        <h1 class="
             text-3xl font-title font-semibold
             mt-8">
             {{ .Title }}
@@ -64,7 +64,9 @@
         {{ if $isTaxonomy }} <!-- inside a taxonomy page | no pagination-->
         {{ $key := .Name }}
         {{ $groupPages := .Pages }}
-            <h2 class="post-list-header term mt-10 font-bold" id="{{ $key }}">
+            <h2 class="
+                    post-list-key term
+                    mt-10 font-bold" id="{{ $key }}">
                 <a class="pill-slate" href="{{ $key }}/">#{{ $key }}</a>
             </h2>
             <div class="post-list-content">
@@ -76,9 +78,11 @@
 
         {{ else if $shouldPaginate }} <!-- inside a regular list page | pagination -->
             {{ if ne .Key "0001" }} <!-- if key is 0001 skip h2 -->
-            <h2 class="mt-4
+            <h2 class="
+                    post-list-key year
+                    mt-4
                     text-ht-light font-bold
-                    post-list-header year" id="{{ .Key }}">
+                    " id="{{ .Key }}">
                 {{ .Key }}
                 {{ if eq hugo.Environment "development" }} - {{len .Pages}} posts{{ end }}
             </h2>
@@ -94,7 +98,11 @@
         {{ $key := .Key }}
         {{ $groupPages := .Pages }}
 
-            <h2 class="not-first:mt-10 font-bold text-ht-lighter" id="{{ $key }}">
+            <h2 class="
+                post-list-key group
+                not-first:mt-10
+                font-bold text-ht-lighter
+                " id="{{ $key }}">
                 #{{ $key }}
             </h2>
             <div class="post-list-content">
