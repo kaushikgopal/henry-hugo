@@ -92,7 +92,7 @@
 
 /* inline code */
 .post-content code {
-  @apply font-semibold text-[0.85em] bg-hbg-dark;
+  @apply font-[550] text-[0.8em] bg-hbg-dark;
 }
 
 .post-content>*:not(figure.full-bleed) {

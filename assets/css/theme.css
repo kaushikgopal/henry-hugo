@@ -2,7 +2,7 @@
                    Light mode colors
    **************************************************************** */
 @theme {
-  --font-sans: "Figtree", "IBM Plex Sans", sans-serif;
+  --font-sans: "Figtree", "Jost", "IBM Plex Sans", sans-serif;
   --font-title: "Bricolage Grotesque", "Fraunces", "IBM Plex Serif", serif;
   --font-mono: "Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", "monospace";
 
