@@ -1,0 +1,60 @@
+{{ $pageURL := .Permalink }}
+{{ $pageTitle := .Title }}
+
+{{ if ne .Params.reshare false }}
+<div class="social-reshare-container flex flex-row justify-center gap-3 w-[85%] max-w-3xl min-w-[333px] my-8">
+  <!-- LinkedIn -->
+  <a
+    href="https://www.linkedin.com/sharing/share-offsite/?url={{ $pageURL }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-share-btn p-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter"
+    title="Share on LinkedIn">
+    <svg viewBox="0 0 24 24" class="w-6 h-6 text-ht-lighter" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="16" height="16" x="4" y="4" rx="2" fill="none"></rect>
+      <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"></path>
+    </svg>
+  </a>
+
+  <!-- X/Twitter -->
+  <a
+    href="https://twitter.com/intent/tweet?url={{ $pageURL }}&text={{ $pageTitle }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-share-btn p-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter"
+    title="Share on X">
+    <svg viewBox="0 0 24 24" class="w-6 h-6 text-ht-lighter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753C20.18 7.773 21.692 5.25 22 4.009z"></path>
+    </svg>
+  </a>
+
+  <!-- Bluesky -->
+  <a
+    href="https://bsky.app/intent/compose?text={{ $pageTitle }}%20{{ $pageURL }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-share-btn p-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter"
+    title="Share on Bluesky">
+    <svg viewBox="0 0 24 24" class="w-6 h-6 text-ht-lighter" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"></path>
+      <path d="M6.335 5.144C4.681 3.945 2 3.017 2 5.97c0 .59.35 4.953.556 5.661C3.269 14.094 5.686 14.381 8 14c-4.045.665-4.889 3.208-2.667 5.41C6.363 20.428 7.246 21 8 21c2 0 3.134-2.769 3.5-3.5.333-.667.5-1.167.5-1.5 0 .333.167.833.5 1.5.366.731 1.5 3.5 3.5 3.5.754 0 1.637-.571 2.667-1.59C20.889 17.207 20.045 14.664 16 14c2.314.38 4.73.094 5.444-2.369.206-.708.556-5.072.556-5.661 0-2.953-2.68-2.025-4.335-.826C15.372 6.806 12.905 10.192 12 12c-.905-1.808-3.372-5.194-5.665-6.856z"></path>
+    </svg>
+  </a>
+
+  <!-- Reddit -->
+  <a
+    href="https://reddit.com/submit?url={{ $pageURL }}&title={{ $pageTitle }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-share-btn p-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter"
+    title="Share on Reddit">
+    <svg viewBox="0 0 24 24" class="w-6 h-6 text-ht-lighter" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8c2.648 0 5.028.826 6.675 2.14a2.5 2.5 0 0 1 2.326 4.36c0 3.59-4.03 6.5-9 6.5-4.875 0-8.845-2.8-9-6.294l-1-.206a2.5 2.5 0 0 1 2.326-4.36C5.973 8.827 8.353 8 11.001 8zM12 8l1-5 6 1" fill="none"></path>
+      <circle cx="19" cy="4" r="1"></circle>
+      <circle cx="9" cy="13" r=".5"></circle>
+      <circle cx="15" cy="13" r=".5"></circle>
+      <path d="M10 17c.667.333 1.333.5 2 .5s1.333-.167 2-.5" fill="none"></path>
+    </svg>
+  </a>
+</div>
+{{ end }}
