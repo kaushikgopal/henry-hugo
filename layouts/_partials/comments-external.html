@@ -1,0 +1,21 @@
+{{ if or .Params.hn .Params.x .Params.reddit }}
+<div class="comments-external
+            italic text-ht-lighter
+            my-12 pb-4
+            relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-1/2 after:border-b-1 after:border-ht-lightest">
+  <p class="text-lg">
+    Discuss this on
+    {{ $links := slice }}
+    {{ if .Params.hn }}
+      {{ $links = $links | append (printf "<a href=\"%s\" target=\"_blank\" class=\"font-bold decoration-ht-lightest\">Hacker News</a>" .Params.hn) }}
+    {{ end }}
+    {{ if .Params.x }}
+      {{ $links = $links | append (printf "<a href=\"%s\" target=\"_blank\" class=\"font-bold decoration-ht-lightest\">X</a>" .Params.x) }}
+    {{ end }}
+    {{ if .Params.reddit }}
+      {{ $links = $links | append (printf "<a href=\"%s\" target=\"_blank\" class=\"font-bold decoration-ht-lightest\">Reddit</a>" .Params.reddit) }}
+    {{ end }}
+    {{ delimit $links " + " | safeHTML }}
+  </p>
+</div>
+{{ end }}

@@ -9,6 +9,10 @@
 </div>
 {{ end }}  */}}
 
+{{ if or .Params.hn .Params.x .Params.reddit }}
+{{ partial "comments-external.html" . }}
+{{ end }}
+
 {{ if .Params.bsky }}
 {{ partial "comments-bsky.html" . }}
 {{ end }}
