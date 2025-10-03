@@ -1,16 +1,18 @@
 @layer base {
-
   article {
-    @apply text-ht space-y-6;
+    @apply  space-y-6
+            leading-tight
+            text-ht
+            text-xl md:text-2xl;
+  }
+
+  article > p {
+    /* spacing between paragraphs */
+    @apply mb-7;
   }
 
   article p {
     @apply overflow-hidden text-ellipsis;
-  }
-
-  article> :not([hidden])~ :not([hidden]) {
-    /* increase space between paragraphs every so slightly */
-    --tw-space-y-reverse: -0.25;
   }
 
   a {
@@ -18,14 +20,19 @@
   }
 
   article a {
-    @apply font-medium text-hc no-underline;
+    @apply font-medium text-ht underline hover:no-underline underline-offset-4;
+  }
+}
+
+@layer utilities {
+  .blog-content-width {
+    @apply w-[85%] max-w-3xl min-w-[333px] mx-auto;
   }
 }
 
 .post-content hr {
   @apply border-ht-lighter mt-6;
 }
-
 
 .post-content h1,
 .post-content h2,
@@ -96,7 +103,7 @@
 }
 
 .post-content>*:not(figure.full-bleed) {
-  @apply w-[85%] max-w-3xl min-w-[333px];
+  @apply blog-content-width;
 }
 
 .post-content figure.full-bleed {
@@ -207,9 +214,8 @@ section.post .pill-slate {
 
 
 .post-content blockquote {
-  @apply font-title italic text-base font-medium
-       bg-hbg-dark p-4
-        border-double border-l-4 border-hc2;
+  @apply  bg-hbg-dark p-6
+          text-base font-semibold;
 }
 
 .post-content blockquote code {

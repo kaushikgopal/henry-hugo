@@ -2,7 +2,9 @@
 {{ $pageTitle := .Title }}
 
 {{ if ne .Params.reshare false }}
-<div class="social-reshare-container flex flex-row justify-center gap-3 w-[85%] max-w-3xl min-w-[333px] my-8">
+<div class="social-reshare-container blog-content-width
+            flex flex-row justify-center gap-3
+            my-8">
   <!-- LinkedIn -->
   <a
     href="https://www.linkedin.com/sharing/share-offsite/?url={{ $pageURL }}"
