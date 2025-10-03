@@ -103,7 +103,7 @@
 }
 
 .post-content>*:not(figure.full-bleed) {
-  @apply blog-content-width;
+  @apply w-[85%] max-w-3xl min-w-[333px] mx-auto;
 }
 
 .post-content figure.full-bleed {
