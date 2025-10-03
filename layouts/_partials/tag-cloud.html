@@ -15,7 +15,8 @@
     {{ $tagCount := len .Pages }}
 
     <a href="/tags/{{ .Name | urlize }}/"
-       class="pill-slate no-underline hover:text-hc transition-colors duration-200"
+       class="pill-slate
+              transition-colors duration-200"
        title="{{ $tagCount }} {{ if eq $tagCount 1 }}post{{ else }}posts{{ end }}">
       {{ .Name }}
     </a>
