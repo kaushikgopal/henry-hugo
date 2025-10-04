@@ -1,9 +1,11 @@
-<div class="mb-6 md:mb-10">
+<div class="mb-4 md:mb-10">
 
     <aside class="post-metadata">
 
         <div class="tags
-                flex flex-row gap-2 mb-1 md:mb-4">
+                    flex flex-row gap-2
+                    mb-1 md:mb-4
+                    ">
 
             {{ $postType := .Type | singularize }}
             {{ $postType = replace $postType "ppt" "talk" }}
@@ -44,8 +46,8 @@
         {{ else }}
         <!-- Regular post layout -->
         <h1 class=" post-link-url
-                    font-semibold
-                    text-xl lg:text-3xl
+                    font-semibold leading-tight
+                    text-lg lg:text-3xl
                     ">
 
             <a class="no-underline" href="{{ .RelPermalink }}">
@@ -69,7 +71,7 @@
         <article class='post-summary
                         hidden md:block
                         line-clamp-3'>
-            <div class='hidden md:block text-ht-lighter line-clamp-3 lg:mt-2 md:text-lg'>
+            <div class='hidden md:block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight'>
                 {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
             </div>
         </article>
