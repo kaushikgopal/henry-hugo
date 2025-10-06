@@ -1,4 +1,4 @@
-{{ if or .Params.hn .Params.x .Params.reddit }}
+{{ if or .Params.hn .Params.x .Params.reddit .Params.lin }}
 <div class="comments-external
             italic text-ht-lighter
             my-12 pb-4
@@ -14,6 +14,9 @@
     {{ end }}
     {{ if .Params.reddit }}
       {{ $links = $links | append (printf "<a href=\"%s\" target=\"_blank\" class=\"font-bold decoration-ht-lightest\">Reddit</a>" .Params.reddit) }}
+    {{ end }}
+    {{ if .Params.lin }}
+      {{ $links = $links | append (printf "<a href=\"%s\" target=\"_blank\" class=\"font-bold decoration-ht-lightest\">LinkedIn</a>" .Params.lin) }}
     {{ end }}
     {{ delimit $links " + " | safeHTML }}
   </p>
