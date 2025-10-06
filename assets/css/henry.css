@@ -16,7 +16,7 @@
   }
 
   a {
-    @apply underline underline-offset-4 decoration-ht-lighter hover:no-underline hover:text-hc;
+    @apply decoration-2 underline hover:no-underline underline-offset-2 decoration-ht-lighter hover:text-hc;
   }
 
   article a {
