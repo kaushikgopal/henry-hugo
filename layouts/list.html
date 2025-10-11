@@ -52,7 +52,7 @@
     <!-- Show tag cloud for main tags taxonomy page -->
     {{ if and (eq .Kind "taxonomy") (eq .Type "tags") }}
         <div class = "mb-10">
-            {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1) }}
+            {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1 "sort" "alphabetical") }}
         </div>
     {{ end }}
 

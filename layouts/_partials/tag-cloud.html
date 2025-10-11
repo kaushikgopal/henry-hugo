@@ -1,6 +1,7 @@
 {{ if .Site.Taxonomies.tags }}
 <div class="tag-cloud flex flex-wrap gap-2">
   {{ $tagCount := .count | default (.Site.Params.tagCloudCount | default 20) }}
+  {{ $sortMode := .sort | default "popular" }}
   {{ $frequentTags := .Site.Taxonomies.tags.ByCount }}
 
   {{/* If tagCount is -1, show all tags */}}
@@ -9,7 +10,10 @@
     {{ $topTags = first $tagCount $frequentTags }}
   {{ end }}
 
-  {{/*  {{ $topTags := sort $topTags ".Name" }}   */}}
+  {{/* Allow callers to request alphabetical ordering (e.g. taxonomy page) */}}
+  {{ if eq $sortMode "alphabetical" }}
+    {{ $topTags = sort $topTags "Name" }}
+  {{ end }}
 
   {{ range $topTags }}
     {{ $tagCount := len .Pages }}
