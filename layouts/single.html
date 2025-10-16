@@ -40,7 +40,8 @@
 
         <h4 class="post-author
                    md:pt-1
-                   text-sm text-ht-light">
+                   text-sm text-ht-light
+                   font-bold italic">
 
             {{ if or (eq .Section "log") (.Params.timeless) }}
                 {{ partial "get-authors.html" . }}

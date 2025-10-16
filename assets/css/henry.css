@@ -12,7 +12,7 @@
   }
 
   article p {
-    @apply overflow-hidden text-ellipsis;
+    @apply overflow-hidden text-ellipsis font-medium;
   }
 
   a {
