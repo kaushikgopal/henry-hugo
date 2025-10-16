@@ -16,11 +16,11 @@
   }
 
   a {
-    @apply decoration-2 underline hover:no-underline underline-offset-2 decoration-ht-lighter hover:text-hc;
+    @apply underline decoration-2 decoration-dotted decoration-ht-lighter underline-offset-2 hover:no-underline hover:text-hc;
   }
 
   article a {
-    @apply font-medium text-ht underline hover:no-underline underline-offset-4;
+    @apply text-ht;
   }
 }
 
