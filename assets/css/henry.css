@@ -16,7 +16,8 @@
   }
 
   a {
-    @apply underline decoration-2 decoration-dotted decoration-ht-lighter underline-offset-2 hover:no-underline hover:text-hc;
+    @apply underline decoration-2 decoration-dotted underline-offset-4 hover:no-underline
+           hover:text-hc;
   }
 
   article a {
