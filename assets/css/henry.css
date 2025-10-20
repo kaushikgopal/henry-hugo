@@ -230,16 +230,34 @@ section.post .pill-slate {
   @apply text-base md:text-lg;
 }
 
-.callout-title code {
-  @apply text-sm;
+/* Base callout structure */
+.callout {
+  @apply relative overflow-hidden py-2 font-semibold;
+  --callout-border: var(--color-ht-lighter);
+  --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 50%, white 50%);
+  background: var(--callout-bg);
+  border-style: double;
+}
+
+.callout-icon {
+  @apply flex items-center justify-center w-5 h-5 shrink-0;
+  color: var(--callout-icon-color, #64748b);
 }
 
 .callout-icon svg {
   @apply w-full h-full;
 }
 
+.callout-title {
+  @apply relative z-10 flex items-center gap-2 px-8 py-3 text-sm font-medium;
+}
+
+.callout-title code {
+  @apply text-sm;
+}
+
 .callout-title-inner {
-  @apply flex-1 font-semibold;
+  @apply flex-1 font-bold;
 }
 
 .callout-fold {
@@ -247,27 +265,35 @@ section.post .pill-slate {
 }
 
 .callout-content {
-  @apply px-8 pb-3;
+  @apply relative z-10 px-8 py-3;
 }
 
-.callout-content>*:first-child {
+.callout-content > *:first-child {
   @apply mt-0;
 }
 
-.callout-content>*:last-child {
+.callout-content > *:last-child {
   @apply mb-0;
 }
 
-
-.callout {
-  @apply overflow-hidden py-2 font-semibold;
-
-  --callout-border: var(--color-ht-lighter);
-  --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 50%, white 50%);
-
-  background: var(--callout-bg);
-  border-style: double;
+.callout-title + .callout-content {
+  @apply pt-0;
 }
+
+
+/* Watermark icon styling */
+.callout-title:empty {
+  display: none;
+}
+
+.callout .callout-icon {
+  @apply absolute z-0 w-9 h-9 pointer-events-none;
+  opacity: 0.2;
+  top: 0.4rem;
+  left: 0.4rem;
+}
+
+/* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .callout {
     --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 70%, black 30%);
@@ -275,18 +301,7 @@ section.post .pill-slate {
 }
 
 
-.callout-icon {
-  @apply flex items-center justify-center w-5 h-5 flex-shrink-0;
-  color: var(--callout-icon-color, #64748b);
-}
-.callout-title {
-  @apply flex items-center gap-2 px-4 py-3 font-medium text-sm;
-  /* background: var(--callout-title-bg, #334155); */
-  /* color: var(--callout-title-color, #334155); */
-}
 
-
-/* Note/Info/FYI - Blue */
 .callout[data-callout="note"],
 .callout[data-callout="info"],
 .callout[data-callout="fyi"] {
@@ -297,7 +312,6 @@ section.post .pill-slate {
   --callout-icon-color: #2563eb;
 }
 @media (prefers-color-scheme: dark) {
-  /* Note/Info/FYI - Blue Dark */
   .callout[data-callout="note"],
   .callout[data-callout="info"],
   .callout[data-callout="fyi"] {
@@ -307,193 +321,101 @@ section.post .pill-slate {
   }
 }
 
-/* TL;DR - Cyan */
 .callout[data-callout="tldr"] {
-  /* --callout-bg: #cffafe; */
-  /* --callout-border: #67e8f9; */
-  /* --callout-title-bg: #a5f3fc; */
-  /* --callout-title-color: #0e7490; */
   --callout-icon-color: #0891b2;
 }
 @media (prefers-color-scheme: dark) {
   .callout[data-callout="tldr"] {
-    /* --callout-title: #0e7490; */
     --callout-icon-color: #22d3ee;
   }
 }
 
-
-/* Important/Tip/Hint - Orange */
 .callout[data-callout="important"],
 .callout[data-callout="tip"],
 .callout[data-callout="hint"] {
-  /* --callout-bg: #fed7aa; */
-  /* --callout-border: #fdba74; */
-  /* --callout-title-bg: #fcd34d; */
-  /* --callout-title-color: #c2410c; */
   --callout-icon-color: #ea580c;
 }
 @media (prefers-color-scheme: dark) {
-  /* Important/Tip/Hint - Orange Dark */
   .callout[data-callout="important"],
   .callout[data-callout="tip"],
   .callout[data-callout="hint"] {
-    /* --callout-title: #c2410c; */
     --callout-icon-color: #fb923c;
   }
 }
 
-
-/* Warning/Caution/Attention - Yellow */
 .callout[data-callout="warning"],
 .callout[data-callout="caution"],
 .callout[data-callout="attention"] {
-  /* --callout-bg: #fef3c7; */
-  /* --callout-border: #fcd34d; */
-  /* --callout-title-bg: #fed7aa; */
-  /* --callout-title-color: #d97706; */
   --callout-icon-color: #f59e0b;
 }
 @media (prefers-color-scheme: dark) {
-  /* Warning/Caution/Attention - Yellow Dark */
   .callout[data-callout="warning"],
   .callout[data-callout="caution"],
   .callout[data-callout="attention"] {
-    /* --callout-title: #d97706; */
     --callout-icon-color: #fbbf24;
   }
 }
 
-/* Error - Red */
 .callout[data-callout="error"] {
-  /* --callout-bg: #fecaca; */
-  /* --callout-border: #f87171; */
-  /* --callout-title-bg: #fca5a5; */
-  /* --callout-title-color: #dc2626; */
   --callout-icon-color: #ef4444;
 }
 @media (prefers-color-scheme: dark) {
   .callout[data-callout="error"] {
-    /* --callout-title: #dc2626; */
     --callout-icon-color: #f87171;
   }
 }
-
 
 .callout[data-callout="failure"],
 .callout[data-callout="fail"],
 .callout[data-callout="missing"] {
-  /* --callout-bg: #fce7f3; */
-  /* --callout-border: #f9a8d4; */
-  /* --callout-title-bg: #fbcfe8; */
-  /* --callout-title-color: #be185d; */
   --callout-icon-color: #ec4899;
 }
 @media (prefers-color-scheme: dark) {
-
-  /* Failure/Fail/Missing - Pink Dark */
   .callout[data-callout="failure"],
   .callout[data-callout="fail"],
   .callout[data-callout="missing"] {
-    /* --callout-title: #be185d; */
     --callout-icon-color: #f472b6;
   }
 }
 
-
 .callout[data-callout="bug"] {
-  /* --callout-bg: #fee2e2; */
-  /* --callout-border: #fca5a5; */
-  /* --callout-title-bg: #fecaca; */
-  /* --callout-title-color: #dc2626; */
   --callout-icon-color: #ef4444;
 }
 @media (prefers-color-scheme: dark) {
   .callout[data-callout="bug"] {
-    /* --callout-title: #dc2626; */
     --callout-icon-color: #f87171;
   }
 }
 
-/* Example - Purple */
 .callout[data-callout="example"] {
-  /* --callout-bg: #ede9fe; */
-  /* --callout-border: #c4b5fd; */
-  /* --callout-title-bg: #ddd6fe; */
-  /* --callout-title-color: #7c3aed; */
   --callout-icon-color: #8b5cf6;
 }
 @media (prefers-color-scheme: dark) {
-
-  /* Example - Purple Dark */
   .callout[data-callout="example"] {
-    /* --callout-title: #7c3aed; */
     --callout-icon-color: #a78bfa;
   }
 }
 
-
-/* Quote/Cite - Gray with watermark effect */
 .callout[data-callout="quote"],
 .callout[data-callout="cite"] {
   --callout-icon-color: #64748b;
-  position: relative;
 }
-
-/* Hide title and create watermark effect for quote/cite */
-.callout[data-callout="quote"] .callout-title-inner,
-.callout[data-callout="cite"] .callout-title-inner {
-  display: none;
-}
-
-.callout[data-callout="quote"] .callout-icon,
-.callout[data-callout="cite"] .callout-icon {
-  opacity: 0.15;
-  width: 3rem;
-  height: 3rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.callout[data-callout="quote"] .callout-content,
-.callout[data-callout="cite"] .callout-content {
-  position: relative;
-  z-index: 1;
-}
-
-/* Dark mode adjustments for quote/cite */
 @media (prefers-color-scheme: dark) {
   .callout[data-callout="quote"],
   .callout[data-callout="cite"] {
     --callout-icon-color: #ffffff;
   }
-
-  .callout[data-callout="quote"] .callout-icon,
-  .callout[data-callout="cite"] .callout-icon {
-    opacity: 0.2;
-  }
 }
 
-
-/* Question/Help/FAQ - Green */
 .callout[data-callout="question"],
 .callout[data-callout="help"],
 .callout[data-callout="faq"] {
-  /* --callout-bg: #dcfce7; */
-  /* --callout-border: #86efac; */
-  /* --callout-title-bg: #bbf7d0; */
-  /* --callout-title-color: #166534; */
   --callout-icon-color: #22c55e;
 }
 @media (prefers-color-scheme: dark) {
-  /* Question/Help/FAQ - Green Dark */
   .callout[data-callout="question"],
   .callout[data-callout="help"],
   .callout[data-callout="faq"] {
-    /* --callout-title: #166534; */
     --callout-icon-color: #4ade80;
   }
 }
