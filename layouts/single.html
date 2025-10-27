@@ -94,4 +94,10 @@
     </section>
 </div>
 
+{{ $headingAnchors := resources.Get "js/heading-anchors.js" }}
+{{ if not hugo.IsServer }}
+{{ $headingAnchors = $headingAnchors | minify | fingerprint }}
+{{ end }}
+<script src="{{ $headingAnchors.RelPermalink }}"></script>
+
 {{end}}

@@ -64,6 +64,32 @@
     @apply text-lg md:text-xl font-semibold;
 }
 
+/* Heading anchor links */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    @apply relative;
+}
+
+.heading-anchor {
+    @apply absolute -left-6 md:-left-8
+           opacity-0 transition-opacity duration-200
+           no-underline text-ht-lighter hover:text-hc
+           font-normal;
+}
+
+.post-content h1:hover .heading-anchor,
+.post-content h2:hover .heading-anchor,
+.post-content h3:hover .heading-anchor,
+.post-content h4:hover .heading-anchor,
+.post-content h5:hover .heading-anchor,
+.post-content h6:hover .heading-anchor {
+    @apply opacity-100;
+}
+
 .post-content > ol,
 .post-content > ul {
     @apply ms-6 md:ms-8;
