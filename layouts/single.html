@@ -1,102 +1,80 @@
-{{ define "content" }}
-{{ partial "single-before.html" . }}
+{{ define "content" }} {{ partial "single-before.html" . }}
 
-<section class="post
-                flex flex-col items-center
-                pt-20 md:pt-30 pb-4 md:pb-6">
-
-
-    <header class="post-header blog-content-width
-                   mb-8">
-
-        <h1 class="post-title font-title font-bold text-ht-dark
-                   text-2xl md:text-4xl ">
-
+<section class="post flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6">
+    <header class="post-header blog-content-width mb-8">
+        <h1
+            class="post-title font-title font-bold text-ht-dark text-2xl md:text-4xl"
+        >
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
-            <a href="{{ .Params.externalLink }}" class="article-link no-underline">
+            <a
+                href="{{ .Params.externalLink }}"
+                class="external-link no-underline"
+            >
                 {{ .Title }}
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
             </a>
             {{ else }}
 
-                <!-- Title -->
-                {{ if eq .Section "log" }}
-                {{ .Date.Format "January 2006" }}
-                {{ else }}
-                {{ .Title }}
-                {{ end }}
-
-                {{- partial "postimoji.html" . -}}
-
-            {{ end }}
-
-            {{ if .Draft }}
+            <!-- Title -->
+            {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{ else
+            }} {{ .Title }} {{ end }} {{- partial "postimoji.html" . -}} {{ end
+            }} {{ if .Draft }}
             <span class="draft pill-hc2-solid text-lg">Draft</span>
             {{ end }}
         </h1>
 
-        <h4 class="post-author
-                   md:pt-1
-                   text-sm text-ht-light
-                   font-bold italic">
-
-            {{ if or (eq .Section "log") (.Params.timeless) }}
-                {{ partial "get-authors.html" . }}
-            {{ else if not (eq .Type "shorts") }}
-                {{ .Date.Format "January 2, 2006" }}
-            {{ end }}
-
+        <h4 class="post-author md:pt-1 text-sm text-ht-light font-bold italic">
+            {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
+            "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
+            .Date.Format "January 2, 2006" }} {{ end }}
         </h4>
-
     </header>
 
-
     {{ if eq .Type "shorts" }}
-        <!-- Shorts layout -->
-        <article class='post-content
-                        flex flex-col items-center w-full
-                        font-title font-semibold'>
-            <svg  class="w-15 h-15 mb-2
-                    text-ht-lighter opacity-20 dark:opacity-80
-                        -translate-y-1/2 -translate-x-2 pointer-events-none"
-                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path></svg>
+    <!-- Shorts layout -->
+    <article
+        class="post-content flex flex-col items-center w-full font-title font-semibold"
+    >
+        <svg
+            class="w-15 h-15 mb-2 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path
+                d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"
+            ></path>
+        </svg>
 
-            {{ .Content }}
+        {{ .Content }}
 
-            <div class="text-left text-ht-lighter font-sans font-normal">
-                - {{ .Date.Format "January 2, 2006" }}
-            </div>
-        </article>
+        <div class="text-left text-ht-lighter font-sans font-normal">
+            - {{ .Date.Format "January 2, 2006" }}
+        </div>
+    </article>
 
-
-        {{ else }}
-        <!-- Regular post layout -->
-        <!-- to accommodate full-bleed we apply the width constraints differently input.css -->
-        <article class='post-content
-                        flex flex-col items-center w-full'>
-            {{ .Content }}
-        </article>
-    {{ end }}
-
-    {{- partial "social-reshare.html" . -}}
-
-    {{- partial "nav.html" . -}}
-
+    {{ else }}
+    <!-- Regular post layout -->
+    <!-- to accommodate full-bleed we apply the width constraints differently input.css -->
+    <article class="post-content flex flex-col items-center w-full">
+        {{ .Content }}
+    </article>
+    {{ end }} {{- partial "social-reshare.html" . -}} {{- partial "nav.html" .
+    -}}
 </section>
 
-<div class="post-meta bg-hbg-dark
-            flex flex-col items-center">
-    <section class="blog-content-width">
-        {{- partial "meta.html" . -}}
-    </section>
+<div class="post-meta bg-hbg-dark flex flex-col items-center">
+    <section class="blog-content-width">{{- partial "meta.html" . -}}</section>
 </div>
 
-{{ $headingAnchors := resources.Get "js/heading-anchors.js" }}
-{{ if not hugo.IsServer }}
-{{ $headingAnchors = $headingAnchors | minify | fingerprint }}
+{{ $headingAnchors := resources.Get "js/heading-anchors.js" }} {{ if not
+hugo.IsServer }} {{ $headingAnchors = $headingAnchors | minify | fingerprint }}
 {{ end }}
 <script src="{{ $headingAnchors.RelPermalink }}"></script>
 

@@ -64,7 +64,29 @@
     @apply text-lg md:text-xl font-semibold;
 }
 
-/* Heading anchor links */
+/* show external arrow ↗ for external links */
+article a[href*='//']::after,
+a.external-link::after {
+    content: "";
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: 0.15rem;
+    margin-bottom: 0.3rem;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='5' stroke='black' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25' /%3E%3C/svg%3E%0A");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: currentColor;
+}
+a.external-link::after {
+    margin-bottom: 0.4rem;
+    margin-left: 0rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* anchor link for in-post headers (heading-anchor) */
 .post-content h1,
 .post-content h2,
 .post-content h3,
