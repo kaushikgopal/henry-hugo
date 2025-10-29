@@ -97,7 +97,7 @@ a.external-link::after {
 }
 
 .heading-anchor {
-    @apply absolute -left-6 md:-left-8
+    @apply inline-block ml-2
            opacity-30 transition-opacity duration-200
            no-underline text-ht-lighter hover:text-hc
            font-normal;
