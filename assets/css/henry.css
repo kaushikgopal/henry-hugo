@@ -14,6 +14,8 @@
     article > p {
         /* spacing between paragraphs */
         @apply mb-7;
+        /* spacing between words*/
+        word-spacing: 0.05em;
     }
 
     article p {
