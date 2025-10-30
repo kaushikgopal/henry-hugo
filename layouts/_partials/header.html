@@ -58,7 +58,7 @@
                             {{ .Data.Plural }}
                         </a>
                     {{ end }}
-                    | <span class="text-ht">{{ .Title }}</span>
+                    | <span class="text-sm font-bold text-ht-light text-ellipsis max-w-[25vw] md:max-w-none inline-block whitespace-nowrap overflow-hidden">{{ .Title }}</span>
                 {{ end }}
                 {{ if and .IsPage .Section (ne .Section "blog") }}
                     | <a href="/{{ .Section }}/" class="no-underline">
