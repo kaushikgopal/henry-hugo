@@ -1,4 +1,9 @@
 @layer base {
+    html {
+        /* keep .blog-content-width from shrinking on long pages where a scrollbar appears */
+        scrollbar-gutter: stable both-edges;
+    }
+
     article {
         @apply space-y-6
             leading-tight
