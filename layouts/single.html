@@ -23,10 +23,12 @@
             {{ end }}
         </h1>
 
-        <h4 class="post-author md:pt-1 text-sm text-ht-light font-bold italic">
-            {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
-            "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
-            .Date.Format "January 2, 2006" }} {{ end }}
+        <h4 class="post-author md:pt-1 text-sm text-ht-lighter font-bold italic">
+            {{ if or (eq .Section "log") (.Params.timeless) }} 
+                {{ partial "get-authors.html" . }} 
+            {{ else if not (eq .Type "shorts") }} 
+                {{ .Date.Format "January 2, 2006" }}
+            {{ end }}
         </h4>
     </header>
 
