@@ -73,7 +73,7 @@
 /* show external arrow ↗ for external links */
 article a[href*='//']::after,
 a.external-link::after {
-    @apply mb-0.5 md:mb-2 ml-0;
+    @apply mb-0.5 md:mb-2 ml-0.5;
 
     content: "";
     display: inline-block;
@@ -87,7 +87,7 @@ a.external-link::after {
     background-color: currentColor;
 }
 h1.post-title a.external-link::after {
-    @apply mb-1 md:mb-2 ml-0;
+    @apply mb-1 md:mb-2 ml-0.5;
     width: 1rem;
     height: 1rem;
 }
