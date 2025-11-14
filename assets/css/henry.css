@@ -51,11 +51,11 @@
 }
 
 .post-content h1 {
-    @apply text-2xl md:text-3xl mt-2;
+    @apply text-3xl md:text-4xl mt-6 md:mt-10 text-center text-ht-dark;
 }
 
 .post-content h2 {
-    @apply text-xl md:text-2xl;
+    @apply text-2xl md:text-3xl mt-4 md:mt-6 text-ht-dark;
 }
 
 .post-content h2 + ul {
@@ -63,7 +63,7 @@
 }
 
 .post-content h3 {
-    @apply text-lg md:text-xl;
+    @apply text-xl md:text-2xl;
 }
 
 .post-content h4 {
