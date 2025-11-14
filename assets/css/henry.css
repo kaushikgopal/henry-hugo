@@ -271,8 +271,7 @@ section.post .pill-slate {
 }
 
 .post-content blockquote {
-    @apply bg-hbg-dark p-6
-          text-base font-semibold;
+    @apply bg-hbg-lightest p-6 text-base font-semibold;
 }
 
 .post-content blockquote code {
@@ -290,15 +289,20 @@ section.post .pill-slate {
 /* Base callout structure */
 .callout {
     @apply relative overflow-hidden py-2 font-semibold;
-    --callout-border: var(--color-ht-lighter);
-    --callout-bg: color-mix(in srgb, var(--color-ht-lightest) 50%, white 50%);
-    background: var(--callout-bg);
-    border-style: double;
+    background: var(--color-hbg-lightest);
+    border: 3px solid var(--color-hbg-dark);
 }
 
 .callout-icon {
     @apply flex items-center justify-center w-5 h-5 shrink-0;
     color: var(--callout-icon-color, #64748b);
+}
+
+.callout .callout-icon {
+    @apply absolute z-0 w-9 h-9 pointer-events-none;
+    opacity: 0.3;
+    top: 0.4rem;
+    left: 0.4rem;
 }
 
 .callout-icon svg {
@@ -340,13 +344,6 @@ section.post .pill-slate {
 /* Watermark icon styling */
 .callout-title:empty {
     display: none;
-}
-
-.callout .callout-icon {
-    @apply absolute z-0 w-9 h-9 pointer-events-none;
-    opacity: 0.2;
-    top: 0.4rem;
-    left: 0.4rem;
 }
 
 /* Dark mode adjustments */
