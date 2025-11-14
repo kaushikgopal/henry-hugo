@@ -159,7 +159,7 @@ h1.post-title a.external-link::after {
 
 /* inline code */
 .post-content code {
-    @apply font-[550] text-[0.8em] bg-hbg-dark;
+    @apply font-[550] text-[0.87em] bg-hbg-dark;
 }
 
 .post-content > *:not(figure.full-bleed) {
