@@ -22,7 +22,7 @@
     }
 
     a {
-        @apply underline decoration-2 decoration-dotted underline-offset-4 hover:no-underline
+        @apply underline decoration-2 decoration-dotted decoration-ht-light underline-offset-4 hover:no-underline
            hover:text-hc;
     }
 
