@@ -15,7 +15,9 @@
 
         {{ if eq .Type "shorts" }}
         <!-- Shorts layout -->
-        <article class="post-summary text-sm lg:text-lg">
+        <article class="post-summary font-title leading-tight
+                            font-semibold lg:font-bold
+                            text-lg md:text-2xl lg:text-3xl">
             <a
                 href="{{ .RelPermalink }}"
                 class="relative flex items-center !no-underline group"
@@ -37,9 +39,7 @@
                     ></path>
                 </svg>
                 <!-- keep it same as line 46 -->
-                <span
-                    class="relative pl-4 -ml-4 font-semibold text-xl lg:text-3xl group-hover:underline"
-                >
+                <span class="relative pl-4 -ml-4 group-hover:underline">
                     {{ partial "get-first-paragraph-ellipsised.html" .Content }}
                 </span>
             </a>
