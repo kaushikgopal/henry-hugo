@@ -278,6 +278,11 @@ section.post .pill-slate {
     @apply text-sm;
 }
 
+.post-content .aside a {
+    /* match this to the _shortcode aside */
+    @apply text-ht-lighter;
+}
+
 /* *****************************************************
  * Obsidian-style Callouts
  ***************************************************** */
