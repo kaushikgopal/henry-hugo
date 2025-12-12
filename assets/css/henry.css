@@ -159,7 +159,8 @@ a.external-link::after {
     @apply font-[550] text-[0.87em] bg-hbg-dark;
 }
 
-.post-content > *:not(figure.full-bleed) {
+/* sibling selector used to avoid width to apply in list page that has snippet on top */
+.blog-content-width + .post-content > *:not(figure.full-bleed) {
     @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
 }
 
