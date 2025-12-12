@@ -16,8 +16,7 @@
         {{ if eq .Type "shorts" }}
         <!-- Shorts layout -->
         <article class="post-summary
-                        font-title leading-tight md:font-semibold
-                        text-lg md:text-2xl lg:text-3xl">
+                        font-title leading-tight font-semibold">
             <a
                 href="{{ .RelPermalink }}"
                 class="relative flex items-center !no-underline group"
@@ -49,8 +48,7 @@
         <!-- Regular post layout -->
         <h1
             class=" post-link-url
-                    font-title leading-tight md:font-semibold
-                    text-lg md:text-2xl lg:text-3xl"
+                    font-title leading-tight font-semibold"
         >
             <a class="no-underline
                 {{ if (eq $postType "link") }}
