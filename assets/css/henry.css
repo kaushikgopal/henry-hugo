@@ -198,7 +198,7 @@ a.external-link::after {
 }
 
 .footnotes ol {
-    @apply list-decimal mt-2 py-2 pe-1 ps-4 text-base md:text-lg text-ht-light;
+    @apply list-decimal mt-2 py-2 pe-1 ps-4 text-sm text-ht-light;
 }
 
 .footnotes ol a {
