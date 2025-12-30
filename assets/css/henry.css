@@ -156,7 +156,7 @@ a.external-link::after {
 
 /* inline code */
 .post-content code {
-    @apply font-[550] text-[0.87em] bg-hbg-dark;
+    @apply font-[550] text-[0.87em];
 }
 
 /* sibling selector used to avoid width to apply in list page that has snippet on top */
