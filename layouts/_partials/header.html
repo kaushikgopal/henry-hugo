@@ -9,7 +9,7 @@
               fixed top-0 left-0 right-0 z-40
               bg-hbg
               py-4 sm:py-5
-              border-b border-transparent transition-[border-color] duration-200">
+              border-b-1 border-transparent transition-[border-color] duration-200">
     
     <div class="blog-content-width flex items-center justify-between">
 
@@ -108,6 +108,25 @@
     </div>
     {{ end }}
 </header>
+
+<!-- Scroll detection for header border -->
+<script>
+(function() {
+    const header = document.getElementById('site-header');
+    let scrolled = false;
+
+    function onScroll() {
+        const isScrolled = window.scrollY > 10;
+        if (isScrolled !== scrolled) {
+            scrolled = isScrolled;
+            header.classList.toggle('scrolled', scrolled);
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
 
 <!-- Full-screen overlay menu (pure CSS, controlled by checkbox) -->
 <div class="fixed inset-0 z-50 bg-hbg
