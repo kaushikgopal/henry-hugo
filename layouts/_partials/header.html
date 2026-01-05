@@ -3,12 +3,16 @@
 <!-- Hidden checkbox for pure-CSS hamburger menu -->
 <input type="checkbox" id="nav-toggle" class="hidden peer" aria-hidden="true">
 
+    
 <!-- Main header -->
-<header class="site-header
+<header id="site-header" class="site-header
               fixed top-0 left-0 right-0 z-40
               bg-hbg
-              px-4 py-4 sm:py-5">
+              py-4 sm:py-5
+              border-b border-transparent transition-[border-color] duration-200">
+    
     <div class="blog-content-width flex items-center justify-between">
+
         <!-- Left side: Title + Sublink -->
         <div class="flex items-center gap-1 text-base sm:text-xl text-ht-lighter">
             <!-- Site title - always bold -->
@@ -35,7 +39,7 @@
                     <a href="/{{ .Data.Plural }}/" class="no-underline">{{ .Data.Plural }}</a>
                 {{ end }}
                 <span class="font-normal">|</span>
-                <span class="text-sm font-bold text-ht-light text-ellipsis max-w-[25vw] sm:max-w-none inline-block whitespace-nowrap overflow-hidden">{{ .Title }}</span>
+                <span class="font-bold text-ht-light text-ellipsis max-w-[25vw] sm:max-w-none inline-block whitespace-nowrap overflow-hidden align-middle">{{ .Title }}</span>
             {{ end }}
             {{ if and .IsPage .Section (ne .Section "blog") }}
                 <span class="font-normal">|</span>
@@ -46,7 +50,10 @@
         <!-- Right side: Nav links + Search + Hamburger -->
         <div class="flex items-center gap-4 sm:gap-6">
             <!-- Nav links - hidden on mobile, shown on sm: -->
-            <nav class="hidden sm:flex items-center gap-4 text-xl text-ht-lighter">
+            <nav class="hidden 
+                        sm:flex items-center gap-4
+                        text-base font-semibold uppercase 
+                       text-ht-lighter">
                 <a href="/blog/"
                    class='no-underline {{ if eq .Name "Blogs" }}text-ht{{ end }}'>
                     posts
@@ -115,7 +122,8 @@
     </label>
 
     <!-- Nav links in overlay -->
-    <nav class="flex flex-col items-center gap-8">
+    <nav class="flex flex-col items-center gap-8
+                font-semibold uppercase">
         <a href="/blog/" class="no-underline hover:text-hc">posts</a>
         <a href="/tags/" class="no-underline hover:text-hc">topics</a>
         <a href="/letter/" class="no-underline hover:text-hc">letters</a>
