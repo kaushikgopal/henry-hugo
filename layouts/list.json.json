@@ -22,10 +22,11 @@
     "favicon" : "{{ . | absURL }}",
     {{ end -}}
 
-    {{ with .Site.Params.author.name -}}
+    {{- $author := index .Site.Params.authors 0 -}}
+    {{ with $author.name -}}
     "author" : {
-        "name" : "{{ . }}"{{ with $.Site.Params.author.url }},
-        "url": "{{ . }}"{{ end }}{{ with $.Site.Params.author.avatar }},
+        "name" : "{{ . }}"{{ with $author.url }},
+        "url": "{{ . }}"{{ end }}{{ with $author.avatar }},
         "avatar": "{{ . | absURL }}"{{ end }}
     },
     {{ end -}}

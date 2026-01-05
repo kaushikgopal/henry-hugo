@@ -13,7 +13,7 @@
 {{- $pages = where $pages "Params.noindex" "!=" true -}}
 {{- /* warnf "INFO: search index page count: %v" (len $pages) */ -}}
 
-{{- $.Scratch.Add "index" slice -}}
+{{- $index := slice -}}
 
 {{- range $pages -}}
 	{{- $page := . -}}
@@ -31,10 +31,10 @@
 		{{- $entry = merge $entry (dict . ($page.Param .)) }}
 	{{- end -}}
 
-    {{- $.Scratch.Add "index" $entry -}}
+    {{- $index = $index | append $entry -}}
 {{- end -}}
 
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $index | jsonify -}}
 
 
 {{- end -}}
