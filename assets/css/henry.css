@@ -4,21 +4,6 @@
         scrollbar-gutter: stable both-edges;
     }
 
-    article {
-        /* prose-xl scale: 18px mobile → 20px desktop */
-        @apply space-y-6 text-ht text-lg md:text-xl;
-    }
-
-    article > p {
-        /* spacing between paragraphs */
-        @apply mb-5;
-        /* spacing between words*/
-        word-spacing: 0.05em;
-    }
-
-    article p {
-        @apply overflow-hidden text-ellipsis font-medium;
-    }
 
     a {
         @apply underline decoration-2 decoration-solid decoration-ht-lighter underline-offset-4 hover:no-underline hover:text-hc;
@@ -28,70 +13,92 @@
     a.external-link {
         @apply decoration-dotted;
     }
+    
+    article {
+        /* prose-xl scale: 18px mobile → 20px desktop */
+        @apply  font-medium
+                text-lg md:text-xl 
+                space-y-6 
+                text-ht ;
+    }
+
+    article > p {
+        /* spacing between paragraphs */
+        @apply mb-6;
+        /* spacing between words
+        word-spacing: 0.05em;*/
+    }
+
+    article p {
+        @apply overflow-hidden text-ellipsis;
+    }
 
     article a {
         @apply text-ht;
     }
-}
-
-@layer components {
-    /* ==========================================================================
-       Post Content - Typography
-       ========================================================================== */
-
-    .post-content hr {
+    
+    article hr {
         @apply border-ht-lighter mt-6;
     }
 
-    .post-content h1,
-    .post-content h2,
-    .post-content h3,
-    .post-content h4,
-    .post-content h5,
-    .post-content h6 {
-        @apply font-title font-bold;
-    }
-
-    .post-content h1 {
+    article h1 {
         /* prose-xl scale: 36px → 48px */
-        @apply text-4xl md:text-5xl mt-6 md:mt-10 text-ht-dark;
+        @apply  font-title font-bold 
+                text-3xl md:text-4xl 
+                mt-6 md:mt-10 
+                text-ht-dark;
     }
 
-    .post-content h2 {
+    article h2 {
         /* prose-xl scale: 24px → 36px */
-        @apply text-2xl md:text-4xl mt-4 md:mt-6 text-ht-dark;
+        @apply  font-title font-bold 
+                text-2xl md:text-3xl 
+                mt-4 md:mt-6 
+                text-ht-dark;
     }
 
-    .post-content h2 + ul {
+    article h2 + ul {
         @apply -mt-5;
     }
 
-    .post-content h3 {
+    article h3 {
         /* prose-xl scale: 20px → 30px */
-        @apply text-xl md:text-3xl;
+        @apply  font-title font-bold 
+                text-xl md:text-2xl;
     }
 
-    .post-content h4 {
+    article h4,
+    article h5,
+    article h6 {
         /* prose-xl scale: 18px → 20px */
-        @apply text-lg md:text-xl font-semibold;
+        @apply  font-title font-semibold   
+                text-lg md:text-xl;
     }
-
+    
+    article h5,
+    article h6 {
+        @apply font-medium;
+    }
+    
     /* Heading anchors */
-    .post-content h1,
-    .post-content h2,
-    .post-content h3,
-    .post-content h4,
-    .post-content h5,
-    .post-content h6 {
+    article h1,
+    article h2,
+    article h3,
+    article h4,
+    article h5,
+    article h6 {
         @apply relative;
     }
-
     .heading-anchor {
         @apply inline-block ml-2
                opacity-30 transition-opacity duration-200
                no-underline text-ht-lighter hover:text-hc
                font-normal;
     }
+}
+
+@layer components {
+
 
     /* ==========================================================================
        Post Content - Lists
