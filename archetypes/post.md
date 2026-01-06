@@ -13,6 +13,7 @@ title: '{{ replace (replaceRE "^\\d{4}-\\d{2}-\\d{2}-" "" .File.ContentBaseName)
 # canonicalUrl: "https://when-posted-first-on-medium"
 # banner: "/images/content/tw-xxx.png|kau.sh.webp"
 # aliases:
-#   - "/2010/new-year/"
+#   - /blog/old-url/
+#   - /short-url/
 # bsky:
 ---
