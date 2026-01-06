@@ -1,9 +1,21 @@
-{{ define "content" }} {{ partial "single-before.html" . }}
+{{ define "content" }} 
 
-<section class="post flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6">
-    <header class="post-header blog-content-width mb-14">
+{{ partial "single-before.html" . }}
+
+<section class="post 
+                flex flex-col items-center 
+                pt-20 md:pt-30 pb-4 md:pb-6">
+
+    <header class="
+                post-header 
+                blog-content-width 
+                mb-14">
         <h1
-            class="post-title font-title font-bold text-center text-ht-dark text-4xl md:text-5xl"
+            class="
+                post-title 
+                font-title font-bold 
+                text-ht-dark text-center 
+                text-4xl md:text-5xl"
         >
             <!-- Handle external links differently -->
             {{ if .Params.externalLink }}
@@ -24,7 +36,11 @@
         </h1>
 
         <h4
-            class="post-author md:pt-1 text-center text-sm text-ht-lighter font-bold italic"
+            class="
+                post-author 
+                md:pt-1
+                 text-ht-lighter font-bold italic  text-center
+                text-sm"
         >
             {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
             "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
@@ -34,7 +50,9 @@
 
     {{ if eq .Type "shorts" }}
     <!-- Shorts layout -->
-    <article class="post-content flex flex-col items-center w-full">
+    <article class="
+                post-content 
+                flex flex-col items-center w-full">
         <svg
             class="w-15 h-15 mb-2 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
             xmlns="http://www.w3.org/2000/svg"

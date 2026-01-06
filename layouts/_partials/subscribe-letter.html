@@ -3,15 +3,20 @@
 
 {{ if eq .Section "letter" }}
 <nav class="subscribe-letter
-            p-6 flex justify-end">
-    <a class="flex bg-hc-lighter rounded-lg w-fit
-              border border-hbg-dark hover:text-hc-lighter hover:bg-hbg-dark hover:border hover:border-hc-lighter
-              py-1 px-3 mr-20
-              text-hbg-dark uppercase font-bold font-mono no-underline
-
-              "
-        href="https://buttondown.email/kaush">
-        <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" data-slot="icon">
+            mt-20
+            p-6 flex justify-center">
+    
+    <a class="
+        flex w-fit
+        py-1 px-3 mr-20
+        bg-hc-lighter hover:bg-hbg-dark  
+        border border-hbg-dark rounded-lg 
+        hover:border hover:border-hc-lighter 
+        text-hbg-dark hover:text-hc-lighter 
+        uppercase font-bold font-mono no-underline
+        "
+        href="https://buttondown.com/kaush">
+            <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" data-slot="icon">
             <path
                 d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z">
             </path>
@@ -19,6 +24,7 @@
                 d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z">
             </path>
         </svg>
+        
         <div class="ps-2">
             Subscribe
         </div>
