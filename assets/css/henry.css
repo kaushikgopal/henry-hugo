@@ -291,13 +291,14 @@
        Callouts (Obsidian-style)
        ========================================================================== */
 
-    .post-content .callout:not(figure) {
-        @apply text-base md:text-lg;
+    .post-content .callout:not(figure),
+    .callout-title {
+        @apply text-xs md:text-sm;
     }
 
     /* Base callout structure */
     .callout {
-        @apply relative overflow-hidden py-2 font-semibold;
+        @apply relative overflow-hidden py-2;
         background: var(--color-hbg-lightest);
         border: 3px solid var(--color-hbg-dark);
     }
@@ -319,11 +320,7 @@
     }
 
     .callout-title {
-        @apply relative z-10 flex items-center gap-2 px-8 py-3 text-sm font-medium;
-    }
-
-    .callout-title code {
-        @apply text-sm;
+        @apply relative z-10 flex items-center gap-2 px-8 py-3;
     }
 
     .callout-title-inner {
