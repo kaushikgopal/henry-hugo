@@ -1,33 +1,16 @@
-<!-- example for how to add an email newsletter subscribe button at the bottom of the page -->
-<!-- additionally if you have a /letter directory with posts, it'll also show on the top -->
-
 {{ if eq .Section "letter" }}
-<nav class="subscribe-letter
-            mt-20
-            p-6 flex justify-center">
-    
-    <a class="
-        flex w-fit
-        py-1 px-3 mr-20
-        bg-hc-lighter hover:bg-hbg-dark  
-        border border-hbg-dark rounded-lg 
-        hover:border hover:border-hc-lighter 
-        text-hbg-dark hover:text-hc-lighter 
-        uppercase font-bold font-mono no-underline
-        "
-        href="https://buttondown.com/kaush">
-            <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" data-slot="icon">
-            <path
-                d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z">
-            </path>
-            <path
-                d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z">
-            </path>
-        </svg>
-        
-        <div class="ps-2">
-            Subscribe
-        </div>
-    </a>
-</nav>
+<a class="flex items-center gap-1.5
+          py-1 px-3
+          bg-hc-lighter hover:bg-hbg-dark
+          border border-hbg-dark rounded-lg
+          hover:border-hc-lighter
+          text-hbg-dark hover:text-hc-lighter
+          text-sm uppercase font-bold font-mono no-underline"
+   href="https://buttondown.com/kaush">
+    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path>
+        <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path>
+    </svg>
+    <span class="hidden sm:inline">Subscribe</span>
+</a>
 {{ end }}

@@ -49,10 +49,12 @@
 
         <!-- Right side: Nav links + Search + Hamburger -->
         <div class="flex items-center gap-4 sm:gap-6">
+            {{- partial "subscribe-letter.html" . -}}
+
             <!-- Nav links - hidden on mobile, shown on sm: -->
-            <nav class="hidden 
+            <nav class="hidden
                         sm:flex items-center gap-4
-                        text-base font-semibold uppercase 
+                        text-base font-semibold uppercase
                        text-ht-lighter">
                 <a href="/blog/"
                    class='no-underline {{ if eq .Name "Blogs" }}text-ht{{ end }}'>
