@@ -106,7 +106,8 @@
 
     .post-content > ol,
     .post-content > ul {
-        @apply ms-6 md:ms-8;
+        @apply  ms-6 md:ms-8 
+                whitespace-nowrap overflow-scroll;
     }
 
     .callout ol,
