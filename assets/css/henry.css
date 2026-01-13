@@ -4,7 +4,6 @@
         scrollbar-gutter: stable both-edges;
     }
 
-
     a {
         @apply underline decoration-2 decoration-solid decoration-ht-lighter underline-offset-4 hover:no-underline hover:text-hc;
     }
@@ -13,13 +12,13 @@
     a.external-link {
         @apply decoration-dotted;
     }
-    
+
     article {
         /* prose-xl scale: 18px mobile → 20px desktop */
-        @apply  font-medium
-                text-lg md:text-xl 
-                space-y-6 
-                text-ht ;
+        @apply font-medium
+                text-lg md:text-xl
+                space-y-6
+                text-ht;
     }
 
     article > p {
@@ -36,24 +35,24 @@
     article a {
         @apply text-ht;
     }
-    
+
     article hr {
         @apply border-ht-lighter mt-6;
     }
 
     article h1 {
         /* prose-xl scale: 36px → 48px */
-        @apply  font-title font-bold 
-                text-3xl md:text-4xl 
-                mt-6 md:mt-10 
+        @apply font-title font-bold
+                text-3xl md:text-4xl
+                mt-6 md:mt-10
                 text-ht-dark;
     }
 
     article h2 {
         /* prose-xl scale: 24px → 36px */
-        @apply  font-title font-bold 
-                text-2xl md:text-3xl 
-                mt-4 md:mt-6 
+        @apply font-title font-bold
+                text-2xl md:text-3xl
+                mt-4 md:mt-6
                 text-ht-dark;
     }
 
@@ -63,7 +62,7 @@
 
     article h3 {
         /* prose-xl scale: 20px → 30px */
-        @apply  font-title font-bold 
+        @apply font-title font-bold
                 text-xl md:text-2xl;
     }
 
@@ -71,15 +70,15 @@
     article h5,
     article h6 {
         /* prose-xl scale: 18px → 20px */
-        @apply  font-title font-semibold   
+        @apply font-title font-semibold
                 text-lg md:text-xl;
     }
-    
+
     article h5,
     article h6 {
         @apply font-medium;
     }
-    
+
     /* Heading anchors */
     article h1,
     article h2,
@@ -97,17 +96,47 @@
     }
 }
 
+@layer utilities {
+    .blog-content-width {
+        @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
+    }
+
+    /* Scrollbar utility: use via class="scrollbar-visible" or add selectors here */
+    .scrollbar-visible,
+    .post-content > ol,
+    .post-content > ul {
+        scrollbar-width: thin;
+        scrollbar-color: #888 #f1f1f1;
+    }
+    .scrollbar-visible::-webkit-scrollbar,
+    .post-content > ol::-webkit-scrollbar,
+    .post-content > ul::-webkit-scrollbar {
+        display: block;
+        width: 8px;
+        height: 8px;
+    }
+    .scrollbar-visible::-webkit-scrollbar-track,
+    .post-content > ol::-webkit-scrollbar-track,
+    .post-content > ul::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .scrollbar-visible::-webkit-scrollbar-thumb,
+    .post-content > ol::-webkit-scrollbar-thumb,
+    .post-content > ul::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+}
+
 @layer components {
-
-
     /* ==========================================================================
        Post Content - Lists
        ========================================================================== */
 
     .post-content > ol,
     .post-content > ul {
-        @apply  ms-6 md:ms-8 
-                whitespace-nowrap overflow-scroll;
+        @apply ms-6 md:ms-8 text-ellipsis overflow-scroll;
+        /* scrollbar styles defined in @layer utilities */
     }
 
     .callout ol,
@@ -412,12 +441,6 @@
     .callout[data-callout="help"],
     .callout[data-callout="faq"] {
         --callout-icon-color: #22c55e;
-    }
-}
-
-@layer utilities {
-    .blog-content-width {
-        @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
     }
 }
 
