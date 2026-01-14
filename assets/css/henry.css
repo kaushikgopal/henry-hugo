@@ -163,7 +163,7 @@
 
     /* code blocks */
     .post-content pre {
-        @apply p-4 border border-black rounded-md overflow-auto;
+        @apply p-4 border border-ht-lightest rounded-md overflow-auto;
     }
 
     .post-content .highlight pre code {
