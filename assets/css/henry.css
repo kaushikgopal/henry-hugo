@@ -167,12 +167,12 @@
     }
 
     .post-content .highlight pre code {
-        @apply text-xs;
+        @apply text-xs/relaxed md:text-sm/relaxed;
     }
 
     /* inline code */
     .post-content code {
-        @apply font-[550] text-[0.87em];
+        @apply font-[450] text-[0.87em];
     }
 
     /* ==========================================================================
