@@ -8,8 +8,9 @@
 (function () {
   const BREAKPOINT = 1024;
   const SIDENOTE_MARGIN = 16; // gap between content and sidenote
-  const SIDENOTE_MIN_WIDTH = 140;
-  const SIDENOTE_MAX_WIDTH = 250;
+  const SIDENOTE_MIN_WIDTH = 100;
+  const SIDENOTE_MAX_WIDTH = 180;
+  const SIDENOTE_VERTICAL_GAP = 24; // gap between stacked sidenotes
 
   function init() {
     const footnotes = document.querySelector('.footnotes');
@@ -84,21 +85,24 @@
       const footnoteItem = footnoteItems[index];
       if (!footnoteItem) return;
 
+      // Get footnote number from the sup element
+      const footnoteNum = sup.querySelector('a')?.textContent || (index + 1);
+
       // Get footnote content (clone to avoid modifying original)
       const content = footnoteItem.cloneNode(true);
 
-      // Create sidenote element
+      // Create sidenote element with number prefix
       const sidenote = document.createElement('div');
       sidenote.className = 'sidenote';
-      sidenote.innerHTML = content.innerHTML;
+      sidenote.innerHTML = `<span class="sidenote-number">${footnoteNum}.</span> ${content.innerHTML}`;
 
       // Calculate vertical position (relative to .post container)
       const supRect = sup.getBoundingClientRect();
       let topPosition = supRect.top - postRect.top;
 
       // Prevent overlap with previous sidenote
-      if (topPosition < lastBottom + 8) {
-        topPosition = lastBottom + 8;
+      if (topPosition < lastBottom + SIDENOTE_VERTICAL_GAP) {
+        topPosition = lastBottom + SIDENOTE_VERTICAL_GAP;
       }
 
       // Apply positioning
