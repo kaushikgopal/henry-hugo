@@ -7,7 +7,7 @@
  */
 (function () {
   const BREAKPOINT = 1024;
-  const SIDENOTE_MARGIN = 16; // gap between content and sidenote
+  const SIDENOTE_MARGIN = 32; // gap between content and sidenote
   const SIDENOTE_MIN_WIDTH = 100;
   const SIDENOTE_MAX_WIDTH = 180;
   const SIDENOTE_VERTICAL_GAP = 24; // gap between stacked sidenotes
