@@ -96,6 +96,10 @@
       sidenote.className = 'sidenote';
       sidenote.innerHTML = `<span class="sidenote-number">${footnoteNum}.</span> ${content.innerHTML}`;
 
+      // Add hover effect: highlight sidenote when superscript is hovered
+      sup.addEventListener('mouseenter', () => sidenote.classList.add('sidenote-highlight'));
+      sup.addEventListener('mouseleave', () => sidenote.classList.remove('sidenote-highlight'));
+
       // Calculate vertical position (relative to .post container)
       const supRect = sup.getBoundingClientRect();
       let topPosition = supRect.top - postRect.top;

@@ -252,8 +252,12 @@
        ========================================================================== */
 
     .sidenote {
-        @apply absolute text-sm text-ht-lighter leading-snug;
+        @apply absolute text-sm text-ht-lighter leading-snug transition-colors duration-200;
         /* width constrained by JS; right margin positioning calculated dynamically */
+    }
+
+    .sidenote-highlight {
+        @apply text-ht-light;
     }
 
     .sidenote-number {
