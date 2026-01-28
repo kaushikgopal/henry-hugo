@@ -1,117 +1,126 @@
 /**
- * @author: Kaushik Gopal
+ * Sidenotes - Display footnotes in the margin (Tufte-style)
  *
- * A jQuery function that displays the footnotes
- * on the side (sidenotes) for easier reading.
- *
- * This is as recommended by Edward Tufte's style sidenotes:
- * https://edwardtufte.github.io/tufte-css/#sidenotes
- *
- * TODO:
- *      - if two subsequent lines have long sidenotes
- *        need to take care of the overlap properly and offset
- **/
+ * On wide screens (≥1024px), footnotes are positioned in the right margin
+ * aligned with their reference. On narrow screens, standard bottom footnotes
+ * are shown instead.
+ */
 (function () {
-    const $footnotes = $(".footnotes"),
-        sideNoteStartMargin = 12,
-        sideNoteMaxWidth = 280,
-        sideNoteMinWidth = 140;
+  const BREAKPOINT = 1024;
+  const SIDENOTE_MARGIN = 16; // gap between content and sidenote
+  const SIDENOTE_MIN_WIDTH = 140;
+  const SIDENOTE_MAX_WIDTH = 250;
 
-    $(window).on("load", function () {
+  function init() {
+    const footnotes = document.querySelector('.footnotes');
+    if (!footnotes) return;
 
+    const mediaQuery = window.matchMedia(`(min-width: ${BREAKPOINT}px)`);
 
-        // don't run this script if there aren't any footnotes
-        if ($footnotes.length < 1) {
-            return;
-        }
+    function handleViewportChange() {
+      clearSidenotes();
+      if (mediaQuery.matches) {
+        createSidenotes(footnotes);
+      }
+    }
 
-        loadSideNotesFromFootnotes();
+    // Initial setup after images load (affects positioning)
+    if (document.readyState === 'complete') {
+      handleViewportChange();
+    } else {
+      window.addEventListener('load', handleViewportChange);
+    }
 
-        $(window).resize(function () {
-            // console.log(" XXX -- RESIZE -- XXX ");
+    // Re-run on viewport changes
+    mediaQuery.addEventListener('change', handleViewportChange);
 
-            // TODO: optimization if window width doesn't change that much
-            // const new_ww = $(".wrapper").outerWidth();
-            // if (new_ww === windowWidth) return;
-            // windowWidth = new_ww;
+    // Re-run on resize (for sidenote repositioning when content reflows)
+    let resizeTimeout;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleViewportChange, 150);
+    });
+  }
 
-            loadSideNotesFromFootnotes();
-        });
+  function clearSidenotes() {
+    document.querySelectorAll('.sidenote').forEach(el => el.remove());
+    const footnotes = document.querySelector('.footnotes');
+    if (footnotes) {
+      footnotes.classList.remove('sidenotes-active');
+    }
+  }
+
+  function createSidenotes(footnotes) {
+    const post = document.querySelector('.post');
+    const postContent = document.querySelector('.post-content');
+    if (!post || !postContent) return;
+
+    // Get the content area boundaries
+    const firstContentChild = postContent.querySelector('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote');
+    if (!firstContentChild) return;
+
+    const contentRect = firstContentChild.getBoundingClientRect();
+    const postRect = post.getBoundingClientRect();
+
+    // Calculate available space for sidenotes (right of content)
+    const contentRightEdge = contentRect.right - postRect.left;
+    const availableWidth = postRect.width - contentRightEdge - SIDENOTE_MARGIN;
+
+    if (availableWidth < SIDENOTE_MIN_WIDTH) {
+      // Not enough space for sidenotes
+      return;
+    }
+
+    const sidenoteWidth = Math.min(availableWidth, SIDENOTE_MAX_WIDTH);
+    const sidenoteLeft = contentRightEdge + SIDENOTE_MARGIN;
+
+    // Track vertical positions to avoid overlap
+    let lastBottom = 0;
+
+    const footnoteItems = footnotes.querySelectorAll('ol > li');
+    const supRefs = document.querySelectorAll('sup[id^="fnref:"]');
+
+    supRefs.forEach((sup, index) => {
+      const footnoteItem = footnoteItems[index];
+      if (!footnoteItem) return;
+
+      // Get footnote content (clone to avoid modifying original)
+      const content = footnoteItem.cloneNode(true);
+
+      // Create sidenote element
+      const sidenote = document.createElement('div');
+      sidenote.className = 'sidenote';
+      sidenote.innerHTML = content.innerHTML;
+
+      // Calculate vertical position (relative to .post container)
+      const supRect = sup.getBoundingClientRect();
+      let topPosition = supRect.top - postRect.top;
+
+      // Prevent overlap with previous sidenote
+      if (topPosition < lastBottom + 8) {
+        topPosition = lastBottom + 8;
+      }
+
+      // Apply positioning
+      sidenote.style.left = `${sidenoteLeft}px`;
+      sidenote.style.top = `${topPosition}px`;
+      sidenote.style.width = `${sidenoteWidth}px`;
+
+      post.appendChild(sidenote);
+
+      // Update lastBottom for next sidenote
+      const sidenoteRect = sidenote.getBoundingClientRect();
+      lastBottom = topPosition + sidenoteRect.height;
     });
 
-    function loadSideNotesFromFootnotes() {
+    // Hide bottom footnotes
+    footnotes.classList.add('sidenotes-active');
+  }
 
-        const $postTitle = $(".post-title"),
-            browserWidth = $(".post").width(),
-            startPosition = $postTitle.position().left + $postTitle.outerWidth() + sideNoteStartMargin;
-
-        $(".sidenote").remove(); // remove any existing side notes to begin
-        $footnotes.show();  // previous resize could have hidden footnotes
-
-        //#region Should we even show sidenotes?
-
-        //#region there's no post-content
-        if ($postTitle.length < 1) {
-            return;
-        }
-        //#endregion
-
-        //#region there's no space for sidenotes
-        const availabeSpaceForSideNote = browserWidth - startPosition;
-
-        // console.log(" ---> availabeSpaceForSideNote " + availabeSpaceForSideNote);
-        // console.log(" ---> sideNoteWidth [" + sideNoteMinWidth + " - " + sideNoteMaxWidth + "]");
-
-        if (availabeSpaceForSideNote < sideNoteMinWidth) {
-            return;
-        }
-        //#endregion
-
-        //#endregion
-
-        const $fnItems = $footnotes.find("ol li");
-
-        $("sup").each(function (index) {
-            const $footnoteHtml = $fnItems.eq(index).html();
-            createSideNote($(this), $footnoteHtml, startPosition);
-        });
-
-        $footnotes.hide();
-    }
-
-    function createSideNote(superscript, footnoteHtml, startPosition) {
-
-        // console.log(" ---> " + superscript.text() + " : " + footnoteHtml);
-
-        // construct side note <div>
-        let div = $(document.createElement('div'))
-            .html(footnoteHtml)
-            .addClass("sidenote");
-
-        const topPosition = superscript.offset();
-
-        div.css({
-            position: "absolute",
-            left: startPosition,
-            top: topPosition["top"],
-            minWidth: sideNoteMinWidth,
-            maxWidth: sideNoteMaxWidth,
-        });
-
-        if (startPosition > 420) {
-            superscript.hover(function () {
-                div.addClass("sidenote-hover");
-            }, function () {
-                div.removeClass("sidenote-hover");
-            });
-        } else {
-            div.addClass("sidenote-hover");
-        }
-
-        // console.log(" ---> ");
-
-        // attach side note <div>
-        $(document.body).append(div);
-    }
-
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

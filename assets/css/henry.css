@@ -247,6 +247,30 @@
     }
 
     /* ==========================================================================
+       Sidenotes (Tufte-style footnotes in margin)
+       Only visible on lg: screens (≥1024px) when JS positions them
+       ========================================================================== */
+
+    .sidenote {
+        @apply absolute text-sm text-ht-light leading-snug;
+        /* width constrained by JS; right margin positioning calculated dynamically */
+    }
+
+    .sidenote p {
+        @apply m-0;
+    }
+
+    /* Hide the backref arrow in sidenotes - not needed when note is beside reference */
+    .sidenote .footnote-backref {
+        @apply hidden;
+    }
+
+    /* When sidenotes are active, hide the bottom footnotes section */
+    .footnotes.sidenotes-active {
+        @apply hidden;
+    }
+
+    /* ==========================================================================
        Pills / Tags
        ========================================================================== */
 
