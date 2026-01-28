@@ -227,7 +227,7 @@
        ========================================================================== */
 
     .post-content .footnote-ref {
-        @apply ps-0.5 text-ht-lighter hover:text-ht-light font-bold no-underline;
+        @apply ps-0.5 text-ht-light hover:text-ht font-bold no-underline;
     }
 
     .post-content .footnote-backref {
@@ -252,12 +252,16 @@
        ========================================================================== */
 
     .sidenote {
-        @apply absolute text-sm text-ht-light leading-snug;
+        @apply absolute text-sm text-ht-lighter leading-snug;
         /* width constrained by JS; right margin positioning calculated dynamically */
     }
 
+    .sidenote-number {
+        @apply font-bold;
+    }
+
     .sidenote p {
-        @apply m-0;
+        @apply m-0 inline;
     }
 
     /* Hide the backref arrow in sidenotes - not needed when note is beside reference */
