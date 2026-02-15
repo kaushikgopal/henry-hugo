@@ -120,6 +120,14 @@ isPlainText = true
 mediaType = "application/json"
 notAlternative = true
 
+# Required for OG banner generation (opt-in via site's outputs config)
+[outputFormats.OG]
+baseName = "og"
+mediaType = "text/html"
+suffix = "htm"
+isHTML = true
+permalinkable = true
+
 # Required for feeds - RSS & JSON
 [outputFormats.RSS]
 mediatype = "application/rss"
