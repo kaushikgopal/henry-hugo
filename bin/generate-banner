@@ -17,11 +17,19 @@ FORCE=false
 PORT=13990
 SESSION="kau-og-$$"
 
-# resolve post file
+# resolve post file and detect page bundles
+# accepts: directory, directory/index.md, or standalone .md
+is_bundle=false
 if [[ -d "$INPUT" ]]; then
-  post_file="$INPUT/index.md"
+  post_file="${INPUT%/}/index.md"
+  bundle_dir="${INPUT%/}"
+  is_bundle=true
 elif [[ -f "$INPUT" ]]; then
   post_file="$INPUT"
+  if [[ "$(basename "$INPUT")" == "index.md" ]]; then
+    bundle_dir="$(dirname "$INPUT")"
+    is_bundle=true
+  fi
 else
   echo "Error: '$INPUT' is not a file or directory" >&2
   exit 1
@@ -45,7 +53,13 @@ year=$(echo "$date_raw" | cut -c1-4)
 # relative permalink path (strip https://kau.sh)
 rel_permalink=$(echo "$permalink" | sed 's|https://[^/]*/|/|')
 
-out="static/images/content/uploads/og/${slug}.webp"
+# page bundles: output into the bundle directory (becomes a page resource)
+# standalone posts: output to static og directory
+if [[ "$is_bundle" == "true" ]]; then
+  out="${bundle_dir}/${slug}.webp"
+else
+  out="static/images/content/uploads/og/${slug}.webp"
+fi
 
 # skip if up-to-date (unless --force)
 if [[ "$FORCE" != "true" ]] && [[ -f "$out" ]] \
