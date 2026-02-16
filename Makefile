@@ -1,5 +1,5 @@
 # Declare non-file targets
-.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short
+.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner
 
 # Configuration variables
 log ?= warn          # debug|info|warn|error
@@ -92,3 +92,6 @@ post-folder:	## Create new blog post folder (usage: make post-folder slug=my-pos
 
 short:		## Create new short post (usage: make short slug=my-short)
 	@hugo new content -k short content/blog/$$(date +%Y-%m-%d)-$(slug).md
+
+banner:		## Generate OG banner image (usage: make banner post=content/blog/2025-01-01-my-post.md)
+	@./bin/generate-banner $(post)

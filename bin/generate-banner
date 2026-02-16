@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: $0 <content-path> [--force]"
+  echo "  content-path: path to a .md file or page bundle directory"
+  echo "  --force: regenerate even if output is up-to-date"
+  exit 1
+}
+
+[[ $# -lt 1 ]] && usage
+
+INPUT="$1"
+FORCE=false
+[[ "${2:-}" == "--force" ]] && FORCE=true
+
+PORT=13990
+SESSION="kau-og-$$"
+
+# resolve post file
+if [[ -d "$INPUT" ]]; then
+  post_file="$INPUT/index.md"
+elif [[ -f "$INPUT" ]]; then
+  post_file="$INPUT"
+else
+  echo "Error: '$INPUT' is not a file or directory" >&2
+  exit 1
+fi
+
+[[ ! -f "$post_file" ]] && echo "Error: '$post_file' not found" >&2 && exit 1
+
+# resolve metadata via hugo list all
+csv_line=$(hugo list all 2>/dev/null | grep "^${post_file}," || true)
+if [[ -z "$csv_line" ]]; then
+  echo "Error: '$post_file' not found in 'hugo list all' output" >&2
+  exit 1
+fi
+
+slug=$(echo "$csv_line" | cut -d',' -f2)
+date_raw=$(echo "$csv_line" | cut -d',' -f4)
+permalink=$(echo "$csv_line" | cut -d',' -f8)
+section=$(echo "$csv_line" | cut -d',' -f10)
+year=$(echo "$date_raw" | cut -c1-4)
+
+# relative permalink path (strip https://kau.sh)
+rel_permalink=$(echo "$permalink" | sed 's|https://[^/]*/|/|')
+
+out="static/images/content/uploads/og/${slug}.webp"
+
+# skip if up-to-date (unless --force)
+if [[ "$FORCE" != "true" ]] && [[ -f "$out" ]] \
+  && [[ "$out" -nt "$post_file" ]] \
+  && [[ "$out" -nt "static/images/kg.jpeg" ]] \
+  && [[ "$out" -nt "themes/henry/layouts/_default/single.og.htm" ]] \
+  && [[ "$out" -nt "hugo.banner.yaml" ]] \
+  && [[ "$out" -nt "$0" ]]; then
+  echo "Up-to-date: $out"
+  exit 0
+fi
+
+echo "Generating banner for: $slug ($section, $year)"
+echo "  Output: $out"
+
+# ensure output directory exists
+mkdir -p "$(dirname "$out")"
+
+tmp_png=$(mktemp /tmp/og-banner-XXXXXX.png)
+trap 'rm -f "$tmp_png"; kill $(lsof -ti:'"$PORT"') 2>/dev/null || true; agent-browser --session "$SESSION" close 2>/dev/null || true' EXIT
+
+# start hugo server in background
+hugo server \
+  --config hugo.yaml,hugo.banner.yaml \
+  --bind 127.0.0.1 \
+  --port "$PORT" \
+  --disableFastRender \
+  --renderToMemory \
+  --logLevel error &
+
+# wait for server to be ready
+echo "  Waiting for Hugo server on port $PORT..."
+for i in $(seq 1 30); do
+  if curl -s -o /dev/null "http://127.0.0.1:${PORT}/" 2>/dev/null; then
+    break
+  fi
+  sleep 0.5
+done
+
+# verify the og.html page exists
+url="http://127.0.0.1:${PORT}${rel_permalink}og.html"
+status=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+if [[ "$status" != "200" ]]; then
+  echo "Error: $url returned HTTP $status" >&2
+  exit 1
+fi
+
+# screenshot with agent-browser
+echo "  Screenshotting: $url"
+agent-browser --session "$SESSION" open "$url"
+agent-browser --session "$SESSION" set viewport 1200 630
+agent-browser --session "$SESSION" wait --fn "window.__OG_READY === true"
+agent-browser --session "$SESSION" screenshot "$tmp_png"
+agent-browser --session "$SESSION" close
+
+# convert to webp
+echo "  Converting to WebP..."
+cwebp -q 82 -m 6 -mt -sharp_yuv -metadata none "$tmp_png" -o "$out" 2>/dev/null
+
+echo "Done: $out"
