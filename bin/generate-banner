@@ -2,20 +2,53 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: $0 <content-path> [--force]"
+  echo "Usage: $0 <content-path> [--force] [--avatar <path>] [--desc]"
   echo "  content-path: path to a .md file or page bundle directory"
   echo "  --force: regenerate even if output is up-to-date"
+  echo "  --avatar: override avatar image (Hugo-style path, e.g. /images/logo.png)"
+  echo "  --desc: show description text below title"
   exit 1
 }
 
 [[ $# -lt 1 ]] && usage
 
 INPUT="$1"
+shift
 FORCE=false
-[[ "${2:-}" == "--force" ]] && FORCE=true
+AVATAR=""
+SHOW_DESC=false
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --force) FORCE=true; shift ;;
+    --avatar) AVATAR="$2"; shift 2 ;;
+    --desc) SHOW_DESC=true; shift ;;
+    *) echo "Unknown option: $1" >&2; usage ;;
+  esac
+done
 
 PORT=13990
-SESSION="kau-og-$$"
+SESSION="og-$$"
+
+# detect main config file (hugo supports yaml, toml, json)
+if [[ -f "hugo.yaml" ]]; then
+  main_config="hugo.yaml"
+elif [[ -f "hugo.toml" ]]; then
+  main_config="hugo.toml"
+elif [[ -f "hugo.json" ]]; then
+  main_config="hugo.json"
+else
+  echo "Error: no hugo config file found (hugo.yaml/toml/json)" >&2
+  exit 1
+fi
+
+# extract baseURL from main config (hugo server overrides it otherwise)
+if [[ "$main_config" == *.yaml ]] || [[ "$main_config" == *.yml ]]; then
+  base_url=$(grep -m1 '^baseURL:' "$main_config" | sed 's/^baseURL: *//' | tr -d "\"'" || true)
+elif [[ "$main_config" == *.toml ]]; then
+  base_url=$(grep -m1 '^baseURL' "$main_config" | sed 's/^baseURL *= *//' | tr -d "\"'" || true)
+fi
+base_url="${base_url:-http://localhost:1313}"
 
 # resolve post file and detect page bundles
 # accepts: directory, directory/index.md, or standalone .md
@@ -44,27 +77,27 @@ if [[ -z "$csv_line" ]]; then
   exit 1
 fi
 
-slug=$(echo "$csv_line" | cut -d',' -f2)
+# strip leading/trailing slashes from slug (e.g. /304/ → 304)
+slug=$(echo "$csv_line" | cut -d',' -f2 | sed 's|^/||;s|/$||')
 date_raw=$(echo "$csv_line" | cut -d',' -f4)
 permalink=$(echo "$csv_line" | cut -d',' -f8)
 section=$(echo "$csv_line" | cut -d',' -f10)
 year=$(echo "$date_raw" | cut -c1-4)
 
-# relative permalink path (strip https://kau.sh)
+# relative permalink path
 rel_permalink=$(echo "$permalink" | sed 's|https://[^/]*/|/|')
 
 # page bundles: output into the bundle directory (becomes a page resource)
-# standalone posts: output to static og directory
+# standalone posts: output to static/images/og/
 if [[ "$is_bundle" == "true" ]]; then
   out="${bundle_dir}/${slug}.webp"
 else
-  out="static/images/content/uploads/og/${slug}.webp"
+  out="static/images/og/${slug}.webp"
 fi
 
 # skip if up-to-date (unless --force)
 if [[ "$FORCE" != "true" ]] && [[ -f "$out" ]] \
   && [[ "$out" -nt "$post_file" ]] \
-  && [[ "$out" -nt "static/images/kg.jpeg" ]] \
   && [[ "$out" -nt "themes/henry/layouts/_default/single.og.htm" ]] \
   && [[ "$out" -nt "hugo.banner.yaml" ]] \
   && [[ "$out" -nt "$0" ]]; then
@@ -79,11 +112,24 @@ echo "  Output: $out"
 mkdir -p "$(dirname "$out")"
 
 tmp_png=$(mktemp /tmp/og-banner-XXXXXX.png)
-trap 'rm -f "$tmp_png"; kill $(lsof -ti:'"$PORT"') 2>/dev/null || true; agent-browser --session "$SESSION" close 2>/dev/null || true' EXIT
+override_config=""
+trap 'rm -f "$tmp_png" "$override_config"; kill $(lsof -ti:'"$PORT"') 2>/dev/null || true; agent-browser --session "$SESSION" close 2>/dev/null || true' EXIT
+
+# build config chain (with optional overrides via temp config)
+config_chain="${main_config},hugo.banner.yaml"
+override_config=""
+if [[ -n "$AVATAR" ]] || [[ "$SHOW_DESC" == "true" ]]; then
+  override_config=$(mktemp /tmp/og-override-XXXXXX.yaml)
+  echo "params:" > "$override_config"
+  [[ -n "$AVATAR" ]] && echo "  avatar: \"$AVATAR\"" >> "$override_config"
+  [[ "$SHOW_DESC" == "true" ]] && echo "  og_show_desc: true" >> "$override_config"
+  config_chain="${config_chain},${override_config}"
+fi
 
 # start hugo server in background
 hugo server \
-  --config hugo.yaml,hugo.banner.yaml \
+  --config "$config_chain" \
+  --baseURL "$base_url" \
   --bind 127.0.0.1 \
   --port "$PORT" \
   --disableFastRender \

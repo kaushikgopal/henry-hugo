@@ -1,4 +1,6 @@
-{{- $label := printf "kau.sh/%s/%s" .Section .Slug -}}
+{{- $host := (urls.Parse .Site.BaseURL).Host | replaceRE ":\\d+$" "" -}}
+{{- $slug := .Slug | strings.TrimPrefix "/" | strings.TrimSuffix "/" -}}
+{{- $label := printf "%s/%s/%s" $host .Section $slug -}}
 <!doctype html>
 <html lang="{{ .Language.Lang }}">
   <head>
@@ -13,27 +15,29 @@
     <div id="og-root" class="w-[1200px] h-[630px] bg-black text-white flex flex-col">
 
       {{/* ── terminal chrome ── */}}
-      <div class="h-[44px] flex items-center px-5 border-b border-white/5 shrink-0 bg-[#151515]">
-        <div class="flex gap-2">
-          <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
-          <span class="w-3 h-3 rounded-full bg-[#febc2e]"></span>
-          <span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+      <div class="h-[58px] flex items-center px-6 border-b border-white/5 shrink-0 bg-[#151515]">
+        <div class="flex gap-2.5">
+          <span class="w-4 h-4 rounded-full bg-[#ff5f57]"></span>
+          <span class="w-4 h-4 rounded-full bg-[#febc2e]"></span>
+          <span class="w-4 h-4 rounded-full bg-[#28c840]"></span>
         </div>
-        <span class="flex-1 text-center text-[15px] text-white/60 tracking-wide">{{ $label }}</span>
-        <div class="w-[52px]"></div> {{/* balance the dots */}}
+        <span class="flex-1 text-center text-[20px] text-white/80 tracking-wide">{{ $label }}</span>
+        <div class="w-[62px]"></div> {{/* balance the dots */}}
       </div>
 
       {{/* ── content area ── */}}
-      <div class="flex flex-1 px-14 py-10 gap-10 items-center overflow-hidden">
+      <div class="flex flex-1 px-10 py-6 gap-8 items-center overflow-hidden">
 
-        {{/* left column: title + summary */}}
+        {{/* left column: title + optional summary */}}
         <div class="flex flex-col justify-center flex-1 min-w-0">
-          <h1 class="text-[64px] leading-[1.08] font-bold tracking-tight text-white m-0 line-clamp-3">
+          <h1 class="text-[64px] leading-[1.08] font-bold tracking-tight text-white m-0 line-clamp-4">
             {{ .Title }}
           </h1>
+          {{ if .Site.Params.og_show_desc }}
           <p class="text-slate-400 text-[22px] leading-[1.5] mt-6 max-w-[640px] line-clamp-5 m-0">
             {{ partial "get-first-paragraph-ellipsised.html" .Content }}
           </p>
+          {{ end }}
           {{/* ── fish prompt ── */}}
           <div class="mt-8 text-[22px] flex items-center gap-[6px]">
             <span class="text-[#5af78e]">&gt;</span>
@@ -44,7 +48,7 @@
         {{/* right column: halftone portrait */}}
         <div class="shrink-0 flex items-center justify-center">
           <canvas id="og-portrait" width="420" height="420"
-                  class="w-[340px] h-[340px] rounded-lg"></canvas>
+                  class="w-[400px] h-[400px] rounded-lg"></canvas>
         </div>
 
       </div>
@@ -74,31 +78,43 @@
         const sh = img.height * scale;
         ctx.drawImage(img, (W - sw) / 2, (H - sh) / 2, sw, sh);
 
-        // ordered dithering with 4x4 Bayer matrix
-        const bayer = [
-          [ 0,  8,  2, 10],
-          [12,  4, 14,  6],
-          [ 3, 11,  1,  9],
-          [15,  7, 13,  5]
-        ];
+        // halftone dot effect: round dots on a grid, size = brightness, color preserved
+        // og_dot_grid controls density: higher = more dots (default 48)
+        const GRID = {{ .Site.Params.og_dot_grid | default 48 }};
+        const spacing = W / GRID;
+        const maxR = spacing * 0.48;
 
+        // sample pixel colors before clearing
         const imageData = ctx.getImageData(0, 0, W, H);
         const d = imageData.data;
 
-        for (let y = 0; y < H; y++) {
-          for (let x = 0; x < W; x++) {
-            const i = (y * W + x) * 4;
-            const lum = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-            const threshold = ((bayer[y % 4][x % 4] + 0.5) / 16) * 255;
-            const val = lum > threshold ? 220 : 0;
+        // clear to black
+        ctx.clearRect(0, 0, W, H);
 
-            d[i]     = val;
-            d[i + 1] = val;
-            d[i + 2] = val;
+        // draw halftone dots
+        for (let row = 0; row < GRID; row++) {
+          for (let col = 0; col < GRID; col++) {
+            const cx = (col + 0.5) * spacing;
+            const cy = (row + 0.5) * spacing;
+
+            // sample color at grid center
+            const sx = Math.min(Math.floor(cx), W - 1);
+            const sy = Math.min(Math.floor(cy), H - 1);
+            const i = (sy * W + sx) * 4;
+            const r = d[i], g = d[i + 1], b = d[i + 2];
+
+            // luminance → dot radius
+            const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            const radius = lum * maxR;
+
+            if (radius > 0.5) {
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+              ctx.fillStyle = `rgb(${r},${g},${b})`;
+              ctx.fill();
+            }
           }
         }
-
-        ctx.putImageData(imageData, 0, 0);
 
         window.__OG_READY = true;
       })();
