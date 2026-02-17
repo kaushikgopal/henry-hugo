@@ -77,11 +77,12 @@ if [[ -z "$csv_line" ]]; then
   exit 1
 fi
 
-# strip leading/trailing slashes from slug (e.g. /304/ → 304)
-slug=$(echo "$csv_line" | cut -d',' -f2 | sed 's|^/||;s|/$||')
-date_raw=$(echo "$csv_line" | cut -d',' -f4)
-permalink=$(echo "$csv_line" | cut -d',' -f8)
-section=$(echo "$csv_line" | cut -d',' -f10)
+# neutralize quoted CSV fields before splitting (titles may contain commas)
+clean_csv=$(echo "$csv_line" | sed 's/,"[^"]*"/,_/g')
+slug=$(echo "$clean_csv" | cut -d',' -f2 | sed 's|^/||;s|/$||')
+date_raw=$(echo "$clean_csv" | cut -d',' -f4)
+permalink=$(echo "$clean_csv" | cut -d',' -f8)
+section=$(echo "$clean_csv" | cut -d',' -f10)
 year=$(echo "$date_raw" | cut -c1-4)
 
 # relative permalink path
@@ -132,6 +133,7 @@ hugo server \
   --baseURL "$base_url" \
   --bind 127.0.0.1 \
   --port "$PORT" \
+  --buildDrafts \
   --disableFastRender \
   --renderToMemory \
   --logLevel error &
