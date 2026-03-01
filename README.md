@@ -36,7 +36,11 @@ theme = "henry"
 # 4. run Hugo!
 ```
 
-You're good to go. Happy blogging!
+
+added instructions to README.md on how to add hugo contact form 
+
+## [add hugo contact form](https://fabform.io/a/hugo-contact-form)
+
 
 For making things simpler to run, I recommend using the `Makefile`
 
