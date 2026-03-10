@@ -1,40 +1,78 @@
-{{/* Shortcode to insert Simplecast audio player.
-You only provide the Download url that Simplecast provides as "MP3 Download"
+{{/* Shortcode to insert a Simplecast audio player.
 
-There are currently two patterns of URLs:
+You can provide either:
+- the direct download URL that Simplecast provides as "MP3 Download"
+- a Simplecast player id via `player-id`
+- the player URL / iframe src that Simplecast provides for embeds
+
+These direct-download patterns can be translated locally:
 
 1.
 https://cdn.simplecast.com/audio/20f35050-e836-44cd-8f7f-fd13e8cb2e44/episodes/c763ebae-3eb3-47f4-aa35-f4c4d0a2a30f/audio/0e9f5ec5-9869-46f9-a3b1-765bf29ff246/default_tc.mp3?aid=rss_feed&feed=LpAGSLnY
 2.
 https://cdn.simplecast.com/audio/20f350/20f35050-e836-44cd-8f7f-fd13e8cb2e44/eb75aecf-c022-41e9-ae20-49b5673f7266/198_tc.mp3?nocache
 
-Both of these will translate to embed urls that looks like this:
+These translate to embed URLs that look like this:
 
 1. https://player.simplecast.com/c763ebae-3eb3-47f4-aa35-f4c4d0a2a30f?dark=true
 2. https://player.simplecast.com/eb75aecf-c022-41e9-ae20-49b5673f7266?dark=true
 
+Newer transcoded group-item download URLs do not expose the embeddable episode id,
+so for those you should pass the player URL (or iframe src) explicitly.
+
+Examples:
+{{< scast "https://cdn.simplecast.com/audio/.../default_tc.mp3?nocache" >}}
+{{< scast player-id="7bcd5461-9e74-4cf9-95bb-6b3bd45fed0c" >}}
+{{< scast player="https://player.simplecast.com/7bcd5461-9e74-4cf9-95bb-6b3bd45fed0c?dark=false" src="https://cdn.simplecast.com/media/audio/transcoded/.../128_default_tc.mp3?nocache" >}}
+
 */}}
 
 {{- $src := "" -}}
+{{- $player := "" -}}
+{{- $playerID := "" -}}
 {{- if .IsNamedParams -}}
 {{- $src = .Get "src" -}}
+{{- $player = .Get "player" -}}
+{{- $playerID = .Get "player-id" -}}
 {{- else -}}
 {{- $src = .Get 0 -}}
+{{- $player = .Get 1 -}}
 {{- end -}}
 
-{{- if $src -}}
 {{- $audioID := "" -}}
-{{- if findRE "/episodes/" $src -}}
-{{- $audioID = replaceRE ".*/episodes/([a-z0-9-]+)/audio.*" "$1" $src -}}
-{{- else -}}
-{{- $audioID = replaceRE ".*/([a-z0-9-]+)/([a-z0-9-]+)_tc\\.mp3.*" "$1" $src -}}
+{{- $playerURL := "" -}}
+{{- if and (not $player) $playerID -}}
+{{- $player = printf "https://player.simplecast.com/%s?dark=true" $playerID -}}
 {{- end -}}
 
+{{- if and (not $player) $src (findRE "<iframe" $src) -}}
+{{- $player = replaceRE `(?s).*src="([^"]*player\.simplecast\.com/[^"]+)".*` "$1" $src -}}
+{{- end -}}
+{{- if and (not $player) $src (findRE "player\\.simplecast\\.com/" $src) -}}
+{{- $player = $src -}}
+{{- end -}}
+
+{{- if $player -}}
+{{- $audioID = replaceRE ".*player\\.simplecast\\.com/([a-z0-9-]+).*" "$1" $player -}}
+{{- $playerURL = $player -}}
+{{- else if and $src (findRE "/episodes/[a-z0-9-]+/audio" $src) -}}
+{{- $audioID = replaceRE ".*/episodes/([a-z0-9-]+)/audio.*" "$1" $src -}}
+{{- else if and $src (findRE ".*/[a-z0-9-]+/[^/]+\\.mp3" $src) -}}
+{{- $audioID = replaceRE ".*/([a-z0-9-]+)/[^/]+\\.mp3.*" "$1" $src -}}
+{{- end -}}
+
+{{- if and (not $playerURL) $audioID -}}
+{{- $playerURL = printf "https://player.simplecast.com/%s?dark=true" $audioID -}}
+{{- end -}}
+
+{{- if $playerURL -}}
 <p>
     <iframe width="100%" class="h-[52px] sm:h-[200px] w-full" frameborder="no" scrolling="no" seamless
-        src="https://player.simplecast.com/{{ $audioID }}?dark=true">
+        src="{{ $playerURL }}">
     </iframe>
 </p>
+{{- end -}}
+{{- if and $src (findRE "cdn\\.simplecast\\.com/.*\\.mp3" $src) -}}
 <p class="mt-2!">
     <a class="download-link font-bold text-right text-sm block" href="{{ $src }}">Download directly</a>
 </p>
