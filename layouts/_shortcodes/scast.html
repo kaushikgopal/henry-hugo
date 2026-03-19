@@ -66,11 +66,11 @@ Examples:
 {{- end -}}
 
 {{- if $playerURL -}}
-<p>
-    <iframe width="100%" class="h-[52px] sm:h-[200px] w-full" frameborder="no" scrolling="no" seamless
+<div class="overflow-hidden sm:h-[200px]">
+    <iframe class="w-full h-full border-0" scrolling="no"
         src="{{ $playerURL }}">
     </iframe>
-</p>
+</div>
 {{- end -}}
 {{- if and $src (findRE "cdn\\.simplecast\\.com/.*\\.mp3" $src) -}}
 <p class="mt-2!">
