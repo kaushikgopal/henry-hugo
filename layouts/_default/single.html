@@ -83,8 +83,12 @@
     <article class="post-content flex flex-col items-center w-full">
         {{ .Content }}
     </article>
-    {{ end }} {{- partial "social-reshare.html" . -}} {{- partial "nav.html" .
-    -}}
+    {{ end }}
+    {{- partial "social-reshare.html" . -}}
+    {{ if eq .Section "blog" }}
+    {{- partial "social-links.html" . -}}
+    {{ end }}
+    {{- partial "nav.html" . -}}
 </section>
 
 <div class="post-meta bg-hbg-dark flex flex-col items-center">
