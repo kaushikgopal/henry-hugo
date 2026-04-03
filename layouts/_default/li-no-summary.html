@@ -22,8 +22,8 @@
     {{ end }} {{ .Date.Format "2006-01" }}
   </span>
 
-  <!-- Title column -->
-  <h1 class="post-link-url font-title font-semibold leading-tight">
+  <!-- Title column: div instead of h1 to avoid heading styles from post-content context -->
+  <div class="post-link-url font-title font-semibold leading-tight text-base">
     {{ if .Draft }}<span class="draft pill-hc2-solid text-xs mr-1">Draft</span
     >{{ end }}
     <a
@@ -34,5 +34,5 @@
       .Type "shorts" }} {{ partial "get-first-paragraph-ellipsised.html"
       .Content }} {{ else }} {{ .Title }} {{ end }}
     </a>
-  </h1>
+  </div>
 </div>
