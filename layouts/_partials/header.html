@@ -54,23 +54,27 @@
             <!-- Nav links - hidden on mobile, shown on sm: -->
             <nav class="hidden
                         sm:flex items-center gap-4
-                        text-base font-semibold uppercase
+                        text-base font-semibold
                        text-ht-lighter">
                 <a href="/blog/"
                    class='no-underline {{ if eq .Name "Blogs" }}text-ht{{ end }}'>
-                    posts
+                    Writing
                 </a>
                 <a href="/tags/"
                    class='no-underline {{ if eq .Name "Tags" }}text-ht{{ end }}'>
-                    topics
+                    Topics
                 </a>
                 <a href="/letter/"
                    class='no-underline {{ if eq .RelPermalink "/letter/" }}text-ht{{ end }}'>
-                    letters
+                    Letters
                 </a>
                 <a href="/about/"
                    class='no-underline {{ if eq .RelPermalink "/about/" }}text-ht{{ end }}'>
-                    about
+                    About
+                </a>
+                <a href="/tools/"
+                   class='no-underline {{ if eq .RelPermalink "/tools/" }}text-ht{{ end }}'>
+                    Tools
                 </a>
             </nav>
 
@@ -144,11 +148,12 @@
 
     <!-- Nav links in overlay -->
     <nav class="flex flex-col items-center gap-8
-                font-semibold uppercase">
-        <a href="/blog/" class="no-underline hover:text-hc">posts</a>
-        <a href="/tags/" class="no-underline hover:text-hc">topics</a>
-        <a href="/letter/" class="no-underline hover:text-hc">letters</a>
-        <a href="/about/" class="no-underline hover:text-hc">about</a>
+                font-semibold">
+        <a href="/blog/" class="no-underline hover:text-hc">Writing</a>
+        <a href="/tags/" class="no-underline hover:text-hc">Topics</a>
+        <a href="/letter/" class="no-underline hover:text-hc">Letters</a>
+        <a href="/about/" class="no-underline hover:text-hc">About</a>
+        <a href="/tools/" class="no-underline hover:text-hc">Tools</a>
     </nav>
 </div>
 
