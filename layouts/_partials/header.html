@@ -60,10 +60,6 @@
                    class='no-underline {{ if eq .Name "Blogs" }}text-ht{{ end }}'>
                     Writing
                 </a>
-                <a href="/tags/"
-                   class='no-underline {{ if eq .Name "Tags" }}text-ht{{ end }}'>
-                    Topics
-                </a>
                 <a href="/letter/"
                    class='no-underline {{ if eq .RelPermalink "/letter/" }}text-ht{{ end }}'>
                     Letters
@@ -146,7 +142,6 @@
     <nav class="flex flex-col items-center gap-8
                 font-semibold">
         <a href="/blog/" class="no-underline hover:text-hc">Writing</a>
-        <a href="/tags/" class="no-underline hover:text-hc">Topics</a>
         <a href="/letter/" class="no-underline hover:text-hc">Letters</a>
         <a href="/about/" class="no-underline hover:text-hc">About</a>
     </nav>
