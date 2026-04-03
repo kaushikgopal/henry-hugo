@@ -73,9 +73,9 @@
                     {{ $latestBlogPost.Title }}
                 </a>
             </h2>
-            <p class="text-ht-lighter text-base leading-snug mb-3 line-clamp-2">
+            <div class="text-ht-lighter text-base leading-snug mb-3 space-y-3">
                 {{ if $latestBlogPost.Params.summary }}{{ $latestBlogPost.Params.summary }}{{ else }}{{ $latestBlogPost.Summary }}{{ end }}
-            </p>
+            </div>
             <a class="text-ht-lighter text-sm underline" href="{{ $latestBlogPost.RelPermalink }}">Keep reading →</a>
         </div>
         <hr class="mb-10" />
