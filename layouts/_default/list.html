@@ -66,7 +66,7 @@
     {{ if eq .RelPermalink "/blog/" }}
         {{ $latestBlogPost := index (where .Site.RegularPages "Section" "blog" | first 1) 0 }}
         {{ if $latestBlogPost }}
-        <div class="featured-post mb-10 pb-10 border-b border-ht-light">
+        <div class="featured-post pb-10">
             <p class="text-xs uppercase tracking-widest text-ht-lighter mb-2">latest</p>
             <h2 class="font-title font-semibold text-2xl leading-tight mb-2">
                 <a class="no-underline hover:text-hc" href="{{ $latestBlogPost.RelPermalink }}">
@@ -78,13 +78,16 @@
             </p>
             <a class="text-ht-lighter text-sm underline" href="{{ $latestBlogPost.RelPermalink }}">Keep reading →</a>
         </div>
+        <hr class="mb-10" />
         {{ end }}
 
-        <div class="topics mb-10 pb-10 border-b border-ht-light">
+        <div class="topics pb-10">
             <h2 class="text-xs uppercase tracking-widest text-ht-lighter mb-3">topics</h2>
             {{ partial "tag-cloud.html" (dict "Site" .Site "count" 20 "sort" "popular") }}
         </div>
 
+        <hr class="mb-10" />
+        
         <h2 class="text-xs uppercase tracking-widest text-ht-lighter mb-3">writing</h2>
     {{ end }}
 
