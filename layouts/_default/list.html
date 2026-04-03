@@ -5,6 +5,13 @@
 
 
     {{ $pages := partial "get-posts.html" . }}
+
+    <!-- On /blog/, exclude the featured post from the archive to avoid duplication -->
+    {{ if eq .RelPermalink "/blog/" }}
+        {{ $latestBlogPostPermalink := (index (where .Site.RegularPages "Section" "blog" | first 1) 0).Permalink }}
+        {{ $pages = where $pages "Permalink" "ne" $latestBlogPostPermalink }}
+    {{ end }}
+
     {{ $groupedPages := slice }}
     {{ $isListType := in (slice "home" "section" "taxonomy" "term") .Kind }}
     {{ $shouldPaginate := and $isListType (.Site.Params.enablePagination | default false) }}
@@ -53,6 +60,32 @@
         <div class = "mb-10">
             {{ partial "tag-cloud.html" (dict "Site" .Site "count" -1 "sort" "alphabetical") }}
         </div>
+    {{ end }}
+
+    <!-- Writing page: featured latest post + topics -->
+    {{ if eq .RelPermalink "/blog/" }}
+        {{ $latestBlogPost := index (where .Site.RegularPages "Section" "blog" | first 1) 0 }}
+        {{ if $latestBlogPost }}
+        <div class="featured-post mb-10 pb-10 border-b border-ht-lighter">
+            <p class="text-xs uppercase tracking-widest text-ht-lighter mb-2">latest</p>
+            <h2 class="font-title font-semibold text-2xl leading-tight mb-2">
+                <a class="no-underline hover:text-hc" href="{{ $latestBlogPost.RelPermalink }}">
+                    {{ $latestBlogPost.Title }}
+                </a>
+            </h2>
+            <p class="text-ht-lighter text-base leading-snug mb-3 line-clamp-2">
+                {{ if $latestBlogPost.Params.summary }}{{ $latestBlogPost.Params.summary }}{{ else }}{{ $latestBlogPost.Summary }}{{ end }}
+            </p>
+            <a class="text-hc text-sm no-underline hover:underline" href="{{ $latestBlogPost.RelPermalink }}">Keep reading →</a>
+        </div>
+        {{ end }}
+
+        <div class="topics mb-10 pb-10 border-b border-ht-lighter">
+            <h2 class="text-xs uppercase tracking-widest text-ht-lighter mb-3">topics</h2>
+            {{ partial "tag-cloud.html" (dict "Site" .Site "count" 20 "sort" "popular") }}
+        </div>
+
+        <h2 class="text-xs uppercase tracking-widest text-ht-lighter mb-3">writing</h2>
     {{ end }}
 
     {{ if ne .Kind "page" }}
@@ -105,7 +138,11 @@
             </h2>
             <div class="post-list-content">
                 {{ range $groupPages }}
+                {{ if eq $.RelPermalink "/blog/" }}
+                {{ .Render "li-no-summary" }}
+                {{ else }}
                 {{ .Render "li" }}
+                {{ end }}
                 {{ end }}
             </div>
         {{ end }}

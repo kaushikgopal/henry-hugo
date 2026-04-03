@@ -1,74 +1,36 @@
 <div class="mb-4 md:mb-10">
     <aside class="post-metadata">
-        <div class="tags flex flex-row gap-2 mb-1 md:mb-4">
-            {{ $postType := .Type | singularize }} {{ $postType = replace
-            $postType "ppt" "talk" }} {{ $postType = replace $postType "blog"
-            "post" }} {{ $postType = cond .Params.externalLink "link" $postType
-            }} {{/*
-            <a class="nav-link pill-hc {{ $postType }}" href="/{{.Section}}">
-                {{ $postType }}
-            </a>
-            */}} {{ if .Draft }}
-            <div class="draft pill-hc2-solid">Draft</div>
-            {{ end }}
-        </div>
+        {{ if .Draft }}
+        <div class="draft pill-hc2-solid mb-1">Draft</div>
+        {{ end }}
 
-        {{ if eq .Type "shorts" }}
-        <!-- Shorts layout -->
-        <article class="post-summary
-                        font-title leading-tight font-semibold">
-            <a
-                href="{{ .RelPermalink }}"
-                class="relative flex items-center !no-underline group"
+        <h1 class="post-link-url font-title leading-tight font-semibold relative">
+            {{ if eq .Type "shorts" }}
+            <svg
+                class="absolute left-[-4px] top-4 md:left-[-10px] md:top-6 w-6 h-6 md:w-10 md:h-10 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             >
-                <svg
-                    class="absolute left-[-4px] top-4 md:left-[-10px] md:top-6 w-6 h-6 md:w-10 md:h-10 text-ht-lighter opacity-20 dark:opacity-80 -translate-y-1/2 -translate-x-2 pointer-events-none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path
-                        d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"
-                    ></path>
-                </svg>
-                <!-- keep it same as line 46 -->
-                <span class="relative pl-4 -ml-4 group-hover:underline">
-                    {{ partial "get-first-paragraph-ellipsised.html" .Content }}
-                </span>
-            </a>
-        </article>
-
-        {{ else }}
-        <!-- Regular post layout -->
-        <h1
-            class=" post-link-url
-                    font-title leading-tight font-semibold"
-        >
+                <path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path>
+            </svg>
+            {{ end }}
             <a class="no-underline
-                {{ if (eq $postType "link") }}
-                 external-link
-                {{ end }}" href="{{ .RelPermalink }}">
-                {{ if eq .Section "log" }} {{ .Date.Format "January 2006" }} {{
-                else }} {{ .Title }} {{ end }}
+                {{ if .Params.externalLink }}external-link{{ end }}"
+               href="{{ .RelPermalink }}">
+                {{ if eq .Section "log" }}
+                    {{ .Date.Format "January 2006" }}
+                {{ else }}
+                    {{ .Title }}
+                {{ end }}
             </a>
-
-
         </h1>
 
         <article class="post-summary hidden md:block line-clamp-3">
-            <div
-                class="hidden md:block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight"
-            >
-                {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{
-                .Summary }}{{ end }}
+            <div class="hidden md:block text-ht-lighter line-clamp-3 mt-2 text-base md:text-lg leading-tight">
+                {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
             </div>
         </article>
-        {{ end }}
     </aside>
 </div>
