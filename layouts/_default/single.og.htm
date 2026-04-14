@@ -31,7 +31,7 @@
         {{/* left column: title + optional summary */}}
         <div class="flex flex-col justify-center flex-1 min-w-0">
           <h1 class="text-[64px] leading-[1.08] font-bold tracking-tight text-white m-0 line-clamp-4">
-            {{ .Title }}
+            {{ with .Params.og_title }}{{ . }}{{ else }}{{ .Title }}{{ end }}
           </h1>
           {{ if .Site.Params.og_show_desc }}
           <p class="text-slate-400 text-[22px] leading-[1.5] mt-6 max-w-[640px] line-clamp-5 m-0">
