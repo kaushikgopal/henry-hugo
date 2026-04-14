@@ -1,6 +1,7 @@
-{{/* get-title-for-post.html: Returns first 9 chars of summary or params.summary, with ellipsis */}}
+{{/* get-title-for-post.html: Returns title, or a truncated summary for
+     posts without one (shorts, log entries, etc.) */}}
 
-{{ if ne .Type "shorts" }}
+{{ if and (ne .Type "shorts") .Title }}
   {{ .Title }}
 {{ else }}
   {{ $summary := .Title }}
