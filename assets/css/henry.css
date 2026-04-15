@@ -194,19 +194,13 @@
 
     /* Dinkus separator: user-written --- in post content */
     .blog-content-width + .post-content > hr {
-        overflow: visible;
-        text-align: center;
-        @apply mx-auto mb-12;
+        @apply overflow-visible text-center mx-auto mb-12;
     }
 
     .blog-content-width + .post-content > hr::before {
+        /* content kept as raw CSS — content-['*_*_*'] is less readable */
         content: "* * *";
-        display: inline-block;
-        @apply text-ht-lighter;
-        font-size: 1.15em;
-        /* letter-spacing adds trailing space after the last *; padding-left compensates */
-        letter-spacing: 0.15em;
-        padding-left: 0.15em;
+        @apply inline-block text-ht-lighter text-[1.15em] tracking-[0.15em] pl-[0.15em];
     }
 
     .post-content figure.full-bleed {
@@ -385,18 +379,13 @@
 
     /* Base callout structure */
     .callout {
-        @apply overflow-hidden py-2;
-        background: var(--color-hbg-lightest);
         /* border intentionally removed — background alone provides the callout affordance */
+        @apply overflow-hidden py-2 bg-hbg-lightest;
     }
 
     /* Icon sits inline inside .callout-title as a flex sibling of the title text */
     .callout-icon {
-        @apply flex items-center justify-center shrink-0 pointer-events-none;
-        width: calc(var(--spacing) * 5);
-        height: calc(var(--spacing) * 5);
-        color: currentColor;
-        opacity: 0.3;
+        @apply flex items-center justify-center shrink-0 pointer-events-none size-5 text-current opacity-30;
     }
 
     .callout-icon svg {
