@@ -67,11 +67,14 @@
   <article class="post-content flex flex-col items-center w-full">
     {{ .Content }}
   </article>
-  {{ end }} {{- partial "social-reshare.html" . -}} {{- partial "nav.html" . -}}
+  {{ end }} {{- partial "nav.html" . -}}
 </section>
 
 <div class="post-meta bg-hbg-dark flex flex-col items-center">
-  <section class="blog-content-width">{{- partial "meta.html" . -}}</section>
+  <section class="blog-content-width">
+    {{- partial "meta.html" . -}}
+    {{- partial "social-reshare.html" . -}}
+  </section>
 </div>
 
 {{ $headingAnchors := resources.Get "js/heading-anchors.js" }} {{ if not
