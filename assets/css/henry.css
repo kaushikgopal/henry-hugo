@@ -10,7 +10,7 @@
 
     a[href*='//'],
     a.external-link {
-        @apply decoration-dotted;
+        text-decoration-style: wavy;
     }
 
     article {
@@ -37,7 +37,9 @@
     }
 
     article hr {
-        @apply border-ht-lighter mt-6;
+        /* Width and centering are in @layer components so they aren't overridden by the
+           post-content wildcard width rule. Only color/spacing belong here. */
+        @apply border-none;
     }
 
     article h1 {
@@ -99,6 +101,11 @@
 @layer utilities {
     .blog-content-width {
         @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
+    }
+
+    /* Hide the tag/category nav at the bottom of individual posts */
+    section.post nav.blog-content-width {
+        @apply hidden;
     }
 
     /* Scrollbar utility: use via class="scrollbar-visible" or add selectors here */
@@ -180,8 +187,26 @@
        ========================================================================== */
 
     /* sibling selector used to avoid width to apply in list page that has snippet on top */
-    .blog-content-width + .post-content > *:not(figure.full-bleed) {
+    /* hr excluded — it gets its own centering rule below */
+    .blog-content-width + .post-content > *:not(figure.full-bleed):not(hr) {
         @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
+    }
+
+    /* Dinkus separator: user-written --- in post content */
+    .blog-content-width + .post-content > hr {
+        overflow: visible;
+        text-align: center;
+        @apply mx-auto mb-12;
+    }
+
+    .blog-content-width + .post-content > hr::before {
+        content: "* * *";
+        display: inline-block;
+        @apply text-ht-lighter;
+        font-size: 1.15em;
+        /* letter-spacing adds trailing space after the last *; padding-left compensates */
+        letter-spacing: 0.15em;
+        padding-left: 0.15em;
     }
 
     .post-content figure.full-bleed {
@@ -231,7 +256,7 @@
     }
 
     .post-content .footnote-backref {
-        @apply font-bold text-hc2-dark no-underline hover:text-hc;
+        @apply font-bold text-ht-light no-underline hover:text-hc;
     }
 
     .post-content th {
@@ -360,21 +385,18 @@
 
     /* Base callout structure */
     .callout {
-        @apply relative overflow-hidden py-2;
+        @apply overflow-hidden py-2;
         background: var(--color-hbg-lightest);
-        border: 3px solid var(--color-hbg-dark);
+        /* border intentionally removed — background alone provides the callout affordance */
     }
 
+    /* Icon sits inline inside .callout-title as a flex sibling of the title text */
     .callout-icon {
-        @apply flex items-center justify-center w-5 h-5 shrink-0;
-        color: var(--callout-icon-color, #64748b);
-    }
-
-    .callout .callout-icon {
-        @apply absolute z-0 w-9 h-9 pointer-events-none;
+        @apply flex items-center justify-center shrink-0 pointer-events-none;
+        width: calc(var(--spacing) * 5);
+        height: calc(var(--spacing) * 5);
+        color: currentColor;
         opacity: 0.3;
-        top: 0.4rem;
-        left: 0.4rem;
     }
 
     .callout-icon svg {
@@ -382,7 +404,7 @@
     }
 
     .callout-title {
-        @apply relative z-10 flex items-center gap-2 px-8 py-3;
+        @apply relative z-10 flex items-center gap-2 px-4 py-2;
     }
 
     .callout-title-inner {
@@ -394,7 +416,7 @@
     }
 
     .callout-content {
-        @apply relative z-10 px-8 py-3;
+        @apply relative z-10 px-4 py-3;
     }
 
     .callout-content > *:first-child {
@@ -414,66 +436,6 @@
         display: none;
     }
 
-    /* Callout variants - Note/Info/FYI */
-    .callout[data-callout="note"],
-    .callout[data-callout="info"],
-    .callout[data-callout="fyi"] {
-        --callout-icon-color: #2563eb;
-    }
-
-    /* Callout variants - TLDR */
-    .callout[data-callout="tldr"] {
-        --callout-icon-color: #0891b2;
-    }
-
-    /* Callout variants - Important/Tip/Hint */
-    .callout[data-callout="important"],
-    .callout[data-callout="tip"],
-    .callout[data-callout="hint"] {
-        --callout-icon-color: #ea580c;
-    }
-
-    /* Callout variants - Warning/Caution/Attention */
-    .callout[data-callout="warning"],
-    .callout[data-callout="caution"],
-    .callout[data-callout="attention"] {
-        --callout-icon-color: #f59e0b;
-    }
-
-    /* Callout variants - Error */
-    .callout[data-callout="error"] {
-        --callout-icon-color: #ef4444;
-    }
-
-    /* Callout variants - Failure/Fail/Missing */
-    .callout[data-callout="failure"],
-    .callout[data-callout="fail"],
-    .callout[data-callout="missing"] {
-        --callout-icon-color: #ec4899;
-    }
-
-    /* Callout variants - Bug */
-    .callout[data-callout="bug"] {
-        --callout-icon-color: #ef4444;
-    }
-
-    /* Callout variants - Example */
-    .callout[data-callout="example"] {
-        --callout-icon-color: #8b5cf6;
-    }
-
-    /* Callout variants - Quote/Cite */
-    .callout[data-callout="quote"],
-    .callout[data-callout="cite"] {
-        --callout-icon-color: #64748b;
-    }
-
-    /* Callout variants - Question/Help/FAQ */
-    .callout[data-callout="question"],
-    .callout[data-callout="help"],
-    .callout[data-callout="faq"] {
-        --callout-icon-color: #22c55e;
-    }
 }
 
 /* ==========================================================================
@@ -504,64 +466,3 @@
     }
 }
 
-/* Dark mode - Callout adjustments */
-@media (prefers-color-scheme: dark) {
-    .callout {
-        --callout-bg: color-mix(
-            in srgb,
-            var(--color-ht-lightest) 70%,
-            black 30%
-        );
-    }
-
-    .callout[data-callout="note"],
-    .callout[data-callout="info"],
-    .callout[data-callout="fyi"] {
-        --callout-icon-color: #60a5fa;
-    }
-
-    .callout[data-callout="tldr"] {
-        --callout-icon-color: #22d3ee;
-    }
-
-    .callout[data-callout="important"],
-    .callout[data-callout="tip"],
-    .callout[data-callout="hint"] {
-        --callout-icon-color: #fb923c;
-    }
-
-    .callout[data-callout="warning"],
-    .callout[data-callout="caution"],
-    .callout[data-callout="attention"] {
-        --callout-icon-color: #fbbf24;
-    }
-
-    .callout[data-callout="error"] {
-        --callout-icon-color: #f87171;
-    }
-
-    .callout[data-callout="failure"],
-    .callout[data-callout="fail"],
-    .callout[data-callout="missing"] {
-        --callout-icon-color: #f472b6;
-    }
-
-    .callout[data-callout="bug"] {
-        --callout-icon-color: #f87171;
-    }
-
-    .callout[data-callout="example"] {
-        --callout-icon-color: #a78bfa;
-    }
-
-    .callout[data-callout="quote"],
-    .callout[data-callout="cite"] {
-        --callout-icon-color: #ffffff;
-    }
-
-    .callout[data-callout="question"],
-    .callout[data-callout="help"],
-    .callout[data-callout="faq"] {
-        --callout-icon-color: #4ade80;
-    }
-}

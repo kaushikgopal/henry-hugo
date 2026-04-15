@@ -30,11 +30,11 @@
   {{ $isCollapsible := ne .AlertSign "" }}
 
   <div data-callout-metadata="" data-callout-fold="{{ .AlertSign }}" data-callout="{{ $alertType }}" class="callout{{ if $isCollapsible }} is-collapsible{{ end }}">
-    <div class="callout-icon">
-      {{ $icon | safeHTML }}
-    </div>
     {{ if .AlertTitle }}
     <div class="callout-title" dir="auto">
+      <div class="callout-icon">
+        {{ $icon | safeHTML }}
+      </div>
       <div class="callout-title-inner">
         {{ .AlertTitle }}
       </div>
@@ -43,6 +43,12 @@
           {{ $collapseIcon | safeHTML }}
         </div>
       {{ end }}
+    </div>
+    {{ else }}
+    <div class="callout-title" dir="auto">
+      <div class="callout-icon">
+        {{ $icon | safeHTML }}
+      </div>
     </div>
     {{ end }}
     <div class="callout-content">

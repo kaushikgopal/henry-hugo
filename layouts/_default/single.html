@@ -5,13 +5,13 @@
 >
   <header class="post-header blog-content-width mb-14">
     <h1
-      class="post-title font-title font-bold text-ht-dark text-center text-4xl md:text-5xl"
+      class="post-title font-title font-bold text-ht-dark text-3xl md:text-4xl"
     >
       <!-- Handle external links differently -->
       {{ if .Params.externalLink }}
       <a
         href="{{ .Params.externalLink }}"
-        class="external-link no-underline text-center"
+        class="external-link no-underline"
       >
         {{ .Title }}
       </a>
@@ -26,7 +26,7 @@
     </h1>
 
     <h4
-      class="post-author md:pt-1 text-ht-lighter font-bold italic text-center text-sm"
+      class="post-author pt-3 text-ht-lighter font-bold text-sm md:text-base"
     >
       {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
       "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
