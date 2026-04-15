@@ -10,7 +10,7 @@
 
     a[href*='//'],
     a.external-link {
-        text-decoration-style: wavy;
+        @apply decoration-wavy decoration-1;
     }
 
     article {
