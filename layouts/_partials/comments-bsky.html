@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div id="comments-container" class="whitespace-nowrap overflow-scroll"></div>
+  <div id="comments-container" class="overflow-x-hidden"></div>
 
   <template id="comment-template">
     <div class="comment flex items-start space-x-4 my-8">
@@ -44,14 +44,14 @@
         </a>
       </div>
 
-      <div class="comment-body">
+      <div class="comment-body min-w-0 flex-1">
         <a class="author-link" href="#" target="_blank">
           <span class="author-name" title=""></span>
         </a>
 
-        <p class="comment-text"></p>
+        <p class="comment-text whitespace-normal break-words"></p>
 
-        <div class="comment-actions mt-1 text-ht-lighter text-sm">
+        <div class="comment-actions mt-1 text-ht-lighter text-sm whitespace-normal break-words">
           <a class="actions-link" href="#" target="_blank"></a>
         </div>
       </div>
