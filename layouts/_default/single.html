@@ -81,5 +81,6 @@
 hugo.IsServer }} {{ $headingAnchors = $headingAnchors | minify | fingerprint }}
 {{ end }}
 <script src="{{ $headingAnchors.RelPermalink }}"></script>
+{{ if eq .Section "episodes" }}{{ partial "simplecast-deeplink.html" . }}{{ end }}
 
 {{end}}
