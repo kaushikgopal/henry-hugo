@@ -5,6 +5,16 @@
 <div class="social-reshare-container blog-content-width
             flex flex-row justify-center gap-3
             my-8">
+  {{ if eq .Section "episodes" }}
+  <button
+    type="button"
+    data-copy-current-time
+    class="social-share-btn px-3 py-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter text-ht-lighter font-sans text-xs"
+    title="Copy a Fragmented link at the current playback time">
+    Copy Episode Link
+  </button>
+  {{ end }}
+
   <!-- LinkedIn -->
   <a
     href="https://www.linkedin.com/sharing/share-offsite/?url={{ $pageURL }}"
