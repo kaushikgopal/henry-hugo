@@ -1,9 +1,9 @@
 {{ if or .Params.hn .Params.x .Params.reddit .Params.lin }}
 <div class="comments-external
             italic text-ht-lighter
-            my-12
+            mt-1 mb-6
             text-center">
-  <p class="text-lg">
+  <p class="text-base">
     Discuss this on
     {{ $links := slice }}
     {{ if .Params.hn }}

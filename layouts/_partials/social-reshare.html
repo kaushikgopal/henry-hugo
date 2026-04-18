@@ -3,15 +3,21 @@
 
 {{ if ne .Params.reshare false }}
 <div class="social-reshare-container blog-content-width
-            flex flex-row justify-center gap-3
-            my-8">
+            flex flex-row flex-wrap justify-center gap-3
+            mt-1 mb-6">
   {{ if eq .Section "episodes" }}
   <button
     type="button"
     data-copy-current-time
-    class="social-share-btn px-3 py-2 bg-hbg-dark rounded-full hover:opacity-70 transition-opacity border border-ht-lighter text-ht-lighter font-sans text-xs"
+    aria-label="Copy episode link at the current playback time"
+    class="social-share-btn p-2 bg-hbg rounded-full hover:opacity-70 transition-opacity border border-ht-lighter text-ht-lighter"
     title="Copy a Fragmented link at the current playback time">
-    Copy Episode Link
+    <span class="sr-only">Copy episode link at the current playback time</span>
+    <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3v12"></path>
+      <path d="M16 7l-4-4-4 4"></path>
+      <path d="M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"></path>
+    </svg>
   </button>
   {{ end }}
 

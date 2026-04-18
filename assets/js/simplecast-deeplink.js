@@ -140,9 +140,9 @@
     this.player = playerFrame ? new SimplecastEmbedController(playerFrame) : null;
     this.currentSeconds = initialSeconds;
     this.feedbackTimer = null;
-    this.defaultLabel = "Copy Episode Link";
-    this.prefixLabel = "Copy Link at";
-    this.copiedLabel = "Copied";
+    this.defaultLabel = "Copy episode link";
+    this.prefixLabel = "Copy episode link at";
+    this.copiedLabel = "Copied episode link at";
   }
 
   CurrentTimeLinkController.prototype.init = function () {
@@ -202,7 +202,9 @@
   };
 
   CurrentTimeLinkController.prototype.updateCopiedState = function (timestamp) {
-    this.button.textContent = timestamp ? `${this.copiedLabel} ${timestamp}` : `${this.copiedLabel} Link`;
+    const label = timestamp ? `${this.copiedLabel} ${timestamp}` : "Copied episode link";
+    this.setButtonMetadata(label);
+    this.setCopiedVisualState(true);
 
     if (this.feedbackTimer) {
       window.clearTimeout(this.feedbackTimer);
@@ -210,13 +212,27 @@
 
     this.feedbackTimer = window.setTimeout(function () {
       this.updateButtonLabel();
+      this.setCopiedVisualState(false);
       this.feedbackTimer = null;
     }.bind(this), 1600);
   };
 
   CurrentTimeLinkController.prototype.updateButtonLabel = function () {
     const timestamp = formatClock(this.currentSeconds);
-    this.button.textContent = timestamp ? `${this.prefixLabel} ${timestamp}` : this.defaultLabel;
+    const label = timestamp ? `${this.prefixLabel} ${timestamp}` : this.defaultLabel;
+    this.setButtonMetadata(label);
+  };
+
+  CurrentTimeLinkController.prototype.setButtonMetadata = function (label) {
+    this.button.setAttribute("aria-label", label);
+    this.button.setAttribute("title", label);
+  };
+
+  CurrentTimeLinkController.prototype.setCopiedVisualState = function (isCopied) {
+    this.button.classList.toggle("border-hc", isCopied);
+    this.button.classList.toggle("text-hc", isCopied);
+    this.button.classList.toggle("border-ht-lighter", !isCopied);
+    this.button.classList.toggle("text-ht-lighter", !isCopied);
   };
 
   function normalizeSeconds(seconds, fallback) {
