@@ -48,14 +48,14 @@
   {{ end }}
 {{ end }}
 
+{{ if .Params.bsky }}
+  {{ partial "comments-bsky.html" . }}
+{{ end }}
+
 {{- partial "social-reshare.html" . -}}
 
 {{ if or .Params.hn .Params.x .Params.reddit .Params.lin }}
   {{ partial "comments-external.html" . }}
-{{ end }}
-
-{{ if .Params.bsky }}
-  {{ partial "comments-bsky.html" . }}
 {{ end }}
 
 {{- partial "meta-custom.html" . -}}
