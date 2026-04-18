@@ -1,7 +1,9 @@
+{{ if .Params.bsky }}
+
 <div
   id="comments-bsky"
   data-bsky-uri="{{ .Params.bsky }}"
-  class="text-ht-lighter mt-4 mb-10"
+  class="text-ht-lighter"
 >
   <div id="comment-post">
     <h2 class="comment-post-header font-bold text-ht-light text-lg">
@@ -61,3 +63,5 @@
 
 {{ $comments := resources.Get "js/comments-bsky.js" }}
 <script src="{{ $comments.RelPermalink }}"></script>
+
+{{ end }}

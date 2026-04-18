@@ -70,11 +70,7 @@
   {{ end }} {{- partial "nav.html" . -}}
 </section>
 
-<div class="post-meta bg-hbg-dark flex flex-col items-center">
-  <section class="blog-content-width">
-    {{- partial "meta.html" . -}}
-  </section>
-</div>
+{{- partial "meta.html" . -}}
 
 <section class="blog-content-width">
     {{- partial "related-posts.html" . -}}

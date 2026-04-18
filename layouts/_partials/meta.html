@@ -1,3 +1,6 @@
+<div class="post-meta bg-hbg-dark flex flex-col items-center py-10 md:py-12">
+  <section class="blog-content-width">
+
 {{/* 
 {{ if not (eq .Layout "page") }}
 <div class="post-date mt-2 text-sm text-ht-lighter">
@@ -14,15 +17,9 @@
 {{ end }} 
 */}} 
 
-{{ if .Params.bsky }}
-  {{ partial "comments-bsky.html" . }}
-{{ end }}
-
+{{- partial "comments.html" . -}}
 {{- partial "social-reshare.html" . -}}
-
-{{ if or .Params.hn .Params.x .Params.reddit .Params.lin }}
-  {{ partial "comments-external.html" . }}
-{{ end }}
-
 {{- partial "meta-custom.html" . -}}
 
+  </section>
+</div>

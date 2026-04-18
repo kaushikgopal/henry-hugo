@@ -1,0 +1,6 @@
+{{ if or .Params.hn .Params.x .Params.reddit .Params.lin .Params.bsky }}
+<div class="mb-12">
+{{- partial "comments-bsky.html" . -}}
+{{- partial "comments-external.html" . -}}
+</div>
+{{ end }}
