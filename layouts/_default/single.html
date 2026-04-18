@@ -1,7 +1,7 @@
 {{ define "content" }} {{ partial "single-before.html" . }}
 
 <section
-  class="post relative flex flex-col items-center pt-20 md:pt-30 pb-4 md:pb-6"
+  class="post relative flex flex-col items-center pt-20 md:pt-30 pb-10 md:pb-12"
 >
   <header class="post-header blog-content-width mb-14">
     <h1
@@ -75,6 +75,10 @@
     {{- partial "meta.html" . -}}
   </section>
 </div>
+
+<section class="blog-content-width">
+    {{- partial "related-posts.html" . -}}
+</section>
 
 {{ $headingAnchors := resources.Get "js/heading-anchors.js" }} {{ if not
 hugo.IsServer }} {{ $headingAnchors = $headingAnchors | minify | fingerprint }}
