@@ -380,7 +380,7 @@
     /* Base callout structure */
     .callout {
         /* border intentionally removed — background alone provides the callout affordance */
-        @apply overflow-hidden py-2 bg-hbg-lightest;
+        @apply overflow-hidden py-2 bg-hbg-lightest border-l-2;
     }
 
     /* Icon sits inline inside .callout-title as a flex sibling of the title text */
