@@ -30,8 +30,13 @@
 
   function getTimestamp() {
     const params = new URLSearchParams(window.location.search);
+
+    // Canonical `t` wins over the `timestamp` alias when both are present.
     const explicitTimestamp = normalizeTimestamp(params.get("t"));
     if (explicitTimestamp) return explicitTimestamp;
+
+    const aliasTimestamp = normalizeTimestamp(params.get("timestamp"));
+    if (aliasTimestamp) return aliasTimestamp;
 
     for (const key of params.keys()) {
       const legacyMatch = key.match(/^t(\d+)$/);
@@ -127,6 +132,13 @@
         shouldRewriteUrl = true;
       }
     });
+
+    // Collapse the `timestamp` alias into the canonical `t` so shared links
+    // stay consistent regardless of which form the visitor arrived with.
+    if (params.has("timestamp")) {
+      params.delete("timestamp");
+      shouldRewriteUrl = true;
+    }
 
     if (!shouldRewriteUrl) return;
 
