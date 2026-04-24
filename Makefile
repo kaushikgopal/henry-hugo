@@ -1,5 +1,5 @@
 # Declare non-file targets
-.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner
+.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner agent-skill-links
 
 # Configuration variables
 log ?= warn          # debug|info|warn|error
@@ -95,3 +95,6 @@ short:		## Create new short post (usage: make short slug=my-short)
 
 banner:		## Generate OG banner image (usage: make banner post=content/blog/2025-01-01-my-post.md)
 	@./bin/generate-banner $(post)
+
+agent-skill-links:	## Link all Henry-owned skills into consumer sites that use themes/henry
+	@./bin/agent-skill-links

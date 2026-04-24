@@ -1,0 +1,127 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
+
+SKIP_DIRS = {
+    ".git",
+    ".hg",
+    ".svn",
+    ".next",
+    ".turbo",
+    "node_modules",
+    "public",
+    "vendor",
+    "dist",
+    "build",
+}
+
+
+def repo_root() -> Path:
+    return Path(__file__).resolve().parent.parent
+
+
+def search_root(root: Path) -> Path:
+    configured = os.environ.get("AGENT_SKILL_LINK_SEARCH_ROOT")
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return root.parents[1]
+
+
+def configured_sites() -> list[Path]:
+    configured = os.environ.get("AGENT_SKILL_LINK_SITES", "").strip()
+    if not configured:
+        return []
+    return [Path(part).expanduser().resolve() for part in configured.split(":") if part]
+
+
+def discover_henry_sites(source_dir: Path, search: Path) -> list[Path]:
+    sites: set[Path] = set()
+    for current_root, dirnames, _ in os.walk(search):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        current = Path(current_root)
+        if current.name != "skills" or current.parent.name != ".agents":
+            continue
+
+        for child in current.iterdir():
+            if not child.is_symlink():
+                continue
+            if source_dir in child.resolve(strict=False).parents:
+                sites.add(current.parent.parent.resolve())
+                break
+
+    return sorted(sites)
+
+
+def ensure_symlink(link_path: Path, target_path: Path) -> None:
+    relative_target = Path(os.path.relpath(target_path, link_path.parent))
+    if link_path.is_symlink():
+        if Path(os.readlink(link_path)) == relative_target:
+            return
+        link_path.unlink()
+    elif link_path.exists():
+        raise RuntimeError(
+            f"Refusing to replace non-symlink path: {link_path}"
+        )
+
+    link_path.parent.mkdir(parents=True, exist_ok=True)
+    link_path.symlink_to(relative_target)
+    print(f"linked {link_path} -> {relative_target}")
+
+
+def remove_stale_skill_links(destination: Path, source_skills: set[str], root: Path) -> None:
+    if not destination.exists():
+        return
+
+    for child in destination.iterdir():
+        if not child.is_symlink():
+            continue
+        resolved = child.resolve(strict=False)
+        if root in resolved.parents and child.name not in source_skills:
+            child.unlink()
+            print(f"removed stale link {child}")
+
+
+def link_skills_into_site(site_root: Path, source_dir: Path, root: Path) -> None:
+    destination = site_root / ".agents" / "skills"
+    source_skills = {skill.name for skill in source_dir.iterdir() if skill.is_dir()}
+
+    remove_stale_skill_links(destination, source_skills, root)
+
+    for skill_dir in sorted(source_dir.iterdir()):
+        if not skill_dir.is_dir():
+            continue
+        ensure_symlink(destination / skill_dir.name, skill_dir)
+
+    ensure_symlink(site_root / ".claude" / "skills", site_root / ".agents" / "skills")
+    ensure_symlink(site_root / ".codex" / "skills", site_root / ".agents" / "skills")
+
+
+def main() -> int:
+    root = repo_root()
+    source_dir = root / ".agents" / "skills"
+    if not source_dir.exists():
+        raise SystemExit(f"Missing source skill directory: {source_dir}")
+
+    search = search_root(root)
+    sites = configured_sites() or discover_henry_sites(source_dir, search)
+    if not sites:
+        print(
+            "No Henry consumer sites found. "
+            "Set AGENT_SKILL_LINK_SITES=/path/to/site1:/path/to/site2 to bootstrap new ones."
+        )
+        return 0
+
+    print(f"Discovered {len(sites)} Henry consumer site(s):")
+    for site in sites:
+        print(f"- {site}")
+        link_skills_into_site(site, source_dir, root)
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
