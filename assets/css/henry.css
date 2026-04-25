@@ -16,14 +16,14 @@
     article {
         /* prose-xl scale: 18px mobile → 20px desktop */
         @apply font-medium
-                text-lg md:text-xl
+                text-lg
                 space-y-6
                 text-ht;
     }
 
     article > p {
         /* spacing between paragraphs */
-        @apply mb-6;
+        @apply mb-6 lg:mb-7;
         /* spacing between words
         word-spacing: 0.05em;*/
     }
@@ -332,7 +332,7 @@
     .pill-slate {
         @apply  w-fit border-2 border-ht-light rounded-lg bg-transparent
                 px-1 py-1 no-underline
-                hover:bg-ht-light text-ht-light hover:text-ht-lightest 
+                hover:bg-ht-light text-ht-light hover:text-ht-lightest
                 text-xs font-sans font-semibold uppercase;
     }
 
@@ -454,4 +454,3 @@
         @apply opacity-100;
     }
 }
-

@@ -1,10 +1,11 @@
 # Declare non-file targets
-.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner agent-skill-links
+.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner ensure-tailwind-bin agent-skill-links
 
 # Configuration variables
 log ?= warn          # debug|info|warn|error
 env ?= development   # development|production
 drafts ?= true       # true|false
+TAILWIND_BIN ?= $(shell [ -x ./node_modules/.bin/tailwindcss ] && echo ./node_modules/.bin/tailwindcss || [ -x ../../node_modules/.bin/tailwindcss ] && echo ../../node_modules/.bin/tailwindcss || echo ./node_modules/.bin/tailwindcss)
 
 # Default target
 default: run
@@ -18,6 +19,13 @@ help:		## List all available commands with descriptions
 
 build: css site	## Build Hugo site and compile CSS (one-time)
 
+ensure-tailwind-bin:	## Ensure a local tailwind binary is available
+	@if [ ! -x "$(TAILWIND_BIN)" ]; then \
+		echo "❌ Tailwind binary not found at $(TAILWIND_BIN)"; \
+		echo "   Run npm ci from the site root (../..) or install deps in this theme."; \
+		exit 1; \
+	fi
+
 site:		## Build Hugo site (one-time)
 	@echo "🔨 Building Hugo site..."
 	@hugo build \
@@ -26,9 +34,9 @@ site:		## Build Hugo site (one-time)
 		--logLevel $(log) \
 		--environment $(env)
 
-css:		## Compile Tailwind CSS (one-time)
+css: ensure-tailwind-bin	## Compile Tailwind CSS (one-time)
 	@echo "🎨 Compiling Tailwind css..."
-	@npx @tailwindcss/cli \
+	@$(TAILWIND_BIN) \
 		-i ./assets/css/input.css \
 		-o ./assets/css/output.css
 
@@ -63,9 +71,9 @@ site-watch:	## Run Hugo development server (checks Tailscale status at runtime)
 			--logLevel $(log) --environment $(env); \
 	fi
 
-css-watch:	## Run Tailwind CSS compiler in watch mode
+css-watch: ensure-tailwind-bin	## Run Tailwind CSS compiler in watch mode
 	@echo "🎨 Compiling Tailwind css..."
-	@npx @tailwindcss/cli \
+	@$(TAILWIND_BIN) \
 		-i ./assets/css/input.css \
 		-o ./assets/css/output.css --watch
 
