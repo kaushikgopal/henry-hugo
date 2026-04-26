@@ -66,13 +66,31 @@
     {{ if eq .RelPermalink "/blog/" }}
         {{ $latestBlogPost := index (where .Site.RegularPages "Section" "blog" | first 1) 0 }}
         {{ if $latestBlogPost }}
+        {{ $latestTitle := strings.TrimSpace $latestBlogPost.Title }}
+        {{ $latestIsUntitledShort := and (eq $latestBlogPost.Type "shorts") (eq $latestTitle "") }}
         <div class="featured-post pb-10">
             <p class="text-xs uppercase tracking-widest text-ht-lighter mb-2">latest</p>
+            {{ if $latestIsUntitledShort }}
+            <h2 class="font-title font-semibold text-2xl leading-tight mb-2 flex justify-center">
+                <a class="no-underline hover:text-hc" href="{{ $latestBlogPost.RelPermalink }}" aria-label="Read latest short">
+                    <svg
+                        class="w-15 h-15 text-ht-lighter opacity-20 dark:opacity-80 pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    >
+                        <path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4A8.5 8.5 0 0 1 12 21a8.38 8.38 0 0 1-5.4-1.9L3 21l1.9-5.4A8.38 8.38 0 0 1 3 11.5 8.5 8.5 0 1 1 21 11.5z"></path>
+                    </svg>
+                </a>
+            </h2>
+            {{ else }}
             <h2 class="font-title font-semibold text-2xl leading-tight mb-2">
                 <a class="no-underline hover:text-hc" href="{{ $latestBlogPost.RelPermalink }}">
                     {{ $latestBlogPost.Title }}
                 </a>
             </h2>
+            {{ end }}
             <div class="text-ht-lighter text-base leading-snug mb-3 space-y-3">
                 {{ if $latestBlogPost.Params.summary }}{{ $latestBlogPost.Params.summary }}{{ else }}{{ $latestBlogPost.Summary }}{{ end }}
             </div>
