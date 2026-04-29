@@ -1,11 +1,14 @@
 # Declare non-file targets
-.PHONY: default help build run site css site-watch css-watch tailscale clean post post-folder short banner ensure-tailwind-bin agent-skill-links
+.PHONY: default help build run site css site-watch site-watch-plain css-watch tailscale clean post post-folder short banner ensure-tailwind-bin ensure-portless agent-skill-links
 
 # Configuration variables
 log ?= warn          # debug|info|warn|error
 env ?= development   # development|production
 drafts ?= true       # true|false
+portless_name ?= henry
+hugo_port ?= 1390
 TAILWIND_BIN ?= $(shell [ -x ./node_modules/.bin/tailwindcss ] && echo ./node_modules/.bin/tailwindcss || [ -x ../../node_modules/.bin/tailwindcss ] && echo ../../node_modules/.bin/tailwindcss || echo ./node_modules/.bin/tailwindcss)
+PORTLESS_BIN ?= $(shell [ -x ./node_modules/.bin/portless ] && echo ./node_modules/.bin/portless || [ -x ../../node_modules/.bin/portless ] && echo ../../node_modules/.bin/portless || echo portless)
 
 # Default target
 default: run
@@ -26,6 +29,13 @@ ensure-tailwind-bin:	## Ensure a local tailwind binary is available
 		exit 1; \
 	fi
 
+ensure-portless:	## Ensure portless is available
+	@if ! $(PORTLESS_BIN) --version >/dev/null 2>&1; then \
+		echo "❌ Portless not found: $(PORTLESS_BIN)"; \
+		echo "   Install with: npm install -D portless"; \
+		exit 1; \
+	fi
+
 site:		## Build Hugo site (one-time)
 	@echo "🔨 Building Hugo site..."
 	@hugo build \
@@ -42,34 +52,35 @@ css: ensure-tailwind-bin	## Compile Tailwind CSS (one-time)
 
 # === Development Targets ===
 
-run:		## [default] Run Hugo server with CSS watcher (detects Tailscale automatically)
+run:		## [default] Run Hugo server through Portless with CSS watcher
 	@echo "🚀 Starting development environment..."
 	@make -j2 site-watch css-watch
 
-site-watch:	## Run Hugo development server (checks Tailscale status at runtime)
-	@if tailscale status >/dev/null 2>&1; then \
-		TAILSCALE_IP=$$(tailscale status 2>/dev/null | grep 'macOS.*-$$' | head -1 | awk '{print $$1}'); \
-		if [ -n "$$TAILSCALE_IP" ]; then \
-			echo "🌐 Starting Hugo server with Tailscale binding: $$TAILSCALE_IP:1390"; \
-			hugo server --port=1390 --disableFastRender \
-				--cleanDestinationDir --printI18nWarnings \
-				$(if $(filter false,$(drafts)),,--buildDrafts) \
-				--logLevel $(log) --environment $(env) \
-				--bind $$TAILSCALE_IP --baseURL http://$$TAILSCALE_IP:1390; \
-		else \
-			echo "🏠 Starting Hugo server on localhost:1390"; \
-			hugo server --port=1390 --disableFastRender \
-				--cleanDestinationDir --printI18nWarnings \
-				$(if $(filter false,$(drafts)),,--buildDrafts) \
-				--logLevel $(log) --environment $(env); \
-		fi; \
-	else \
-		echo "🏠 Starting Hugo server on localhost:1390"; \
-		hugo server --port=1390 --disableFastRender \
+site-watch: ensure-portless	## Run Hugo development server through Portless
+	@echo "🌐 Starting Hugo server at https://$(portless_name).localhost"
+	@$(PORTLESS_BIN) run --name "$(portless_name)" sh -c '\
+		url_no_scheme=$${PORTLESS_URL#*://}; \
+		case "$$url_no_scheme" in \
+			*:*) live_port=$${url_no_scheme##*:}; live_port=$${live_port%%/*} ;; \
+			*) case "$$PORTLESS_URL" in https://*) live_port=443 ;; *) live_port=80 ;; esac ;; \
+		esac; \
+		exec hugo server \
+			--bind 127.0.0.1 \
+			--port "$$PORT" \
+			--baseURL "$$PORTLESS_URL" \
+			--appendPort=false \
+			--liveReloadPort "$$live_port" \
+			--disableFastRender \
 			--cleanDestinationDir --printI18nWarnings \
 			$(if $(filter false,$(drafts)),,--buildDrafts) \
-			--logLevel $(log) --environment $(env); \
-	fi
+			--logLevel $(log) --environment $(env)'
+
+site-watch-plain:	## Run Hugo development server without Portless
+	@echo "🏠 Starting Hugo server on localhost:$(hugo_port)"
+	@hugo server --port=$(hugo_port) --disableFastRender \
+		--cleanDestinationDir --printI18nWarnings \
+		$(if $(filter false,$(drafts)),,--buildDrafts) \
+		--logLevel $(log) --environment $(env)
 
 css-watch: ensure-tailwind-bin	## Run Tailwind CSS compiler in watch mode
 	@echo "🎨 Compiling Tailwind css..."
@@ -79,11 +90,8 @@ css-watch: ensure-tailwind-bin	## Run Tailwind CSS compiler in watch mode
 
 # === Tailscale Targets ===
 
-tailscale:	## Start Tailscale funnel (explicit command - must run AFTER server is up)
-	@tailscale up
-	@tailscale funnel localhost:1390
-	@echo "✅ Tailscale funnel active"
-	@echo "   To stop: tailscale funnel localhost:1390 off"
+tailscale: ensure-portless	## Run Hugo through Portless and share it on Tailscale
+	@PORTLESS_TAILSCALE=1 $(MAKE) site-watch
 
 # === Utility Targets ===
 
