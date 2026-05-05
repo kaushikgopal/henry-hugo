@@ -91,9 +91,11 @@
         @apply relative;
     }
     .heading-anchor {
-        @apply inline-block ml-2
-               opacity-30 transition-opacity duration-200
-               no-underline text-ht-lighter hover:text-hc
+        @apply static ml-2 inline-block whitespace-nowrap
+               md:absolute md:right-full md:top-0 md:ml-0 md:mr-2
+               opacity-30 hover:opacity-100 focus-visible:opacity-100
+               transition duration-200
+               no-underline text-ht-lighter hover:text-hc focus-visible:text-hc
                font-normal;
     }
 }
@@ -438,19 +440,3 @@
 /* ==========================================================================
    Media Queries (outside layers for proper cascade)
    ========================================================================== */
-
-/* Heading anchor hover behavior - only on hover-capable devices */
-@media (hover: hover) {
-    .heading-anchor {
-        @apply opacity-0;
-    }
-
-    .post-content h1:hover .heading-anchor,
-    .post-content h2:hover .heading-anchor,
-    .post-content h3:hover .heading-anchor,
-    .post-content h4:hover .heading-anchor,
-    .post-content h5:hover .heading-anchor,
-    .post-content h6:hover .heading-anchor {
-        @apply opacity-100;
-    }
-}
