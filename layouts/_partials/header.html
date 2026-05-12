@@ -3,21 +3,21 @@
 <!-- Hidden checkbox for pure-CSS hamburger menu -->
 <input type="checkbox" id="nav-toggle" class="hidden peer" aria-hidden="true">
 
-    
+
 <!-- Main header -->
 <header id="site-header" class="site-header
               fixed top-0 left-0 right-0 z-40
               bg-hbg
               py-4 sm:py-5
               border-b-1 border-transparent transition-[border-color] duration-200">
-    
+
     <div class="blog-content-width flex items-center justify-between">
 
         <!-- Left side: Title + Sublink -->
         <div class="flex items-center gap-1 text-base sm:text-xl text-ht-lighter">
             <!-- Site title - always bold -->
             <a href="/"
-               class="font-bold no-underline {{ if .IsHome }}text-ht{{ end }}">
+               class="font-medium no-underline {{ if .IsHome }}text-ht{{ end }}">
                 {{ $.Param "sitename" }}
             </a>
 
