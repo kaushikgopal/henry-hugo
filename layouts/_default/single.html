@@ -69,7 +69,7 @@
 
   {{ if and (not (eq .Section "log")) (not .Params.timeless) (not (eq .Type "shorts")) }}
   <footer
-    class="post-published-date blog-content-width pt-3 text-left text-ht-lighter font-bold text-sm md:text-base"
+    class="post-published-date blog-content-width pt-[3em] text-center text-ht-lightest font-medium text-sm md:text-base"
   >
     {{ .Date.Format "January 2, 2006" }}
   </footer>
