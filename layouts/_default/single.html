@@ -1,12 +1,10 @@
 {{ define "content" }} {{ partial "single-before.html" . }}
 
 <section
-  class="post relative flex flex-col items-center pt-20 md:pt-30 pb-10 md:pb-12"
+  class="post section-{{ .Section }} relative flex flex-col items-center pt-20 md:pt-30 pb-10 md:pb-12"
 >
   <header class="post-header blog-content-width mb-8 md:mb-14">
-    <h1
-      class="post-title font-title font-black text-ht-dark text-3xl md:text-4xl"
-    >
+    <h1 class="post-title">
       <!-- Handle external links differently -->
       {{ if .Params.externalLink }}
       <a
@@ -25,13 +23,13 @@
       {{ end }}
     </h1>
 
+    {{ if or (eq .Section "log") (.Params.timeless) }}
     <h4
       class="post-author pt-3 text-ht-lighter font-bold text-sm md:text-base"
     >
-      {{ if or (eq .Section "log") (.Params.timeless) }} {{ partial
-      "get-authors.html" . }} {{ else if not (eq .Type "shorts") }} {{
-      .Date.Format "January 2, 2006" }} {{ end }}
+      {{ partial "get-authors.html" . }}
     </h4>
+    {{ end }}
   </header>
 
   {{ if eq .Type "shorts" }}
@@ -67,7 +65,17 @@
   <article class="post-content flex flex-col items-center w-full">
     {{ .Content }}
   </article>
-  {{ end }} {{- partial "nav.html" . -}}
+  {{ end }}
+
+  {{ if and (not (eq .Section "log")) (not .Params.timeless) (not (eq .Type "shorts")) }}
+  <footer
+    class="post-published-date blog-content-width pt-3 text-left text-ht-lighter font-bold text-sm md:text-base"
+  >
+    {{ .Date.Format "January 2, 2006" }}
+  </footer>
+  {{ end }}
+
+  {{- partial "nav.html" . -}}
 </section>
 
 {{- partial "meta.html" . -}}
