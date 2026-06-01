@@ -1,10 +1,13 @@
 {{ define "content" }} {{ partial "single-before.html" . }}
 
 <section
-  class="post section-{{ .Section }} relative flex flex-col items-center pt-20 md:pt-30 pb-10 md:pb-12"
+  class="post section-{{ .Section }} relative flex flex-col items-center md:pt-10 pb-10 md:pb-12"
 >
   <header class="post-header blog-content-width mb-8 md:mb-14">
-    <h1 class="post-title font-title font-black text-[2em] md:text-5xl xl:text-6xl mt-8 text-ht-dark">
+    <h1 class="post-title
+                    font-title font-black text-ht-dark
+                    text-[2em] md:text-5xl xl:text-6xl
+                    md:mt-8 text-center md:text-left">
       <!-- Handle external links differently -->
       {{ if .Params.externalLink }}
       <a

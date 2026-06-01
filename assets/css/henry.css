@@ -13,12 +13,7 @@
         @apply decoration-wavy decoration-1;
     }
 
-    .post-title {
-        @apply font-title font-black
-                text-[2em] md:text-5xl xl:text-6xl
-                mt-8
-                text-ht-dark;
-    }
+    .post-title { }
 
     article {
         /* prose-xl scale: 18px mobile → 20px desktop */
@@ -104,7 +99,7 @@
 
 @layer utilities {
 
-    
+
     .blog-content-width {
         @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
     }
