@@ -46,7 +46,7 @@
 
     article h1 {
         /* prose-xl scale: 36px → 48px */
-        @apply font-title italic font-extrabold
+        @apply font-title font-extrabold
                 text-3xl md:text-4xl
                 mt-6 md:mt-10
                 text-ht-dark;
@@ -54,7 +54,7 @@
 
     article h2 {
         /* prose-xl scale: 24px → 36px */
-        @apply font-title italic font-bold
+        @apply font-title font-bold
                 text-2xl md:text-3xl
                 mt-4 md:mt-6
                 text-ht-dark;
@@ -66,7 +66,7 @@
 
     article h3 {
         /* prose-xl scale: 20px → 30px */
-        @apply font-title italic font-bold
+        @apply font-title font-bold
                 text-xl md:text-2xl;
     }
 
@@ -74,7 +74,7 @@
     article h5,
     article h6 {
         /* prose-xl scale: 18px → 20px */
-        @apply font-title italic font-semibold
+        @apply font-title font-semibold
                 text-lg md:text-xl;
     }
 
