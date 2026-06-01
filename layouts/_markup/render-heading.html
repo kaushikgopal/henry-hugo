@@ -1,4 +1,4 @@
 <h{{ .Level }} id="{{ .Anchor }}">
   {{ .Text }}
-  <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Link to {{ .PlainText }}">{{ strings.Repeat .Level "#" }}</a>
+  <a class="heading-anchor static ml-2 inline-block whitespace-nowrap md:absolute md:right-full md:top-0 md:ml-0 md:mr-2 opacity-30 hover:opacity-100 focus-visible:opacity-100 transition duration-200 no-underline text-ht-lighter hover:text-hc focus-visible:text-hc font-normal" href="#{{ .Anchor }}" aria-label="Link to {{ .PlainText }}">{{ strings.Repeat .Level "#" }}</a>
 </h{{ .Level }}>

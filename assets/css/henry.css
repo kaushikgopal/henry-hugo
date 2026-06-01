@@ -14,7 +14,7 @@
     }
 
     .post-title {
-        @apply font-title italic font-medium
+        @apply font-title font-black
                 text-[2em] md:text-5xl xl:text-6xl
                 mt-8
                 text-ht-dark;
@@ -51,7 +51,7 @@
 
     article h1 {
         /* prose-xl scale: 36px → 48px */
-        @apply font-title italic font-semibold
+        @apply font-title italic font-extrabold
                 text-3xl md:text-4xl
                 mt-6 md:mt-10
                 text-ht-dark;
@@ -59,7 +59,7 @@
 
     article h2 {
         /* prose-xl scale: 24px → 36px */
-        @apply font-title italic font-semibold
+        @apply font-title italic font-bold
                 text-2xl md:text-3xl
                 mt-4 md:mt-6
                 text-ht-dark;
@@ -71,7 +71,7 @@
 
     article h3 {
         /* prose-xl scale: 20px → 30px */
-        @apply font-title italic font-semibold
+        @apply font-title italic font-bold
                 text-xl md:text-2xl;
     }
 
@@ -92,7 +92,7 @@
     article h6 {
         @apply relative;
     }
-    .heading-anchor {
+    a.heading-anchor {
         @apply static ml-2 inline-block whitespace-nowrap
                md:absolute md:right-full md:top-0 md:ml-0 md:mr-2
                opacity-30 hover:opacity-100 focus-visible:opacity-100
@@ -103,6 +103,8 @@
 }
 
 @layer utilities {
+
+    
     .blog-content-width {
         @apply w-[75%] max-w-2xl min-w-[333px] mx-auto;
     }
@@ -381,37 +383,6 @@
         @apply text-xs md:text-sm;
     }
 
-    /* Base callout structure */
-    .callout {
-        /* border intentionally removed — background alone provides the callout affordance */
-        @apply overflow-hidden py-2 bg-hbg-lightest border-l-2;
-    }
-
-    /* Icon sits inline inside .callout-title as a flex sibling of the title text */
-    .callout-icon {
-        @apply flex items-center justify-center shrink-0 pointer-events-none size-5 text-current opacity-30;
-    }
-
-    .callout-icon svg {
-        @apply w-full h-full;
-    }
-
-    .callout-title {
-        @apply relative z-10 flex items-center gap-2 px-4 py-2;
-    }
-
-    .callout-title-inner {
-        @apply flex-1 font-bold;
-    }
-
-    .callout-fold {
-        @apply w-5 h-5 flex items-center justify-center cursor-pointer transition-colors;
-    }
-
-    .callout-content {
-        @apply relative z-10 px-4 py-3;
-    }
-
     .callout-content > *:first-child {
         @apply mt-0;
     }
@@ -429,14 +400,6 @@
         display: none;
     }
 
-}
-
-/* ==========================================================================
-   Site Header
-   ========================================================================== */
-
-.site-header.scrolled {
-    @apply border-ht-lightest;
 }
 
 /* ==========================================================================

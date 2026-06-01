@@ -29,29 +29,29 @@
   {{ $icon := index $icons $alertType }}
   {{ $isCollapsible := ne .AlertSign "" }}
 
-  <div data-callout-metadata="" data-callout-fold="{{ .AlertSign }}" data-callout="{{ $alertType }}" class="callout{{ if $isCollapsible }} is-collapsible{{ end }}">
+  <div data-callout-metadata="" data-callout-fold="{{ .AlertSign }}" data-callout="{{ $alertType }}" class="callout overflow-hidden py-2 bg-hbg-lightest border-l-2{{ if $isCollapsible }} is-collapsible{{ end }}">
     {{ if .AlertTitle }}
-    <div class="callout-title" dir="auto">
-      <div class="callout-icon">
+    <div class="callout-title relative z-10 flex items-center gap-2 px-4 py-2" dir="auto">
+      <div class="callout-icon flex items-center justify-center shrink-0 pointer-events-none size-5 text-current opacity-30">
         {{ $icon | safeHTML }}
       </div>
-      <div class="callout-title-inner">
+      <div class="callout-title-inner flex-1 font-bold">
         {{ .AlertTitle }}
       </div>
       {{ if $isCollapsible }}
-        <div class="callout-fold">
+        <div class="callout-fold w-5 h-5 flex items-center justify-center cursor-pointer transition-colors">
           {{ $collapseIcon | safeHTML }}
         </div>
       {{ end }}
     </div>
     {{ else }}
-    <div class="callout-title" dir="auto">
-      <div class="callout-icon">
+    <div class="callout-title relative z-10 flex items-center gap-2 px-4 py-2" dir="auto">
+      <div class="callout-icon flex items-center justify-center shrink-0 pointer-events-none size-5 text-current opacity-30">
         {{ $icon | safeHTML }}
       </div>
     </div>
     {{ end }}
-    <div class="callout-content">
+    <div class="callout-content relative z-10 px-4 py-3">
       {{ .Text }}
     </div>
   </div>
