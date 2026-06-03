@@ -7,8 +7,9 @@
     {{ $pages := partial "get-posts.html" . }}
 
     <!-- On /blog/, exclude the featured post from the archive to avoid duplication -->
+    {{ $latestBlogPostPermalink := "" }}
     {{ if eq .RelPermalink "/blog/" }}
-        {{ $latestBlogPostPermalink := (index (where .Site.RegularPages "Section" "blog" | first 1) 0).Permalink }}
+        {{ $latestBlogPostPermalink = (index (where .Site.RegularPages "Section" "blog" | first 1) 0).Permalink }}
         {{ $pages = where $pages "Permalink" "ne" $latestBlogPostPermalink }}
     {{ end }}
 
