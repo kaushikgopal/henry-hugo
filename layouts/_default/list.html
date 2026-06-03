@@ -159,7 +159,9 @@
             </h2>
             <div class="post-list-content">
                 {{ range $groupPages }}
-                {{ if eq $.RelPermalink "/blog/" }}
+                {{ if and (eq $.RelPermalink "/blog/") (eq .Permalink $latestBlogPostPermalink) }}
+                <!-- Skip: latest post already shown in featured section above -->
+                {{ else if eq $.RelPermalink "/blog/" }}
                 {{ .Render "li-no-summary" }}
                 {{ else }}
                 {{ .Render "li" }}
