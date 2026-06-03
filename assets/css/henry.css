@@ -183,6 +183,15 @@
         @apply font-[450] text-[0.87em];
     }
 
+    /* Disable Geist Mono ligatures in code: it fuses `--` into a long em-dash,
+       `->` into an arrow, `>=` into ≥, etc., which mangles shell flags
+       (e.g. `--prompt`) and makes adjacent single spaces look swallowed.
+       Tailwind v4 has no font-variant-ligatures utility, so raw CSS is used. */
+    .post-content pre,
+    .post-content code {
+        font-variant-ligatures: none;
+    }
+
     /* ==========================================================================
        Post Content - Layout & Figures
        ========================================================================== */
