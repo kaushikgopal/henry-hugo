@@ -2,11 +2,13 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: $0 <content-path> [--force] [--avatar <path>] [--desc]"
+  echo "Usage: $0 <content-path> [--force] [--avatar <path>] [--emoji <emoji>] [--desc]"
   echo "  content-path: path to a .md file or page bundle directory"
   echo "  --force: regenerate even if output is up-to-date"
   echo "  --avatar: override avatar image (Hugo-style path, e.g. /images/logo.png)"
+  echo "  --emoji: render an emoji to a halftone portrait (macOS-only; e.g. \"🧠\")"
   echo "  --desc: show description text below title"
+  echo "  Note: if both --avatar and --emoji are given, --avatar wins."
   exit 1
 }
 
@@ -16,12 +18,14 @@ INPUT="$1"
 shift
 FORCE=false
 AVATAR=""
+EMOJI=""
 SHOW_DESC=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --force) FORCE=true; shift ;;
     --avatar) AVATAR="$2"; shift 2 ;;
+    --emoji) EMOJI="$2"; shift 2 ;;
     --desc) SHOW_DESC=true; shift ;;
     *) echo "Unknown option: $1" >&2; usage ;;
   esac
@@ -114,7 +118,34 @@ mkdir -p "$(dirname "$out")"
 
 tmp_png=$(mktemp /tmp/og-banner-XXXXXX.png)
 override_config=""
-trap 'rm -f "$tmp_png" "$override_config"; kill $(lsof -ti:'"$PORT"') 2>/dev/null || true; agent-browser --session "$SESSION" close 2>/dev/null || true' EXIT
+tmp_swift=""
+emoji_png=""
+emoji_link=""
+trap 'rm -f "$tmp_png" "$override_config" "$tmp_swift" "$emoji_png" "$emoji_link"; kill $(lsof -ti:'"$PORT"') 2>/dev/null || true; agent-browser --session "$SESSION" close 2>/dev/null || true' EXIT
+
+if [[ -n "$EMOJI" ]] && [[ -z "$AVATAR" ]]; then
+  mkdir -p static/images
+  tmp_swift=$(mktemp /tmp/og-emoji-XXXXXX.swift)
+  emoji_png=$(mktemp /tmp/og-emoji-XXXXXX.png)
+  emoji_link="static/images/og-emoji-$$.png"
+  cat > "$tmp_swift" <<'SWIFT'
+import Cocoa
+let px = 420 * 4
+let img = NSImage(size: NSSize(width: px, height: px))
+img.lockFocus()
+NSColor.black.setFill(); NSRect(x: 0, y: 0, width: px, height: px).fill()
+let s = NSAttributedString(string: CommandLine.arguments[1],
+  attributes: [.font: NSFont.systemFont(ofSize: CGFloat(px) * 0.72)])
+let b = s.size()
+s.draw(at: NSPoint(x: (CGFloat(px)-b.width)/2, y: (CGFloat(px)-b.height)/2))
+img.unlockFocus()
+let rep = NSBitmapImageRep(data: img.tiffRepresentation!)!
+try! rep.representation(using: .png, properties: [:])!.write(to: URL(fileURLWithPath: CommandLine.arguments[2]))
+SWIFT
+  swift "$tmp_swift" "$EMOJI" "$emoji_png"
+  cp "$emoji_png" "$emoji_link"
+  AVATAR="/images/og-emoji-$$.png"
+fi
 
 # build config chain (with optional overrides via temp config)
 config_chain="${main_config},hugo.banner.yaml"
