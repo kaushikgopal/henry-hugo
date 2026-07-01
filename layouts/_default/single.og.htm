@@ -9,6 +9,11 @@
     {{ partial "styles.html" . }}
     <style>
       html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #000; }
+      .font-mono {
+        font-family: "Moxy", var(--font-mono) !important;
+        font-feature-settings: "lilx", "ss02", "ss03", "ss09", "ss10", "ss11", "titl", "ss05", "ss07", "ss08";
+        font-variation-settings: "CASL" 0;
+      }
     </style>
   </head>
   <body class="font-mono">
