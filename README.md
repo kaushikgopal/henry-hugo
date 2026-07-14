@@ -59,7 +59,20 @@ To get the list of commands just type in `make help`.
 
 ## Optional configurations
 
-Here are some recommended customizations to make in your `hugo.toml` config file in addition to what was mentioned above.
+Here are some recommended customizations to make in your Hugo config file in addition to what was mentioned above.
+
+### Table of contents
+
+Henry shows a table of contents by default on non-short single pages that contain H1–H3 headings. To disable it site-wide in YAML:
+
+```yaml
+params:
+  enableTableOfContents: false
+```
+
+A page can explicitly override the site setting with `toc: true` or `toc: false` in its frontmatter. Pages whose type or layout is `short` or `shorts` never show a table of contents.
+
+The table of contents requires Hugo 0.111.0 or newer.
 
 ### RSS/JSON feed customizations
 

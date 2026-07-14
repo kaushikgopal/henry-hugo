@@ -21,6 +21,7 @@ features = [
   "customizable & versatile",
   "footnotes",
   "sidenotes",
+  "responsive table of contents",
   "multiple image display combinations",
   "image attribution captions",
   "external url",
@@ -35,7 +36,7 @@ features = [
 ]
 
 # hugo min version
-min_version = "0.84.0"
+min_version = "0.111.0"
 
 [languages]
 [languages.en]
@@ -63,6 +64,7 @@ bioUrl = "https://kau.sh"
 summary = "Code, Culture, Carts & Carnatic Beats: Welcome to Kaush's World"
 enableSearch = true
 enablePagination = false
+enableTableOfContents = true
 avatar = "/images/kg.jpeg"
 sitename = "my site's name"
 invisibleSections = ["log"]
