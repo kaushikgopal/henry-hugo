@@ -2,6 +2,10 @@
     html {
         /* keep .blog-content-width from shrinking on long pages where a scrollbar appears */
         scrollbar-gutter: stable both-edges;
+        /* prevent browser scroll anchoring from shifting scroll position when
+           lazy-loaded images change page height — this destabilized TOC
+           collision detection on pages with full-bleed figures */
+        overflow-anchor: none;
     }
 
     a {

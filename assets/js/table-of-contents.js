@@ -54,7 +54,20 @@
     if (activeLink) {
       activeLink.classList.add("text-hc");
       activeLink.setAttribute("aria-current", "location");
-      activeLink.scrollIntoView({ block: "nearest", behavior: "auto" });
+      // Scroll the active link into view within the TOC's own scroll area
+      // only. Never use scrollIntoView — it can scroll the window when the
+      // TOC is positioned off-screen, creating a feedback loop.
+      if (scrollArea) {
+        const linkTop = activeLink.offsetTop;
+        const linkBottom = linkTop + activeLink.offsetHeight;
+        const viewTop = scrollArea.scrollTop;
+        const viewBottom = viewTop + scrollArea.clientHeight;
+        if (linkTop < viewTop) {
+          scrollArea.scrollTop = linkTop;
+        } else if (linkBottom > viewBottom) {
+          scrollArea.scrollTop = linkBottom - scrollArea.clientHeight;
+        }
+      }
     }
   }
 
@@ -97,8 +110,9 @@
     let top = normalTop;
     let usableListHeight = 0;
     let hasRoom = true;
-    const sidenotes = Array.from(post.querySelectorAll(".sidenote"));
-    const maxPasses = Math.min(sidenotes.length + 1, 100);
+    // Collision elements: sidenotes + full-bleed figures (both occupy the rail)
+    const collisionElements = Array.from(post.querySelectorAll(".sidenote, figure.full-bleed"));
+    const maxPasses = Math.min(collisionElements.length + 1, 100);
 
     for (let pass = 0; pass < maxPasses; pass += 1) {
       const panelChrome = Math.max(0, aside.offsetHeight - scrollArea.offsetHeight);
@@ -110,8 +124,8 @@
       if (!hasRoom) break;
 
       const panelRect = aside.getBoundingClientRect();
-      const collidingBottom = sidenotes
-        .map(function (sidenote) { return sidenote.getBoundingClientRect(); })
+      const collidingBottom = collisionElements
+        .map(function (el) { return el.getBoundingClientRect(); })
         .filter(function (rect) { return rectanglesOverlap(panelRect, rect); })
         .reduce(function (bottom, rect) { return Math.max(bottom, rect.bottom); }, 0);
 
@@ -132,6 +146,19 @@
       if (top > maxTop) {
         top = maxTop;
         aside.style.setProperty("--toc-top", top + "px");
+      }
+    }
+    // After bottom-anchor clamping, re-check for collisions. The clamp can
+    // pull the TOC back up into a sidenote or full-bleed figure that the
+    // collision loop had previously pushed it past. If so, hide the TOC —
+    // there's no room at the end of the post.
+    if (hasRoom) {
+      const panelRect = aside.getBoundingClientRect();
+      const stillColliding = collisionElements.some(function (el) {
+        return rectanglesOverlap(panelRect, el.getBoundingClientRect());
+      });
+      if (stillColliding) {
+        collisionHidden = true;
       }
     }
     const visible = titlePassed && !collisionHidden;
