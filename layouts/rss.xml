@@ -16,7 +16,7 @@
         <link>{{ .Permalink }}</link>
         <description>Recent content - {{ $title }}</description>
         {{ if eq hugo.Environment "development" }} <pageCount>{{len $pages}}</pageCount>{{ end }}
-        {{ with .Site.LanguageCode }}<language>{{.}}</language>{{end}}
+        {{ with .Site.Language.Locale }}<language>{{.}}</language>{{end}}
         {{ with .Site.Params.Author.email }}<managingEditor>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}
         {{ with .Site.Params.Author.email }}<webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
         {{ with .Site.Copyright }}<copyright>{{.}}</copyright>{{end}}

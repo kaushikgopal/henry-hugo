@@ -54,7 +54,7 @@
 <meta property="og:description" content="{{ $summary }}"/>
 
 {{ with .Permalink }}<meta property="og:url" content="{{ . }}">{{ end }}
-<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+<meta property="og:locale" content="{{ .Site.Language.Locale }}">
 <meta property="og:type" content="{{ if eq .Kind "page" }}article{{ else }}website{{ end }}"/>
 
 <link rel="canonical" href="{{ if .Params.canonicalUrl }}{{ .Params.canonicalUrl }}{{ else if .Permalink }}{{ .Permalink }}{{ end }}">
