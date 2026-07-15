@@ -217,6 +217,12 @@
         @apply w-full border-l-0 border-r-0;
     }
 
+    /* Blog posts shift left on wide screens to make room for the TOC. Keep
+       full-bleed figures centered on the viewport instead of inheriting it. */
+    .section-blog .post-content figure.full-bleed {
+        @apply lg:relative lg:left-24;
+    }
+
     .post-content figure figcaption {
         @apply text-center no-underline font-bold text-xs pt-1;
     }
