@@ -14,7 +14,7 @@
     {{- $mobileToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-mobile\"" 1 -}}
     {{- $desktopToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-desktop\"" 1 -}}
 
-<details class="table-of-contents-mobile mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-2xl mx-auto border border-ht-lightest text-sm xl:hidden">
+<details class="table-of-contents-mobile mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-[33rem] mx-auto border border-ht-lightest text-sm {{ if eq .Section "blog" }}lg:hidden{{ else }}xl:hidden{{ end }}">
   <summary class="cursor-pointer px-4 py-3 font-sans font-bold text-ht-light marker:text-ht-lighter focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hc">
     Contents
   </summary>
@@ -30,7 +30,7 @@
 <script src="{{ $tocScript.RelPermalink }}" defer></script>
 
 <aside
-  class="table-of-contents-desktop fixed right-4 left-[var(--toc-left,auto)] z-20 hidden w-52 min-w-0 max-w-none mx-0 border border-ht-lightest bg-hbg px-3 pb-3 pt-2 text-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none xl:block 2xl:right-8 top-[var(--toc-top)] pointer-events-none [html.no-js_&]:opacity-100 [html.no-js_&]:pointer-events-auto"
+  class="table-of-contents-desktop fixed right-4 left-[var(--toc-left,auto)] z-20 hidden w-[19.5rem] min-w-0 max-w-none mx-0 border border-ht-lightest bg-hbg px-3 pb-3 pt-2 text-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none {{ if eq .Section "blog" }}lg:block{{ else }}xl:block{{ end }} 2xl:right-8 top-[var(--toc-top)] pointer-events-none [html.no-js_&]:opacity-100 [html.no-js_&]:pointer-events-auto"
   style="--toc-top: 5rem; --toc-max-height: calc(100vh - 8rem);"
   aria-label="Table of contents"
 >

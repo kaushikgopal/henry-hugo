@@ -7,11 +7,11 @@
  */
 (function () {
   const BREAKPOINT = 1024;
-  const DESKTOP_TOC_BREAKPOINT = 1280;
+  const DESKTOP_TOC_BREAKPOINT = 1024;
   const SIDENOTE_MARGIN = 48; // gap between content and shared rail
   const SIDENOTE_MIN_WIDTH = 100;
   const SIDENOTE_MAX_WIDTH = 180;
-  const SHARED_RAIL_WIDTH = 208;
+  const SHARED_RAIL_WIDTH = 312;
   const SIDENOTE_VERTICAL_GAP = 24; // gap between stacked sidenotes
 
   function init() {
@@ -67,7 +67,7 @@
 
     // Calculate available space for sidenotes (right of content)
     const contentRightEdge = contentRect.right - postRect.left;
-    const availableWidth = postRect.width - contentRightEdge - SIDENOTE_MARGIN;
+    const availableWidth = window.innerWidth - contentRect.right - SIDENOTE_MARGIN;
 
     if (availableWidth < SIDENOTE_MIN_WIDTH) {
       // Not enough space for sidenotes
@@ -76,7 +76,10 @@
 
     const toc = document.querySelector('.table-of-contents-desktop');
     const sharedRailWidth = toc ? toc.getBoundingClientRect().width : SHARED_RAIL_WIDTH;
-    const sidenoteWidth = window.innerWidth >= DESKTOP_TOC_BREAKPOINT && availableWidth >= sharedRailWidth
+    const desktopTocBreakpoint = post.classList.contains('section-blog')
+      ? BREAKPOINT
+      : DESKTOP_TOC_BREAKPOINT;
+    const sidenoteWidth = window.innerWidth >= desktopTocBreakpoint && availableWidth >= sharedRailWidth
       ? sharedRailWidth
       : Math.min(availableWidth, SIDENOTE_MAX_WIDTH);
     const sidenoteLeft = contentRightEdge + SIDENOTE_MARGIN;

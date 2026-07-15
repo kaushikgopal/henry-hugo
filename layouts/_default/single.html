@@ -1,7 +1,7 @@
 {{ define "content" }} {{ partial "single-before.html" . }}
 
 <section
-  class="post section-{{ .Section }} relative flex flex-col items-center md:pt-10 pb-10 md:pb-12"
+  class="post section-{{ .Section }} relative flex flex-col items-center md:pt-10 pb-10 md:pb-12 {{ if eq .Section "blog" }}lg:-left-24{{ end }}"
 >
   <header class="post-header blog-content-width mb-8 md:mb-14">
     <h1 class="post-title
@@ -77,7 +77,7 @@
 
   {{ if and (not (eq .Section "log")) (not .Params.timeless) (not (eq .Type "shorts")) }}
   <footer
-    class="post-published-date blog-content-width pt-[3em] text-center text-ht-lightest font-medium text-sm md:text-base"
+    class="post-published-date blog-content-width pt-[3em] text-left text-ht-lightest font-medium text-sm md:text-base"
   >
     {{ .Date.Format "January 2, 2006" }}
   </footer>

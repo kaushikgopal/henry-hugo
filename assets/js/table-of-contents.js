@@ -4,6 +4,7 @@
   const aside = document.querySelector(".table-of-contents-desktop");
   const postTitle = document.querySelector(".post-title");
   const post = document.querySelector(".post");
+  const postContent = document.querySelector(".post-content");
   const headings = Array.from(
     document.querySelectorAll(".post-content :is(h1,h2,h3)[id]")
   );
@@ -12,7 +13,11 @@
 
   const links = Array.from(aside.querySelectorAll('a[href^="#"]'));
   const scrollArea = aside.querySelector(".table-of-contents-scroll");
-  const desktopQuery = window.matchMedia("(min-width: 1280px)");
+  const desktopQuery = window.matchMedia(
+    post.classList.contains("section-blog")
+      ? "(min-width: 1024px)"
+      : "(min-width: 1280px)"
+  );
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const activationLine = 100;
   const activationTolerance = 12;
@@ -117,6 +122,18 @@
     }
 
     collisionHidden = !hasRoom;
+    // Anchor the rail to the bottom of the post content so it never floats
+    // past the post into the date/nav/metadata below. As the content end
+    // scrolls into view, pin the TOC's bottom edge to the content's bottom
+    // edge; it then rides up with the content instead of fading or drifting
+    // past the end.
+    if (postContent && hasRoom) {
+      const maxTop = postContent.getBoundingClientRect().bottom - aside.offsetHeight;
+      if (top > maxTop) {
+        top = maxTop;
+        aside.style.setProperty("--toc-top", top + "px");
+      }
+    }
     const visible = titlePassed && !collisionHidden;
     aside.classList.toggle("opacity-0", !visible);
     aside.classList.toggle("pointer-events-none", !visible);
