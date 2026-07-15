@@ -1,0 +1,2 @@
+[videoUnsupported]
+other = "Your browser doesn't support HTML5 video. <a href=\"{{ . }}\">Download</a> the video instead."

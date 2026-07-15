@@ -2,7 +2,7 @@
 
 
 {{- $pages := slice -}}
-{{- $pages = $pages | append .Site.AllPages -}}
+{{- $pages = $pages | append .Site.Pages -}}
 {{- $pages = $pages | append .Site.Taxonomies.categories -}}
 {{- $pages = $pages | append .Site.Taxonomies.tags -}}
 {{- $pages = where $pages "Kind" "in" (slice "page" "section" "home" "taxonomy" "term") -}}
