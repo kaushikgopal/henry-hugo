@@ -14,11 +14,11 @@
     {{- $mobileToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-mobile\"" 1 -}}
     {{- $desktopToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-desktop\"" 1 -}}
 
-<details class="table-of-contents-mobile mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-[33rem] mx-auto border border-ht-lightest text-sm {{ if eq .Section "blog" }}lg:hidden{{ else }}xl:hidden{{ end }}">
+<details class="table-of-contents-mobile mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-[33rem] mx-auto border-4 border-ht-lightest text-sm font-sans {{ if eq .Section "blog" }}lg:hidden{{ else }}xl:hidden{{ end }}">
   <summary class="cursor-pointer px-4 py-3 font-sans font-bold text-ht-light marker:text-ht-lighter focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hc">
     Contents
   </summary>
-  <div class="border-t border-ht-lightest px-4 py-3 text-ht-lighter [&_a]:block [&_a]:py-1 [&_a]:no-underline [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-hc [&_a:focus-visible]:text-hc [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-hc [&_li]:list-none [&_ul]:space-y-1 [&_ul_ul]:ms-4 [&_ul_ul]:mt-1">
+  <div class="border-t border-ht-lightest px-4 py-3 text-ht-lighter [&_a]:block [&_a]:no-underline [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-hc [&_a:focus-visible]:text-hc [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-hc [&_li]:list-none [&_ul]:space-y-1 [&_ul_ul]:ms-4 [&_ul_ul]:mt-1">
     {{- $mobileToc | safeHTML -}}
   </div>
 </details>
@@ -30,12 +30,12 @@
 <script src="{{ $tocScript.RelPermalink }}" defer></script>
 
 <aside
-  class="table-of-contents-desktop fixed right-4 left-[var(--toc-left,auto)] z-20 hidden w-[19.5rem] min-w-0 max-w-none mx-0 border border-ht-lightest bg-hbg px-3 pb-3 pt-2 text-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none {{ if eq .Section "blog" }}lg:block{{ else }}xl:block{{ end }} 2xl:right-8 top-[var(--toc-top)] pointer-events-none [html.no-js_&]:opacity-100 [html.no-js_&]:pointer-events-auto"
+  class="table-of-contents-desktop fixed right-4 left-[var(--toc-left,auto)] z-20 hidden w-[19.5rem] min-w-0 max-w-none mx-0 border-4 border-ht-lightest px-3 pb-3 pt-2 text-sm font-sans opacity-0 transition-opacity duration-200 motion-reduce:transition-none {{ if eq .Section "blog" }}lg:block{{ else }}xl:block{{ end }} 2xl:right-8 top-[var(--toc-top)] pointer-events-none [html.no-js_&]:opacity-100 [html.no-js_&]:pointer-events-auto"
   style="--toc-top: 5rem; --toc-max-height: calc(100vh - 8rem);"
   aria-label="Table of contents"
 >
   <div class="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-ht-light">Contents</div>
-  <div class="table-of-contents-scroll scrollbar-visible overflow-y-auto overscroll-contain pe-1 max-h-[var(--toc-max-height)] text-ht-lighter [&_a]:block [&_a]:py-1 [&_a]:no-underline [&_a]:transition-colors [&_a]:duration-200 motion-reduce:[&_a]:transition-none [&_a:hover]:text-hc [&_a:focus-visible]:text-hc [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-1 [&_a:focus-visible]:outline-hc [&_a.text-hc]:font-semibold [&_li]:list-none [&_ul]:space-y-1 [&_ul_ul]:ms-3 [&_ul_ul]:mt-1">
+  <div class="table-of-contents-scroll scrollbar-visible overflow-y-auto overscroll-contain pe-1 max-h-[var(--toc-max-height)] text-ht-lighter [&_a]:block [&_a]:no-underline [&_a]:transition-colors [&_a]:duration-200 motion-reduce:[&_a]:transition-none [&_a:hover]:text-hc [&_a:focus-visible]:text-hc [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-1 [&_a:focus-visible]:outline-hc [&_a.text-hc]:font-semibold [&_li]:list-none [&_ul]:space-y-1 [&_ul_ul]:ms-3 [&_ul_ul]:mt-1">
     {{- $desktopToc | safeHTML -}}
   </div>
 </aside>
