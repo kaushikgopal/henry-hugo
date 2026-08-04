@@ -73,7 +73,13 @@
                 text-xl md:text-2xl;
     }
 
-    article h4,
+    article h4 {
+        /* prose-xl scale: 18px → 20px */
+        @apply font-title font-semibold
+                text-lg md:text-xl
+                mt-4;
+    }
+
     article h5,
     article h6 {
         /* prose-xl scale: 18px → 20px */
