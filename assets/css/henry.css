@@ -189,7 +189,7 @@
 
     /* inline code */
     .post-content code {
-        @apply font-[375] text-[0.87em];
+        @apply font-normal text-[0.87em];
     }
 
     .post-content b code,
@@ -197,10 +197,6 @@
     .post-content code :is(b, strong) {
         @apply font-semibold;
     }
-
-    /* Moxy features are controlled via font-feature-settings in theme.css
-       (lilx, ss02, ss05, ss07, ss08, ss09, ss10, titl) so we no longer blanket
-       disable ligatures. */
 
     /* ==========================================================================
        Post Content - Layout & Figures
