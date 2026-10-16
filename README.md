@@ -131,11 +131,12 @@ The table of contents requires Hugo 0.111.0 or newer.
 
 # Henry in the Wild
 
-Here are a couple of blogs that use Henry:
+Here are a few blogs that use Henry:
 
 1. [Karthick Gopal's blog](https://karthickg.com/blog)
 2. [Kaushik Gopal's blog](https://kau.sh/blog)
-
+3. [bluevulpine.net](https://bluevulpine.net/blog)
+ 
 # License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
