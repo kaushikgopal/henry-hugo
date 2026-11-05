@@ -324,7 +324,7 @@
        ========================================================================== */
 
     .pill-hc2 {
-        @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-hc2-dark text-hc2-dark hover:text-white uppercase no-underline font-sans text-xs;
+        @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-hc2-dark text-hc2-dark hover:text-white uppercase no-underline font-body text-xs;
         font-size: 10px;
     }
 
@@ -333,12 +333,12 @@
     }
 
     .pill-hc2-solid {
-        @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-hc2-dark text-white uppercase no-underline font-sans font-bold;
+        @apply w-fit border-2 border-hc2-dark rounded-lg px-1.5 py-0.5 bg-hc2-dark text-white uppercase no-underline font-body font-bold;
         font-size: 10px;
     }
 
     .pill-hc {
-        @apply w-fit border-2 border-hc rounded-lg p-1.5 bg-transparent hover:bg-hc text-hc hover:text-ht-lightest uppercase no-underline font-sans;
+        @apply w-fit border-2 border-hc rounded-lg p-1.5 bg-transparent hover:bg-hc text-hc hover:text-ht-lightest uppercase no-underline font-body;
         font-size: 10px;
     }
 
@@ -347,7 +347,7 @@
     }
 
     .pill-hc-solid {
-        @apply w-fit border-2 border-hc rounded-lg px-1.5 py-0.5 bg-hc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
+        @apply w-fit border-2 border-hc rounded-lg px-1.5 py-0.5 bg-hc hover:bg-transparent text-black uppercase no-underline font-body font-bold;
         font-size: 10px;
     }
 
@@ -355,7 +355,7 @@
         @apply  w-fit border-2 border-ht-light rounded-lg bg-transparent
                 px-1 py-1 no-underline
                 hover:bg-ht-light text-ht-light hover:text-ht-lightest
-                text-xs font-sans font-semibold uppercase;
+                text-xs font-body font-semibold uppercase;
     }
 
     section.post .pill-slate {
