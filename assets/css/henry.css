@@ -48,18 +48,25 @@
         @apply border-none;
     }
 
+    /* Heading sizes, all in one place. Each is a multiplier of the article
+       body font size (em): h4 equals body text and the rest scale up. */
+    article {
+        --heading-h1: 2.2em;
+        --heading-h2: 1.7em;
+        --heading-h3: 1.25em;
+        --heading-h4: 1em;
+    }
+
     article h1 {
-        /* prose-xl scale: 36px → 48px */
         @apply font-title font-extrabold
-                text-3xl md:text-4xl
+                text-[length:var(--heading-h1)]
                 mt-6 md:mt-10
                 text-ht-dark;
     }
 
     article h2 {
-        /* prose-xl scale: 24px → 36px */
-        @apply font-title font-bold
-                text-2xl md:text-3xl
+        @apply font-subtitle font-bold
+                text-[length:var(--heading-h2)]
                 text-ht-dark;
     }
 
@@ -68,23 +75,20 @@
     }
 
     article h3 {
-        /* prose-xl scale: 20px → 30px */
-        @apply font-title font-bold
-                text-xl md:text-2xl;
+        @apply font-subtitle font-bold
+                text-[length:var(--heading-h3)];
     }
 
     article h4 {
-        /* prose-xl scale: 18px → 20px */
-        @apply font-title font-semibold
-                text-lg md:text-xl
+        @apply font-subtitle font-semibold
+                text-[length:var(--heading-h4)]
                 mt-4;
     }
 
     article h5,
     article h6 {
-        /* prose-xl scale: 18px → 20px */
-        @apply font-title font-semibold
-                text-lg md:text-xl;
+        @apply font-subtitle font-semibold
+                text-[length:var(--heading-h4)];
     }
 
     /* Heading anchors */
