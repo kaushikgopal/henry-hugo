@@ -2,6 +2,9 @@
   "use strict";
 
   const aside = document.querySelector(".table-of-contents-desktop");
+  if (!aside) return;
+  aside.inert = true;
+
   const postTitle = document.querySelector(".post-title");
   const post = document.querySelector(".post");
   const postContent = document.querySelector(".post-content");
@@ -9,7 +12,12 @@
     document.querySelectorAll(".post-content :is(h1,h2,h3)[id]")
   );
 
-  if (!aside || !postTitle || !headings.length) return;
+  if (!post || !postTitle || !headings.length) {
+    aside.inert = false;
+    aside.classList.remove("opacity-0", "pointer-events-none");
+    aside.classList.add("opacity-100", "pointer-events-auto");
+    return;
+  }
 
   const links = Array.from(aside.querySelectorAll('a[href^="#"]'));
   const scrollArea = aside.querySelector(".table-of-contents-scroll");
@@ -80,6 +88,32 @@
     return candidate;
   }
 
+  function setAsideVisible(visible) {
+    aside.inert = !visible;
+    aside.classList.toggle("opacity-0", !visible);
+    aside.classList.toggle("pointer-events-none", !visible);
+    aside.classList.toggle("opacity-100", visible);
+    aside.classList.toggle("pointer-events-auto", visible);
+  }
+
+  function focusHeading(fromElement) {
+    const href = fromElement.getAttribute("href");
+    let id = href && href.startsWith("#") ? href.slice(1) : "";
+    try { id = decodeURIComponent(id); } catch (_) {}
+    const heading = headings.find(function (candidate) {
+      return candidate.id === id;
+    }) || activeHeading || postTitle;
+    if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+    const rect = heading.getBoundingClientRect();
+    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+      const top = rect.top < 0
+        ? window.scrollY + rect.top
+        : window.scrollY + rect.bottom - window.innerHeight;
+      window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+    }
+    heading.focus({ preventScroll: true });
+  }
+
   const headingObserver = new IntersectionObserver(
     scheduleUpdate,
     { rootMargin: "-100px 0px -66% 0px", threshold: [0, 1] }
@@ -99,7 +133,12 @@
   }
 
   function placeAside() {
-    if (!desktopQuery.matches) return;
+    if (!desktopQuery.matches) {
+      if (aside.contains(document.activeElement)) focusHeading(document.activeElement);
+      collisionHidden = false;
+      setAsideVisible(false);
+      return;
+    }
 
     const contentRight = readingColumnRight();
     if (contentRight !== null) {
@@ -161,11 +200,11 @@
         collisionHidden = true;
       }
     }
+    const focusedElement = document.activeElement;
+    const focusedWithin = aside.contains(focusedElement);
     const visible = titlePassed && !collisionHidden;
-    aside.classList.toggle("opacity-0", !visible);
-    aside.classList.toggle("pointer-events-none", !visible);
-    aside.classList.toggle("opacity-100", visible);
-    aside.classList.toggle("pointer-events-auto", visible);
+    if (!visible && focusedWithin) focusHeading(focusedElement);
+    setAsideVisible(visible);
   }
 
   function update() {
@@ -205,6 +244,9 @@
     try { initialHeading = document.getElementById(decodeURIComponent(initialHash)); } catch (_) {}
   }
   setActive(initialHeading || closestHeadingToActivationLine());
+
+  aside.addEventListener("focusin", scheduleUpdate);
+  aside.addEventListener("focusout", scheduleUpdate);
 
   window.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate, { passive: true });
