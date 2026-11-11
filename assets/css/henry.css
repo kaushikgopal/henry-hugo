@@ -308,11 +308,6 @@
         @apply m-0 inline;
     }
 
-    /* Hide the backref arrow in sidenotes - not needed when note is beside reference */
-    .sidenote .footnote-backref {
-        @apply hidden;
-    }
-
     /* When sidenotes are active, hide the bottom footnotes section */
     .footnotes.sidenotes-active {
         @apply hidden;

@@ -13,6 +13,8 @@
   const SIDENOTE_MAX_WIDTH = 180;
   const SHARED_RAIL_WIDTH = 312;
   const SIDENOTE_VERTICAL_GAP = 24; // gap between stacked sidenotes
+  const transferredIds = new WeakMap();
+  const referenceHoverBindings = new WeakMap();
 
   function init() {
     const footnotes = document.querySelector('.footnotes');
@@ -20,33 +22,42 @@
 
     const mediaQuery = window.matchMedia(`(min-width: ${BREAKPOINT}px)`);
 
-    function handleViewportChange() {
+    function handleViewportChange(initial = false) {
+      const focusedFootnote = captureFocusedFootnote(footnotes);
       clearSidenotes();
       if (mediaQuery.matches) {
         createSidenotes(footnotes);
+      }
+      restoreFocusedFootnote(focusedFootnote, footnotes);
+      if (initial && mediaQuery.matches) {
+        scrollToInitialFragment();
       }
     }
 
     // Initial setup after images load (affects positioning)
     if (document.readyState === 'complete') {
-      handleViewportChange();
+      handleViewportChange(true);
     } else {
-      window.addEventListener('load', handleViewportChange);
+      window.addEventListener('load', () => handleViewportChange(true));
     }
 
     // Re-run on viewport changes
-    mediaQuery.addEventListener('change', handleViewportChange);
+    mediaQuery.addEventListener('change', () => handleViewportChange());
 
     // Re-run on resize (for sidenote repositioning when content reflows)
     let resizeTimeout;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(handleViewportChange, 150);
+      resizeTimeout = setTimeout(() => handleViewportChange(), 150);
     });
   }
 
   function clearSidenotes() {
-    document.querySelectorAll('.sidenote').forEach(el => el.remove());
+    document.querySelectorAll('.sidenote').forEach(sidenote => {
+      const idsToRestore = transferredIds.get(sidenote) || [];
+      sidenote.remove();
+      idsToRestore.forEach(({ element, id }) => element.setAttribute('id', id));
+    });
     const footnotes = document.querySelector('.footnotes');
     if (footnotes) {
       footnotes.classList.remove('sidenotes-active');
@@ -88,26 +99,55 @@
     let lastBottom = 0;
 
     const footnoteItems = footnotes.querySelectorAll('ol > li');
-    const supRefs = document.querySelectorAll('sup[id^="fnref:"]');
+    const footnotesById = new Map(Array.from(footnoteItems, item => [item.id, item]));
+    const sidenotesByFootnote = new Map();
+    const supRefs = document.querySelectorAll('sup[id^="fnref"]');
 
     supRefs.forEach((sup, index) => {
-      const footnoteItem = footnoteItems[index];
+      const referenceLink = sup.querySelector('a');
+      const href = referenceLink?.getAttribute('href');
+      const footnoteItem = href
+        ? footnotesById.get(href.slice(1))
+        : footnoteItems[index];
       if (!footnoteItem) return;
+      const existingSidenote = sidenotesByFootnote.get(footnoteItem);
+      if (existingSidenote) {
+        bindReferenceHover(sup, existingSidenote);
+        return;
+      }
 
       // Get footnote number from the sup element
-      const footnoteNum = sup.querySelector('a')?.textContent || (index + 1);
+      const footnoteNum = referenceLink?.textContent || (index + 1);
 
-      // Get footnote content (clone to avoid modifying original)
+      // Clone the note contents, then move their IDs to the visible copy so
+      // fragment links do not target the hidden bottom footnotes.
       const content = footnoteItem.cloneNode(true);
-
-      // Create sidenote element with number prefix
       const sidenote = document.createElement('div');
       sidenote.className = 'sidenote';
-      sidenote.innerHTML = `<span class="sidenote-number">${footnoteNum}.</span> ${content.innerHTML}`;
+      sidenote.setAttribute('role', 'doc-endnote');
+      const idsToRestore = [];
+      transferId(footnoteItem, sidenote, idsToRestore);
+      const originalIdElements = footnoteItem.querySelectorAll('[id]');
+      const clonedIdElements = content.querySelectorAll('[id]');
+      originalIdElements.forEach((element, idIndex) => {
+        transferId(element, clonedIdElements[idIndex], idsToRestore);
+      });
 
-      // Add hover effect: highlight sidenote when superscript is hovered
-      sup.addEventListener('mouseenter', () => sidenote.classList.add('sidenote-highlight'));
-      sup.addEventListener('mouseleave', () => sidenote.classList.remove('sidenote-highlight'));
+      // Create sidenote element with number prefix
+      const sidenoteNumber = document.createElement('span');
+      sidenoteNumber.className = 'sidenote-number';
+      sidenoteNumber.textContent = `${footnoteNum}.`;
+      sidenote.appendChild(sidenoteNumber);
+      sidenote.appendChild(document.createTextNode(' '));
+      while (content.firstChild) {
+        sidenote.appendChild(content.firstChild);
+      }
+      if (idsToRestore.length) {
+        transferredIds.set(sidenote, idsToRestore);
+      }
+
+      sidenotesByFootnote.set(footnoteItem, sidenote);
+      bindReferenceHover(sup, sidenote);
 
       // Calculate vertical position (relative to .post container)
       const supRect = sup.getBoundingClientRect();
@@ -132,6 +172,101 @@
 
     // Hide bottom footnotes
     footnotes.classList.add('sidenotes-active');
+  }
+
+  function captureFocusedFootnote(footnotes) {
+    const activeElement = document.activeElement;
+    const sidenotes = Array.from(document.querySelectorAll('.sidenote'));
+    const footnoteItems = footnotes.querySelectorAll('ol > li');
+    let note = sidenotes.find(item => item.contains(activeElement));
+    let index = sidenotes.indexOf(note);
+    const isSidenote = Boolean(note);
+    if (!note) {
+      note = Array.from(footnoteItems).find(item => item.contains(activeElement));
+      index = Array.prototype.indexOf.call(footnoteItems, note);
+    }
+    if (!note) return null;
+
+    const path = [];
+    let element = activeElement;
+    while (element !== note) {
+      const parent = element.parentElement;
+      if (!parent) return null;
+      path.unshift(Array.prototype.indexOf.call(parent.childNodes, element));
+      element = parent;
+    }
+    if (!path.length) return null;
+    if (isSidenote) {
+      if (path[0] < 2) return null;
+      path[0] -= 2;
+    }
+
+    return { id: note.id, index, path };
+  }
+
+  function restoreFocusedFootnote(focused, footnotes) {
+    if (!focused) return;
+
+    const sidenotes = Array.from(document.querySelectorAll('.sidenote'));
+    const footnoteItems = footnotes.querySelectorAll('ol > li');
+    const sidenote = (focused.id && sidenotes.find(note => note.id === focused.id)) || sidenotes[focused.index];
+    const footnote = (focused.id && Array.from(footnoteItems).find(note => note.id === focused.id)) || footnoteItems[focused.index];
+    const targetRoot = sidenote || footnote;
+    if (!targetRoot) return;
+
+    const path = targetRoot === sidenote
+      ? [focused.path[0] + 2, ...focused.path.slice(1)]
+      : focused.path;
+    let target = targetRoot;
+    for (const index of path) {
+      target = target?.childNodes[index];
+      if (!target) return;
+    }
+    if (typeof target.focus === 'function') {
+      target.focus({ preventScroll: true });
+    }
+  }
+
+
+  function scrollToInitialFragment() {
+    // The browser may scroll before the load handler moves the fragment ID.
+    const hash = window.location?.hash;
+    if (!hash || hash.length < 2) return;
+
+    let id = hash.slice(1);
+    try {
+      id = decodeURIComponent(id);
+    } catch (_) {}
+    const target = document.getElementById(id);
+    for (let element = target; element; element = element.parentElement) {
+      if (element.classList?.contains('sidenote')) {
+        target.scrollIntoView({ block: 'nearest' });
+        return;
+      }
+    }
+  }
+
+
+  function bindReferenceHover(sup, sidenote) {
+    let binding = referenceHoverBindings.get(sup);
+    if (binding) {
+      binding.sidenote = sidenote;
+      return;
+    }
+    binding = { sidenote };
+    referenceHoverBindings.set(sup, binding);
+    sup.addEventListener('mouseenter', () => binding.sidenote.classList.add('sidenote-highlight'));
+    sup.addEventListener('mouseleave', () => binding.sidenote.classList.remove('sidenote-highlight'));
+  }
+
+
+  function transferId(source, target, idsToRestore) {
+    if (!source.hasAttribute('id')) return;
+
+    const id = source.getAttribute('id');
+    target.setAttribute('id', id);
+    source.removeAttribute('id');
+    idsToRestore.push({ element: source, id });
   }
 
   // Initialize when DOM is ready
