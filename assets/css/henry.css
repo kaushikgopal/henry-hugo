@@ -21,7 +21,7 @@
 
     article {
         /* prose-xl scale: 18px mobile → 20px desktop */
-        @apply font-medium
+        @apply font-[450]
                 text-lg
                 space-y-6
                 text-ht;
@@ -227,11 +227,6 @@
         @apply w-full border-l-0 border-r-0;
     }
 
-    /* Blog posts shift left on wide screens to make room for the TOC. Keep
-       full-bleed figures centered on the viewport instead of inheriting it. */
-    .section-blog .post-content figure.full-bleed {
-        @apply lg:relative lg:left-24;
-    }
 
     .post-content figure figcaption {
         @apply text-center no-underline font-bold text-xs pt-1;
@@ -425,3 +420,54 @@
 /* ==========================================================================
    Media Queries (outside layers for proper cascade)
    ========================================================================== */
+/* ========================================================================
+   Reading column and TOC rail
+   ======================================================================== */
+/* Use this geometry only when a desktop TOC exists. The rail is 19.5rem
+   wide with a 48px gap; 24.5rem leaves at least a 1rem gutter at each edge.
+   Percentages avoid 100vw's scrollbar gutter. */
+@media (min-width: 64rem) {
+    .post.section-blog:has(.table-of-contents-desktop) {
+        @apply left-[calc(-9.75rem_-_24px)];
+    }
+
+    .post.section-blog:not(:has(.table-of-contents-desktop)) {
+        @apply left-0;
+    }
+
+    .post.section-blog:has(.table-of-contents-desktop) .blog-content-width,
+    .post.section-blog:has(.table-of-contents-desktop) .blog-content-width + .post-content > *:not(figure.full-bleed):not(hr) {
+        @apply max-w-[min(40rem,calc(100%_-_24.5rem))];
+    }
+
+    .post.section-blog:has(.table-of-contents-desktop) .post-content figure.full-bleed {
+        @apply relative left-[calc(9.75rem_+_24px)];
+    }
+
+    .post.section-blog:not(:has(.table-of-contents-desktop)) .post-content figure.full-bleed {
+        @apply static;
+    }
+}
+
+@media (min-width: 80rem) {
+    .post:not(.section-blog):has(.table-of-contents-desktop) {
+        @apply left-[calc(-9.75rem_-_24px)];
+    }
+
+    .post:not(.section-blog):not(:has(.table-of-contents-desktop)) {
+        @apply left-0;
+    }
+
+    .post:not(.section-blog):has(.table-of-contents-desktop) .blog-content-width,
+    .post:not(.section-blog):has(.table-of-contents-desktop) .blog-content-width + .post-content > *:not(figure.full-bleed):not(hr) {
+        @apply max-w-[min(40rem,calc(100%_-_24.5rem))];
+    }
+
+    .post:not(.section-blog):has(.table-of-contents-desktop) .post-content figure.full-bleed {
+        @apply relative left-[calc(9.75rem_+_24px)];
+    }
+
+    .post:not(.section-blog):not(:has(.table-of-contents-desktop)) .post-content figure.full-bleed {
+        @apply static;
+    }
+}
