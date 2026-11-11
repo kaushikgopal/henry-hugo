@@ -1,13 +1,9 @@
+@import "./font-theme.css";
+
 /* ****************************************************************
                    Light mode colors
    **************************************************************** */
 @theme {
-  /* Font roles: body text, display title, article subheadings, code. */
-  --font-body: "Figtree", "Jost", "IBM Plex Sans", sans-serif;
-  --font-title: "Bricolage Grotesque", "Fraunces", "IBM Plex Serif", serif;
-  --font-subtitle: var(--font-title);
-  --font-mono: "Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", "monospace";
-  --default-font-family: var(--font-body);
 
   /* henry background */
   --color-hbg:         #1c2b33;

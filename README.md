@@ -61,6 +61,14 @@ To get the list of commands just type in `make help`.
 
 Here are some recommended customizations to make in your Hugo config file in addition to what was mentioned above.
 
+### Fonts
+
+Henry provides self-hosted Google Sans, Stack Sans Headline, and Paper Mono.
+Import `assets/css/fonts.css` and `assets/css/theme.css` from the theme to use
+the defaults. Sites with their own color theme can import `assets/css/fonts.css`
+and `assets/css/font-theme.css` instead, before their local theme stylesheet.
+Override individual font roles in the local theme when needed.
+
 ### Table of contents
 
 Henry shows a table of contents by default on non-short single pages that contain H1–H3 headings. To disable it site-wide in YAML:

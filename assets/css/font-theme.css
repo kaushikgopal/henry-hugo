@@ -1,0 +1,8 @@
+@theme {
+  /* Font roles: body text, display title, article subheadings, code. */
+  --font-body: "Google Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-title: "Stack Sans Headline", Arial, sans-serif;
+  --font-subtitle: "Stack Sans Headline", "Google Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Paper Mono", ui-monospace, "Cascadia Code", "Menlo", "Consolas", "DejaVu Sans Mono", monospace;
+  --default-font-family: var(--font-body);
+}
