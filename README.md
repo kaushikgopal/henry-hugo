@@ -69,6 +69,13 @@ the defaults. Sites with their own color theme can import `assets/css/fonts.css`
 and `assets/css/font-theme.css` instead, before their local theme stylesheet.
 Override individual font roles in the local theme when needed.
 
+### Staggered reveal
+
+Use `motion-safe:reveal-rise-staggered` on each item and set its zero-based
+`--i` custom property in reading order. The utility uses the same rise and
+timing as the table of contents. Items remain visible when reduced motion is
+requested.
+
 ### Table of contents
 
 Henry shows a table of contents by default on non-short single pages that contain H1–H3 headings. To disable it site-wide in YAML:

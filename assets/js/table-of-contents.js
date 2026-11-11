@@ -5,6 +5,11 @@
   if (!aside) return;
   aside.inert = false;
 
+  const links = Array.from(aside.querySelectorAll('a[href^="#"]'));
+  links.forEach(function (link, index) {
+    link.style.setProperty("--i", index);
+  });
+
   const postTitle = document.querySelector(".post-title");
   const post = document.querySelector(".post");
   const headings = Array.from(
@@ -18,7 +23,6 @@
     return;
   }
 
-  const links = Array.from(aside.querySelectorAll('a[href^="#"]'));
   const scrollArea = aside.querySelector(".table-of-contents-scroll");
   const desktopQuery = window.matchMedia(
     post.classList.contains("section-blog")
@@ -228,7 +232,12 @@
   }
   setActive(initialHeading || closestHeadingToActivationLine());
 
-  aside.addEventListener("focusin", scheduleUpdate);
+  aside.addEventListener("focusin", function (event) {
+    if (links.includes(event.target) && event.target.matches(":focus-visible")) {
+      event.target.classList.add("toc-reveal-interrupted");
+    }
+    scheduleUpdate();
+  });
   aside.addEventListener("focusout", scheduleUpdate);
 
   window.addEventListener("scroll", scheduleUpdate, { passive: true });

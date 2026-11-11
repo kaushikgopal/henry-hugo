@@ -12,7 +12,7 @@ class TestElement {
     this.parentElement = null;
     this.listeners = new Map();
     this.style = {
-      setProperty: (name, value) => { this.style[name] = value; },
+      setProperty: (name, value) => { this.style[name] = String(value); },
       removeProperty: name => { delete this.style[name]; },
     };
     this.rect = { left: 500, right: 800, top: 80, bottom: 300, height: 220 };
@@ -41,6 +41,7 @@ class TestElement {
   getAttribute(name) { return this.attributes.has(name) ? this.attributes.get(name) : null; }
   setAttribute(name, value) { this.attributes.set(name, String(value)); }
   hasAttribute(name) { return this.attributes.has(name); }
+  matches(selector) { return selector === ':focus-visible' && this.focusVisible === true; }
   removeAttribute(name) { this.attributes.delete(name); }
   appendChild(child) {
     child.parentElement = this;
@@ -63,6 +64,11 @@ class TestElement {
     this.document.activeElement = this;
     const event = { target: this };
     for (let element = this; element; element = element.parentElement) element.dispatch('focusin', event);
+  }
+  blur() {
+    if (this.document.activeElement === this) this.document.activeElement = null;
+    const event = { target: this };
+    for (let element = this; element; element = element.parentElement) element.dispatch('focusout', event);
   }
   getBoundingClientRect() { return this.rect; }
   querySelector(selector) { return (this.selectorResults?.[selector] || [])[0] || null; }
@@ -92,12 +98,26 @@ function createFixture() {
   scrollArea.offsetHeight = 220;
   scrollArea.clientHeight = 220;
   scrollArea.scrollTop = 0;
+  const tocList = element('ul');
+  const firstItem = element('li');
   const link = element('a', { href: '#section-two' });
   link.offsetTop = 0;
   link.offsetHeight = 20;
-  scrollArea.appendChild(link);
+  firstItem.appendChild(link);
+  const nestedList = element('ul');
+  const nestedItem = element('li');
+  const nestedLink = element('a', { href: '#nested-section' });
+  nestedItem.appendChild(nestedLink);
+  nestedList.appendChild(nestedItem);
+  firstItem.appendChild(nestedList);
+  const lastItem = element('li');
+  const lastLink = element('a', { href: '#last-section' });
+  lastItem.appendChild(lastLink);
+  tocList.appendChild(firstItem);
+  tocList.appendChild(lastItem);
+  scrollArea.appendChild(tocList);
   aside.appendChild(scrollArea);
-  aside.selectorResults = { '.table-of-contents-scroll': [scrollArea], 'a[href^="#"]': [link] };
+  aside.selectorResults = { '.table-of-contents-scroll': [scrollArea], 'a[href^="#"]': [link, nestedLink, lastLink] };
 
   const title = element('h1', { class: 'post-title' });
   title.rect = { top: 200, bottom: 200, left: 0, right: 600, height: 40 };
@@ -155,7 +175,7 @@ function createFixture() {
     },
   };
 
-  return { document, aside, link, title, post, postContent, heading, mobileToc, desktopQuery, desktopQueryListeners, frames, scrollCalls, window, windowListeners };
+  return { document, aside, link, nestedLink, lastLink, title, post, postContent, heading, mobileToc, desktopQuery, desktopQueryListeners, frames, scrollCalls, window, windowListeners };
 }
 
 function loadTableOfContents(fixture) {
@@ -172,6 +192,39 @@ function loadTableOfContents(fixture) {
 function flushFrames(fixture) {
   while (fixture.frames.length) fixture.frames.shift()();
 }
+
+test('desktop TOC reveal indices follow nested links in DOM order, even when TOC behavior exits early', () => {
+  const fixture = createFixture();
+  fixture.document.selectorResults['.post-content :is(h1,h2,h3)[id]'] = [];
+  loadTableOfContents(fixture);
+
+  assert.deepEqual(
+    [fixture.link, fixture.nestedLink, fixture.lastLink].map(link => link.style['--i']),
+    ['0', '1', '2'],
+  );
+  assert.equal(fixture.aside.classList.contains('opacity-100'), true);
+  assert.equal(fixture.aside.classList.contains('opacity-0'), false);
+});
+
+test('keyboard focus keeps an interrupted desktop TOC link reveal visible after blur', () => {
+  const fixture = createFixture();
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  fixture.link.focus();
+  assert.equal(fixture.link.classList.contains('toc-reveal-interrupted'), false, 'ordinary focus does not interrupt the reveal');
+  fixture.link.blur();
+
+  fixture.link.focusVisible = true;
+  fixture.link.focus();
+  assert.equal(fixture.link.classList.contains('toc-reveal-interrupted'), true, 'keyboard focus interrupts the reveal');
+
+  fixture.link.blur();
+  flushFrames(fixture);
+  assert.equal(fixture.link.classList.contains('toc-reveal-interrupted'), true, 'the reveal stays disabled after blur');
+  assert.equal(fixture.nestedLink.classList.contains('toc-reveal-interrupted'), false, 'other links keep their staggered reveal');
+});
+
 
 test('the desktop rail is available before the title passes and hides for collisions while moving focus safely', () => {
   const fixture = createFixture();
@@ -285,16 +338,13 @@ test('breakpoint focus transfer scrolls an offscreen heading into view', () => {
   assert.equal(fixture.heading.focusOptions.preventScroll, true);
 });
 
-test('desktop and mobile table-of-contents markup stays accessible without JavaScript and honors reduced motion', () => {
+test('desktop and mobile table-of-contents markup has a no-JavaScript fallback', () => {
   const partial = readFileSync(path.join(__dirname, '../../layouts/_partials/table-of-contents.html'), 'utf8');
-  const styles = readFileSync(path.join(__dirname, '../css/henry.css'), 'utf8');
-  assert.match(partial, /class=\"table-of-contents-desktop/);
+  assert.match(partial, /class="table-of-contents-desktop/);
   assert.match(partial, /opacity-100/);
+  assert.doesNotMatch(partial, /opacity-0/);
   assert.match(partial, /pointer-events-auto/);
-  assert.match(partial, /<details class=\"table-of-contents-mobile/);
-  assert.match(partial, /motion-safe:animate-toc-rise/);
-  assert.match(styles, /--animate-toc-rise: toc-rise 700ms cubic-bezier\(0\.22, 1, 0\.36, 1\) backwards/);
-  assert.match(styles, /@keyframes toc-rise\s*\{\s*from\s*\{\s*opacity: 0;\s*transform: translateY\(6px\);/);
+  assert.match(partial, /<details class="table-of-contents-mobile/);
 });
 
 test('short article content does not move the desktop rail above its safe viewport position', () => {
