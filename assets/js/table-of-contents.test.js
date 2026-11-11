@@ -84,7 +84,7 @@ function createFixture() {
   };
 
   const aside = element('aside', {
-    class: 'opacity-0 pointer-events-none',
+    class: 'opacity-100 pointer-events-auto',
     'aria-label': 'Table of contents',
   });
   aside.offsetHeight = 260;
@@ -173,19 +173,20 @@ function flushFrames(fixture) {
   while (fixture.frames.length) fixture.frames.shift()();
 }
 
-test('collision hides an inert rail without changing the mobile fallback and safely moves focus', () => {
+test('the desktop rail is available before the title passes and hides for collisions while moving focus safely', () => {
   const fixture = createFixture();
   loadTableOfContents(fixture);
-  assert.equal(fixture.aside.inert, true, 'the rail is inert before its first visibility update');
+  assert.equal(fixture.aside.inert, false, 'the desktop rail starts available');
   flushFrames(fixture);
 
-  assert.equal(fixture.aside.inert, true, 'links in the visually hidden rail are inert');
-  assert.equal(fixture.aside.classList.contains('opacity-0'), true);
+  assert.equal(fixture.aside.inert, false, 'the rail is available before the title passes');
+  assert.equal(fixture.aside.classList.contains('opacity-100'), true);
+  assert.equal(fixture.aside.classList.contains('opacity-0'), false);
 
   fixture.title.rect.bottom = 80;
   fixture.windowListeners.get('scroll')();
   flushFrames(fixture);
-  assert.equal(fixture.aside.inert, false, 'the rail becomes available after the title passes');
+  assert.equal(fixture.aside.inert, false, 'the rail stays available after the title passes');
 
   fixture.link.focus();
   flushFrames(fixture);
@@ -205,6 +206,13 @@ test('collision hides an inert rail without changing the mobile fallback and saf
   assert.equal(fixture.mobileToc.style.display, undefined, 'collision handling does not force the in-flow fallback to display');
   assert.equal(fixture.mobileToc.open, false, 'collision handling does not open the mobile fallback');
   assert.equal(fixture.mobileToc.rect.top, 500, 'the mobile fallback keeps its existing layout position');
+
+  fixture.post.selectorResults['.sidenote, figure.full-bleed'].length = 0;
+  fixture.windowListeners.get('scroll')();
+  flushFrames(fixture);
+  assert.equal(fixture.aside.inert, false, 'the rail becomes available again after the collision ends');
+  assert.equal(fixture.aside.classList.contains('opacity-100'), true);
+  assert.equal(fixture.aside.classList.contains('pointer-events-auto'), true);
 });
 
 test('collision focus transfer scrolls an offscreen heading into view', () => {
@@ -234,6 +242,24 @@ test('collision focus transfer scrolls an offscreen heading into view', () => {
   assert.equal(fixture.heading.focusOptions.preventScroll, true);
 });
 
+test('the rail is inert when the viewport cannot fit it and returns when space is available', () => {
+  const fixture = createFixture();
+  fixture.window.innerHeight = 100;
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.inert, true);
+  assert.equal(fixture.aside.classList.contains('opacity-0'), true);
+
+  fixture.window.innerHeight = 1000;
+  fixture.windowListeners.get('resize')();
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.inert, false);
+  assert.equal(fixture.aside.classList.contains('opacity-100'), true);
+});
+
+
 test('breakpoint focus transfer scrolls an offscreen heading into view', () => {
   const fixture = createFixture();
   fixture.heading.rect = { left: 0, right: 600, top: -250, bottom: -220, height: 30 };
@@ -259,8 +285,35 @@ test('breakpoint focus transfer scrolls an offscreen heading into view', () => {
   assert.equal(fixture.heading.focusOptions.preventScroll, true);
 });
 
-test('the desktop rail keeps its no-JavaScript visibility fallback', () => {
+test('desktop and mobile table-of-contents markup stays accessible without JavaScript and honors reduced motion', () => {
   const partial = readFileSync(path.join(__dirname, '../../layouts/_partials/table-of-contents.html'), 'utf8');
-  assert.match(partial, /\[html\.no-js_&\]:opacity-100/);
-  assert.match(partial, /\[html\.no-js_&\]:pointer-events-auto/);
+  const styles = readFileSync(path.join(__dirname, '../css/henry.css'), 'utf8');
+  assert.match(partial, /class=\"table-of-contents-desktop/);
+  assert.match(partial, /opacity-100/);
+  assert.match(partial, /pointer-events-auto/);
+  assert.match(partial, /<details class=\"table-of-contents-mobile/);
+  assert.match(partial, /motion-safe:animate-toc-rise/);
+  assert.match(styles, /--animate-toc-rise: toc-rise 700ms cubic-bezier\(0\.22, 1, 0\.36, 1\) backwards/);
+  assert.match(styles, /@keyframes toc-rise\s*\{\s*from\s*\{\s*opacity: 0;\s*transform: translateY\(6px\);/);
+});
+
+test('short article content does not move the desktop rail above its safe viewport position', () => {
+  const fixture = createFixture();
+  fixture.postContent.rect.bottom = 250;
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.style['--toc-top'], '80px');
+});
+
+test('the desktop rail stays at its safe viewport position after scrolling past the article', () => {
+  const fixture = createFixture();
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  fixture.postContent.rect.bottom = -100;
+  fixture.windowListeners.get('scroll')();
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.style['--toc-top'], '80px');
 });

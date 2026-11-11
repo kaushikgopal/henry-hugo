@@ -466,3 +466,14 @@
         @apply static;
     }
 }
+
+@theme {
+    --animate-toc-rise: toc-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+
+    @keyframes toc-rise {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+    }
+}

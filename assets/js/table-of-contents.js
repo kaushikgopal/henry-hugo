@@ -3,11 +3,10 @@
 
   const aside = document.querySelector(".table-of-contents-desktop");
   if (!aside) return;
-  aside.inert = true;
+  aside.inert = false;
 
   const postTitle = document.querySelector(".post-title");
   const post = document.querySelector(".post");
-  const postContent = document.querySelector(".post-content");
   const headings = Array.from(
     document.querySelectorAll(".post-content :is(h1,h2,h3)[id]")
   );
@@ -34,7 +33,6 @@
   const railGap = 48;
   const collisionGap = 12;
   const minimumListHeight = 96;
-  let titlePassed = false;
   let collisionHidden = false;
   let frameRequested = false;
   let activeHeading = null;
@@ -145,7 +143,6 @@
       aside.style.setProperty("--toc-left", contentRight + railGap + "px");
     }
 
-    titlePassed = postTitle.getBoundingClientRect().bottom <= 100;
     let top = normalTop;
     let usableListHeight = 0;
     let hasRoom = true;
@@ -175,22 +172,8 @@
     }
 
     collisionHidden = !hasRoom;
-    // Anchor the rail to the bottom of the post content so it never floats
-    // past the post into the date/nav/metadata below. As the content end
-    // scrolls into view, pin the TOC's bottom edge to the content's bottom
-    // edge; it then rides up with the content instead of fading or drifting
-    // past the end.
-    if (postContent && hasRoom) {
-      const maxTop = postContent.getBoundingClientRect().bottom - aside.offsetHeight;
-      if (top > maxTop) {
-        top = maxTop;
-        aside.style.setProperty("--toc-top", top + "px");
-      }
-    }
-    // After bottom-anchor clamping, re-check for collisions. The clamp can
-    // pull the TOC back up into a sidenote or full-bleed figure that the
-    // collision loop had previously pushed it past. If so, hide the TOC —
-    // there's no room at the end of the post.
+    // Confirm the final position does not overlap a collision element. This
+    // also hides the rail if the bounded placement loop cannot clear one.
     if (hasRoom) {
       const panelRect = aside.getBoundingClientRect();
       const stillColliding = collisionElements.some(function (el) {
@@ -202,7 +185,7 @@
     }
     const focusedElement = document.activeElement;
     const focusedWithin = aside.contains(focusedElement);
-    const visible = titlePassed && !collisionHidden;
+    const visible = !collisionHidden;
     if (!visible && focusedWithin) focusHeading(focusedElement);
     setAsideVisible(visible);
   }
