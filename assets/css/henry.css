@@ -114,7 +114,7 @@
 
 
     .blog-content-width {
-        @apply w-[75%] max-w-[33rem] min-w-[333px] mx-auto;
+        @apply w-[75%] max-w-[33rem] min-w-[min(333px,calc(100vw_-_2rem))] mx-auto;
     }
 
     /* Hide the tag/category nav at the bottom of individual posts */
@@ -209,7 +209,7 @@
     /* sibling selector used to avoid width to apply in list page that has snippet on top */
     /* hr excluded — it gets its own centering rule below */
     .blog-content-width + .post-content > *:not(figure.full-bleed):not(hr) {
-        @apply w-[75%] max-w-[33rem] min-w-[333px] mx-auto;
+        @apply w-[75%] max-w-[33rem] min-w-[min(333px,calc(100vw_-_2rem))] mx-auto;
     }
 
     /* Dinkus separator: user-written --- in post content */
