@@ -26,8 +26,8 @@
   const scrollArea = aside.querySelector(".table-of-contents-scroll");
   const desktopQuery = window.matchMedia(
     post.classList.contains("section-blog")
-      ? "(min-width: 1024px)"
-      : "(min-width: 1280px)"
+      ? "(min-width: 64rem)"
+      : "(min-width: 80rem)"
   );
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const activationLine = 100;

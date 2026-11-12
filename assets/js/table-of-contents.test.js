@@ -150,6 +150,7 @@ function createFixture() {
   const scrollCalls = [];
   const windowListeners = new Map();
   const desktopQueryListeners = new Map();
+  const mediaQueries = [];
   const desktopQuery = {
     matches: true,
     addEventListener: (type, callback) => desktopQueryListeners.set(type, callback),
@@ -159,9 +160,12 @@ function createFixture() {
     scrollY: 0,
     location: { hash: '' },
     history: { pushState() {} },
-    matchMedia: query => query.includes('prefers-reduced-motion')
-      ? { matches: false, addEventListener() {} }
-      : desktopQuery,
+    matchMedia: query => {
+      mediaQueries.push(query);
+      return query.includes('prefers-reduced-motion')
+        ? { matches: false, addEventListener() {} }
+        : desktopQuery;
+    },
     requestAnimationFrame: callback => frames.push(callback),
     addEventListener: (type, callback) => windowListeners.set(type, callback),
     scrollTo: options => {
@@ -175,7 +179,7 @@ function createFixture() {
     },
   };
 
-  return { document, aside, link, nestedLink, lastLink, title, post, postContent, heading, mobileToc, desktopQuery, desktopQueryListeners, frames, scrollCalls, window, windowListeners };
+  return { document, aside, link, nestedLink, lastLink, title, post, postContent, heading, mobileToc, desktopQuery, desktopQueryListeners, mediaQueries, frames, scrollCalls, window, windowListeners };
 }
 
 function loadTableOfContents(fixture) {
@@ -192,6 +196,23 @@ function loadTableOfContents(fixture) {
 function flushFrames(fixture) {
   while (fixture.frames.length) fixture.frames.shift()();
 }
+
+test('desktop TOC media queries match the CSS breakpoints for blog and non-blog pages', () => {
+  const blogFixture = createFixture();
+  loadTableOfContents(blogFixture);
+  assert.deepEqual(blogFixture.mediaQueries, [
+    '(min-width: 64rem)',
+    '(prefers-reduced-motion: reduce)',
+  ]);
+
+  const nonBlogFixture = createFixture();
+  nonBlogFixture.post.classList.remove('section-blog');
+  loadTableOfContents(nonBlogFixture);
+  assert.deepEqual(nonBlogFixture.mediaQueries, [
+    '(min-width: 80rem)',
+    '(prefers-reduced-motion: reduce)',
+  ]);
+});
 
 test('desktop TOC reveal indices follow nested links in DOM order, even when TOC behavior exits early', () => {
   const fixture = createFixture();
