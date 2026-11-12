@@ -338,22 +338,28 @@ test('breakpoint focus transfer scrolls an offscreen heading into view', () => {
   assert.equal(fixture.heading.focusOptions.preventScroll, true);
 });
 
-test('desktop and mobile table-of-contents markup has a no-JavaScript fallback', () => {
+test('no-JavaScript TOC uses in-flow details at every width and hides the desktop rail', () => {
   const partial = readFileSync(path.join(__dirname, '../../layouts/_partials/table-of-contents.html'), 'utf8');
-  assert.match(partial, /class="table-of-contents-desktop/);
-  assert.match(partial, /opacity-100/);
-  assert.doesNotMatch(partial, /opacity-0/);
-  assert.match(partial, /pointer-events-auto/);
-  assert.match(partial, /<details class="table-of-contents-mobile/);
+  const mobileToc = partial.match(/<details class="[^>]*>/)?.[0];
+  const desktopToc = partial.match(/<aside\s+class="[^>]*>/)?.[0];
+  assert.ok(mobileToc, 'the in-flow details fallback is present');
+  assert.ok(desktopToc, 'the desktop rail is present');
+  assert.match(mobileToc, /\[html\.no-js_&\]:block/, 'the details override responsive hiding without JavaScript');
+  assert.doesNotMatch(mobileToc, /\bfixed\b/, 'the fallback remains in document flow');
+  assert.match(mobileToc, /\{\{ if eq \.Section "blog" \}\}lg:hidden/);
+  assert.match(mobileToc, /\{\{ else \}\}xl:hidden/);
+  assert.match(desktopToc, /\[html\.no-js_&\]:hidden/, 'the fixed rail is hidden without JavaScript');
+  assert.match(desktopToc, /\{\{ if eq \.Section "blog" \}\}lg:block/);
+  assert.match(desktopToc, /\{\{ else \}\}xl:block/);
 });
 
-test('short article content does not move the desktop rail above its safe viewport position', () => {
+test('short article content keeps the desktop rail aligned with the visible title', () => {
   const fixture = createFixture();
   fixture.postContent.rect.bottom = 250;
   loadTableOfContents(fixture);
   flushFrames(fixture);
 
-  assert.equal(fixture.aside.style['--toc-top'], '80px');
+  assert.equal(fixture.aside.style['--toc-top'], '200px');
 });
 
 test('the desktop rail stays at its safe viewport position after scrolling past the article', () => {
@@ -361,9 +367,60 @@ test('the desktop rail stays at its safe viewport position after scrolling past 
   loadTableOfContents(fixture);
   flushFrames(fixture);
 
+  fixture.title.rect.top = -100;
+  fixture.title.rect.bottom = -60;
   fixture.postContent.rect.bottom = -100;
   fixture.windowListeners.get('scroll')();
   flushFrames(fixture);
 
   assert.equal(fixture.aside.style['--toc-top'], '80px');
+});
+
+test('the desktop rail starts at the visible title and follows it up to its fixed position', () => {
+  const fixture = createFixture();
+  fixture.title.rect = { left: 0, right: 600, top: 220, bottom: 260, height: 40 };
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.style['--toc-top'], '220px');
+  assert.equal(fixture.aside.inert, false);
+
+  fixture.title.rect.top = 120;
+  fixture.title.rect.bottom = 160;
+  fixture.windowListeners.get('scroll')();
+  flushFrames(fixture);
+  assert.equal(fixture.aside.style['--toc-top'], '120px');
+
+  fixture.title.rect.top = 60;
+  fixture.title.rect.bottom = 100;
+  fixture.windowListeners.get('scroll')();
+  flushFrames(fixture);
+  assert.equal(fixture.aside.style['--toc-top'], '80px');
+});
+
+test('the desktop rail hides when the title is below a short viewport', () => {
+  const fixture = createFixture();
+  fixture.window.innerHeight = 800;
+  fixture.title.rect = { left: 0, right: 600, top: 850, bottom: 890, height: 40 };
+  loadTableOfContents(fixture);
+  flushFrames(fixture);
+
+  assert.equal(fixture.aside.style['--toc-top'], '850px');
+  assert.equal(fixture.aside.style['--toc-max-height'], '0px');
+  assert.equal(fixture.aside.inert, true);
+  assert.equal(fixture.aside.classList.contains('opacity-0'), true);
+});
+
+test('TOC link navigation does not animate when reduced motion is requested', () => {
+  const fixture = createFixture();
+  fixture.window.matchMedia = query => query.includes('prefers-reduced-motion')
+    ? { matches: true, addEventListener() {} }
+    : fixture.desktopQuery;
+  loadTableOfContents(fixture);
+
+  let prevented = false;
+  fixture.link.dispatch('click', { preventDefault() { prevented = true; } });
+
+  assert.equal(prevented, true);
+  assert.equal(fixture.scrollCalls[0].behavior, 'auto');
 });

@@ -147,7 +147,7 @@
       aside.style.setProperty("--toc-left", contentRight + railGap + "px");
     }
 
-    let top = normalTop;
+    let top = Math.max(normalTop, postTitle.getBoundingClientRect().top);
     let usableListHeight = 0;
     let hasRoom = true;
     // Collision elements: sidenotes + full-bleed figures (both occupy the rail)
