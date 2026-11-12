@@ -14,7 +14,7 @@
     {{- $mobileToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-mobile\"" 1 -}}
     {{- $desktopToc := replace (string $toc) "id=\"TableOfContents\"" "id=\"TableOfContents-desktop\"" 1 -}}
 
-<details class="table-of-contents-mobile [html.no-js_&]:block mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-[33rem] mx-auto border-4 border-ht-lightest text-sm font-body font-medium {{ if eq .Section "blog" }}lg:hidden{{ else }}xl:hidden{{ end }}">
+<details class="table-of-contents-mobile [html.no-js_&]:block mb-8 w-[max(75%,min(333px,calc(100%-2rem)))] max-w-[33rem] mx-auto border-1 border-ht-lightest text-sm font-body font-medium {{ if eq .Section "blog" }}lg:hidden{{ else }}xl:hidden{{ end }}">
   <summary class="cursor-pointer px-4 py-3 font-body font-bold text-ht-light marker:text-ht-lighter focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hc">
     Contents
   </summary>
@@ -34,7 +34,7 @@
   style="--toc-top: 5rem; --toc-max-height: calc(100vh - 8rem);"
   aria-label="Table of contents"
 >
-  <div class="table-of-contents-desktop__panel border-4 border-ht-lightest bg-hbg-dark px-3 pb-3 pt-2 text-sm font-body font-medium">
+  <div class="table-of-contents-desktop__panel border-1 border-ht-lightest bg-hbg-dark px-3 pb-3 pt-2 text-sm font-body font-medium">
     <div class="mb-2 font-body text-xs font-bold uppercase tracking-wider text-ht-light motion-safe:animate-reveal-rise" style="animation-delay: 300ms">Contents</div>
     <div class="table-of-contents-scroll scrollbar-visible overflow-y-auto overscroll-contain pe-1 max-h-[var(--toc-max-height)] text-ht-lighter [&_a]:block [&_a]:no-underline [&_a]:transition-colors [&_a]:duration-200 motion-reduce:[&_a]:transition-none [&_a:hover]:text-hc [&_a:focus-visible]:text-hc [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-1 [&_a:focus-visible]:outline-hc [&_a.text-hc]:font-semibold [&_li]:list-none [&_ul]:space-y-1 [&_ul_ul]:ms-3 [&_ul_ul]:mt-1 [&_a]:motion-safe:reveal-rise-staggered">
       {{- $desktopToc | safeHTML -}}
