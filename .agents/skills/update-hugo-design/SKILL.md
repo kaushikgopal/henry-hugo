@@ -1,6 +1,9 @@
 ---
 name: update-hugo-design
 description: Make design changes to Hugo sites across templates, partials, HTML, and CSS/Tailwind while preserving the site's visual system.
+metadata:
+  dependencies: |-
+    - make CLI: run the site's build and css targets to verify changes.
 ---
 
 # Update Hugo Design

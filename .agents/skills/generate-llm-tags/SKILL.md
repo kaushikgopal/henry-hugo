@@ -1,6 +1,12 @@
 ---
 name: generate-llm-tags
 description: Generate topic tags for Hugo posts and write them to frontmatter when posts are untagged or related-post quality is weak.
+metadata:
+  dependencies: |-
+    - Python 3.11+: run the kindred helper scripts.
+    - pyyaml: read and write post frontmatter in the helper scripts.
+    - ~/dev/oss/kindred/scripts/: batch posts, write tags to frontmatter, and build the reference graph.
+    - sonnet subagents: generate topic tags for each batch.
 ---
 
 # Generate LLM Tags
