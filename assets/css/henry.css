@@ -9,12 +9,12 @@
     }
 
     a {
-        @apply underline decoration-2 decoration-solid decoration-ht-lighter underline-offset-4 hover:no-underline hover:text-hc;
+        @apply underline decoration-2 decoration-solid decoration-ht-lighter underline-offset-[0.25em] hover:no-underline hover:text-hc;
     }
 
     a[href*='//'],
     a.external-link {
-        @apply decoration-wavy decoration-1;
+        @apply decoration-4 underline-offset-[0.2em];
     }
 
     .post-title { }
@@ -35,7 +35,8 @@
     }
 
     article p {
-        @apply overflow-hidden text-ellipsis;
+        /* Let underlines paint below the last line without letting long URLs spill. */
+        @apply wrap-break-word;
     }
 
     article a {
