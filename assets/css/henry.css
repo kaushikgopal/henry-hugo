@@ -9,12 +9,12 @@
     }
 
     a {
-        @apply underline decoration-2 decoration-solid decoration-ht-lighter underline-offset-[0.25em] hover:no-underline hover:text-hc;
+        @apply underline decoration-1 md:decoration-2 decoration-solid decoration-ht-lighter underline-offset-[0.25em] hover:no-underline hover:text-hc;
     }
 
     a[href*='//'],
     a.external-link {
-        @apply decoration-4 underline-offset-[0.2em];
+        @apply decoration-2 md:decoration-4 underline-offset-[0.2em];
     }
 
     .post-title { }
